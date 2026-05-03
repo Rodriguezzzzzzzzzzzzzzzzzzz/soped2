@@ -3,7 +3,7 @@ import Layout from '@/components/layout/Layout'
 const team = [
   { name: 'Rodrigo Manuel Rodriguez Molleda', role: 'Director General', bio: 'Especialista en debate parlamentario con más de 8 años de experiencia formando líderes académicos.' },
   { name: 'Lucero Beys', role: 'Directora Académico', bio: 'Exdelegado en múltiples conferencias MUN internacionales. Docente universitario.' },
-  { name: 'Pedro Adrian Villalba', role: 'Coordinador MUN', bio: 'Pedro Adrian, estudiante de derecho con participación destacada en 10 conferencias jurídicas internacionales de alto nivel.' },
+  { name: 'Pedro Adrian Villalba', role: 'Coordinador MUN', bio: 'Estudiante de derecho con participación destacada en 10 conferencias jurídicas internacionales de alto nivel.' },
   { name: 'Rodrigo Salas', role: 'Coordinador Escolar', bio: 'Educador con enfoque en el desarrollo del pensamiento crítico en adolescentes.' },
 ]
 
@@ -22,7 +22,7 @@ export default function NosotrosPage() {
           <h1 style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 400, color: '#fff', lineHeight: 1.08, maxWidth: '700px' }}>
             Quiénes somos
           </h1>
-        </div>
+        </div>xs
       </section>
 
       {/* Mission */}
