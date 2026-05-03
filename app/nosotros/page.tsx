@@ -1,9 +1,9 @@
 import Layout from '@/components/layout/Layout'
 
 const team = [
-  { name: 'Rodrigo Manuel Rodriguez Molleda', role: 'Directora General', bio: 'Especialista en debate parlamentario con más de 8 años de experiencia formando líderes académicos.' },
+  { name: 'Rodrigo Manuel Rodriguez Molleda', role: 'Director General', bio: 'Especialista en debate parlamentario con más de 8 años de experiencia formando líderes académicos.' },
   { name: 'Lucero Beys', role: 'Directora Académico', bio: 'Exdelegado en múltiples conferencias MUN internacionales. Docente universitario.' },
-  { name: 'Pedro Villalba', role: 'Coordinador MUN', bio: 'Especialista en política internacional y diplomacia. Fundadora del programa MUN de SoPeD.' },
+  { name: 'Pedro Villalba', role: 'Coordinador MUN', bio: 'Especialista en política internacional y diplomacia.' },
   { name: 'Rodrigo Salas', role: 'Coordinador Escolar', bio: 'Educador con enfoque en el desarrollo del pensamiento crítico en adolescentes.' },
 ]
 
