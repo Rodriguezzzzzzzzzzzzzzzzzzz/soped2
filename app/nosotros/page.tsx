@@ -1,7 +1,7 @@
 import Layout from '@/components/layout/Layout'
 
 const team = [
-  { name: 'Ana Sofía Ríos', role: 'Directora General', bio: 'Especialista en debate parlamentario con más de 8 años de experiencia formando líderes académicos.' },
+  { name: 'Rodrigo Manuel Rodriguez', role: 'Directora General', bio: 'Especialista en debate parlamentario con más de 8 años de experiencia formando líderes académicos.' },
   { name: 'Diego Martínez', role: 'Director Académico', bio: 'Exdelegado en múltiples conferencias MUN internacionales. Docente universitario.' },
   { name: 'Valeria Campos', role: 'Coordinadora MUN', bio: 'Especialista en política internacional y diplomacia. Fundadora del programa MUN de SoPeD.' },
   { name: 'Rodrigo Salas', role: 'Coordinador Escolar', bio: 'Educador con enfoque en el desarrollo del pensamiento crítico en adolescentes.' },
@@ -34,10 +34,10 @@ export default function NosotrosPage() {
                 Misión institucional
               </h2>
               <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '1rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.85, marginBottom: '1.25rem' }}>
-                La Sociedad Peruana de Debate es una institución académica dedicada a la formación de líderes intelectuales a través del debate competitivo, el pensamiento crítico y la argumentación rigurosa.
+                La Sociedad Peruana de Debate es una institución académica dedicada a la formación de líderes intelectuales a través del debate competitivo, el pensamiento crítico y la argum[...]
               </p>
               <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '1rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.85 }}>
-                Creemos que el debate no es solo una habilidad comunicativa, sino una herramienta de transformación personal y social. Formamos ciudadanos capaces de defender ideas con evidencia, respeto y claridad.
+                Creemos que el debate no es solo una habilidad comunicativa, sino una herramienta de transformación personal y social. Formamos ciudadanos capaces de defender ideas con evidencia,[...]
               </p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -47,7 +47,7 @@ export default function NosotrosPage() {
                 { label: 'Valores', text: 'Excelencia académica, respeto intelectual, rigor argumentativo e inclusión.' },
               ].map((v) => (
                 <div key={v.label} className="glass" style={{ padding: '1.5rem' }}>
-                  <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)', marginBottom: '0.5rem' }}>{v.label}</p>
+                  <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)', marginBott[...]
                   <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>{v.text}</p>
                 </div>
               ))}
@@ -65,13 +65,13 @@ export default function NosotrosPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
             {team.map((member) => (
               <div key={member.name} className="glass glass-hover" style={{ padding: '2rem' }}>
-                <div style={{ width: '48px', height: '48px', background: 'rgba(184,150,12,0.1)', border: '1px solid rgba(184,150,12,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                <div style={{ width: '48px', height: '48px', background: 'rgba(184,150,12,0.1)', border: '1px solid rgba(184,150,12,0.25)', display: 'flex', alignItems: 'center', justifyContent: '[...]
                   <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.4rem', color: '#d4af37', fontWeight: 600 }}>
                     {member.name.charAt(0)}
                   </span>
                 </div>
                 <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.3rem', fontWeight: 500, color: '#fff', marginBottom: '0.25rem' }}>{member.name}</p>
-                <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.65)', marginBottom: '0.75rem' }}>{member.role}</p>
+                <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.65)', marginBottom[...]
                 <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.7 }}>{member.bio}</p>
               </div>
             ))}
