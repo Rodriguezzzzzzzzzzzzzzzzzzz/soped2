@@ -89,13 +89,43 @@ export default function IntroLoader({ onComplete }: { onComplete: () => void }) 
       {/* Logo mark */}
       <div style={logoStyle}>
         <div style={{ textAlign: 'center' }}>
-        {/* Emblem */}
-<div style={{ margin: '0 auto 24px', width: '80px', height: '80px' }}>
-  <img
-    src="/logo-soped.svg"
-    alt="SoPeD"
-    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-  />
-</div>
+          {/* Emblem */}
+          <div
+            style={{
+              width: '80px',
+              height: '80px',
+              border: '1px solid rgba(184,150,12,0.5)',
+              background: 'rgba(184,150,12,0.08)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '0 auto 24px',
+            }}
+          >
+            <span
+              style={{
+                fontFamily: 'var(--font-cormorant)',
+                fontSize: '2.5rem',
+                fontWeight: 600,
+                color: '#d4af37',
+                lineHeight: 1,
+              }}
+            >
+              S
+            </span>
+          </div>
 
-          
+          {/* Name */}
+          <p
+            style={{
+              fontFamily: 'var(--font-cormorant)',
+              fontSize: '2rem',
+              fontWeight: 600,
+              color: '#fff',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              marginBottom: '6px',
+            }}
+          >
+            SoPeD
+          </p>
