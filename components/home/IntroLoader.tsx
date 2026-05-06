@@ -44,7 +44,7 @@ export default function IntroLoader({ onComplete }: { onComplete: () => void }) 
     position: 'fixed',
     inset: 0,
     zIndex: 9999,
-    background: '#0a111b',
+    background: '#050a10',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
