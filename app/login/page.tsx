@@ -213,7 +213,18 @@ export default function LoginPage() {
               {loading ? 'Verificando...' : 'Ingresar a la plataforma'}
             </button>
           </div>
+        </div>
 
+        {/* Footer link */}
+        <p
+          style={{
+            fontFamily: 'var(--font-outfit)',
+            fontSize: '0.8rem',
+            color: 'rgba(255,255,255,0.3)',
+            textAlign: 'center',
+            marginTop: '1.5rem',
+          }}
+        >
           ¿No tienes cuenta?{' '}
           <Link href="/inscripcion" className="btn-text" style={{ display: 'inline', color: 'rgba(184,150,12,0.7)', fontSize: '0.8rem' }}>
             Inscríbete aquí
