@@ -74,17 +74,15 @@ export default function IntroLoader({ onComplete }: { onComplete: () => void }) 
               margin: '0 auto 24px',
             }}
           >
-            <span
-              style={{
-                fontFamily: 'var(--font-cormorant)',
-                fontSize: '2.5rem',
-                fontWeight: 600,
-                color: '#d4af37',
-                lineHeight: 1,
-              }}
-            >
-              S
-            </span>
+           <img
+  src="/logo-soped.svg"
+  alt="SoPeD Logo"
+  style={{
+    width: '60px',
+    height: '60px',
+    objectFit: 'contain',
+  }}
+/>
           </div>
         </div>
       </div>
