@@ -98,47 +98,4 @@ export default function IntroLoader({ onComplete }: { onComplete: () => void }) 
   />
 </div>
 
-          {/* Name */}
-          <p
-            style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontSize: '2rem',
-              fontWeight: 600,
-              color: '#fff',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              marginBottom: '6px',
-            }}
-          >
-            SoPeD
-          </p>
-
-          {/* Tagline */}
-          <p
-            style={{
-              fontFamily: 'var(--font-outfit)',
-              fontSize: '0.65rem',
-              fontWeight: 300,
-              color: 'rgba(255,255,255,0.35)',
-              letterSpacing: '0.25em',
-              textTransform: 'uppercase',
-            }}
-          >
-            Sociedad Peruana de Debate
-          </p>
-
-          {/* Gold line */}
-          <div
-            style={{
-              width: '40px',
-              height: '1px',
-              background: 'rgba(184,150,12,0.5)',
-              margin: '20px auto 0',
-              transition: 'width 0.8s ease',
-            }}
-          />
-        </div>
-      </div>
-    </div>
-  )
-}
+          
