@@ -230,24 +230,7 @@ export default function LoginPage() {
                 marginBottom: '0.25rem',
               }}
             >
-              Roles de acceso
-            </p>
-            {[
-              { role: 'Participante', desc: 'Acceso a eventos y materiales' },
-              { role: 'Delegado MUN', desc: 'Panel de delegado y documentos' },
-              { role: 'Miembro SoPeD', desc: 'Acceso completo institucional' },
-              { role: 'Administrador', desc: 'Gestión completa de la plataforma' },
-            ].map((r) => (
-              <div key={r.role} style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-                <span style={{ width: '5px', height: '5px', background: 'rgba(184,150,12,0.3)', borderRadius: '50%', flexShrink: 0 }} />
-                <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.75rem', color: 'rgba(255,255,255,0.25)' }}>
-                  <strong style={{ color: 'rgba(255,255,255,0.45)', fontWeight: 500 }}>{r.role}</strong>
-                  {' — '}{r.desc}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+             
 
         {/* Footer link */}
         <p
