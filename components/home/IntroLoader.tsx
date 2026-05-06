@@ -62,6 +62,7 @@ export default function IntroLoader({ onComplete }: { onComplete: () => void }) 
       <div style={logoStyle}>
         <div style={{ textAlign: 'center' }}>
           {/* Emblem */}
+          
            <img
   src="/logo-soped.svg"
   alt="SoPeD Logo"
