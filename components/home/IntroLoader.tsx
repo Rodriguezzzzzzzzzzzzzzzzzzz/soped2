@@ -61,28 +61,15 @@ export default function IntroLoader({ onComplete }: { onComplete: () => void }) 
       {/* Logo mark */}
       <div style={logoStyle}>
         <div style={{ textAlign: 'center' }}>
-         {/* Emblem */}
-<img
+         <img
   src="/logo-soped.svg"
-  alt="SoPeD Logo"
   style={{
     width: '80px',
     height: '80px',
     objectFit: 'contain',
-    display: 'block',
-    margin: '0 auto 24px',
+    filter: 'none',
   }}
 />
-           <img
-  src="/logo-soped.svg"
-  alt="SoPeD Logo"
-  style={{
-    width: '60px',
-    height: '60px',
-    objectFit: 'contain',
-  }}
-/>
-          </div>
         </div>
       </div>
     </div>
