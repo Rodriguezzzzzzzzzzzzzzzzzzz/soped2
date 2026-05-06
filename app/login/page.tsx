@@ -214,34 +214,6 @@ export default function LoginPage() {
             </button>
           </div>
 
-          {/* Divider */}
-          <div className="section-divider" style={{ margin: '1.75rem 0' }} />
-
-          {/* Roles info */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <p
-              style={{
-                fontFamily: 'var(--font-outfit)',
-                fontSize: '0.68rem',
-                fontWeight: 500,
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.2)',
-                marginBottom: '0.25rem',
-              }}
-            >
-             
-
-        {/* Footer link */}
-        <p
-          style={{
-            fontFamily: 'var(--font-outfit)',
-            fontSize: '0.8rem',
-            color: 'rgba(255,255,255,0.3)',
-            textAlign: 'center',
-            marginTop: '1.5rem',
-          }}
-        >
           ¿No tienes cuenta?{' '}
           <Link href="/inscripcion" className="btn-text" style={{ display: 'inline', color: 'rgba(184,150,12,0.7)', fontSize: '0.8rem' }}>
             Inscríbete aquí
