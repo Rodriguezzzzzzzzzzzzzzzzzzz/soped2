@@ -94,7 +94,7 @@ export default function NosotrosPage() {
 
         {/* Huge decorative number */}
         <div style={{ position: 'absolute', right: '-20px', top: '50%', transform: 'translateY(-50%)', fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(200px, 30vw, 360px)', fontWeight: 700, color: 'rgba(184,150,12,0.04)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none', letterSpacing: '-0.05em' }}>
-          SP
+          SoPeD
         </div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full relative z-10">
