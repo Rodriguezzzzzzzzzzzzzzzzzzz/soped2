@@ -29,10 +29,7 @@ export default function IntroLoader({ onComplete }: { onComplete: () => void }) 
         : phase === 'glow'
         ? 'scale(1.0)'
         : 'scale(1.08)',
-    filter:
-      phase === 'glow'
-        ? 'drop-shadow(0 0 32px rgba(184,150,12,0.6)) drop-shadow(0 0 64px rgba(184,150,12,0.25))'
-        : 'drop-shadow(0 0 8px rgba(184,150,12,0.2))',
+    filter: 'none',
     transition:
       phase === 'enter'
         ? 'opacity 0.6s ease, transform 0.8s ease'
@@ -61,15 +58,17 @@ export default function IntroLoader({ onComplete }: { onComplete: () => void }) 
       {/* Logo mark */}
       <div style={logoStyle}>
         <div style={{ textAlign: 'center' }}>
-         <img
-  src="/logo-soped.svg"
-  style={{
-    width: '80px',
-    height: '80px',
-    objectFit: 'contain',
-    filter: 'none',
-  }}
-/>
+          <img
+            src="/logo-soped.svg"
+            alt="SoPeD Logo"
+            style={{
+              width: '80px',
+              height: '80px',
+              objectFit: 'contain',
+              display: 'block',
+              margin: '0 auto 24px',
+            }}
+          />
         </div>
       </div>
     </div>
