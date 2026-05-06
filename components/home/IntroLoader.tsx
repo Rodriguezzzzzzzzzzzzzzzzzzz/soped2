@@ -58,34 +58,6 @@ export default function IntroLoader({ onComplete }: { onComplete: () => void }) 
 
   return (
     <div style={containerStyle}>
-      {/* Background geometric */}
-      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
-        <div
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            width: '500px',
-            height: '500px',
-            transform: 'translate(-50%, -50%)',
-            border: '1px solid rgba(184,150,12,0.06)',
-            borderRadius: '50%',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            width: '300px',
-            height: '300px',
-            transform: 'translate(-50%, -50%)',
-            border: '1px solid rgba(184,150,12,0.04)',
-            borderRadius: '50%',
-          }}
-        />
-      </div>
-
       {/* Logo mark */}
       <div style={logoStyle}>
         <div style={{ textAlign: 'center' }}>
@@ -114,46 +86,6 @@ export default function IntroLoader({ onComplete }: { onComplete: () => void }) 
               S
             </span>
           </div>
-
-          {/* Name */}
-          <p
-            style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontSize: '2rem',
-              fontWeight: 600,
-              color: '#fff',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              marginBottom: '6px',
-            }}
-          >
-            SoPeD
-          </p>
-
-          {/* Tagline */}
-          <p
-            style={{
-              fontFamily: 'var(--font-outfit)',
-              fontSize: '0.65rem',
-              fontWeight: 300,
-              color: 'rgba(255,255,255,0.35)',
-              letterSpacing: '0.25em',
-              textTransform: 'uppercase',
-            }}
-          >
-            Sociedad Peruana de Debate
-          </p>
-
-          {/* Gold line */}
-          <div
-            style={{
-              width: '40px',
-              height: '1px',
-              background: 'rgba(184,150,12,0.5)',
-              margin: '20px auto 0',
-              transition: 'width 0.8s ease',
-            }}
-          />
         </div>
       </div>
     </div>
