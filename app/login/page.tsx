@@ -27,6 +27,29 @@ export default function LoginPage() {
     }, 1200)
   }
 
+  const testDB = async () => {
+    const res = await fetch('/api/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', // 👈 IMPORTANTE
+      },
+      body: JSON.stringify({
+        type: 'individual',
+        fullName: 'Rodrigo Test',
+        email: 'test@soped.pe'
+      }),
+    })
+
+    if (!res.ok) {
+      const text = await res.text()
+      console.error('ERROR BACKEND:', text)
+      return
+    }
+
+    const data = await res.json()
+    console.log(data)
+  }
+
   return (
     <div
       style={{
@@ -211,6 +234,20 @@ export default function LoginPage() {
               }}
             >
               {loading ? 'Verificando...' : 'Ingresar a la plataforma'}
+            </button>
+            <button
+              onClick={testDB}
+              style={{
+                marginTop: '1rem',
+                width: '100%',
+                padding: '0.6rem',
+                background: 'rgba(255,255,255,0.1)',
+                color: '#fff',
+                border: '1px solid rgba(255,255,255,0.2)',
+                cursor: 'pointer'
+              }}
+            >
+              Test DB
             </button>
           </div>
         </div>
