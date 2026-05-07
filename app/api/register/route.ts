@@ -14,10 +14,6 @@ export async function POST(req: Request) {
 
     const supabase = createClient(url, serviceKey)
 
-    console.log("SUPABASE INIT OK")
-    console.log("URL:", url)
-    console.log("SERVICE KEY LENGTH:", serviceKey.length)
-
     const { data, error } = await supabase
       .from('registrations')
       .insert({
@@ -25,7 +21,11 @@ export async function POST(req: Request) {
         full_name: body.fullName,
         email: body.email,
         committee: body.committee,
+        country: body.country,
+        role: body.role,
       })
+      .select()
+      .single()
 
     if (error) {
       return NextResponse.json(
