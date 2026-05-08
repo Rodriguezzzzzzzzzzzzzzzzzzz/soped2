@@ -1,18 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   images: {
-    unoptimized: true,
+    unoptimized: true
   },
-
-  trailingSlash: true,
-
-  // 🔥 FIX CLAVE PARA CLOUDFLARE (evita el archivo de 25MB)
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      config.cache = false
-    }
-    return config
-  },
+  trailingSlash: true
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;
