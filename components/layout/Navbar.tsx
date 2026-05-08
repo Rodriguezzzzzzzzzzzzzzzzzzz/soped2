@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const navLinks = [
   { label: 'Nosotros', href: '/nosotros' },
@@ -49,16 +50,12 @@ export default function Navbar() {
                 background: 'rgba(184,150,12,0.08)',
               }}
             >
-              <span
-                style={{
-                  fontFamily: 'var(--font-cormorant)',
-                  fontSize: '1rem',
-                  fontWeight: 600,
-                  color: '#d4af37',
-                }}
-              >
-                S
-              </span>
+              <Image
+                src="/public-logosoped.svg"
+                alt="SoPeD Logo"
+                width={24}
+                height={24}
+              />
             </div>
             <div className="flex flex-col leading-none">
               <span
