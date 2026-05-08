@@ -46,8 +46,8 @@ export default function Navbar() {
             <Image
               src="/public-logosoped.svg"
               alt="SoPeD Logo"
-              width={28}
-              height={28}
+              width={45}
+              height={45}
               style={{ objectFit: 'contain' }}
             />
             <div className="flex flex-col leading-none">
