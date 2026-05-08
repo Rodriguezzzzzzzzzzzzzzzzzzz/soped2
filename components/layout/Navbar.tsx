@@ -43,20 +43,13 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group" onClick={closeMenu}>
-            <div
-              className="w-8 h-8 flex items-center justify-center"
-              style={{
-                border: '1px solid rgba(184,150,12,0.5)',
-                background: 'rgba(184,150,12,0.08)',
-              }}
-            >
-              <Image
-                src="/public-logosoped.svg"
-                alt="SoPeD Logo"
-                width={24}
-                height={24}
-              />
-            </div>
+            <Image
+              src="/public-logosoped.svg"
+              alt="SoPeD Logo"
+              width={28}
+              height={28}
+              style={{ objectFit: 'contain' }}
+            />
             <div className="flex flex-col leading-none">
               <span
                 style={{
