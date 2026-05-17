@@ -178,7 +178,11 @@ function WhySection() {
   )
 }
 
-export default function Hero() {
+export default function Hero({
+  children,
+}: {
+  children?: React.ReactNode
+}) {
   return (
     <>
       {/* HERO INTRO */}
@@ -193,6 +197,7 @@ export default function Hero() {
         <HeroContent />
       </section>
 
+      {children}
       <ProgramsSection />
       <WhySection />
     </>
