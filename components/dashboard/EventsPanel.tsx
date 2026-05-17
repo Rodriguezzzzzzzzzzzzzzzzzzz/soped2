@@ -1,8 +1,4 @@
-const mockEvents = [
-  { id: '1', title: 'SoPeD MUN 2025', role: 'Delegado — CSNU', date: 'Julio 18–20, 2025', status: 'confirmado' },
-  { id: '2', title: 'Debate Escolar Regional', role: 'Participante', date: 'Agosto 5, 2025', status: 'pendiente' },
-  { id: '3', title: 'Taller de Oratoria', role: 'Asistente', date: 'Junio 28, 2025', status: 'confirmado' },
-]
+const events = []
 
 export default function EventsPanel() {
   return (
@@ -11,7 +7,7 @@ export default function EventsPanel() {
         Mis Eventos
       </h2>
 
-      {mockEvents.map((ev) => (
+      {events.map((ev) => (
         <div key={ev.id} className="glass glass-hover" style={{ padding: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
             <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.3rem', fontWeight: 500, color: '#fff', marginBottom: '0.25rem' }}>{ev.title}</p>

@@ -25,6 +25,7 @@ const formMap: Record<FormType, React.ReactNode> = {
 
 export default function InscripcionPage() {
   const [active, setActive] = useState<FormType>('mun')
+  console.log('[INSCRIPCION] active form:', active)
 
   return (
     <Layout>

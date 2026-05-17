@@ -1,11 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import { supabase } from '@/lib/supabase'
 
 export default function MunForm() {
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     nombre: '',
+    email: '',
     institucion: '',
     experiencia: '',
     motivacion: '',
@@ -17,7 +19,32 @@ export default function MunForm() {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    console.log('ENVIANDO A SUPABASE...')
+
+    const res = await supabase
+      .from('mun_applications')
+      .insert([
+        {
+          type: 'individual',
+          full_name: formData.nombre,
+          email: formData.email,
+          phone: '',
+          institution: formData.institucion,
+          committee_preferences: formData.comite ? [formData.comite] : [],
+          country_preferences: [],
+          motivation: formData.motivacion,
+        }
+      ])
+
+    console.log('RESPUESTA SUPABASE:', res)
+
+    if (res.error) {
+      console.error('SUPABASE ERROR:', res.error)
+      alert('Error al enviar: ' + res.error.message)
+      return
+    }
+
     setSubmitted(true)
   }
 
@@ -82,6 +109,17 @@ export default function MunForm() {
             placeholder="Tu nombre completo"
             value={formData.nombre}
             onChange={(e) => handleChange('nombre', e.target.value)}
+          />
+        </div>
+
+        <div>
+          <label className="label-glass">Correo electrónico *</label>
+          <input
+            type="email"
+            className="input-glass"
+            placeholder="tuemail@ejemplo.com"
+            value={formData.email}
+            onChange={(e) => handleChange('email', e.target.value)}
           />
         </div>
 

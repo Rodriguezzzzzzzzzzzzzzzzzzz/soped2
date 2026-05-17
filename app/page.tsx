@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import IntroLoader from '@/components/home/IntroLoader'
-import Layout from '@/components/layout/Layout'
 import Hero from '@/components/home/Hero'
 import Link from 'next/link'
 
@@ -35,8 +34,38 @@ export default function HomePage() {
   }
 
   return (
-    <Layout>
-      <Hero />
+    <>
+      <Hero>
+        <div>
+          <p style={{ letterSpacing: '0.25em', fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)' }}>
+            THE SEVENTY-FOURTH SESSION
+          </p>
+
+          <h1 style={{
+            fontFamily: 'var(--font-cormorant)',
+            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+            fontWeight: 500,
+            marginTop: '1rem',
+            color: '#fff'
+          }}>
+            Harvard Model United Nations
+          </h1>
+
+          <p style={{ color: 'rgba(255,255,255,0.6)', marginTop: '1rem' }}>
+            January 28th, 2027 — January 31st, 2027
+          </p>
+
+          <p style={{
+            marginTop: '2rem',
+            maxWidth: '600px',
+            color: 'rgba(255,255,255,0.45)',
+            lineHeight: 1.7,
+            fontSize: '0.95rem'
+          }}>
+            The oldest, largest, and most prestigious Model United Nations conference for high school students will be held in person at the Boston Sheraton and Marriott Copley Place Hotels.
+          </p>
+        </div>
+      </Hero>
 
       {/* Programs Section */}
       <section style={{ padding: '6rem 0', background: 'var(--darker)' }}>
@@ -108,24 +137,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Banner */}
-      <section style={{ padding: '5rem 0', background: 'linear-gradient(135deg, rgba(9,28,54,0.8), rgba(5,7,13,0.9))' }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
-          <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)', marginBottom: '1rem' }}>
-            Únete a SoPeD
-          </p>
-          <h2 style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', fontWeight: 400, color: '#fff', marginBottom: '1.5rem', lineHeight: 1.1 }}>
-            El debate que transforma.
-          </h2>
-          <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '1rem', color: 'rgba(255,255,255,0.4)', maxWidth: '480px', margin: '0 auto 2.5rem', lineHeight: 1.75 }}>
-            Inscríbete en nuestros programas y comienza tu formación académica de élite.
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/inscripcion" className="btn-primary">Inscribirse ahora →</Link>
-            <Link href="/eventos" className="btn-secondary">Ver eventos</Link>
-          </div>
-        </div>
-      </section>
-    </Layout>
+    </>
   )
 }

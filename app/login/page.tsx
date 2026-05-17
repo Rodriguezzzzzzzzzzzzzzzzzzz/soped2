@@ -1,53 +1,89 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged
+} from 'firebase/auth'
+import { auth } from '@/lib/firebase'
+import { ensureUserProfile } from '@/lib/user'
 
 export default function LoginPage() {
   const router = useRouter()
   const [formData, setFormData] = useState({ email: '', password: '' })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [isRegisterMode, setIsRegisterMode] = useState(false)
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        router.push('/dashboard')
+      }
+    })
+
+    return () => unsubscribe()
+  }, [router])
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
     setError('')
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!formData.email || !formData.password) {
       setError('Por favor completa todos los campos.')
       return
     }
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      router.push('/dashboard')
-    }, 1200)
-  }
 
-  const testDB = async () => {
-    const res = await fetch('/api/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json', // 👈 IMPORTANTE
-      },
-      body: JSON.stringify({
-        type: 'individual',
-        fullName: 'Rodrigo Test',
-        email: 'test@soped.pe'
-      }),
-    })
-
-    if (!res.ok) {
-      const text = await res.text()
-      console.error('ERROR BACKEND:', text)
+    if (formData.password.length < 6) {
+      setError('La contraseña debe tener al menos 6 caracteres.')
       return
     }
 
-    const data = await res.json()
-    console.log(data)
+    setLoading(true)
+    setError('')
+
+    try {
+      if (isRegisterMode) {
+        const result = await createUserWithEmailAndPassword(
+          auth,
+          formData.email,
+          formData.password
+        )
+
+        console.log('Usuario registrado:', result.user)
+        await ensureUserProfile(result.user)
+      } else {
+        const result = await signInWithEmailAndPassword(
+          auth,
+          formData.email,
+          formData.password
+        )
+
+        console.log('Login exitoso:', result.user)
+        await ensureUserProfile(result.user)
+      }
+
+      router.push('/dashboard')
+    } catch (err: any) {
+      const message = err?.message || ''
+
+      if (message.includes('auth/email-already-in-use')) {
+        setError('Este correo ya está registrado.')
+      } else if (message.includes('auth/invalid-credential')) {
+        setError('Correo o contraseña incorrectos.')
+      } else if (message.includes('auth/weak-password')) {
+        setError('La contraseña es demasiado débil.')
+      } else {
+        setError('Ocurrió un error durante la autenticación.')
+      }
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -91,7 +127,7 @@ export default function LoginPage() {
 
       <div style={{ width: '100%', maxWidth: '420px', position: 'relative', zIndex: 1 }}>
         {/* Logo */}
-        <Link
+        <a
           href="/"
           style={{
             display: 'flex',
@@ -150,7 +186,7 @@ export default function LoginPage() {
               Sociedad Peruana de Debate
             </p>
           </div>
-        </Link>
+        </a>
 
         {/* Card */}
         <div className="glass" style={{ padding: '2.5rem' }}>
@@ -164,7 +200,7 @@ export default function LoginPage() {
                 marginBottom: '0.4rem',
               }}
             >
-              Iniciar sesión
+              {isRegisterMode ? 'Crear cuenta' : 'Iniciar sesión'}
             </h1>
             <p
               style={{
@@ -173,7 +209,9 @@ export default function LoginPage() {
                 color: 'rgba(255,255,255,0.35)',
               }}
             >
-              Accede a tu cuenta institucional SoPeD
+              {isRegisterMode
+                ? 'Crea una cuenta para ingresar a la plataforma MUN'
+                : 'Accede a tu cuenta institucional SoPeD'}
             </p>
           </div>
 
@@ -186,6 +224,7 @@ export default function LoginPage() {
                 placeholder="tu@email.com"
                 value={formData.email}
                 onChange={(e) => handleChange('email', e.target.value)}
+                autoComplete="email"
               />
             </div>
 
@@ -205,6 +244,7 @@ export default function LoginPage() {
                 placeholder="••••••••"
                 value={formData.password}
                 onChange={(e) => handleChange('password', e.target.value)}
+                autoComplete="current-password"
               />
             </div>
 
@@ -232,22 +272,13 @@ export default function LoginPage() {
                 marginTop: '0.25rem',
                 opacity: loading ? 0.7 : 1,
               }}
+              disabled={loading}
             >
-              {loading ? 'Verificando...' : 'Ingresar a la plataforma'}
-            </button>
-            <button
-              onClick={testDB}
-              style={{
-                marginTop: '1rem',
-                width: '100%',
-                padding: '0.6rem',
-                background: 'rgba(255,255,255,0.1)',
-                color: '#fff',
-                border: '1px solid rgba(255,255,255,0.2)',
-                cursor: 'pointer'
-              }}
-            >
-              Test DB
+              {loading
+                ? 'Verificando acceso...'
+                : isRegisterMode
+                ? 'Crear cuenta'
+                : 'Ingresar a la plataforma'}
             </button>
           </div>
         </div>
@@ -262,10 +293,28 @@ export default function LoginPage() {
             marginTop: '1.5rem',
           }}
         >
-          ¿No tienes cuenta?{' '}
-          <Link href="/inscripcion" className="btn-text" style={{ display: 'inline', color: 'rgba(184,150,12,0.7)', fontSize: '0.8rem' }}>
-            Inscríbete aquí
-          </Link>
+          {isRegisterMode
+            ? '¿Ya tienes cuenta? '
+            : '¿No tienes cuenta? '}
+
+          <button
+            onClick={() => {
+              setIsRegisterMode(!isRegisterMode)
+              setError('')
+            }}
+            className="btn-text"
+            style={{
+              display: 'inline',
+              color: 'rgba(184,150,12,0.7)',
+              fontSize: '0.8rem',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              padding: 0,
+            }}
+          >
+            {isRegisterMode ? 'Inicia sesión' : 'Crear cuenta'}
+          </button>
         </p>
       </div>
     </div>

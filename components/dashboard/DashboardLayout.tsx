@@ -19,8 +19,10 @@ export default function DashboardLayout({
   children: React.ReactNode
   activePanel: string
   onNavigate: (panel: string) => void
-  user: { name: string; role: string; email: string }
+  user: { name?: string; role?: string; email?: string }
 }) {
+  const displayName = user?.name || user?.email || 'Usuario'
+
   return (
     <div style={{ display: 'flex', minHeight: '100vh', paddingTop: '80px' }}>
       {/* Sidebar */}
@@ -56,14 +58,14 @@ export default function DashboardLayout({
             }}
           >
             <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.3rem', color: '#d4af37', fontWeight: 600 }}>
-              {user.name.charAt(0).toUpperCase()}
+              {displayName.charAt(0).toUpperCase()}
             </span>
           </div>
           <div>
-            <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.9rem', fontWeight: 500, color: '#fff' }}>{user.name}</p>
-            <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.72rem', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.05em' }}>{user.email}</p>
+            <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.9rem', fontWeight: 500, color: '#fff' }}>{displayName}</p>
+            <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.72rem', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.05em' }}>{user?.email || ''}</p>
             <span style={{ display: 'inline-block', marginTop: '0.25rem', fontFamily: 'var(--font-outfit)', fontSize: '0.62rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)', border: '1px solid rgba(184,150,12,0.2)', padding: '0.15rem 0.5rem' }}>
-              {user.role}
+              {user?.role || 'user'}
             </span>
           </div>
         </div>

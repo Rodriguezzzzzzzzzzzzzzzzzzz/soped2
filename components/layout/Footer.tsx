@@ -18,16 +18,20 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <div
                 style={{
-                  width: '32px',
-                  height: '32px',
-                  border: '1px solid rgba(184,150,12,0.4)',
-                  background: 'rgba(184,150,12,0.06)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
               >
-                <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1rem', fontWeight: 600, color: '#d4af37' }}>S</span>
+                <img
+                  src="/public-logosoped.svg"
+                  alt="SoPeD Logo"
+                  style={{
+                    width: '60px',
+                    height: '60px',
+                    objectFit: 'contain',
+                  }}
+                />
               </div>
               <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.2rem', fontWeight: 600, color: '#fff' }}>SoPeD</span>
             </div>
@@ -84,7 +88,7 @@ export default function Footer() {
               contacto@soped.pe
             </p>
             <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.7 }}>
-              Lima, Perú
+              Cusco, Perú
             </p>
           </div>
         </div>

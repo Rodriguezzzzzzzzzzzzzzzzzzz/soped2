@@ -16,6 +16,32 @@
   --glass-border-hover: rgba(255, 255, 255, 0.15);
   --font-cormorant: 'Cormorant Garamond', Georgia, serif;
   --font-outfit: 'Outfit', Helvetica, sans-serif;
+
+  /* ─── DESIGN SYSTEM TOKENS (FINAL LAYER) ─── */
+
+  /* surfaces */
+  --surface-0: var(--dark);
+  --surface-1: var(--darker);
+  --surface-2: var(--navy);
+
+  /* text hierarchy */
+  --text-primary: rgba(255,255,255,0.9);
+  --text-secondary: rgba(255,255,255,0.7);
+  --text-muted: rgba(255,255,255,0.5);
+
+  /* brand system */
+  --primary: var(--gold);
+  --primary-soft: rgba(184,150,12,0.25);
+  --primary-hover: rgba(184,150,12,0.35);
+
+  /* borders */
+  --border-soft: rgba(255,255,255,0.08);
+  --border-medium: rgba(255,255,255,0.15);
+
+  /* elevation */
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.25);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.3);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,0.4);
 }
 
 * {
@@ -26,6 +52,8 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--dark);
+  height: 100%;
 }
 
 body {
@@ -35,6 +63,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  height: 100%;
 }
 
 /* ─── Scrollbar ─── */
@@ -270,4 +299,24 @@ body {
   color: var(--gold);
   font-size: 0.65rem;
   opacity: 0.6;
+}
+
+#splash-lock {
+  position: fixed;
+  inset: 0;
+  background: #05070d;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== FINAL RENDER FIX (ELIMINA FLASH NEGRO) ===== */
+html,
+body,
+#__next {
+  margin: 0;
+  padding: 0;
+  background-color: var(--dark);
+  min-height: 100%;
 }
