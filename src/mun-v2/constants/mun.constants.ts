@@ -1,6 +1,6 @@
 // constants/mun.constants.ts
 
-import type { Country, MotionDefinition } from '@/types/mun.types'
+import type { Country, MotionDefinition } from '@/mun-v2/types/mun.types'
 
 export const ALL_COUNTRIES: Country[] = [
   { name: 'Algeria',      flag: '🇩🇿', iso: 'DZ' },
