@@ -147,7 +147,7 @@ export default function MUNAdmin() {
     cursor: 'pointer',
     background: '#1e293b',
     color: 'white',
-    textAlign: 'left'
+    textAlign: 'left' as const
   }
 
   const card = {
