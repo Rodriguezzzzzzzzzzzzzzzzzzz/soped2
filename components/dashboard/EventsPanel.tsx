@@ -1,4 +1,4 @@
-const events = []
+const events: any[] = []
 
 export default function EventsPanel() {
   return (
