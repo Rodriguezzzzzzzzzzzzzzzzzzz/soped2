@@ -7,7 +7,7 @@ export default function Navbar() {
     <nav className="flex items-center justify-between p-4 bg-white shadow-md">
       <Link href="/">
         <img
-          src="/public-logosoped.svg"
+          src="/soped.svg"
           alt="SOPED"
           className="h-10 w-auto"
         />

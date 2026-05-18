@@ -24,7 +24,7 @@ export default function Footer() {
                 }}
               >
                 <img
-                  src="/public-logosoped.svg"
+                  src="/soped.svg"
                   alt="SoPeD Logo"
                   style={{
                     width: '60px',

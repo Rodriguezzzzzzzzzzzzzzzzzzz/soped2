@@ -70,7 +70,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group" onClick={closeMenu}>
             <Image
-              src="/public-logosoped.svg"
+              src="/soped.svg"
               alt="SoPeD Logo"
               width={45}
               height={45}

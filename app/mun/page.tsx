@@ -99,7 +99,7 @@ export default function MunPage() {
             loop
             playsInline
             preload="metadata"
-            poster="/mun-bg.jpg"
+            poster="/mun-bg.mp4"
             aria-hidden="true"
             style={{
               position: 'absolute',
