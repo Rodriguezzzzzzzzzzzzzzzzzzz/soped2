@@ -24,7 +24,7 @@ import {
   COMMITTEE_TYPES,
   fmt,
   generateSuspendCode,
-} from '@/src/mun/session/constants/mun.constants'
+} from '@/src/mun/session_old/constants/mun.constants'
 import type {
   Role,
   Country,

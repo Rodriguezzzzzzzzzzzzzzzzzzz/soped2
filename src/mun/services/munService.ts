@@ -3,7 +3,23 @@
 // Adapter layer: swap Supabase for any backend (REST, Prisma, PocketBase…)
 // ─────────────────────────────────────────────────────────────────────────────
 
-import type { CommitteeState, MunEvent, MunSession, Motion, ScoreEntry } from '@/types/mun.types'
+import type { CommitteeState, Motion, ScoreEntry } from '@/src/mun-v2/types/mun.types'
+
+export interface MunEvent {
+  id: string
+  name: string
+  edition: number
+  sessions: MunSession[]
+  createdAt: string
+}
+
+export interface MunSession {
+  id: string
+  eventId: string
+  name: string
+  committeeIds: string[]
+  startedAt: string
+}
 
 import { db } from '@/lib/firebase'
 import {

@@ -1,9 +1,11 @@
+'use client'
+
 import React from 'react'
-import Layout from '@/components/Layout'
-import { useMunSystem } from '@/src/mun'
+import Layout from '@/components/layout/Layout'
+import { useMun } from '@/src/mun/core'
 
 export default function MunDashboard() {
-  const { view, setView, data } = useMunSystem()
+  const { view, setView, delegaciones, comites, sesiones } = useMun()
 
   const btnStyle = 'px-4 py-2 rounded bg-blue-500 text-white mr-2'
 
@@ -24,23 +26,23 @@ export default function MunDashboard() {
       <div>
         {view === 'delegaciones' && (
           <div>
-            {data.delegaciones.map((d) => (
+            {delegaciones.map((d) => (
               <div key={d.id}>
-                {d.country} - {d.status}
+                {d.country.name} - {d.status}
               </div>
             ))}
           </div>
         )}
         {view === 'comites' && (
           <div>
-            {data.comites.map((c) => (
+            {comites.map((c: { id: string; name: string }) => (
               <div key={c.id}>{c.name}</div>
             ))}
           </div>
         )}
         {view === 'sesiones' && (
           <div>
-            {data.sesiones.map((s) => (
+            {sesiones.map((s: { id: string; name: string; status: string }) => (
               <div key={s.id}>
                 {s.name} - {s.status}
               </div>

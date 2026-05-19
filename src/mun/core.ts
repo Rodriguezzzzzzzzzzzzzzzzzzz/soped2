@@ -1,17 +1,19 @@
+'use client'
+
 import { useState } from 'react'
-import { useMunStore } from './state/mun.store'
+import { useCommitteeStore } from '@/mun-v2/store/useCommitteeStore'
+import type { Delegate } from '@/mun-v2/types/mun.types'
 
 export type MunView = 'delegaciones' | 'comites' | 'sesiones'
 
 export function useMun() {
   const [view, setView] = useState<MunView>('delegaciones')
 
-  // CONNECTED TO CENTRAL MUN STORE
-  const { delegaciones, comites, sesiones } = useMunStore()
+  const delegates = useCommitteeStore((s) => s.state.delegates)
 
-  const delegacionesCount = delegaciones.length
-  const comitesCount = comites.length
-  const sesionesCount = sesiones.length
+  const delegaciones: Delegate[] = delegates ?? []
+  const comites: { id: string; name: string }[] = []
+  const sesiones: { id: string; name: string; status: string }[] = []
 
   return {
     view,
@@ -19,8 +21,8 @@ export function useMun() {
     delegaciones,
     comites,
     sesiones,
-    delegacionesCount,
-    comitesCount,
-    sesionesCount,
+    delegacionesCount: delegaciones.length,
+    comitesCount: comites.length,
+    sesionesCount: sesiones.length,
   }
 }

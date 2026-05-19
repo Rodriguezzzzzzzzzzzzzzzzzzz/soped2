@@ -16,7 +16,7 @@ function VideoBackground() {
         loop
         playsInline
         preload="metadata"
-        poster="/mun-bg.mp4"
+        aria-hidden="true"
         style={{
           width: '100%',
           height: '100%',

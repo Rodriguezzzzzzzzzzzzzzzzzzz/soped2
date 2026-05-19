@@ -1,4 +1,4 @@
-import ChairPanel from '@/src/mun/session/ChairPanel'
+import ChairPanel from '@/src/mun-v2/components/chair/ChairPanel'
 
 export function generateStaticParams() {
   return [

@@ -27,7 +27,10 @@ export async function getUserProfile(uid: string) {
   return snap.data() as {
     uid: string
     email: string
+    name?: string
     role: UserRole
-    createdAt?: any
+    committeeId?: string
+    country?: string
+    createdAt?: unknown
   }
 }

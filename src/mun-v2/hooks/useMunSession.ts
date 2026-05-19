@@ -4,16 +4,17 @@
 // FIX: nanoid removed — uses uid() from constants (no external deps)
 
 import { useReducer, useCallback, useMemo } from 'react'
-import { munReducer, createInitialState } from '@/src/mun-v2/state/munReducer'
-import { uid } from '@/src/mun-v2/constants/mun.constants'
+import { munReducer, createInitialState } from '@/mun-v2/state/munReducer'
+import { uid } from '@/mun-v2/constants/mun.constants'
 import type {
   CommitteeState,
-  Country,
-  DelegateStatus,
   Motion,
   RankingEntry,
   QuorumStats,
-} from '@/src/mun-v2/types/mun.types'
+  RollCallStatus,
+  Delegate,
+  ScoreSummary,
+} from '@/mun-v2/types/mun.types'
 
 const SCORE_MOTION_PROPOSED = 0.5
 const SCORE_MOTION_APPROVED = 0.5
@@ -49,12 +50,12 @@ export function useMunSession(initial?: Partial<CommitteeState>) {
     dispatch({ type: 'SET_CONFIG', key, value })
   }, [])
 
-  const setDelegates = useCallback((delegates: Country[]) => {
+  const setDelegates = useCallback((delegates: Delegate[]) => {
     dispatch({ type: 'SET_DELEGATES', delegates })
   }, [])
 
   // ── Roll Call ─────────────────────────────────────────────────────────────
-  const setDelegateStatus = useCallback((country: string, status: DelegateStatus) => {
+  const setDelegateStatus = useCallback((country: string, status: RollCallStatus) => {
     dispatch({ type: 'SET_ROLLCALL_STATUS', country, status })
   }, [])
 
@@ -96,7 +97,9 @@ export function useMunSession(initial?: Partial<CommitteeState>) {
       status: 'pending',
       timestamp: new Date().toLocaleTimeString(),
     }
-    addScore(draft.proposer, SCORE_MOTION_PROPOSED, `Motion proposed: ${draft.label}`)
+    if (draft.proposer) {
+      addScore(draft.proposer, SCORE_MOTION_PROPOSED, `Motion proposed: ${draft.label}`)
+    }
     dispatch({ type: 'PROPOSE_MOTION', motion })
     log(`Motion: ${draft.label} — by ${draft.proposer || 'Floor'}`)
   }, [addScore, log])
@@ -105,10 +108,17 @@ export function useMunSession(initial?: Partial<CommitteeState>) {
     const m = state.activeMotion
     if (!m) return
     if (approved) {
-      addScore(m.proposer, SCORE_MOTION_APPROVED, `Motion approved: ${m.label}`)
+      if (m.proposer) {
+        addScore(m.proposer, SCORE_MOTION_APPROVED, `Motion approved: ${m.label}`)
+      }
+
       log(`✓ ${m.label} approved`, 'success')
+
       if (m.typeId === 'voting') {
-        addScore(m.proposer, SCORE_RESOLUTION, 'Resolution approved')
+        if (m.proposer) {
+          addScore(m.proposer, SCORE_RESOLUTION, 'Resolution approved')
+        }
+
         log('Resolution approved — +8 pts', 'success')
       }
       if (m.typeId === 'close')   log('Session closed', 'warning')
@@ -166,11 +176,11 @@ export function useMunSession(initial?: Partial<CommitteeState>) {
 
   // ── Derived: Ranking ─────────────────────────────────────────────────────
   const ranking = useMemo((): RankingEntry[] =>
-    Object.entries(state.scores)
+    (Object.entries(state.scores) as [string, ScoreSummary][])
       .sort(([, a], [, b]) => b.total - a.total)
       .map(([countryName, score], i) => {
-        const country = state.delegates.find(d => d.name === countryName)
-        return { rank: i + 1, countryName, flag: country?.flag ?? '🏳', total: score.total, breakdown: score.breakdown }
+        const country = state.delegates.find(d => d.country.name === countryName)
+        return { rank: i + 1, countryName, flag: country?.country?.flag ?? '🏳', total: score.total, breakdown: score.breakdown }
       }),
     [state.scores, state.delegates]
   )
@@ -178,7 +188,7 @@ export function useMunSession(initial?: Partial<CommitteeState>) {
   // ── Derived: Eligible speakers ────────────────────────────────────────────
   const eligibleSpeakers = useMemo(() =>
     state.delegates.filter(d => {
-      const s = state.rollCall[d.name]
+      const s = state.rollCall[d.country.name]
       return s === 'present' || s === 'voting'
     }),
     [state.delegates, state.rollCall]

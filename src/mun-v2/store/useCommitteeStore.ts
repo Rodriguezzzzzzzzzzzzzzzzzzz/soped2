@@ -3,27 +3,23 @@
 import { create } from 'zustand'
 
 import type {
-  Country,
+  Delegate,
   CommitteeState,
   DelegateStatus,
-  MotionCategory,
-} from '@/src/mun/session/types/mun.types'
+} from '@/src/mun-v2/types/mun.types'
 
 interface CommitteeStore {
   state: CommitteeState
 
   // CONFIG
-  setConfig: (key: string, value: string) => void
-  setDelegates: (delegates: Country[]) => void
+  setConfig: (key: keyof CommitteeState['config'], value: string) => void
+  setDelegates: (delegates: Delegate[]) => void
 
   // PHASES
   setPhase: (phase: CommitteeState['phase']) => void
 
   // ROLL CALL
-  setDelegateStatus: (
-    countryName: string,
-    status: DelegateStatus
-  ) => void
+  setDelegateStatus: (countryName: string, status: DelegateStatus) => void
 
   // LOGS
   log: (
@@ -32,7 +28,7 @@ interface CommitteeStore {
   ) => void
 }
 
-export const useCommitteeStore = create<CommitteeStore>((set) => ({
+export const useCommitteeStore = create<CommitteeStore>((set, get) => ({
   state: {
     id: '',
     phase: 'role_select',
@@ -43,15 +39,17 @@ export const useCommitteeStore = create<CommitteeStore>((set) => ({
       type: 'General Assembly',
     },
 
-    delegates: [],
+    delegates: [] as Delegate[],
 
     rollCall: {},
+    speakerTimeSecs: 0,
 
     speakersList: [],
     currentSpeakerIndex: -1,
 
     activeMotion: null,
     motionHistory: [],
+    scores: {},
 
     logs: [],
 
@@ -99,7 +97,7 @@ export const useCommitteeStore = create<CommitteeStore>((set) => ({
   // ROLL CALL
   // ─────────────────────────────────────
 
-  setDelegateStatus: (countryName, status) =>
+  setDelegateStatus: (countryName: string, status: DelegateStatus) =>
     set((store) => ({
       state: {
         ...store.state,
@@ -114,13 +112,16 @@ export const useCommitteeStore = create<CommitteeStore>((set) => ({
   // LOGS
   // ─────────────────────────────────────
 
-  log: (message, type = 'info') =>
+  log: (
+    message: string,
+    type: 'info' | 'success' | 'warning' | 'error' = 'info'
+  ) =>
     set((store) => ({
       state: {
         ...store.state,
         logs: [
           {
-            id: crypto.randomUUID(),
+            id: typeof crypto !== 'undefined' ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`,
             timestamp: new Date().toISOString(),
             message,
             type,

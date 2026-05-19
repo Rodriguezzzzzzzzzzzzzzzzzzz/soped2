@@ -2,18 +2,18 @@
 
 import type {
   CommitteeState,
-  DelegateStatus,
   Motion,
   LogEntry,
-  Country,
-  ScoreEntry,
-} from '@/types/mun.types'
+  Delegate,
+  RollCallStatus,
+  ScoreSummary,
+} from '@/src/mun-v2/types/mun.types'
 
 export type MunAction =
   | { type: 'SET_PHASE';            phase: CommitteeState['phase'] }
   | { type: 'SET_CONFIG';           key: string; value: string }
-  | { type: 'SET_DELEGATES';        delegates: Country[] }
-  | { type: 'SET_ROLLCALL_STATUS';  country: string; status: DelegateStatus }
+  | { type: 'SET_DELEGATES';        delegates: Delegate[] }
+  | { type: 'SET_ROLLCALL_STATUS';  country: string; status: RollCallStatus }
   | { type: 'COMPLETE_ROLLCALL' }
   | { type: 'ADD_SPEAKER';          country: string }
   | { type: 'REMOVE_SPEAKER';       country: string }
@@ -24,7 +24,12 @@ export type MunAction =
   | { type: 'SET_SUSPEND_CODE';     code: string }
   | { type: 'RESUME_SESSION' }
   | { type: 'CLOSE_SESSION' }
-  | { type: 'ADD_SCORE';            entry: ScoreEntry }
+  | { type: 'ADD_SCORE';            entry: {
+      countryName: string;
+      points: number;
+      reason: string;
+      timestamp: string;
+    } }
   | { type: 'PUBLISH_RANKING' }
   | { type: 'REVOKE_RANKING' }
   | { type: 'ADD_LOG';              entry: LogEntry }
@@ -66,7 +71,12 @@ export function munReducer(state: CommitteeState, action: MunAction): CommitteeS
 
     case 'COMPLETE_ROLLCALL': {
       const completed = { ...state.rollCall }
-      state.delegates.forEach(d => { if (!completed[d.name]) completed[d.name] = 'absent' })
+      state.delegates.forEach(d => {
+        const key = d.country.name
+        if (!completed[key]) {
+          completed[key] = 'absent'
+        }
+      })
       return { ...state, rollCall: completed, phase: 'session' }
     }
 
@@ -104,8 +114,8 @@ export function munReducer(state: CommitteeState, action: MunAction): CommitteeS
       const resolved: Motion = { ...state.activeMotion, status: action.approved ? 'approved' : 'rejected' }
       let nextPhase = state.phase
       if (action.approved) {
-        if (state.activeMotion.typeId === 'close')   nextPhase = 'closed'
-        if (state.activeMotion.typeId === 'suspend') nextPhase = 'suspended'
+        if (state.activeMotion?.typeId === 'close') nextPhase = 'closed'
+        if (state.activeMotion?.typeId === 'suspend') nextPhase = 'suspended'
       }
       return {
         ...state,
@@ -113,7 +123,7 @@ export function munReducer(state: CommitteeState, action: MunAction): CommitteeS
         motionHistory: [resolved, ...state.motionHistory],
         phase: nextPhase,
         suspendCode:
-          action.approved && state.activeMotion.typeId === 'suspend'
+          action.approved && state.activeMotion?.typeId === 'suspend'
             ? state.suspendCode
             : state.phase === 'suspended' ? null : state.suspendCode,
       }
@@ -129,14 +139,13 @@ export function munReducer(state: CommitteeState, action: MunAction): CommitteeS
       return { ...state, phase: 'closed', activeMotion: null }
 
     case 'ADD_SCORE': {
-      const { countryName, points, reason, timestamp } = action.entry
-      const existing = state.scores[countryName] ?? { countryName, total: 0, breakdown: [] }
+      const { countryName, points } = action.entry
+      const existing = (state.scores[countryName] as ScoreSummary | undefined) ?? { total: 0, breakdown: [] }
       return {
         ...state,
         scores: {
           ...state.scores,
           [countryName]: {
-            ...existing,
             total: existing.total + points,
             breakdown: [action.entry, ...existing.breakdown],
           },

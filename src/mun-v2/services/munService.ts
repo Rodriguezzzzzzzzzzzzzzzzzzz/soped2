@@ -2,7 +2,7 @@
 // Adapter layer — swap fetch() for Supabase when ready.
 // All score endpoints are server-only (validated by role on API side).
 
-import type { CommitteeState, Motion, ScoreEntry } from '@/types/mun.types'
+import type { CommitteeState, Motion, ScoreEntry } from '@/mun-v2/types/mun.types'
 
 // ── REST stubs (replace with Supabase client when backend is ready) ──────────
 

@@ -1,6 +1,4 @@
-"use client"
-
-import { useParams } from 'next/navigation'
+ 
 import Layout from '@/components/layout/Layout'
 import Image from 'next/image'
 
@@ -114,9 +112,17 @@ const committees: Record<string, any> = {
   },
 }
 
-export default function CommitteePage() {
-  const params = useParams()
-  const abbr = params.abbr as string
+export function generateStaticParams() {
+  return [
+    { abbr: 'CSNU' }, { abbr: 'AGONU' }, { abbr: 'ECOSOC' },
+    { abbr: 'CRISIS' }, { abbr: 'PCC' }, { abbr: 'ONUMUJERES' },
+    { abbr: 'OEA' }, { abbr: 'OMS' }, { abbr: 'DISEC' },
+    { abbr: 'TPA' }, { abbr: 'UNHRCENG' }, { abbr: 'UNHRCESP' },
+  ]
+}
+
+export default function CommitteePage({ params }: { params: { abbr: string } }) {
+  const { abbr } = params
 
   const committee = committees[abbr]
 
