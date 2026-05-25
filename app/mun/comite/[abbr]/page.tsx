@@ -121,8 +121,9 @@ export function generateStaticParams() {
   ]
 }
 
-export default function CommitteePage({ params }: { params: { abbr: string } }) {
-  const { abbr } = params
+export default async function CommitteePage({ params }: any) {
+  const resolvedParams = await Promise.resolve(params)
+  const { abbr } = resolvedParams
 
   const committee = committees[abbr]
 

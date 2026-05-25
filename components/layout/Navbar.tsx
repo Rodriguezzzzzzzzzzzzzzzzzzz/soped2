@@ -10,7 +10,7 @@ const navLinks = [
   { label: 'Programas', href: '/programas' },
   { label: 'Eventos', href: '/eventos' },
   { label: 'MUN', href: '/mun' },
-  { label: 'Debate Escolar', href: '/debate-escolar' },
+  { label: 'Debate', href: '/debate-escolar' },
 ]
 
 export default function Navbar() {
@@ -133,7 +133,7 @@ export default function Navbar() {
               Ingresar
             </Link>
             <Link href="/inscripcion" className="btn-primary" style={{ padding: '0.5rem 1.25rem', fontSize: '0.8rem' }}>
-              Inscribirse
+              Ser miembro
             </Link>
           </div>
 
@@ -221,7 +221,7 @@ export default function Navbar() {
                 Ingresar
               </Link>
               <Link href="/inscripcion" className="btn-primary" onClick={closeMenu} style={{ justifyContent: 'center' }}>
-                Inscribirse
+                Ser miembro
               </Link>
             </div>
           </div>

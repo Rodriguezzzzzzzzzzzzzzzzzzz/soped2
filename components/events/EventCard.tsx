@@ -32,6 +32,7 @@ const statusConfig: Record<EventStatus, { label: string; color: string; bg: stri
 }
 
 export default function EventCard({ event }: { event: Event }) {
+  if (!event) return null
   const status = statusConfig[event.status]
 
   return (
@@ -43,6 +44,8 @@ export default function EventCard({ event }: { event: Event }) {
         flexDirection: 'column',
         gap: '1rem',
         transition: 'all 0.35s ease',
+        borderRadius: '24px',
+        overflow: 'hidden',
       }}
     >
       {/* Top row */}

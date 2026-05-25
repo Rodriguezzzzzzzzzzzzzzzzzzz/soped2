@@ -1,0 +1,18 @@
+.programCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.36);
+  border-color: rgba(79,124,255,0.20);
+}
+
+input:focus,
+textarea:focus {
+  border-color: rgba(79,124,255,0.36);
+  background: rgba(255,255,255,0.04);
+}
+
+@media (max-width: 640px) {
+  .programCard {
+    padding: 22px;
+    min-height: 280px;
+  }
+}

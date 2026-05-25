@@ -99,7 +99,7 @@ export default function MunPage() {
             loop
             playsInline
             preload="metadata"
-            poster="/mun-bg.mp4"
+            poster="/heromunpage.mp4"
             aria-hidden="true"
             style={{
               position: 'absolute',
@@ -112,11 +112,10 @@ export default function MunPage() {
               pointerEvents: 'none',
               transform: 'translateZ(0)',
               willChange: 'transform',
-              filter: 'grayscale(1) brightness(0.55) contrast(1.4)',
+              filter: 'brightness(0.82) contrast(1.08)',
             }}
           >
-            <source src="/mun-bg.mp4?v=1" type="video/mp4" />
-            <source src="/mun-bg.webm?v=1" type="video/webm" />
+            <source src="/heromunpage.mp4" type="video/mp4" />
           </video>
         </div>
 
@@ -177,7 +176,7 @@ export default function MunPage() {
             </p>
 
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <a href="#inscripcion" className="btn-primary">
+              <a href="inscripcion" className="btn-primary">
                 Inscribirse como delegado →
               </a>
               <a href="/eventos" className="btn-secondary">
@@ -324,7 +323,7 @@ export default function MunPage() {
           <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.95rem', color: 'rgba(255,255,255,0.4)', maxWidth: '480px', margin: '0 auto 2rem', lineHeight: 1.8 }}>
             Completa el formulario de inscripción y selecciona tu comité preferido.
           </p>
-          <Link href="/mun#inscripcion" className="btn-primary">Inscribirse como delegado MUN →</Link>
+          <Link href="/mun/inscripcion" className="btn-primary">Inscribirse como delegado MUN →</Link>
         </div>
       </section>
     </Layout>
