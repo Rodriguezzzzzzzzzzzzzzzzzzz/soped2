@@ -63,7 +63,7 @@ export default function MUNPage() {
   if (loading) return <div style={{ padding: 40 }}>Cargando MUN...</div>
 
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
+    <div className="mun-event-layout" style={{ display: 'flex', height: '100vh' }}>
 
       {/* LEFT PANEL */}
       <div style={{ flex: 1, padding: 30 }}>
@@ -135,9 +135,9 @@ export default function MUNPage() {
       </div>
 
       {/* RIGHT PANEL */}
-      <div style={{
+      <div className="mun-panel-right" style={{
         width: 300,
-        background: '#0f172a',
+        background: '#1a0008',
         color: 'white',
         padding: 20
       }}>
@@ -152,7 +152,7 @@ export default function MUNPage() {
         )}
 
         {sessionStep === 'voting' && (
-          <div style={{ color: '#f59e0b' }}>
+          <div style={{ color: '#ECE5D6' }}>
             🟡 Votación en curso
           </div>
         )}

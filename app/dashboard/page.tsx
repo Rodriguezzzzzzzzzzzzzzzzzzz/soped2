@@ -29,7 +29,7 @@ function OverviewPanel({ user }: { user: any }) {
             fontWeight: 500,
             letterSpacing: '0.15em',
             textTransform: 'uppercase',
-            color: 'rgba(184,150,12,0.6)',
+            color: 'rgba(236,229,214,0.6)',
             marginBottom: '0.5rem',
           }}
         >
@@ -61,7 +61,7 @@ function OverviewPanel({ user }: { user: any }) {
                 fontFamily: 'var(--font-cormorant)',
                 fontSize: '2.5rem',
                 fontWeight: 600,
-                color: '#d4af37',
+                color: '#ECE5D6',
                 lineHeight: 1,
               }}
             >
@@ -167,7 +167,7 @@ export default function DashboardPage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#020617',
+          background: '#040202',
           color: 'white',
           fontFamily: 'var(--font-outfit)',
         }}
@@ -185,7 +185,7 @@ export default function DashboardPage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#020617',
+          background: '#040202',
           color: 'white',
           fontFamily: 'var(--font-outfit)',
         }}

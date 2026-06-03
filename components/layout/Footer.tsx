@@ -6,13 +6,13 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: 'rgba(9,28,54,0.6)',
+        background: 'rgba(124,1,26,0.6)',
         backdropFilter: 'blur(16px)',
         borderTop: '1px solid rgba(255,255,255,0.06)',
       }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 footer-grid">
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
@@ -44,7 +44,7 @@ export default function Footer() {
 
           {/* Platform */}
           <div>
-            <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)', marginBottom: '1rem' }}>
+            <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.7)', marginBottom: '1rem' }}>
               Plataforma
             </p>
             <div className="flex flex-col gap-3">
@@ -63,7 +63,7 @@ export default function Footer() {
 
           {/* Institución */}
           <div>
-            <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)', marginBottom: '1rem' }}>
+            <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.7)', marginBottom: '1rem' }}>
               Institución
             </p>
             <div className="flex flex-col gap-3">
@@ -81,7 +81,7 @@ export default function Footer() {
 
           {/* Contacto */}
           <div>
-            <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)', marginBottom: '1rem' }}>
+            <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.7)', marginBottom: '1rem' }}>
               Contacto
             </p>
             <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.7 }}>
@@ -101,7 +101,7 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-1">
             <span className="deco-line" style={{ width: '20px' }} />
-            <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '0.9rem', color: 'rgba(184,150,12,0.4)', margin: '0 8px' }}>✦</span>
+            <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '0.9rem', color: 'rgba(236,229,214,0.4)', margin: '0 8px' }}>✦</span>
             <span className="deco-line" style={{ width: '20px' }} />
           </div>
         </div>

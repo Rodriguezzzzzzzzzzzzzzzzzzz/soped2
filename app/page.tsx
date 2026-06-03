@@ -9,6 +9,7 @@ export default function HomePage() {
   const [ready, setReady] = useState(false)
   const [showIntro, setShowIntro] = useState(false)
   const [contentVisible, setContentVisible] = useState(false)
+  const [pageMounted, setPageMounted] = useState(false)
 
   useEffect(() => {
     const already = sessionStorage.getItem('soped_intro_shown')
@@ -21,11 +22,13 @@ export default function HomePage() {
       setShowIntro(true)
       setReady(true)
     }
+    const mountTimer = setTimeout(() => setPageMounted(true), 50)
+    return () => clearTimeout(mountTimer)
   }, [])
 
   if (!ready) {
     // Solid background while JS loads — prevents flash
-    return <div style={{ position: 'fixed', inset: 0, background: '#05070d', zIndex: 9999 }} />
+    return <div style={{ position: 'fixed', inset: 0, background: '#0F0A0B', zIndex: 9999 }} />
   }
 
   return (
@@ -41,7 +44,9 @@ export default function HomePage() {
         style={{
           opacity: contentVisible ? 1 : 0,
           visibility: contentVisible ? 'visible' : 'hidden',
-          transition: contentVisible ? 'opacity 0.7s ease' : 'none',
+          transition: contentVisible ? 'opacity 0.7s ease, transform 0.9s cubic-bezier(0.16,1,0.3,1)' : 'none',
+          transform: pageMounted ? 'translateY(0px)' : 'translateY(12px)',
+          willChange: 'opacity, transform',
         }}
       >
         <HomeContent />

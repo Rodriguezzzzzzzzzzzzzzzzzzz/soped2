@@ -21,9 +21,9 @@ export default function EventsPanel() {
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
               padding: '0.25rem 0.75rem',
-              border: ev.status === 'confirmado' ? '1px solid rgba(34,197,94,0.4)' : '1px solid rgba(184,150,12,0.3)',
-              color: ev.status === 'confirmado' ? 'rgba(34,197,94,0.85)' : 'rgba(184,150,12,0.8)',
-              background: ev.status === 'confirmado' ? 'rgba(34,197,94,0.06)' : 'rgba(184,150,12,0.06)',
+              border: ev.status === 'confirmado' ? '1px solid rgba(34,197,94,0.4)' : '1px solid rgba(236,229,214,0.3)',
+              color: ev.status === 'confirmado' ? 'rgba(34,197,94,0.85)' : 'rgba(236,229,214,0.8)',
+              background: ev.status === 'confirmado' ? 'rgba(34,197,94,0.06)' : 'rgba(236,229,214,0.06)',
             }}
           >
             {ev.status}

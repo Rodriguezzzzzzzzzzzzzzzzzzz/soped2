@@ -90,7 +90,7 @@ export default function LoginPage() {
     <div
       style={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #05070d 0%, #091c36 50%, #05070d 100%)',
+        background: 'linear-gradient(135deg, #0F0A0B 0%, #7C011A 50%, #0F0A0B 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -112,6 +112,7 @@ export default function LoginPage() {
 
       {/* Ambient glow */}
       <div
+        className="login-ambient-glow"
         style={{
           position: 'absolute',
           top: '30%',
@@ -119,7 +120,7 @@ export default function LoginPage() {
           transform: 'translate(-50%, -50%)',
           width: '600px',
           height: '600px',
-          background: 'radial-gradient(circle, rgba(9,28,54,0.6) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(124,1,26,0.6) 0%, transparent 70%)',
           borderRadius: '50%',
           pointerEvents: 'none',
         }}
@@ -142,8 +143,8 @@ export default function LoginPage() {
             style={{
               width: '52px',
               height: '52px',
-              border: '1px solid rgba(184,150,12,0.45)',
-              background: 'rgba(184,150,12,0.08)',
+              border: '1px solid rgba(236,229,214,0.45)',
+              background: 'rgba(236,229,214,0.08)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -154,7 +155,7 @@ export default function LoginPage() {
                 fontFamily: 'var(--font-cormorant)',
                 fontSize: '1.8rem',
                 fontWeight: 600,
-                color: '#d4af37',
+                color: '#ECE5D6',
                 lineHeight: 1,
               }}
             >
@@ -233,7 +234,7 @@ export default function LoginPage() {
                 <label className="label-glass" style={{ margin: 0 }}>Contraseña</label>
                 <button
                   className="btn-text"
-                  style={{ fontSize: '0.72rem', color: 'rgba(184,150,12,0.6)' }}
+                  style={{ fontSize: '0.72rem', color: 'rgba(236,229,214,0.6)' }}
                 >
                   ¿Olvidaste tu contraseña?
                 </button>
@@ -305,7 +306,7 @@ export default function LoginPage() {
             className="btn-text"
             style={{
               display: 'inline',
-              color: 'rgba(184,150,12,0.7)',
+              color: 'rgba(236,229,214,0.7)',
               fontSize: '0.8rem',
               background: 'transparent',
               border: 'none',

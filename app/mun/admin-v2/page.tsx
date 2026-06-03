@@ -20,7 +20,7 @@ const statusColor = (status: string) => {
     case 'rejected':
       return '#dc2626'
     case 'waitlist':
-      return '#2563eb'
+      return '#A5001E'
     default:
       return '#ca8a04'
   }
@@ -186,14 +186,14 @@ export default function AdminV2() {
     .sort((a, b) => b.score - a.score)
 
   return (
-    <div style={{ background: '#f6f7fb', minHeight: '100vh', padding: 30 }}>
+    <div style={{ background: '#F5F0EC', minHeight: '100vh', padding: 30 }}>
       
       {/* HEADER */}
       <div style={{ marginBottom: 25 }}>
-        <h1 style={{ fontSize: 28, fontWeight: 700, color: '#091c36' }}>
+        <h1 style={{ fontSize: 28, fontWeight: 700, color: '#7C011A' }}>
           SoPeD MUN Admin Panel
         </h1>
-        <p style={{ color: '#6b7280' }}>
+        <p style={{ color: '#8B7B70' }}>
           Gestión de postulaciones MUN
         </p>
       </div>
@@ -349,7 +349,7 @@ export default function AdminV2() {
                     padding: 6,
                     borderRadius: 6,
                     border: 'none',
-                    background: '#2563eb',
+                    background: '#A5001E',
                     color: '#fff',
                     cursor: 'pointer',
                   }}
@@ -389,7 +389,7 @@ export default function AdminV2() {
       }}
     >
       <h2 style={{ marginTop: 0 }}>{selected.full_name}</h2>
-      <p style={{ background: '#eef2ff', padding: 10, borderRadius: 8 }}>
+      <p style={{ background: '#F5ECE8', padding: 10, borderRadius: 8 }}>
         🧠 Sugerido:
         <br />
         Comité: <b>{suggestCommittee(selected)}</b>
@@ -409,7 +409,7 @@ export default function AdminV2() {
           width: '100%',
           marginBottom: 12,
           padding: 10,
-          background: '#111827',
+          background: '#7C011A',
           color: 'white',
           borderRadius: 8,
           border: 'none',
@@ -433,9 +433,9 @@ export default function AdminV2() {
         style={{
           marginBottom: 12,
           padding: 12,
-          background: '#f8fafc',
+          background: '#F5F0EC',
           borderRadius: 8,
-          border: '1px solid #e5e7eb',
+          border: '1px solid #E8E0D8',
           fontSize: 13,
           color: '#374151',
         }}

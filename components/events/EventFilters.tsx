@@ -37,15 +37,15 @@ export default function EventFilters({
             padding: '0.5rem 1.25rem',
             background:
               active === f.value
-                ? 'rgba(184,150,12,0.12)'
+                ? 'rgba(236,229,214,0.12)'
                 : 'rgba(255,255,255,0.04)',
             border:
               active === f.value
-                ? '1px solid rgba(184,150,12,0.4)'
+                ? '1px solid rgba(236,229,214,0.4)'
                 : '1px solid rgba(255,255,255,0.08)',
             color:
               active === f.value
-                ? '#d4af37'
+                ? '#ECE5D6'
                 : 'rgba(255,255,255,0.45)',
             cursor: 'pointer',
             transition: 'all 0.25s ease',

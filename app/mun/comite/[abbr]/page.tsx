@@ -1,6 +1,4 @@
- 
 import Layout from '@/components/layout/Layout'
-import Image from 'next/image'
 
 const committees: Record<string, any> = {
   CSNU: {
@@ -9,7 +7,7 @@ const committees: Record<string, any> = {
     mode: 'Presencial',
     description:
       'Comité encargado de abordar amenazas a la paz y seguridad internacional mediante diplomacia, resoluciones, negociación estratégica y mecanismos de seguridad colectiva entre los Estados miembros.',
-    logo: '/UNSC.svg',
+    logo: '/unsc.svg',
   },
 
   AGONU: {
@@ -18,7 +16,7 @@ const committees: Record<string, any> = {
     mode: 'Presencial',
     description:
       'Foro principal de deliberación multilateral de las Naciones Unidas enfocado en cooperación internacional, desarrollo sostenible y construcción de consensos frente a desafíos globales.',
-    logo: '/AGONU.svg',
+    logo: '/agun.svg',
   },
 
   ECOSOC: {
@@ -27,7 +25,7 @@ const committees: Record<string, any> = {
     mode: 'Presencial',
     description:
       'Órgano dedicado al análisis de políticas económicas y sociales internacionales, promoviendo cooperación multilateral, desarrollo sostenible y soluciones frente a desigualdades globales.',
-    logo: '/ECOSOC.svg',
+    logo: '/ecosoc.svg',
   },
 
   CRISIS: {
@@ -45,7 +43,7 @@ const committees: Record<string, any> = {
     mode: 'Presencial',
     description:
       'Espacio de coordinación internacional frente a amenazas planetarias, crisis globales y escenarios de contingencia extrema que requieren acción rápida y cooperación multilateral.',
-    logo: '/PCC.svg',
+    logo: '/pcc.svg',
   },
 
   ONUMUJERES: {
@@ -54,7 +52,7 @@ const committees: Record<string, any> = {
     mode: 'Presencial',
     description:
       'Comité orientado al diseño de políticas internacionales sobre igualdad de género, inclusión, empoderamiento y protección de derechos fundamentales en distintos contextos globales.',
-    logo: '/ONUMUJERES.svg',
+    logo: '/onumujeres.svg',
   },
 
   OEA: {
@@ -63,7 +61,7 @@ const committees: Record<string, any> = {
     mode: 'Presencial',
     description:
       'Foro regional centrado en democracia, derechos humanos y cooperación política entre los Estados americanos frente a desafíos hemisféricos contemporáneos.',
-    logo: '/OEA.svg',
+    logo: '/oea.svg',
   },
 
   OMS: {
@@ -72,7 +70,7 @@ const committees: Record<string, any> = {
     mode: 'Presencial',
     description:
       'Comité especializado en salud pública internacional, gestión sanitaria y respuesta coordinada ante emergencias epidemiológicas y desafíos globales de salud.',
-    logo: '/OMS.svg',
+    logo: '/oms.svg',
   },
 
   DISEC: {
@@ -90,25 +88,25 @@ const committees: Record<string, any> = {
     mode: 'Presencial',
     description:
       'Comité compuesto por actores no estatales, medios y organizaciones con influencia estratégica capaz de alterar el desarrollo de conflictos y dinámicas internacionales.',
-    logo: '/TPA.svg',
+    logo: '/tpa.svg',
   },
 
-  'UNHRC ENG': {
+  UNHRCENG: {
     name: 'UNHRC — English Committee',
     level: 'Avanzado',
     mode: 'Presencial',
     description:
       'Human rights committee focused on international legal analysis, diplomatic negotiation, humanitarian protection, and contemporary global human rights challenges.',
-    logo: '/UNHRCENGLISH.svg',
+    logo: '/unhrcenglish.svg',
   },
 
-  'UNHRC ESP': {
+  UNHRCESP: {
     name: 'UNHRC — Español',
     level: 'Intermedio',
     mode: 'Virtual',
     description:
       'Comité orientado al debate jurídico y diplomático sobre protección internacional de los derechos humanos y mecanismos multilaterales de supervisión internacional.',
-    logo: '/UNHRC.svg',
+    logo: '/unhrc.svg',
   },
 }
 
@@ -122,8 +120,7 @@ export function generateStaticParams() {
 }
 
 export default async function CommitteePage({ params }: any) {
-  const resolvedParams = await Promise.resolve(params)
-  const { abbr } = resolvedParams
+  const { abbr } = params
 
   const committee = committees[abbr]
 
@@ -142,9 +139,10 @@ export default async function CommitteePage({ params }: any) {
       <section
         style={{
           padding: '9rem 0 6rem',
-          minHeight: '100vh',
+          minHeight: '100vh', 
+          backgroundColor: '#0F0A0B',
           background:
-            'radial-gradient(circle at top right, rgba(212,175,55,0.08), transparent 28%)',
+            'radial-gradient(circle at top right, rgba(236,229,214,0.08), transparent 28%)',
         }}
       >
         <div className="max-w-6xl mx-auto px-6 lg:px-12">
@@ -167,7 +165,7 @@ export default async function CommitteePage({ params }: any) {
             <div
               style={{
                 position: 'absolute',
-                right: '-120px',
+                right: '-260px',
                 top: '50%',
                 transform: 'translateY(-50%)',
                 width: '520px',
@@ -181,23 +179,22 @@ export default async function CommitteePage({ params }: any) {
                 alignItems: 'center',
               }}
             >
-              <Image
+              <img
                 src="/soped.svg"
                 alt="SoPeD"
-                width={520}
-                height={520}
-                unoptimized
+                draggable={false}
                 style={{
                   objectFit: 'contain',
                   width: '520px',
                   height: '520px',
-                  marginLeft: '-260px',
+                  marginLeft: 0,
+                  display: 'block',
                 }}
               />
             </div>
             <p
               style={{
-                color: '#d4af37',
+                color: '#ECE5D6',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
                 fontSize: '0.8rem',
@@ -284,24 +281,22 @@ export default async function CommitteePage({ params }: any) {
                     position: 'absolute',
                     inset: 0,
                     borderRadius: '50%',
-                    background: 'rgba(212,175,55,0.06)',
+                    background: 'rgba(236,229,214,0.06)',
                     filter: 'blur(30px)',
                   }}
                 />
 
-                <Image
+                <img
                   src={committee.logo}
-                  alt={committee.name}
-                  width={200}
-                  height={200}
-                  priority
-                  unoptimized
+                  alt=""
+                  draggable={false}
                   style={{
                     objectFit: 'contain',
                     width: '200px',
                     height: '200px',
                     position: 'relative',
                     zIndex: 1,
+                    display: 'block',
                   }}
                 />
               </div>

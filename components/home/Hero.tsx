@@ -67,8 +67,8 @@ function HeroContent() {
         <Link
           href="/inscripcion"
           style={{
-            background: 'var(--primary)',
-            color: 'var(--surface-0)',
+            background: 'var(--interaction)',
+            color: '#fff',
             padding: '14px 22px',
             borderRadius: '10px',
             fontWeight: 600,

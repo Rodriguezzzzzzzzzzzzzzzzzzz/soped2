@@ -57,7 +57,7 @@ export default function IntroLoader({ onExit, onComplete }: Props) {
           position: 'fixed',
           inset: 0,
           zIndex: 9999,
-          background: '#050a10',
+          background: '#0F0A0B',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',

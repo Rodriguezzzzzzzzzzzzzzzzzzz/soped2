@@ -1,0 +1,1223 @@
+ const pptxgen = require("pptxgenjs");
+
+const pres = new pptxgen();
+pres.layout = "LAYOUT_WIDE"; // 13.3" x 7.5"
+pres.title = "Casación 3249-2016 Lima - Simulación Absoluta";
+pres.author = "Análisis Jurídico - Derecho Civil Peruano";f
+
+// ─── PALETTE ───────────────────────────────────────────────────────────────
+const C = {
+  navy:    "0D1B2A",   // primary dark
+  navy2:   "1B2B3B",   // slightly lighter
+  gold:    "C9A84C",   // accent gold
+  gold2:   "E8C96A",   // lighter gold
+  white:   "FFFFFF",
+  offwht:  "F5F5F0",
+  gray:    "6B7280",
+  lgray:   "D1D5DB",
+  red:     "9B1C1C",
+  slate:   "334155",
+  ice:     "EAF2FF",
+};
+
+const makeShadow = () => ({
+  type: "outer", blur: 8, offset: 3,
+  angle: 135, color: "000000", opacity: 0.12
+});
+
+// ─── HELPER: left-accent card ───────────────────────────────────────────────
+function accentCard(slide, x, y, w, h, accentColor) {
+  slide.addShape(pres.shapes.RECTANGLE, {
+    x, y, w, h,
+    fill: { color: C.white },
+    shadow: makeShadow(),
+    line: { color: C.lgray, width: 0.5 }
+  });
+  slide.addShape(pres.shapes.RECTANGLE, {
+    x, y, w: 0.07, h,
+    fill: { color: accentColor || C.gold }
+  });
+}
+
+// ─── HELPER: section label ───────────────────────────────────────────────────
+function sectionLabel(slide, text) {
+  slide.addText(text, {
+    x: 0.5, y: 0.25, w: 12.3, h: 0.28,
+    fontSize: 8, color: C.gold, bold: true,
+    charSpacing: 4, align: "left", margin: 0
+  });
+}
+
+// ─── SLIDE 1: PORTADA ───────────────────────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.navy };
+
+  // Decorative gold vertical bar (left)
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0, y: 0, w: 0.45, h: 7.5,
+    fill: { color: C.gold }
+  });
+
+  // Decorative subtle block (right)
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 9.5, y: 0, w: 3.8, h: 7.5,
+    fill: { color: "10243A" }
+  });
+
+  // Gold accent line horizontal
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.45, y: 2.8, w: 8.8, h: 0.04,
+    fill: { color: C.gold }
+  });
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.45, y: 4.6, w: 8.8, h: 0.04,
+    fill: { color: C.gold }
+  });
+
+  // Court label
+  s.addText("CORTE SUPREMA DE JUSTICIA DE LA REPÚBLICA", {
+    x: 0.7, y: 1.0, w: 8.5, h: 0.4,
+    fontSize: 10, color: C.gold, bold: true,
+    charSpacing: 2, align: "left", margin: 0
+  });
+  s.addText("SALA CIVIL TRANSITORIA", {
+    x: 0.7, y: 1.45, w: 8.5, h: 0.3,
+    fontSize: 9, color: C.lgray, charSpacing: 1,
+    align: "left", margin: 0
+  });
+
+  // Main title
+  s.addText("SIMULACIÓN ABSOLUTA", {
+    x: 0.7, y: 2.95, w: 8.5, h: 0.85,
+    fontSize: 40, color: C.white, bold: true,
+    fontFace: "Cambria", align: "left", margin: 0
+  });
+  s.addText("DEL ACTO JURÍDICO", {
+    x: 0.7, y: 3.75, w: 8.5, h: 0.75,
+    fontSize: 32, color: C.gold, bold: true,
+    fontFace: "Cambria", align: "left", margin: 0
+  });
+
+  // Casación badge
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.7, y: 4.78, w: 3.6, h: 0.6,
+    fill: { color: C.gold }, rectRadius: 0.05
+  });
+  s.addText("CASACIÓN N° 3249-2016 · LIMA", {
+    x: 0.7, y: 4.78, w: 3.6, h: 0.6,
+    fontSize: 10, color: C.navy, bold: true,
+    align: "center", margin: 0
+  });
+
+  // Subtitle info
+  s.addText("Nulidad de Acto Jurídico  ·  Koch Müller c. Roca Rojas y Silva Chávez", {
+    x: 0.7, y: 5.55, w: 8.5, h: 0.3,
+    fontSize: 9.5, color: C.lgray, align: "left", margin: 0
+  });
+  s.addText("Sentencia: 9 de mayo de 2018", {
+    x: 0.7, y: 5.9, w: 8.5, h: 0.28,
+    fontSize: 9, color: C.gray, align: "left", margin: 0
+  });
+
+  // Right column decoration
+  s.addText("§", {
+    x: 9.6, y: 2.0, w: 3.5, h: 3.5,
+    fontSize: 200, color: "1E3A5F", bold: true,
+    align: "center", valign: "middle", margin: 0,
+    fontFace: "Georgia"
+  });
+  s.addText("Derecho Civil Peruano", {
+    x: 9.6, y: 6.5, w: 3.5, h: 0.5,
+    fontSize: 8, color: C.gray, align: "center", margin: 0,
+    charSpacing: 1
+  });
+
+  s.addNotes("PORTADA — Presentar el caso brevemente: Koch Müller demanda nulidad de compraventa por simulación absoluta. La Corte Suprema declaró infundado el recurso de casación de Roca Rojas, confirmando la nulidad.");
+}
+
+// ─── SLIDE 2: INTRODUCCIÓN ──────────────────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.offwht };
+  sectionLabel(s, "INTRODUCCIÓN AL CASO");
+
+  s.addText("El Caso en Contexto", {
+    x: 0.5, y: 0.55, w: 12.3, h: 0.55,
+    fontSize: 26, color: C.navy, bold: true, fontFace: "Cambria",
+    align: "left", margin: 0
+  });
+
+  // Left column: narrative
+  accentCard(s, 0.5, 1.25, 5.6, 5.6, C.navy);
+  s.addText("¿Qué sucedió?", {
+    x: 0.75, y: 1.4, w: 5.1, h: 0.35,
+    fontSize: 13, color: C.navy, bold: true, margin: 0
+  });
+  s.addText([
+    { text: "Olga Koch Müller", options: { bold: true, breakLine: false } },
+    { text: " demandó la nulidad de un contrato de compraventa celebrado entre ", options: { breakLine: false } },
+    { text: "Saúl Silva Chávez", options: { bold: true, breakLine: false } },
+    { text: " y ", options: { breakLine: false } },
+    { text: "Jorge Roca Rojas", options: { bold: true, breakLine: false } },
+    { text: ", respecto de un inmueble en Av. Petit Thouars 1739-1755, Lince, Lima.", options: { breakLine: true } },
+    { text: "\n", options: { breakLine: true } },
+    { text: "La demandante alegó que el bien integró la sociedad de gananciales de su matrimonio con José Ángel Linares Moreno (fallecido en 2010), y que la compraventa fue simulada para impedirle ejercer sus derechos sobre el mismo.", options: {} },
+  ], {
+    x: 0.75, y: 1.82, w: 5.1, h: 4.6,
+    fontSize: 11.5, color: C.slate, align: "justify", margin: 0
+  });
+
+  // Right column: 3 stat cards
+  const cards = [
+    { label: "Instancias", value: "3", sub: "A quo · Sala Superior · Corte Suprema" },
+    { label: "Resultado final", value: "NULO", sub: "Contrato, escritura pública y asiento registral" },
+    { label: "Recurso de casación", value: "Infundado", sub: "Art. 397 CPC — No casaron la sentencia" },
+  ];
+  cards.forEach((c, i) => {
+    const yy = 1.25 + i * 1.9;
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: 6.5, y: yy, w: 6.3, h: 1.65,
+      fill: { color: i === 1 ? C.navy : C.white },
+      shadow: makeShadow(),
+      line: { color: C.lgray, width: 0.5 }
+    });
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: 6.5, y: yy, w: 0.07, h: 1.65,
+      fill: { color: C.gold }
+    });
+    s.addText(c.label.toUpperCase(), {
+      x: 6.7, y: yy + 0.15, w: 5.9, h: 0.25,
+      fontSize: 7.5, color: i === 1 ? C.gold : C.gray, charSpacing: 2, margin: 0
+    });
+    s.addText(c.value, {
+      x: 6.7, y: yy + 0.4, w: 5.9, h: 0.65,
+      fontSize: i === 1 ? 28 : 30, color: i === 1 ? C.white : C.navy,
+      bold: true, fontFace: "Cambria", margin: 0
+    });
+    s.addText(c.sub, {
+      x: 6.7, y: yy + 1.1, w: 5.9, h: 0.42,
+      fontSize: 9, color: i === 1 ? C.lgray : C.gray, margin: 0
+    });
+  });
+
+  s.addNotes("INTRODUCCIÓN — Contextualizar al auditorio: el bien fue adquirido en 1984, la sociedad conyugal no fue liquidada al divorciarse en 1996, y los herederos del ex cónyuge transfirieron el bien mediante donación y luego compraventa simulada.");
+}
+
+// ─── SLIDE 3: CONCEPTO DE SIMULACIÓN ──────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.white };
+  sectionLabel(s, "TEORÍA GENERAL");
+
+  s.addText("Concepto de Simulación del Acto Jurídico", {
+    x: 0.5, y: 0.55, w: 12.3, h: 0.55,
+    fontSize: 26, color: C.navy, bold: true, fontFace: "Cambria",
+    align: "left", margin: 0
+  });
+
+  // Central definition box
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.5, y: 1.25, w: 12.3, h: 1.2,
+    fill: { color: C.navy }
+  });
+  s.addText([
+    { text: "Simulación: ", options: { bold: true, color: C.gold } },
+    { text: "Divergencia consciente y querida entre la voluntad real (interna) y la voluntad declarada (exteriorizada), con acuerdo entre las partes para crear una apariencia jurídica que no corresponde a la realidad.", options: { color: C.white } }
+  ], {
+    x: 0.75, y: 1.25, w: 11.8, h: 1.2,
+    fontSize: 13, align: "left", valign: "middle", margin: 0
+  });
+
+  // 4 elements
+  const elems = [
+    { num: "01", title: "Disconformidad", desc: "Entre lo declarado y lo realmente querido por las partes contratantes." },
+    { num: "02", title: "Acuerdo Simulatorio", desc: "Concierto previo entre las partes (pactum simulationis) para aparentar el acto." },
+    { num: "03", title: "Intención de Engañar", desc: "Propósito de crear una apariencia ante terceros o para eludir normas." },
+    { num: "04", title: "Divergencia Consciente", desc: "No es error: la divergencia es intencional y conocida por ambas partes." },
+  ];
+  elems.forEach((e, i) => {
+    const xx = 0.5 + i * 3.1;
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx, y: 2.65, w: 2.95, h: 4.15,
+      fill: { color: i % 2 === 0 ? C.ice : C.offwht },
+      line: { color: C.lgray, width: 0.5 },
+      shadow: makeShadow()
+    });
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx, y: 2.65, w: 2.95, h: 0.06,
+      fill: { color: C.gold }
+    });
+    s.addText(e.num, {
+      x: xx + 0.15, y: 2.8, w: 0.8, h: 0.5,
+      fontSize: 28, color: C.gold, bold: true, fontFace: "Cambria", margin: 0
+    });
+    s.addText(e.title, {
+      x: xx + 0.15, y: 3.4, w: 2.65, h: 0.4,
+      fontSize: 12, color: C.navy, bold: true, margin: 0
+    });
+    s.addText(e.desc, {
+      x: xx + 0.15, y: 3.88, w: 2.65, h: 2.7,
+      fontSize: 10.5, color: C.slate, margin: 0
+    });
+  });
+
+  s.addNotes("CONCEPTO — Destacar que la simulación NO es sinónimo de fraude directo; es la creación de una apariencia jurídica falsa. Según Lohmann Luca de Tena, es la declaración no verdadera de voluntad hecha con el acuerdo del destinatario para engañar a terceros.");
+}
+
+// ─── SLIDE 4: REGULACIÓN ────────────────────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.navy };
+  sectionLabel(s, "MARCO NORMATIVO");
+
+  s.addText("Regulación en el Código Civil Peruano", {
+    x: 0.5, y: 0.55, w: 12.3, h: 0.55,
+    fontSize: 26, color: C.white, bold: true, fontFace: "Cambria",
+    align: "left", margin: 0
+  });
+
+  const arts = [
+    {
+      art: "Art. 190",
+      title: "Simulación Absoluta",
+      texto: "«Por la simulación absoluta se aparenta celebrar un acto jurídico cuando no existe realmente voluntad para celebrarlo.»",
+      note: "Base legal de la pretensión de Koch Müller"
+    },
+    {
+      art: "Art. 191",
+      title: "Simulación Relativa",
+      texto: "«Cuando las partes han querido concluir un acto distinto del aparente, tiene efecto entre ellas el acto ocultado, siempre que concurran sus requisitos de sustancia y forma.»",
+      note: "No aplicable al caso sub examine"
+    },
+    {
+      art: "Art. 192",
+      title: "Simulación Parcial",
+      texto: "«La simulación parcial tiene efecto entre las partes cuando en el acto se insertan cláusulas o datos falsos.»",
+      note: "Supuesto diferenciado de la simulación total"
+    },
+    {
+      art: "Art. 193",
+      title: "Acción de Nulidad",
+      texto: "«La acción para solicitar la nulidad del acto simulado puede ser ejercitada por cualquiera de las partes o por el tercero perjudicado.»",
+      note: "Legitimidad de Koch Müller como tercera perjudicada"
+    },
+    {
+      art: "Art. 194",
+      title: "Inoponibilidad",
+      texto: "«La simulación no puede ser opuesta por las partes ni por los terceros perjudicados a quien de buena fe y a título oneroso haya adquirido derechos del titular aparente.»",
+      note: "Debatido respecto de Roca Rojas: ¿mala fe?"
+    },
+  ];
+
+  arts.forEach((a, i) => {
+    const col = i < 3 ? 0 : 1;
+    const row = i < 3 ? i : i - 3;
+    const xx = 0.5 + col * 6.55;
+    const yy = 1.3 + row * 1.9;
+    const isKey = i === 0 || i === 3;
+
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx, y: yy, w: 6.3, h: 1.7,
+      fill: { color: isKey ? "1B3A5C" : "162033" },
+      line: { color: isKey ? C.gold : "2A3F55", width: isKey ? 1 : 0.5 }
+    });
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx, y: yy, w: 0.07, h: 1.7,
+      fill: { color: isKey ? C.gold : "4A6080" }
+    });
+    s.addText(a.art, {
+      x: xx + 0.2, y: yy + 0.1, w: 1.2, h: 0.3,
+      fontSize: 9, color: isKey ? C.gold : C.lgray, bold: true,
+      charSpacing: 1, margin: 0
+    });
+    s.addText(a.title, {
+      x: xx + 0.2, y: yy + 0.38, w: 5.9, h: 0.3,
+      fontSize: 12, color: C.white, bold: true, margin: 0
+    });
+    s.addText(a.texto, {
+      x: xx + 0.2, y: yy + 0.72, w: 5.9, h: 0.65,
+      fontSize: 9, color: C.lgray, italic: true, margin: 0
+    });
+    s.addText("→ " + a.note, {
+      x: xx + 0.2, y: yy + 1.38, w: 5.9, h: 0.25,
+      fontSize: 8.5, color: C.gold, margin: 0
+    });
+  });
+
+  // 5th card at right col, row 2
+  // Already placed above as i=4 → col=1, row=1, y=1.3+1.9=3.2 ✓
+
+  s.addNotes("REGULACIÓN — Enfatizar que el Código Civil de 1984 regula la simulación en los artículos 190 a 194. El caso aplica el Art. 190 (simulación absoluta) y el Art. 193 (legitimidad del tercero para demandar). El Art. 194 (protección del tercero de buena fe) fue el argumento central de la defensa de Roca Rojas.");
+}
+
+// ─── SLIDE 5: VOLUNTAD REAL vs VOLUNTAD DECLARADA ──────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.offwht };
+  sectionLabel(s, "TEORÍA DEL ACTO JURÍDICO");
+
+  s.addText("Voluntad Real vs. Voluntad Declarada", {
+    x: 0.5, y: 0.55, w: 12.3, h: 0.55,
+    fontSize: 26, color: C.navy, bold: true, fontFace: "Cambria",
+    align: "left", margin: 0
+  });
+
+  // Left box: voluntad real
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.5, y: 1.3, w: 5.3, h: 5.5,
+    fill: { color: C.navy },
+    shadow: makeShadow()
+  });
+  s.addText("VOLUNTAD REAL", {
+    x: 0.7, y: 1.5, w: 4.9, h: 0.35,
+    fontSize: 10, color: C.gold, bold: true, charSpacing: 3, margin: 0
+  });
+  s.addText("(Interna · Oculta)", {
+    x: 0.7, y: 1.88, w: 4.9, h: 0.3,
+    fontSize: 9, color: C.lgray, margin: 0
+  });
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.7, y: 2.25, w: 4.8, h: 0.04,
+    fill: { color: C.gold }
+  });
+  const realItems = [
+    "NO transferir efectivamente la propiedad",
+    "Mantener el control del inmueble en el círculo del vendedor",
+    "Sustraer el bien del alcance de Koch Müller",
+    "Aparentar una venta válida que impida el ejercicio de derechos de la demandante",
+    "Usar el contrato como herramienta para el desalojo",
+  ];
+  realItems.forEach((item, i) => {
+    s.addText("— " + item, {
+      x: 0.7, y: 2.42 + i * 0.75, w: 4.8, h: 0.65,
+      fontSize: 10, color: C.white, margin: 0
+    });
+  });
+
+  // Right box: voluntad declarada
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 6.1, y: 1.3, w: 6.7, h: 5.5,
+    fill: { color: C.white },
+    shadow: makeShadow(),
+    line: { color: C.lgray, width: 0.5 }
+  });
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 6.1, y: 1.3, w: 6.7, h: 0.06,
+    fill: { color: C.gold }
+  });
+  s.addText("VOLUNTAD DECLARADA", {
+    x: 6.3, y: 1.5, w: 6.3, h: 0.35,
+    fontSize: 10, color: C.navy, bold: true, charSpacing: 3, margin: 0
+  });
+  s.addText("(Exteriorizada · Aparente)", {
+    x: 6.3, y: 1.88, w: 6.3, h: 0.3,
+    fontSize: 9, color: C.gray, margin: 0
+  });
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 6.3, y: 2.25, w: 6.3, h: 0.04,
+    fill: { color: C.lgray }
+  });
+
+  const declItems = [
+    ["Minuta", "07/08/2012 — Contrato de compraventa entre Silva Chávez y Roca Rojas"],
+    ["Escritura Pública", "14/08/2012 — Formalización del contrato ante notario"],
+    ["Precio pactado", "Inferior al valor de mercado; declarado como pagado al contado"],
+    ["Inscripción", "Partida Electrónica N° 07002033 — Registro de Propiedad Inmueble de Lima"],
+    ["Apariencia", "Compraventa legítima amparada en buena fe registral (art. 2014 CC)"],
+  ];
+  declItems.forEach((item, i) => {
+    s.addText(item[0], {
+      x: 6.3, y: 2.4 + i * 0.82, w: 1.6, h: 0.35,
+      fontSize: 9, color: C.gold, bold: true, margin: 0
+    });
+    s.addText(item[1], {
+      x: 7.95, y: 2.4 + i * 0.82, w: 4.6, h: 0.55,
+      fontSize: 10, color: C.slate, margin: 0
+    });
+    if (i < 4) {
+      s.addShape(pres.shapes.LINE, {
+        x: 6.3, y: 2.95 + i * 0.82, w: 6.3, h: 0,
+        line: { color: C.lgray, width: 0.5 }
+      });
+    }
+  });
+
+  // Arrow between
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 5.42, y: 3.8, w: 0.68, h: 0.04,
+    fill: { color: C.red }
+  });
+  s.addText("≠", {
+    x: 5.35, y: 3.5, w: 0.8, h: 0.55,
+    fontSize: 22, color: C.red, bold: true, align: "center", margin: 0
+  });
+  s.addText("DIVERGENCIA", {
+    x: 5.25, y: 4.0, w: 1.0, h: 0.4,
+    fontSize: 7, color: C.red, bold: true, align: "center",
+    charSpacing: 0.5, margin: 0
+  });
+
+  s.addNotes("VOLUNTAD — Este es el núcleo jurídico del caso. La Sala Superior y la Corte Suprema concluyeron que la voluntad real NO era transferir la propiedad, sino sustraer el inmueble de la esfera jurídica de la demandante. Los indicios (falta de pago acreditado, no entrega del bien, conocimiento previo de las pretensiones de Koch Müller) demuestran la divergencia.");
+}
+
+// ─── SLIDE 6: TIPOS DE SIMULACIÓN ──────────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.white };
+  sectionLabel(s, "CLASIFICACIÓN DOCTRINARIA Y LEGAL");
+
+  s.addText("Tipos de Simulación del Acto Jurídico", {
+    x: 0.5, y: 0.55, w: 12.3, h: 0.55,
+    fontSize: 26, color: C.navy, bold: true, fontFace: "Cambria",
+    align: "left", margin: 0
+  });
+
+  // ABSOLUTA (left)
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.5, y: 1.3, w: 5.8, h: 5.6,
+    fill: { color: C.navy },
+    shadow: makeShadow()
+  });
+  s.addText("SIMULACIÓN ABSOLUTA", {
+    x: 0.7, y: 1.5, w: 5.4, h: 0.4,
+    fontSize: 11, color: C.gold, bold: true, charSpacing: 2, margin: 0
+  });
+  s.addText("Art. 190 Código Civil", {
+    x: 0.7, y: 1.92, w: 5.4, h: 0.28,
+    fontSize: 9, color: C.lgray, margin: 0
+  });
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.7, y: 2.28, w: 5.1, h: 0.04,
+    fill: { color: C.gold }
+  });
+
+  const absItems = [
+    ["Definición", "Las partes aparentan celebrar un acto jurídico sin tener voluntad real de hacerlo."],
+    ["Consecuencia", "Nulidad absoluta del acto — no produce efecto jurídico alguno."],
+    ["Efecto", "El bien nunca salió del patrimonio del vendedor aparente (ficción jurídica)."],
+    ["Caso concreto", "La compraventa Silva→Roca no tuvo finalidad real de transferencia patrimonial."],
+  ];
+  absItems.forEach((item, i) => {
+    s.addText(item[0].toUpperCase(), {
+      x: 0.7, y: 2.42 + i * 1.1, w: 5.1, h: 0.25,
+      fontSize: 8, color: C.gold, bold: true, charSpacing: 1, margin: 0
+    });
+    s.addText(item[1], {
+      x: 0.7, y: 2.68 + i * 1.1, w: 5.1, h: 0.7,
+      fontSize: 10.5, color: C.white, margin: 0
+    });
+  });
+
+  // Badge
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.7, y: 6.5, w: 5.1, h: 0.3,
+    fill: { color: C.gold }
+  });
+  s.addText("▶  APLICA AL CASO SUB EXAMINE", {
+    x: 0.7, y: 6.5, w: 5.1, h: 0.3,
+    fontSize: 9, color: C.navy, bold: true, align: "center", margin: 0
+  });
+
+  // RELATIVA (right)
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 6.6, y: 1.3, w: 6.2, h: 5.6,
+    fill: { color: C.offwht },
+    line: { color: C.lgray, width: 0.5 },
+    shadow: makeShadow()
+  });
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 6.6, y: 1.3, w: 6.2, h: 0.06,
+    fill: { color: C.lgray }
+  });
+  s.addText("SIMULACIÓN RELATIVA", {
+    x: 6.8, y: 1.5, w: 5.8, h: 0.4,
+    fontSize: 11, color: C.navy, bold: true, charSpacing: 2, margin: 0
+  });
+  s.addText("Art. 191 y 192 Código Civil", {
+    x: 6.8, y: 1.92, w: 5.8, h: 0.28,
+    fontSize: 9, color: C.gray, margin: 0
+  });
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 6.8, y: 2.28, w: 5.6, h: 0.04,
+    fill: { color: C.lgray }
+  });
+
+  const relItems = [
+    ["Definición", "Las partes celebran un acto diferente del que aparentan celebrar (acto oculto distinto)."],
+    ["Subtipos", "• Subjetiva: identidad de partes es falsa.\n• Objetiva: naturaleza, precio o contenido es falso."],
+    ["Consecuencia", "El acto oculto tiene efecto entre las partes si reúne los requisitos de forma y fondo."],
+    ["Diferencia clave", "Sí existe voluntad real de contratar, pero sobre algo distinto a lo declarado."],
+  ];
+  relItems.forEach((item, i) => {
+    s.addText(item[0].toUpperCase(), {
+      x: 6.8, y: 2.42 + i * 1.1, w: 5.6, h: 0.25,
+      fontSize: 8, color: C.gray, bold: true, charSpacing: 1, margin: 0
+    });
+    s.addText(item[1], {
+      x: 6.8, y: 2.68 + i * 1.1, w: 5.6, h: 0.7,
+      fontSize: 10.5, color: C.slate, margin: 0
+    });
+  });
+
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 6.8, y: 6.5, w: 5.6, h: 0.3,
+    fill: { color: C.lgray }
+  });
+  s.addText("▷  NO APLICABLE AL PRESENTE CASO", {
+    x: 6.8, y: 6.5, w: 5.6, h: 0.3,
+    fontSize: 9, color: C.gray, bold: true, align: "center", margin: 0
+  });
+
+  s.addNotes("TIPOS — Enfatizar la distinción: en la simulación absoluta NO hay acto real detrás; en la relativa sí hay un acto oculto que las partes realmente quisieron. En este caso, la Corte concluyó que NADIE quería realmente transferir la propiedad — solo crear la apariencia.");
+}
+
+// ─── SLIDE 7: CRONOLOGÍA ────────────────────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.navy };
+  sectionLabel(s, "HISTORIA Y CRONOLOGÍA DEL CASO");
+
+  s.addText("Línea de Tiempo del Caso", {
+    x: 0.5, y: 0.55, w: 12.3, h: 0.55,
+    fontSize: 26, color: C.white, bold: true, fontFace: "Cambria",
+    align: "left", margin: 0
+  });
+
+  const events = [
+    { year: "1976", label: "Matrimonio", desc: "Koch Müller contrae matrimonio con José Ángel Linares Moreno (29/10/1976)" },
+    { year: "1984", label: "Adquisición del bien", desc: "Linares Moreno compra el inmueble (Av. Petit Thouars 1739-1755, Lince) el 02/01/1984 — bien social" },
+    { year: "1996", label: "Divorcio", desc: "Se declara la disolución del vínculo matrimonial el 08/01/1996. La sociedad de gananciales NO fue liquidada" },
+    { year: "2010", label: "Fallecimiento", desc: "Linares Moreno fallece el 18/05/2010. Antes confesó a Koch Müller la existencia del bien" },
+    { year: "2012", label: "Donación → Compraventa simulada", desc: "Los herederos donan el bien a Silva Chávez. Luego este lo vende a Roca Rojas (minuta 07/08/2012; EP 14/08/2012)" },
+    { year: "2015", label: "Fallo A quo: infundada", desc: "El Juzgado declara infundada la demanda de nulidad (05/05/2015) — buena fe registral" },
+    { year: "2016", label: "Sala Superior: fundada", desc: "La 5ª Sala Civil de Lima revoca y declara FUNDADA la demanda (08/04/2016) — simulación absoluta probada" },
+    { year: "2018", label: "Corte Suprema: infundado el recurso", desc: "La Sala Civil Transitoria declara infundado el recurso de casación de Roca Rojas (09/05/2018). COSA JUZGADA" },
+  ];
+
+  // Timeline line
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.5, y: 3.75, w: 12.3, h: 0.05,
+    fill: { color: C.gold }
+  });
+
+  events.forEach((e, i) => {
+    const xx = 0.5 + i * 1.6;
+    const isTop = i % 2 === 0;
+    const dotY = 3.6;
+    const isLast = i === 7;
+
+    // Dot
+    s.addShape(pres.shapes.OVAL, {
+      x: xx + 0.5, y: dotY, w: 0.3, h: 0.3,
+      fill: { color: isLast ? C.gold : "FFFFFF" },
+      line: { color: C.gold, width: 1.5 }
+    });
+
+    // Connector
+    const connY = isTop ? 1.4 : 4.05;
+    const connH = isTop ? 2.2 : 2.2;
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx + 0.62, y: connY, w: 0.04, h: connH,
+      fill: { color: isLast ? C.gold : "3A5270" }
+    });
+
+    // Year
+    s.addText(e.year, {
+      x: xx + 0.15, y: isTop ? 1.0 : 4.3,
+      w: 1.4, h: 0.35,
+      fontSize: 11, color: C.gold, bold: true, fontFace: "Cambria",
+      align: "center", margin: 0
+    });
+    // Label
+    s.addText(e.label, {
+      x: xx, y: isTop ? 1.38 : 4.68,
+      w: 1.55, h: 0.4,
+      fontSize: 7.5, color: C.white, bold: true,
+      align: "center", margin: 0
+    });
+    // Desc
+    s.addText(e.desc, {
+      x: xx, y: isTop ? 1.82 : 5.12,
+      w: 1.55, h: 1.5,
+      fontSize: 7, color: C.lgray,
+      align: "center", margin: 0
+    });
+  });
+
+  s.addNotes("CRONOLOGÍA — Esta línea de tiempo muestra el iter del caso. Punto crítico: cuando se celebra la compraventa (2012), Roca Rojas ya SABÍA del proceso de Ineficacia que Koch Müller había iniciado contra Silva Chávez. Esto destruye la presunción de buena fe.");
+}
+
+// ─── SLIDE 8: FUNDAMENTOS DE HECHO ─────────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.offwht };
+  sectionLabel(s, "HECHOS DEL PROCESO");
+
+  s.addText("Fundamentos de Hecho", {
+    x: 0.5, y: 0.55, w: 12.3, h: 0.55,
+    fontSize: 26, color: C.navy, bold: true, fontFace: "Cambria",
+    align: "left", margin: 0
+  });
+
+  const hechos = [
+    {
+      num: "H1", color: C.red,
+      title: "Precio inferior al mercado",
+      desc: "La compraventa se celebró por un precio notoriamente inferior al valor de mercado del inmueble, sin justificación económica razonable."
+    },
+    {
+      num: "H2", color: C.red,
+      title: "Falta de pago acreditado",
+      desc: "No se acreditó el pago del precio mediante medio bancarizado. Solo consta declaración notarial del vendedor."
+    },
+    {
+      num: "H3", color: C.red,
+      title: "No entrega del bien",
+      desc: "El comprador Roca Rojas reconoció nunca haber hecho uso del inmueble ni haberlo recibido materialmente."
+    },
+    {
+      num: "H4", color: C.red,
+      title: "Ausencia de tratativas previas",
+      desc: "No existieron actos comunicacionales o negociaciones previas a la compraventa que revelen voluntad genuina de contratar."
+    },
+    {
+      num: "H5", color: "7C3AED",
+      title: "Proceso de Ineficacia previo",
+      desc: "Koch Müller ya había demandado la Ineficacia del acto de donación a favor de Silva Chávez antes de la compraventa cuestionada."
+    },
+    {
+      num: "H6", color: "7C3AED",
+      title: "Proceso de Desalojo fallido",
+      desc: "Silva Chávez intentó desalojar a Koch Müller, siendo declarado improcedente. La venta a Roca Rojas ocurrió inmediatamente después."
+    },
+  ];
+
+  hechos.forEach((h, i) => {
+    const col = i % 2;
+    const row = Math.floor(i / 2);
+    const xx = 0.5 + col * 6.35;
+    const yy = 1.3 + row * 2.0;
+
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx, y: yy, w: 6.1, h: 1.8,
+      fill: { color: C.white },
+      shadow: makeShadow(),
+      line: { color: C.lgray, width: 0.5 }
+    });
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx, y: yy, w: 0.07, h: 1.8,
+      fill: { color: h.color }
+    });
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx + 0.2, y: yy + 0.15, w: 0.5, h: 0.5,
+      fill: { color: h.color }
+    });
+    s.addText(h.num, {
+      x: xx + 0.2, y: yy + 0.15, w: 0.5, h: 0.5,
+      fontSize: 9, color: C.white, bold: true, align: "center", valign: "middle", margin: 0
+    });
+    s.addText(h.title, {
+      x: xx + 0.85, y: yy + 0.18, w: 5.0, h: 0.38,
+      fontSize: 12, color: C.navy, bold: true, margin: 0
+    });
+    s.addText(h.desc, {
+      x: xx + 0.2, y: yy + 0.72, w: 5.7, h: 0.95,
+      fontSize: 10.5, color: C.slate, margin: 0
+    });
+  });
+
+  s.addNotes("HECHOS — La Sala Superior los usó como «eslabones firmes de una cadena demostrativa». Destacar que H5 y H6 son cruciales: prueban que Roca Rojas CONOCÍA las pretensiones de Koch Müller cuando adquirió el bien, lo que destruye la buena fe registral.");
+}
+
+// ─── SLIDE 9: FUNDAMENTOS DE DERECHO ───────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.white };
+  sectionLabel(s, "FUNDAMENTOS JURÍDICOS");
+
+  s.addText("Fundamentos de Derecho Aplicados", {
+    x: 0.5, y: 0.55, w: 12.3, h: 0.55,
+    fontSize: 26, color: C.navy, bold: true, fontFace: "Cambria",
+    align: "left", margin: 0
+  });
+
+  // Table
+  const rows = [
+    [
+      { text: "NORMA", options: { bold: true, color: C.white, fill: { color: C.navy } } },
+      { text: "CONTENIDO", options: { bold: true, color: C.white, fill: { color: C.navy } } },
+      { text: "APLICACIÓN AL CASO", options: { bold: true, color: C.white, fill: { color: C.navy } } },
+      { text: "POSICIÓN VENCEDORA", options: { bold: true, color: C.white, fill: { color: C.navy } } }
+    ],
+    [
+      { text: "Art. 190 CC\nSimulación absoluta" },
+      { text: "Aparentar un acto sin voluntad real de celebrarlo" },
+      { text: "La compraventa no tuvo voluntad real de transferir el inmueble" },
+      { text: "✔ Demandante Koch Müller" }
+    ],
+    [
+      { text: "Art. 193 CC\nAcción de nulidad" },
+      { text: "Cualquier parte o tercero perjudicado puede pedir nulidad del acto simulado" },
+      { text: "Koch Müller actuó como tercera perjudicada por tener derechos sobre el bien" },
+      { text: "✔ Demandante Koch Müller" }
+    ],
+    [
+      { text: "Art. 1351 CC\nAutonomía de la voluntad" },
+      { text: "El contrato es el acuerdo de voluntades libre para crear relaciones jurídicas" },
+      { text: "Invocado por Roca Rojas; rechazado porque protege solo la buena fe" },
+      { text: "✘ Recurrente Roca Rojas" }
+    ],
+    [
+      { text: "Art. 2014 CC\nBuena fe registral" },
+      { text: "Protege al adquirente de buena fe que confió en el registro" },
+      { text: "No aplica: Roca Rojas conocía los derechos de Koch Müller al contratar" },
+      { text: "✘ Recurrente Roca Rojas" }
+    ],
+    [
+      { text: "Arts. 275-277 CPC\nPrueba indiciaria" },
+      { text: "Los indicios y sucedáneos de prueba son medios probatorios válidos" },
+      { text: "La sentencia se sustentó válidamente en indicios concordantes y convergentes" },
+      { text: "✔ Sala Superior confirmada" }
+    ],
+  ];
+
+  s.addTable(rows, {
+    x: 0.5, y: 1.3, w: 12.3, h: 5.8,
+    colW: [2.2, 2.8, 3.8, 3.5],
+    border: { pt: 0.5, color: C.lgray },
+    rowH: [0.5, 0.95, 0.95, 0.95, 0.95, 0.95],
+    fontSize: 10,
+    color: C.slate,
+    align: "left",
+    valign: "middle",
+    fill: { color: C.offwht },
+  });
+
+  s.addNotes("DERECHO — La Corte Suprema rechazó la invocación del Art. 2014 porque ese principio SOLO protege a quien actuó de buena fe. Al estar probado que Roca Rojas conocía las pretensiones de Koch Müller, la mala fe destruye la protección registral.");
+}
+
+// ─── SLIDE 10: ROL DE LA CORTE SUPREMA ─────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.navy };
+  sectionLabel(s, "ITER PROCESAL");
+
+  s.addText("Rol de la Corte Suprema en el Proceso", {
+    x: 0.5, y: 0.55, w: 12.3, h: 0.55,
+    fontSize: 26, color: C.white, bold: true, fontFace: "Cambria",
+    align: "left", margin: 0
+  });
+
+  // Flow boxes: 3 instances
+  const stages = [
+    {
+      label: "1ª INSTANCIA",
+      court: "Juzgado Civil de Lima",
+      result: "INFUNDADA",
+      color: C.red,
+      razon: [
+        "Autonomía de voluntad (Art. 1351 CC)",
+        "Buena fe registral del comprador",
+        "Pago declarado en escritura pública",
+        "No existe simulación acreditada"
+      ]
+    },
+    {
+      label: "2ª INSTANCIA",
+      court: "5ª Sala Civil de la CSJ Lima",
+      result: "FUNDADA",
+      color: "059669",
+      razon: [
+        "6 indicios convergentes de simulación",
+        "Falta de pago y no entrega del bien",
+        "Conocimiento previo de pretensiones de la demandante",
+        "Acuerdo simulatorio tácito entre codemandados"
+      ]
+    },
+    {
+      label: "CASACIÓN",
+      court: "Sala Civil Transitoria — Corte Suprema",
+      result: "INFUNDADO",
+      color: C.gold,
+      razon: [
+        "No hay infracción de Arts. 1351 y 2014 CC",
+        "La prueba indiciaria es válida (Arts. 275-277 CPC)",
+        "La buena fe registral solo protege a quien actúa sin mala fe",
+        "Confirmó: simulación absoluta acreditada"
+      ]
+    }
+  ];
+
+  stages.forEach((st, i) => {
+    const xx = 0.5 + i * 4.25;
+    const isLast = i === 2;
+
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx, y: 1.35, w: 3.9, h: 5.6,
+      fill: { color: "0E2238" },
+      line: { color: st.color, width: 1.5 }
+    });
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx, y: 1.35, w: 3.9, h: 0.55,
+      fill: { color: st.color }
+    });
+    s.addText(st.label, {
+      x: xx + 0.1, y: 1.35, w: 3.7, h: 0.55,
+      fontSize: 10, color: isLast ? C.navy : C.white,
+      bold: true, charSpacing: 2, align: "center", valign: "middle", margin: 0
+    });
+    s.addText(st.court, {
+      x: xx + 0.1, y: 2.0, w: 3.7, h: 0.5,
+      fontSize: 9, color: C.lgray, align: "center", margin: 0
+    });
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx + 0.5, y: 2.6, w: 2.9, h: 0.5,
+      fill: { color: st.color, transparency: 80 },
+      line: { color: st.color, width: 1 }
+    });
+    s.addText(st.result, {
+      x: xx + 0.5, y: 2.6, w: 2.9, h: 0.5,
+      fontSize: 13, color: st.color, bold: true, fontFace: "Cambria",
+      align: "center", valign: "middle", margin: 0
+    });
+    st.razon.forEach((r, j) => {
+      s.addText("— " + r, {
+        x: xx + 0.15, y: 3.3 + j * 0.75, w: 3.6, h: 0.65,
+        fontSize: 9.5, color: C.white, margin: 0
+      });
+    });
+
+    // Arrow between stages
+    if (i < 2) {
+      s.addText("›", {
+        x: xx + 3.95, y: 3.3, w: 0.3, h: 0.5,
+        fontSize: 22, color: C.gold, bold: true, align: "center", margin: 0
+      });
+    }
+  });
+
+  // Casación purpose note
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.5, y: 7.05, w: 12.3, h: 0.35,
+    fill: { color: "0A1826" }
+  });
+  s.addText("Fines del recurso de casación (Art. 384 CPC): adecuada aplicación del derecho objetivo y uniformidad de la jurisprudencia nacional — Corte Suprema en considerando CUARTO", {
+    x: 0.7, y: 7.05, w: 12.0, h: 0.35,
+    fontSize: 8.5, color: C.gold, italic: true, align: "left", valign: "middle", margin: 0
+  });
+
+  s.addNotes("ROL CASACIÓN — Enfatizar que la Corte Suprema NO actúa como tercera instancia de mérito. Solo examina infracciones normativas (materiales y procesales). En este caso, revisó si los Arts. 1351 y 2014 CC y los Arts. 275-277 CPC fueron correctamente aplicados.");
+}
+
+// ─── SLIDE 11: ANÁLISIS JURÍDICO ────────────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.offwht };
+  sectionLabel(s, "ANÁLISIS DE LA SENTENCIA");
+
+  s.addText("Análisis Jurídico de la Sentencia", {
+    x: 0.5, y: 0.55, w: 12.3, h: 0.55,
+    fontSize: 26, color: C.navy, bold: true, fontFace: "Cambria",
+    align: "left", margin: 0
+  });
+
+  // Left: Razonamiento de la Corte
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.5, y: 1.3, w: 6.0, h: 5.6,
+    fill: { color: C.white },
+    shadow: makeShadow(),
+    line: { color: C.lgray, width: 0.5 }
+  });
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.5, y: 1.3, w: 6.0, h: 0.55,
+    fill: { color: C.navy }
+  });
+  s.addText("RAZONAMIENTO DE LA CORTE SUPREMA", {
+    x: 0.7, y: 1.3, w: 5.6, h: 0.55,
+    fontSize: 10, color: C.gold, bold: true, charSpacing: 1,
+    align: "center", valign: "middle", margin: 0
+  });
+
+  const pasos = [
+    { n: "1", t: "Validez de la prueba indiciaria", d: "Arts. 275-277 CPC: no existe impedimento para que una sentencia se base en indicios. La ley expresamente lo permite." },
+    { n: "2", t: "Suficiencia de los indicios", d: "Los seis indicios identificados por la Sala Superior son concordantes, convergentes y suficientes para acreditar la simulación." },
+    { n: "3", t: "Discordancia voluntad-declaración", d: "Los elementos prueban que las partes NUNCA quisieron transferir la propiedad, sino impedir que Koch Müller ejerciera sus derechos." },
+    { n: "4", t: "Inaplicabilidad del Art. 2014 CC", d: "La buena fe registral protege solo a quien actuó sin conocer la verdad. Roca Rojas conocía las pretensiones de la demandante." },
+    { n: "5", t: "Consecuencia: simulación absoluta", d: "El acuerdo simulatorio tácito entre vendedor y comprador para sustraer el bien configura el supuesto del Art. 190 CC." },
+  ];
+
+  pasos.forEach((p, i) => {
+    s.addShape(pres.shapes.OVAL, {
+      x: 0.65, y: 2.05 + i * 0.97, w: 0.35, h: 0.35,
+      fill: { color: C.gold }
+    });
+    s.addText(p.n, {
+      x: 0.65, y: 2.05 + i * 0.97, w: 0.35, h: 0.35,
+      fontSize: 9, color: C.navy, bold: true, align: "center", valign: "middle", margin: 0
+    });
+    s.addText(p.t, {
+      x: 1.1, y: 2.02 + i * 0.97, w: 5.2, h: 0.3,
+      fontSize: 10.5, color: C.navy, bold: true, margin: 0
+    });
+    s.addText(p.d, {
+      x: 1.1, y: 2.34 + i * 0.97, w: 5.2, h: 0.55,
+      fontSize: 9.5, color: C.slate, margin: 0
+    });
+    if (i < 4) {
+      s.addShape(pres.shapes.LINE, {
+        x: 0.8, y: 2.97 + i * 0.97, w: 0, h: 0.3,
+        line: { color: C.lgray, width: 0 }
+      });
+    }
+  });
+
+  // Right: Estructura motivación
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 6.8, y: 1.3, w: 5.9, h: 5.6,
+    fill: { color: C.white },
+    shadow: makeShadow(),
+    line: { color: C.lgray, width: 0.5 }
+  });
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 6.8, y: 1.3, w: 5.9, h: 0.55,
+    fill: { color: C.gold }
+  });
+  s.addText("ESTRUCTURA DE MOTIVACIÓN", {
+    x: 7.0, y: 1.3, w: 5.5, h: 0.55,
+    fontSize: 10, color: C.navy, bold: true, charSpacing: 1,
+    align: "center", valign: "middle", margin: 0
+  });
+
+  const bloques = [
+    { label: "Motivación IN FACTUM", color: C.navy, items: ["Hechos probados: 6 indicios concordantes", "Valoración conjunta y razonada (art. 139.5 Const.)", "Hechos no probados: pago real, entrega del bien"] },
+    { label: "Motivación IN JURE", color: "059669", items: ["Art. 190 CC: simulación absoluta", "Art. 193 CC: legitimidad del tercero perjudicado", "Arts. 275-277 CPC: admisibilidad de indicios"] },
+    { label: "Causales desestimadas", color: C.red, items: ["Art. 1351: autonomía de voluntad no ampara mala fe", "Art. 2014: buena fe registral — Roca Rojas no era de buena fe", "Arts. 275-276: indicios son prueba válida y legal"] },
+  ];
+
+  bloques.forEach((b, i) => {
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: 6.9, y: 1.98 + i * 1.62, w: 5.6, h: 0.3,
+      fill: { color: b.color }
+    });
+    s.addText(b.label, {
+      x: 6.9, y: 1.98 + i * 1.62, w: 5.6, h: 0.3,
+      fontSize: 9, color: C.white, bold: true, align: "center", valign: "middle", margin: 0
+    });
+    b.items.forEach((item, j) => {
+      s.addText("▸ " + item, {
+        x: 7.0, y: 2.35 + i * 1.62 + j * 0.36, w: 5.5, h: 0.33,
+        fontSize: 9.5, color: C.slate, margin: 0
+      });
+    });
+  });
+
+  s.addNotes("ANÁLISIS — La sentencia tiene una estructura de motivación sólida: primero la motivación fáctica (hechos probados mediante indicios) y luego la motivación jurídica (subsunción en el Art. 190 CC). La Corte Suprema validó ambas dimensiones.");
+}
+
+// ─── SLIDE 12: CRÍTICA JURÍDICA ─────────────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.white };
+  sectionLabel(s, "POSICIÓN CRÍTICA");
+
+  s.addText("Crítica Jurídica a la Sentencia", {
+    x: 0.5, y: 0.55, w: 12.3, h: 0.55,
+    fontSize: 26, color: C.navy, bold: true, fontFace: "Cambria",
+    align: "left", margin: 0
+  });
+
+  // Left: aspectos positivos
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.5, y: 1.3, w: 5.8, h: 5.6,
+    fill: { color: C.offwht },
+    shadow: makeShadow(),
+    line: { color: C.lgray, width: 0.5 }
+  });
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 0.5, y: 1.3, w: 5.8, h: 0.5,
+    fill: { color: "059669" }
+  });
+  s.addText("✔  ASPECTOS POSITIVOS", {
+    x: 0.7, y: 1.3, w: 5.4, h: 0.5,
+    fontSize: 11, color: C.white, bold: true, align: "center", valign: "middle", margin: 0
+  });
+
+  const positivos = [
+    { t: "Protección de terceros perjudicados", d: "La sentencia protege eficazmente al tercero que ve vulnerado su derecho por actos simulados entre otros." },
+    { t: "Valoración integral de indicios", d: "La Corte reconoce que el fraude raramente deja prueba directa y que los indicios convergentes son suficientes." },
+    { t: "Límites a la buena fe registral", d: "Sienta precedente: el Art. 2014 CC no es escudo para quien adquirió con conocimiento del vicio." },
+    { t: "Motivación constitucional", d: "Aplica el Art. 139.5 de la Constitución sobre motivación adecuada y razonada de las resoluciones." },
+    { t: "Coherencia sistemática", d: "Integra correctamente normas materiales (CC) y procesales (CPC) en un razonamiento coherente." },
+  ];
+  positivos.forEach((p, i) => {
+    s.addText(p.t, {
+      x: 0.7, y: 1.98 + i * 1.0, w: 5.3, h: 0.32,
+      fontSize: 11, color: "059669", bold: true, margin: 0
+    });
+    s.addText(p.d, {
+      x: 0.7, y: 2.32 + i * 1.0, w: 5.3, h: 0.55,
+      fontSize: 9.5, color: C.slate, margin: 0
+    });
+    if (i < 4) {
+      s.addShape(pres.shapes.LINE, {
+        x: 0.7, y: 2.9 + i * 1.0, w: 5.3, h: 0,
+        line: { color: C.lgray, width: 0.5 }
+      });
+    }
+  });
+
+  // Right: críticas
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 6.6, y: 1.3, w: 6.2, h: 5.6,
+    fill: { color: C.offwht },
+    shadow: makeShadow(),
+    line: { color: C.lgray, width: 0.5 }
+  });
+  s.addShape(pres.shapes.RECTANGLE, {
+    x: 6.6, y: 1.3, w: 6.2, h: 0.5,
+    fill: { color: C.red }
+  });
+  s.addText("⚠  PUNTOS DÉBILES / CUESTIONABLES", {
+    x: 6.8, y: 1.3, w: 5.8, h: 0.5,
+    fontSize: 11, color: C.white, bold: true, align: "center", valign: "middle", margin: 0
+  });
+
+  const criticas = [
+    { t: "Ausencia de prueba directa del acuerdo simulatorio", d: "La sentencia se apoya exclusivamente en indicios. No obra en autos el contracarta ni otro medio que acredite el pactum simulationis entre codemandados." },
+    { t: "Presunción de conocimiento no probada directamente", d: "Se infiere que Roca Rojas conocía las pretensiones de Koch Müller, pero no se acredita que haya sido notificado formalmente del proceso de Ineficacia." },
+    { t: "Posible afectación de la seguridad jurídica registral", d: "Debilitar el Art. 2014 CC en base a indicios genera incertidumbre en el tráfico jurídico inmobiliario y puede desalentar inversiones." },
+    { t: "Motivación escueta de la Corte Suprema", d: "Los considerandos SEXTO y SÉTIMO son excesivamente breves para la complejidad jurídica del caso; no desarrollan suficientemente la doctrina sobre la mala fe." },
+  ];
+  criticas.forEach((p, i) => {
+    s.addText(p.t, {
+      x: 6.8, y: 1.98 + i * 1.33, w: 5.8, h: 0.35,
+      fontSize: 11, color: C.red, bold: true, margin: 0
+    });
+    s.addText(p.d, {
+      x: 6.8, y: 2.35 + i * 1.33, w: 5.8, h: 0.75,
+      fontSize: 9.5, color: C.slate, margin: 0
+    });
+    if (i < 3) {
+      s.addShape(pres.shapes.LINE, {
+        x: 6.8, y: 3.13 + i * 1.33, w: 5.8, h: 0,
+        line: { color: C.lgray, width: 0.5 }
+      });
+    }
+  });
+
+  s.addNotes("CRÍTICA — La sentencia es jurídicamente correcta en su resultado pero adolece de escasa profundidad argumentativa. Un punto especialmente debatible es la presunción de mala fe del comprador sin prueba directa de su participación en el acuerdo simulatorio.");
+}
+
+// ─── SLIDE 13: CONCLUSIONES ──────────────────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.navy };
+  sectionLabel(s, "CONCLUSIONES JURÍDICAS");
+
+  s.addText("Conclusiones", {
+    x: 0.5, y: 0.55, w: 12.3, h: 0.55,
+    fontSize: 32, color: C.white, bold: true, fontFace: "Cambria",
+    align: "left", margin: 0
+  });
+
+  const conclusiones = [
+    { n: "01", t: "La simulación absoluta requiere acuerdo simulatorio", d: "No basta la voluntad unilateral. Se necesita el pactum simulationis entre las partes del acto aparente, el cual puede probarse mediante indicios concordantes." },
+    { n: "02", t: "La prueba indiciaria es constitucionalmente válida", d: "Los Arts. 275-277 CPC y el Art. 139.5 de la Constitución avalan una sentencia basada en indicios, siempre que sean plurales, concordantes y concluyentes." },
+    { n: "03", t: "La buena fe registral tiene límites en la mala fe subjetiva", d: "El Art. 2014 CC no protege al adquirente que conocía el vicio del título o las pretensiones de terceros antes de celebrar el acto." },
+    { n: "04", t: "La nulidad del acto simulado es absoluta e imprescriptible", d: "Por aplicación del Art. 219 inc. 5 CC, la nulidad por simulación absoluta no puede ser convalidada y la acción no prescribe (Art. 2001 inc. 1 CC)." },
+    { n: "05", t: "El tercero perjudicado tiene legitimidad activa plena", d: "Koch Müller, como titular de derechos sobre el bien derivados de la sociedad de gananciales no liquidada, tenía legitimidad activa para demandar (Art. 193 CC)." },
+    { n: "06", t: "La ratio decidendi: protección material sobre forma registral", d: "La Corte Suprema privilegia la tutela del derecho sustantivo del tercero perjudicado sobre la apariencia registral creada fraudulentamente." },
+  ];
+
+  conclusiones.forEach((c, i) => {
+    const col = i % 2;
+    const row = Math.floor(i / 2);
+    const xx = 0.5 + col * 6.35;
+    const yy = 1.35 + row * 1.85;
+
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx, y: yy, w: 6.1, h: 1.7,
+      fill: { color: "0E2238" },
+      line: { color: i < 2 ? C.gold : "2A4060", width: i < 2 ? 1 : 0.5 }
+    });
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx, y: yy, w: 0.07, h: 1.7,
+      fill: { color: C.gold }
+    });
+    s.addText(c.n, {
+      x: xx + 0.2, y: yy + 0.12, w: 0.55, h: 0.4,
+      fontSize: 18, color: C.gold, bold: true, fontFace: "Cambria", margin: 0
+    });
+    s.addText(c.t, {
+      x: xx + 0.85, y: yy + 0.12, w: 5.1, h: 0.45,
+      fontSize: 11, color: C.white, bold: true, margin: 0
+    });
+    s.addText(c.d, {
+      x: xx + 0.2, y: yy + 0.65, w: 5.7, h: 0.9,
+      fontSize: 9.5, color: C.lgray, margin: 0
+    });
+  });
+
+  s.addNotes("CONCLUSIONES — Estas seis conclusiones sintetizan el aporte del caso al Derecho Civil peruano. Destacar especialmente la conclusión 03 (límites de la buena fe) y la 06 (ratio decidendi) como los aportes jurisprudenciales más relevantes.");
+}
+
+// ─── SLIDE 14: PREGUNTAS PARA DEBATE ────────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.offwht };
+  sectionLabel(s, "DEBATE ACADÉMICO");
+
+  s.addText("Preguntas para Debate", {
+    x: 0.5, y: 0.55, w: 12.3, h: 0.55,
+    fontSize: 26, color: C.navy, bold: true, fontFace: "Cambria",
+    align: "left", margin: 0
+  });
+
+  const preguntas = [
+    { n: "?", t: "¿Fue suficiente el estándar probatorio?", d: "¿Es razonable declarar nulo un acto jurídico inscrito basándose solo en indicios, sin acreditar directamente el pactum simulationis?" },
+    { n: "?", t: "Buena fe registral vs. realidad sustantiva", d: "¿Cómo equilibrar la seguridad jurídica del tráfico inmobiliario con la protección de quienes ven vulnerados sus derechos por actos simulados?" },
+    { n: "?", t: "¿Conocimiento equivale a mala fe?", d: "¿Es suficiente que Roca Rojas conociera el proceso judicial de Koch Müller para presumir su mala fe? ¿O debió probarse su participación activa en el fraude?" },
+    { n: "?", t: "Rol de la inscripción registral", d: "Si el principio de publicidad registral (Art. 2012 CC) crea presunción de conocimiento, ¿podría haberse usado en sentido inverso para proteger a Koch Müller desde la anotación del proceso?" },
+    { n: "?", t: "Acción de ineficacia vs. nulidad por simulación", d: "¿Fue la acción correcta? ¿Debió Koch Müller acumular la acción pauliana (Art. 195 CC) o era suficiente la nulidad por simulación del Art. 190 CC?" },
+    { n: "?", t: "Sociedad de gananciales no liquidada", d: "¿Cuál es el régimen jurídico del bien desde el divorcio (1996) hasta la transferencia (2012)? ¿Poseía realmente Koch Müller un derecho inscribible sobre el bien?" },
+  ];
+
+  preguntas.forEach((p, i) => {
+    const col = i % 2;
+    const row = Math.floor(i / 2);
+    const xx = 0.5 + col * 6.35;
+    const yy = 1.3 + row * 2.0;
+
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx, y: yy, w: 6.1, h: 1.8,
+      fill: { color: C.white },
+      shadow: makeShadow(),
+      line: { color: C.lgray, width: 0.5 }
+    });
+    s.addShape(pres.shapes.RECTANGLE, {
+      x: xx, y: yy, w: 0.55, h: 1.8,
+      fill: { color: C.navy }
+    });
+    s.addText("?", {
+      x: xx, y: yy, w: 0.55, h: 1.8,
+      fontSize: 28, color: C.gold, bold: true, fontFace: "Georgia",
+      align: "center", valign: "middle", margin: 0
+    });
+    s.addText(p.t, {
+      x: xx + 0.65, y: yy + 0.15, w: 5.3, h: 0.45,
+      fontSize: 11, color: C.navy, bold: true, margin: 0
+    });
+    s.addText(p.d, {
+      x: xx + 0.65, y: yy + 0.62, w: 5.3, h: 1.0,
+      fontSize: 10, color: C.slate, margin: 0
+    });
+  });
+
+  s.addNotes("DEBATE — Estas preguntas invitan a reflexión crítica. La pregunta 6 es la más compleja: si la sociedad de gananciales no fue liquidada, Koch Müller era técnicamente copropietaria, lo que refuerza su legitimidad. Sin embargo, la falta de inscripción de ese derecho es el talón de Aquiles de su posición.");
+}
+
+// ─── WRITE FILE ─────────────────────────────────────────────────────────────
+pres.writeFile({ fileName: "/Casacion_3249-2016_Simulacion_Absoluta.pptx" })
+  .then(() => console.log("✅ PPT creado correctamente."))
+  .catch(err => console.error("❌ Error:", err));

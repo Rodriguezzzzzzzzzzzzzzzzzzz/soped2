@@ -7,9 +7,9 @@ import Image from 'next/image'
 
 const stats = [
   { value: '200+', label: 'Estudiantes formados' },
-  { value: '12+',  label: 'Competencias realizadas' },
-  { value: '8+',   label: 'Años de trayectoria' },
-  { value: '3',    label: 'Programas activos' },
+  { value: '12+', label: 'Ediciones realizadas' },
+  { value: '8+', label: 'Años de trayectoria' },
+  { value: '100%', label: 'Certificación oficial' },
 ]
 
 const programs = [
@@ -22,7 +22,7 @@ const programs = [
   },
   {
     index: '02',
-    title: 'Debate Escolar',
+    title: 'SoPeDebate',
     tag: 'Programa Educativo',
     description: 'Programa integral de debate para estudiantes de secundaria. Oratoria, argumentación y pensamiento crítico.',
     href: '/debate-escolar',
@@ -74,6 +74,10 @@ function Hero() {
 
       {/* Content */}
       <div className="soped-hero__content">
+        <div className="soped-hero__institutional-badge">
+          <span>●</span>
+          <span>Institución Académica · Cusco, Perú</span>
+        </div>
         <div className="soped-eyebrow">
           <span className="soped-eyebrow__line" />
           <span>Sociedad Peruana de Debate</span>
@@ -81,12 +85,12 @@ function Hero() {
 
         <h1 className="soped-hero__h1">
           Donde el pensamiento<br />
-          <em>se convierte en liderazgo.</em>
+          <em>se transforma en liderazgo.</em>
         </h1>
 
         <p className="soped-hero__sub">
           La plataforma académica líder en debate competitivo del Perú.<br />
-          Formamos líderes con pensamiento crítico, oratoria y visión global.
+          Formamos líderes, diplomáticos y oradores mediante estándares internacionales de excelencia.
         </p>
 
         <div className="soped-hero__actions">
@@ -97,13 +101,11 @@ function Hero() {
             Ver programas
           </Link>
         </div>
-
-        {/* Stats */}
         <div className="soped-hero__stats">
-          {stats.map((s) => (
-            <div key={s.value} className="soped-hero__stat">
-              <span className="soped-hero__stat-value">{s.value}</span>
-              <span className="soped-hero__stat-label">{s.label}</span>
+          {stats.map((item) => (
+            <div key={item.label} className="soped-hero__stat">
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
             </div>
           ))}
         </div>

@@ -28,41 +28,41 @@ const modalities = [
     id: 'individual' as RegistrationModalityId,
     badge: 'Individual',
     icon: <User size={20} strokeWidth={1.5} />,
-    title: 'Delegado Individual',
-    description: 'Participación independiente como delegado oficial en uno de los comités de la conferencia. No se requiere afiliación institucional.',
+    title: 'Individual Delegate',
+    description: 'Independent participation as an official delegate in one of the conference committees. No institutional affiliation required.',
     featured: false,
   },
   {
     id: 'small' as RegistrationModalityId,
-    badge: 'Delegación',
+    badge: 'Delegation',
     icon: <Users size={20} strokeWidth={1.5} />,
-    title: 'Delegación Pequeña',
-    description: 'Registro institucional para delegaciones reducidas. Incluye coordinación conjunta y acceso prioritario a comités.',
+    title: 'Small Delegation',
+    description: 'Institutional registration for reduced delegations. Includes joint coordination and priority committee access.',
     featured: false,
   },
   {
     id: 'large' as RegistrationModalityId,
-    badge: 'Delegación',
+    badge: 'Delegation',
     icon: <Building2 size={20} strokeWidth={1.5} />,
-    title: 'Delegación Grande',
-    description: 'Registro institucional completo para universidades y organizaciones con delegaciones ampliadas y apoyo académico.',
+    title: 'Large Delegation',
+    description: 'Full institutional registration for universities and organizations with expanded delegations and academic support.',
     featured: false,
   },
   {
     id: 'institutional' as RegistrationModalityId,
-    badge: 'Oficial',
+    badge: 'Official',
     icon: <Landmark size={20} strokeWidth={1.5} />,
-    title: 'Delegación Institucional',
-    description: 'Registro oficial para instituciones formalmente representadas dentro de la conferencia. Reconocimiento institucional completo en todos los actos del evento.',
+    title: 'Institutional Delegation',
+    description: 'Official registration for institutions formally represented within the conference. Full institutional recognition across all conference proceedings.',
     featured: true,
-    label: 'Representación Oficial',
+    label: 'Official Representation',
   },
   {
     id: 'faculty' as RegistrationModalityId,
-    badge: 'Asesoría',
+    badge: 'Advisory',
     icon: <GraduationCap size={20} strokeWidth={1.5} />,
-    title: 'Asesor Académico',
-    description: 'Registro para asesores académicos y representantes institucionales. Acreditación oficial y acceso a todas las sesiones de la conferencia.',
+    title: 'Faculty Advisor',
+    description: 'Registration for academic advisors and institutional representatives. Official accreditation and access to all conference sessions.',
     featured: false,
   },
 ]
@@ -70,23 +70,23 @@ const modalities = [
 const contextBlocks = [
   {
     icon: <Globe size={18} strokeWidth={1.5} />,
-    title: 'Modelo de Naciones Unidas',
-    body: 'Simulación académica de las Naciones Unidas, donde los delegados representan Estados miembros y participan en debates parlamentarios formales sobre problemas globales críticos.',
+    title: 'Model United Nations',
+    body: 'An academic simulation of United Nations proceedings, where delegates represent member states and engage in formal parliamentary debate on critical global issues.',
   },
   {
     icon: <BookOpen size={18} strokeWidth={1.5} />,
-    title: 'Conferencia SoPeD MUN',
-    body: 'Organizado por la Sociedad Peruana de Debate, SoPeD MUN reúne estudiantes de toda América Latina en un entorno diplomático estructurado regido por Reglas de Procedimiento formales.',
+    title: 'SoPeD MUN Conference',
+    body: 'Organized by the Sociedad Peruana de Debate, SoPeD MUN convenes students from across Latin America in a structured diplomatic environment governed by formal Rules of Procedure.',
   },
   {
     icon: <Award size={18} strokeWidth={1.5} />,
-    title: 'Valor Académico',
-    body: 'Los participantes desarrollan habilidades avanzadas de argumentación, negociación y redacción. Reconocido por instituciones académicas como una experiencia formativa en asuntos internacionales y políticas públicas.',
+    title: 'Academic Value',
+    body: 'Participants develop advanced argumentation, negotiation, and drafting skills. Recognized by academic institutions as a formative experience in international affairs and public policy.',
   },
   {
     icon: <Target size={18} strokeWidth={1.5} />,
-    title: 'Impacto Formativo',
-    body: 'SoPeD MUN forma delegados con competencias verificables en diplomacia multilateral, redacción de documentos de posición y construcción de consensos bajo presión institucional formal.',
+    title: 'Formative Impact',
+    body: 'SoPeD MUN produces delegates with verifiable competencies in multilateral diplomacy, position paper drafting, and consensus-building under formal institutional pressure.',
   },
 ]
 
@@ -168,7 +168,7 @@ export default function InscripcionPage() {
 
         .portal {
           min-height: 100vh;
-          background: #050816;
+          background: #0F0A0B;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
           color: #e8eaf0;
           overflow-x: hidden;
@@ -182,9 +182,9 @@ export default function InscripcionPage() {
           pointer-events: none;
           z-index: 0;
           background:
-            radial-gradient(ellipse 70% 45% at 15% 10%, rgba(79,124,255,0.07) 0%, transparent 65%),
-            radial-gradient(ellipse 60% 50% at 85% 85%, rgba(214,178,94,0.05) 0%, transparent 65%),
-            radial-gradient(ellipse 50% 40% at 50% 50%, rgba(79,124,255,0.03) 0%, transparent 70%);
+            radial-gradient(ellipse 70% 45% at 15% 10%, rgba(165,0,30,0.07) 0%, transparent 65%),
+            radial-gradient(ellipse 60% 50% at 85% 85%, rgba(236,229,214,0.05) 0%, transparent 65%),
+            radial-gradient(ellipse 50% 40% at 50% 50%, rgba(165,0,30,0.03) 0%, transparent 70%);
         }
 
         /* ── Nav bar ── */
@@ -197,7 +197,7 @@ export default function InscripcionPage() {
           align-items: center;
           justify-content: space-between;
           padding: 0 48px;
-          background: rgba(5,8,22,0.72);
+          background: rgba(15,10,11,0.72);
           backdrop-filter: blur(24px);
           -webkit-backdrop-filter: blur(24px);
           border-bottom: 1px solid rgba(255,255,255,0.055);
@@ -210,13 +210,13 @@ export default function InscripcionPage() {
         }
         .portal__nav-shield {
           width: 28px; height: 28px;
-          background: linear-gradient(135deg, rgba(214,178,94,0.15), rgba(214,178,94,0.06));
-          border: 1px solid rgba(214,178,94,0.22);
+          background: linear-gradient(135deg, rgba(236,229,214,0.15), rgba(236,229,214,0.06));
+          border: 1px solid rgba(236,229,214,0.22);
           border-radius: 7px;
           display: flex;
           align-items: center;
           justify-content: center;
-          color: rgba(214,178,94,0.80);
+          color: rgba(236,229,214,0.80);
         }
         .portal__nav-name {
           font-size: 13px;
@@ -224,7 +224,7 @@ export default function InscripcionPage() {
           letter-spacing: 0.04em;
           color: rgba(255,255,255,0.80);
         }
-        .portal__nav-name span { color: rgba(214,178,94,0.72); }
+        .portal__nav-name span { color: rgba(236,229,214,0.72); }
         .portal__nav-links {
           display: flex;
           align-items: center;
@@ -285,20 +285,20 @@ export default function InscripcionPage() {
           gap: 8px;
           padding: 6px 14px 6px 10px;
           border-radius: 999px;
-          background: rgba(214,178,94,0.06);
-          border: 1px solid rgba(214,178,94,0.18);
+          background: rgba(236,229,214,0.06);
+          border: 1px solid rgba(236,229,214,0.18);
           font-size: 10.5px;
           font-weight: 700;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: rgba(214,178,94,0.72);
+          color: rgba(236,229,214,0.72);
           margin-bottom: 32px;
           animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.1s both;
         }
         .hero__official-badge-dot {
           width: 5px; height: 5px;
           border-radius: 50%;
-          background: rgba(214,178,94,0.80);
+          background: rgba(236,229,214,0.80);
         }
         .hero__title {
           font-size: clamp(2.8rem, 4.5vw, 4.2rem);
@@ -310,7 +310,7 @@ export default function InscripcionPage() {
           animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.18s both;
         }
         .hero__title-accent {
-          background: linear-gradient(135deg, #d6b25e 0%, #e8cc84 50%, #c9a24a 100%);
+          background: linear-gradient(135deg, #ECE5D6 0%, #ECE5D6 50%, #ECE5D6 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -320,7 +320,7 @@ export default function InscripcionPage() {
           font-weight: 600;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: rgba(79,124,255,0.68);
+          color: rgba(165,0,30,0.68);
           margin-bottom: 28px;
           animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.24s both;
         }
@@ -344,7 +344,7 @@ export default function InscripcionPage() {
           gap: 8px;
           padding: 14px 24px;
           border-radius: 12px;
-          background: linear-gradient(135deg, #4f7cff 0%, #6b8fff 100%);
+          background: linear-gradient(135deg, #7C011A 0%, #A5001E 100%);
           color: #ffffff;
           font-size: 13.5px;
           font-weight: 650;
@@ -352,12 +352,12 @@ export default function InscripcionPage() {
           border: none;
           cursor: pointer;
           text-decoration: none;
-          box-shadow: 0 8px 28px rgba(79,124,255,0.28);
+          box-shadow: 0 8px 28px rgba(165,0,30,0.28);
           transition: transform 0.26s cubic-bezier(0.22,1,0.36,1), box-shadow 0.26s ease;
         }
         .hero__btn-primary:hover {
           transform: translateY(-2px);
-          box-shadow: 0 14px 40px rgba(79,124,255,0.38);
+          box-shadow: 0 14px 40px rgba(165,0,30,0.38);
         }
         .hero__btn-secondary {
           display: inline-flex;
@@ -384,7 +384,7 @@ export default function InscripcionPage() {
 
         /* Hero right — credential card */
         .hero__credential {
-          background: rgba(13,17,35,0.72);
+          background: rgba(124,1,26,0.72);
           border: 1px solid rgba(255,255,255,0.07);
           border-radius: 20px;
           padding: 32px;
@@ -404,12 +404,12 @@ export default function InscripcionPage() {
         .hero__credential-icon {
           width: 36px; height: 36px;
           border-radius: 10px;
-          background: rgba(214,178,94,0.08);
-          border: 1px solid rgba(214,178,94,0.18);
+          background: rgba(236,229,214,0.08);
+          border: 1px solid rgba(236,229,214,0.18);
           display: flex;
           align-items: center;
           justify-content: center;
-          color: rgba(214,178,94,0.75);
+          color: rgba(236,229,214,0.75);
         }
         .hero__credential-title {
           font-size: 13px;
@@ -445,7 +445,7 @@ export default function InscripcionPage() {
           letter-spacing: 0.02em;
         }
         .hero__credential-stat-value--gold {
-          color: rgba(214,178,94,0.78);
+          color: rgba(236,229,214,0.78);
         }
         .hero__credential-stat-value--green {
           color: rgba(79,255,168,0.68);
@@ -488,12 +488,12 @@ export default function InscripcionPage() {
           font-weight: 700;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: rgba(79,124,255,0.62);
+          color: rgba(165,0,30,0.62);
           margin-bottom: 18px;
         }
         .context__eyebrow-line {
           width: 28px; height: 1px;
-          background: rgba(79,124,255,0.40);
+          background: rgba(165,0,30,0.40);
         }
         .context__title {
           font-size: clamp(1.8rem, 3vw, 2.6rem);
@@ -517,7 +517,7 @@ export default function InscripcionPage() {
           gap: 20px;
         }
         .context__card {
-          background: rgba(13,17,35,0.55);
+          background: rgba(124,1,26,0.55);
           border: 1px solid rgba(255,255,255,0.06);
           border-radius: 16px;
           padding: 28px 24px;
@@ -531,16 +531,16 @@ export default function InscripcionPage() {
         .context__card:nth-child(3) { animation-delay: 0.15s; }
         .context__card:nth-child(4) { animation-delay: 0.20s; }
         .context__card:hover {
-          border-color: rgba(79,124,255,0.18);
+          border-color: rgba(165,0,30,0.18);
           transform: translateY(-3px);
           box-shadow: 0 12px 36px rgba(0,0,0,0.22);
         }
         .context__card-icon {
           width: 38px; height: 38px;
           border-radius: 10px;
-          background: rgba(79,124,255,0.07);
-          border: 1px solid rgba(79,124,255,0.13);
-          color: rgba(79,124,255,0.72);
+          background: rgba(165,0,30,0.07);
+          border: 1px solid rgba(165,0,30,0.13);
+          color: rgba(165,0,30,0.72);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -583,13 +583,13 @@ export default function InscripcionPage() {
           font-weight: 700;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: rgba(214,178,94,0.58);
+          color: rgba(236,229,214,0.58);
           margin-bottom: 16px;
         }
         .modalities__eyebrow-dot {
           width: 5px; height: 5px;
           border-radius: 50%;
-          background: rgba(214,178,94,0.70);
+          background: rgba(236,229,214,0.70);
         }
         .modalities__title {
           font-size: clamp(1.8rem, 3vw, 2.5rem);
@@ -631,7 +631,7 @@ export default function InscripcionPage() {
         /* Modality card */
         .mod-card {
           position: relative;
-          background: rgba(11,15,30,0.62);
+          background: rgba(36,16,20,0.62);
           border: 1px solid rgba(255,255,255,0.065);
           border-radius: 16px;
           padding: 26px 22px;
@@ -650,30 +650,30 @@ export default function InscripcionPage() {
         .mod-card:nth-child(4) { animation-delay: 0.20s; }
         .mod-card:hover {
           transform: translateY(-4px) scale(1.01);
-          border-color: rgba(79,124,255,0.22);
+          border-color: rgba(165,0,30,0.22);
           box-shadow: 0 16px 44px rgba(0,0,0,0.28);
         }
         .mod-card--featured {
-          background: rgba(15,19,40,0.82);
-          border-color: rgba(214,178,94,0.18);
+          background: rgba(124,1,26,0.82);
+          border-color: rgba(236,229,214,0.18);
           box-shadow:
-            0 0 0 1px rgba(214,178,94,0.10),
+            0 0 0 1px rgba(236,229,214,0.10),
             0 14px 44px rgba(0,0,0,0.30),
-            inset 0 1px 0 rgba(214,178,94,0.06);
+            inset 0 1px 0 rgba(236,229,214,0.06);
         }
         .mod-card--featured:hover {
           transform: translateY(-4px) scale(1.01);
-          border-color: rgba(214,178,94,0.32);
+          border-color: rgba(236,229,214,0.32);
           box-shadow:
-            0 0 0 1px rgba(214,178,94,0.16),
+            0 0 0 1px rgba(236,229,214,0.16),
             0 22px 56px rgba(0,0,0,0.36),
-            inset 0 1px 0 rgba(214,178,94,0.08);
+            inset 0 1px 0 rgba(236,229,214,0.08);
         }
         .mod-card__glow {
           position: absolute;
           inset: 0;
           border-radius: 16px;
-          background: radial-gradient(ellipse at top left, rgba(214,178,94,0.04) 0%, transparent 60%);
+          background: radial-gradient(ellipse at top left, rgba(236,229,214,0.04) 0%, transparent 60%);
           pointer-events: none;
         }
         .mod-card__official-tag {
@@ -683,7 +683,7 @@ export default function InscripcionPage() {
           font-weight: 700;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: rgba(214,178,94,0.46);
+          color: rgba(236,229,214,0.46);
         }
         .mod-card__badge {
           display: inline-flex;
@@ -702,34 +702,34 @@ export default function InscripcionPage() {
           align-self: flex-start;
         }
         .mod-card__badge--gold {
-          background: rgba(214,178,94,0.07);
-          border-color: rgba(214,178,94,0.20);
-          color: rgba(214,178,94,0.80);
+          background: rgba(236,229,214,0.07);
+          border-color: rgba(236,229,214,0.20);
+          color: rgba(236,229,214,0.80);
         }
         .mod-card__badge-dot {
           width: 4px; height: 4px;
           border-radius: 50%;
-          background: rgba(214,178,94,0.82);
+          background: rgba(236,229,214,0.82);
         }
         .mod-card__icon {
           width: 42px; height: 42px;
           border-radius: 11px;
-          background: rgba(79,124,255,0.07);
-          border: 1px solid rgba(79,124,255,0.13);
-          color: rgba(79,124,255,0.72);
+          background: rgba(165,0,30,0.07);
+          border: 1px solid rgba(165,0,30,0.13);
+          color: rgba(165,0,30,0.72);
           display: flex;
           align-items: center;
           justify-content: center;
           margin-bottom: 16px;
           transition: background 0.22s ease;
         }
-        .mod-card:hover .mod-card__icon { background: rgba(79,124,255,0.12); }
+        .mod-card:hover .mod-card__icon { background: rgba(165,0,30,0.12); }
         .mod-card__icon--gold {
-          background: rgba(214,178,94,0.07);
-          border-color: rgba(214,178,94,0.16);
-          color: rgba(214,178,94,0.78);
+          background: rgba(236,229,214,0.07);
+          border-color: rgba(236,229,214,0.16);
+          color: rgba(236,229,214,0.78);
         }
-        .mod-card--featured:hover .mod-card__icon--gold { background: rgba(214,178,94,0.12); }
+        .mod-card--featured:hover .mod-card__icon--gold { background: rgba(236,229,214,0.12); }
         .mod-card__title {
           font-size: 15.5px;
           font-weight: 650;
@@ -754,29 +754,29 @@ export default function InscripcionPage() {
           background: rgba(255,255,255,0.055);
           margin-bottom: 15px;
         }
-        .mod-card--featured .mod-card__divider { background: rgba(214,178,94,0.09); }
+        .mod-card--featured .mod-card__divider { background: rgba(236,229,214,0.09); }
         .mod-card__cta {
           display: inline-flex;
           align-items: center;
           gap: 5px;
           font-size: 12px;
           font-weight: 600;
-          color: rgba(79,124,255,0.70);
+          color: rgba(165,0,30,0.70);
           letter-spacing: 0.01em;
           transition: gap 0.22s ease, color 0.22s ease;
         }
-        .mod-card--featured .mod-card__cta { color: rgba(214,178,94,0.70); }
-        .mod-card:hover .mod-card__cta { gap: 8px; color: rgba(79,124,255,0.90); }
-        .mod-card--featured:hover .mod-card__cta { color: rgba(214,178,94,0.90); }
+        .mod-card--featured .mod-card__cta { color: rgba(236,229,214,0.70); }
+        .mod-card:hover .mod-card__cta { gap: 8px; color: rgba(165,0,30,0.90); }
+        .mod-card--featured:hover .mod-card__cta { color: rgba(236,229,214,0.90); }
 
         /* selected state */
         .mod-card--selected {
-          border-color: rgba(79,124,255,0.40) !important;
-          box-shadow: 0 0 0 3px rgba(79,124,255,0.08), 0 16px 44px rgba(0,0,0,0.28) !important;
+          border-color: rgba(165,0,30,0.40) !important;
+          box-shadow: 0 0 0 3px rgba(165,0,30,0.08), 0 16px 44px rgba(0,0,0,0.28) !important;
         }
         .mod-card--featured.mod-card--selected {
-          border-color: rgba(214,178,94,0.44) !important;
-          box-shadow: 0 0 0 3px rgba(214,178,94,0.08), 0 16px 44px rgba(0,0,0,0.28) !important;
+          border-color: rgba(236,229,214,0.44) !important;
+          box-shadow: 0 0 0 3px rgba(236,229,214,0.08), 0 16px 44px rgba(0,0,0,0.28) !important;
         }
 
         /* ── Form section ── */
@@ -800,12 +800,12 @@ export default function InscripcionPage() {
           font-weight: 700;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: rgba(79,124,255,0.60);
+          color: rgba(165,0,30,0.60);
           margin-bottom: 16px;
         }
         .form-section__eyebrow-line {
           width: 28px; height: 1px;
-          background: rgba(79,124,255,0.38);
+          background: rgba(165,0,30,0.38);
         }
         .form-section__title {
           font-size: clamp(1.8rem, 3vw, 2.5rem);
@@ -832,7 +832,7 @@ export default function InscripcionPage() {
 
         /* Form card */
         .form-card {
-          background: rgba(11,15,30,0.68);
+          background: rgba(36,16,20,0.68);
           border: 1px solid rgba(255,255,255,0.065);
           border-radius: 22px;
           backdrop-filter: blur(26px);
@@ -856,9 +856,9 @@ export default function InscripcionPage() {
         .form-card__top-bar-icon {
           width: 30px; height: 30px;
           border-radius: 8px;
-          background: rgba(79,124,255,0.09);
-          border: 1px solid rgba(79,124,255,0.16);
-          color: rgba(79,124,255,0.72);
+          background: rgba(165,0,30,0.09);
+          border: 1px solid rgba(165,0,30,0.16);
+          color: rgba(165,0,30,0.72);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -918,7 +918,7 @@ export default function InscripcionPage() {
           gap: 5px;
         }
         .field__required {
-          color: rgba(214,178,94,0.55);
+          color: rgba(236,229,214,0.55);
           font-size: 10px;
         }
         .field__input {
@@ -936,9 +936,9 @@ export default function InscripcionPage() {
         }
         .field__input::placeholder { color: rgba(255,255,255,0.18); }
         .field__input:focus {
-          border-color: rgba(79,124,255,0.42);
-          background: rgba(79,124,255,0.036);
-          box-shadow: 0 0 0 3px rgba(79,124,255,0.07);
+          border-color: rgba(165,0,30,0.42);
+          background: rgba(165,0,30,0.036);
+          box-shadow: 0 0 0 3px rgba(165,0,30,0.07);
         }
         .field__input--error {
           border-color: rgba(255,100,100,0.38) !important;
@@ -969,9 +969,9 @@ export default function InscripcionPage() {
         }
         .field__textarea::placeholder { color: rgba(255,255,255,0.18); }
         .field__textarea:focus {
-          border-color: rgba(79,124,255,0.42);
-          background: rgba(79,124,255,0.036);
-          box-shadow: 0 0 0 3px rgba(79,124,255,0.07);
+          border-color: rgba(165,0,30,0.42);
+          background: rgba(165,0,30,0.036);
+          box-shadow: 0 0 0 3px rgba(165,0,30,0.07);
         }
 
         /* Form footer */
@@ -991,7 +991,7 @@ export default function InscripcionPage() {
           max-width: 380px;
         }
         .form-card__footer-note a {
-          color: rgba(79,124,255,0.55);
+          color: rgba(165,0,30,0.55);
           text-decoration: none;
         }
         .form-submit-btn {
@@ -1000,21 +1000,21 @@ export default function InscripcionPage() {
           gap: 9px;
           padding: 15px 30px;
           border-radius: 12px;
-          background: linear-gradient(135deg, #4f7cff 0%, #6b8fff 100%);
+          background: linear-gradient(135deg, #7C011A 0%, #A5001E 100%);
           color: #ffffff;
           font-size: 14px;
           font-weight: 650;
           letter-spacing: 0.02em;
           border: none;
           cursor: pointer;
-          box-shadow: 0 8px 28px rgba(79,124,255,0.26);
+          box-shadow: 0 8px 28px rgba(165,0,30,0.26);
           transition: opacity 0.22s ease, transform 0.24s cubic-bezier(0.22,1,0.36,1), box-shadow 0.24s ease;
           font-family: inherit;
           white-space: nowrap;
         }
         .form-submit-btn:hover:not(:disabled) {
           transform: translateY(-2px);
-          box-shadow: 0 14px 40px rgba(79,124,255,0.36);
+          box-shadow: 0 14px 40px rgba(165,0,30,0.36);
         }
         .form-submit-btn:active:not(:disabled) { transform: translateY(0); }
         .form-submit-btn:disabled {
@@ -1025,7 +1025,7 @@ export default function InscripcionPage() {
         /* ── Success state ── */
         .success-portal {
           min-height: 100vh;
-          background: #050816;
+          background: #0F0A0B;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -1033,7 +1033,7 @@ export default function InscripcionPage() {
           padding: 48px 24px;
         }
         .success-card {
-          background: rgba(11,15,30,0.72);
+          background: rgba(36,16,20,0.72);
           border: 1px solid rgba(255,255,255,0.07);
           border-radius: 22px;
           padding: 56px 48px;
@@ -1129,10 +1129,11 @@ export default function InscripcionPage() {
             <div className="success-card__icon">
               <CheckCircle2 size={30} strokeWidth={1.5} />
             </div>
-            <div className="success-card__eyebrow">Envío Recibido</div>
-            <h2 className="success-card__title">Solicitud enviada correctamente</h2>
+            <div className="success-card__eyebrow">Submission Received</div>
+            <h2 className="success-card__title">Application Successfully Submitted</h2>
             <p className="success-card__body">
-              Tu registro ha sido recibido por la Secretaría de SoPeD MUN. El equipo académico revisará tu solicitud y te contactará por correo electrónico.
+              Your registration has been received by the SoPeD MUN Secretariat.
+              The academic team will review your application and contact you via email.
             </p>
             <div className="success-card__ref" suppressHydrationWarning>
               REF · SOPED-MUN · {new Date().getFullYear()}
@@ -1154,14 +1155,14 @@ export default function InscripcionPage() {
               </div>
             </a>
             <ul className="portal__nav-links">
-              <li><a href="/">Inicio</a></li>
-              <li><a href="/mun">Conferencia</a></li>
+              <li><a href="/">Home</a></li>
+              <li><a href="/mun">Conference</a></li>
               <li><a href="/debate-escolar">Debate</a></li>
-              <li><a href="/contacto">Contacto</a></li>
+              <li><a href="/contacto">Contact</a></li>
             </ul>
             <div className="portal__nav-status">
               <div className="portal__nav-status-dot" />
-              Portal Activo
+              Portal Active
             </div>
           </nav>
 
@@ -1172,25 +1173,28 @@ export default function InscripcionPage() {
               <div className="hero__left">
                 <div className="hero__official-badge">
                   <div className="hero__official-badge-dot" />
-                  Portal Oficial de Registro
+                  Official Registration Portal
                 </div>
                 <h1 className="hero__title">
-                  Registro <span className="hero__title-accent">SoPeD MUN</span>
+                  SoPeD <span className="hero__title-accent">MUN</span><br />
+                  Registration
                 </h1>
                 <div className="hero__subtitle">
-                  Conferencia Académica Internacional · Lima, Perú
+                  International Academic Conference · Lima, Peru
                 </div>
                 <p className="hero__desc">
-                  Sistema oficial de registro de delegados para la conferencia Modelo de Naciones Unidas de la Sociedad Peruana de Debate. Completa tu solicitud para participar en procedimientos diplomáticos formales.
+                  The official delegate registration system for the Sociedad Peruana de Debate
+                  Model United Nations Conference. Complete your application to participate
+                  in formal diplomatic proceedings.
                 </p>
                 <div className="hero__actions">
                   <a href="#form" className="hero__btn-primary">
-                    Iniciar Registro
+                    Begin Registration
                     <ArrowRight size={15} strokeWidth={2} />
                   </a>
                   <a href="#about" className="hero__btn-secondary">
                     <FileText size={15} strokeWidth={1.5} />
-                    Información de la Conferencia
+                    Conference Overview
                   </a>
                 </div>
               </div>
@@ -1200,38 +1204,38 @@ export default function InscripcionPage() {
                     <Shield size={16} strokeWidth={1.5} />
                   </div>
                   <div>
-                    <div className="hero__credential-title">Detalles de la Conferencia</div>
-                    <div className="hero__credential-sub">SoPeD MUN · Portal Oficial</div>
+                    <div className="hero__credential-title">Conference Details</div>
+                    <div className="hero__credential-sub">SoPeD MUN · Official Portal</div>
                   </div>
                 </div>
                 <div className="hero__credential-stats">
                   <div className="hero__credential-stat">
-                    <span className="hero__credential-stat-label">Estado de la Conferencia</span>
-                    <span className="hero__credential-stat-value hero__credential-stat-value--green">Abierto</span>
+                    <span className="hero__credential-stat-label">Conference Status</span>
+                    <span className="hero__credential-stat-value hero__credential-stat-value--green">Open</span>
                   </div>
                   <div className="hero__credential-divider" />
                   <div className="hero__credential-stat">
-                    <span className="hero__credential-stat-label">Tipo de Registro</span>
-                    <span className="hero__credential-stat-value">Inscripción Abierta</span>
+                    <span className="hero__credential-stat-label">Registration Type</span>
+                    <span className="hero__credential-stat-value">Open Enrollment</span>
                   </div>
                   <div className="hero__credential-divider" />
                   <div className="hero__credential-stat">
-                    <span className="hero__credential-stat-label">Idioma</span>
-                    <span className="hero__credential-stat-value">Español / Inglés</span>
+                    <span className="hero__credential-stat-label">Language</span>
+                    <span className="hero__credential-stat-value">Spanish / English</span>
                   </div>
                   <div className="hero__credential-divider" />
                   <div className="hero__credential-stat">
-                    <span className="hero__credential-stat-label">Organizado por</span>
+                    <span className="hero__credential-stat-label">Organized by</span>
                     <span className="hero__credential-stat-value hero__credential-stat-value--gold">SoPeD</span>
                   </div>
                   <div className="hero__credential-divider" />
                   <div className="hero__credential-stat">
-                    <span className="hero__credential-stat-label">Nivel</span>
-                    <span className="hero__credential-stat-value">Internacional</span>
+                    <span className="hero__credential-stat-label">Level</span>
+                    <span className="hero__credential-stat-value">International</span>
                   </div>
                 </div>
                 <div className="hero__credential-footer">
-                  Sociedad Peruana de Debate · Sistema Oficial de la Conferencia
+                  Sociedad Peruana de Debate · Official Conference System
                 </div>
               </div>
             </section>
@@ -1242,11 +1246,13 @@ export default function InscripcionPage() {
             <section className="context" id="about">
               <div className="context__eyebrow">
                 <div className="context__eyebrow-line" />
-                Documentación de la Conferencia
+                Conference Documentation
               </div>
-              <h2 className="context__title">Sobre SoPeD MUN</h2>
+              <h2 className="context__title">About SoPeD MUN</h2>
               <p className="context__intro">
-                Simulación académica institucional de las Naciones Unidas, diseñada para desarrollar competencias avanzadas en diplomacia, negociación y políticas públicas internacionales.
+                An institutional-grade academic simulation of United Nations proceedings,
+                designed to develop advanced competencies in diplomacy, negotiation,
+                and international public policy.
               </p>
               <div className="context__grid">
                 {contextBlocks.map((block, i) => (
@@ -1267,15 +1273,16 @@ export default function InscripcionPage() {
                 <div className="modalities__header-left">
                   <div className="modalities__eyebrow">
                     <div className="modalities__eyebrow-dot" />
-                    Modalidades de Registro
+                    Registration Modalities
                   </div>
-                  <h2 className="modalities__title">Selecciona tu Categoría</h2>
+                  <h2 className="modalities__title">Select Your Category</h2>
                   <p className="modalities__subtitle">
-                    Elige la modalidad que mejor represente tu forma de participación en la conferencia.
+                    Choose the modality that best represents your form of
+                    participation in the conference proceedings.
                   </p>
                 </div>
                 <div className="modalities__header-note">
-                  Todas las inscripciones están sujetas a revisión por la Secretaría de SoPeD MUN
+                  All registrations are subject to review by the SoPeD MUN Secretariat
                 </div>
               </div>
 
@@ -1292,7 +1299,7 @@ export default function InscripcionPage() {
                     <p className="mod-card__desc">{item.description}</p>
                     <div className="mod-card__divider" />
                     <div className="mod-card__cta">
-                      <span>Seleccionar</span>
+                      <span>Select</span>
                       <ChevronRight size={13} strokeWidth={2} />
                     </div>
                   </div>
@@ -1320,7 +1327,7 @@ export default function InscripcionPage() {
                       <p className="mod-card__desc">{item.description}</p>
                       <div className="mod-card__divider" />
                       <div className="mod-card__cta">
-                        <span>Seleccionar esta modalidad</span>
+                        <span>Select this modality</span>
                         <ChevronRight size={13} strokeWidth={2} />
                       </div>
                     </div>
@@ -1331,6 +1338,176 @@ export default function InscripcionPage() {
 
             <div className="section-divider" />
 
+            {/* ── Form ── */}
+            <section className="form-section" id="form">
+              <div className="form-section__header">
+                <div>
+                  <div className="form-section__eyebrow">
+                    <div className="form-section__eyebrow-line" />
+                    Official Application
+                  </div>
+                  <h2 className="form-section__title">Delegate Registration Form</h2>
+                  <p className="form-section__subtitle">
+                    Complete all required fields. Your application will be reviewed
+                    by the SoPeD MUN academic committee.
+                  </p>
+                </div>
+                <div className="form-section__doc-id" suppressHydrationWarning>
+                  FORM · REG-MUN-01<br />
+                  {new Date().getFullYear()} · Official System
+                </div>
+              </div>
+
+              <div className="form-card">
+                <div className="form-card__top-bar">
+                  <div className="form-card__top-bar-left">
+                    <div className="form-card__top-bar-icon">
+                      <FileText size={14} strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <div className="form-card__top-bar-title">Official Registration Submission</div>
+                      <div className="form-card__top-bar-sub">SoPeD MUN · Secretariat System</div>
+                    </div>
+                  </div>
+                  <div className="form-card__saved" suppressHydrationWarning>
+                    {lastSaved}
+                  </div>
+                </div>
+
+                <div className="form-card__body">
+
+                  {/* Personal info */}
+                  <div className="field-group">
+                    <div className="field-group__label">Personal Information</div>
+                    <div className="field-grid">
+                      <div className="field">
+                        <label className="field__label" htmlFor="name">
+                          Full Name <span className="field__required">*</span>
+                        </label>
+                        <input
+                          id="name"
+                          className="field__input"
+                          value={form.name}
+                          onChange={e => update('name', e.target.value)}
+                          placeholder="As it appears on your ID"
+                          autoComplete="name"
+                        />
+                      </div>
+                      <div className="field">
+                        <label className="field__label" htmlFor="email">
+                          Email Address <span className="field__required">*</span>
+                        </label>
+                        <input
+                          id="email"
+                          type="email"
+                          className={`field__input${!emailValid && emailTouched ? ' field__input--error' : ''}`}
+                          value={form.email}
+                          onChange={e => { setEmailTouched(true); update('email', e.target.value) }}
+                          placeholder="official@institution.edu"
+                          autoComplete="email"
+                        />
+                        {!emailValid && emailTouched && (
+                          <span className="field__error">Enter a valid email address</span>
+                        )}
+                      </div>
+                      <div className="field">
+                        <label className="field__label" htmlFor="phone">
+                          Phone Number <span className="field__required">*</span>
+                        </label>
+                        <input
+                          id="phone"
+                          type="tel"
+                          className="field__input"
+                          value={form.phone}
+                          onChange={e => update('phone', e.target.value)}
+                          placeholder="+51 999 000 000"
+                          autoComplete="tel"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Institutional info */}
+                  <div className="field-group">
+                    <div className="field-group__label">Institutional Information</div>
+                    <div className="field-grid">
+                      <div className="field">
+                        <label className="field__label" htmlFor="institution">
+                          Institution <span className="field__required">*</span>
+                        </label>
+                        <input
+                          id="institution"
+                          className="field__input"
+                          value={form.institution}
+                          onChange={e => update('institution', e.target.value)}
+                          placeholder="School or university name"
+                          autoComplete="organization"
+                        />
+                      </div>
+                      <div className="field">
+                        <label className="field__label" htmlFor="country">
+                          Country <span className="field__required">*</span>
+                        </label>
+                        <input
+                          id="country"
+                          className="field__input"
+                          value={form.country}
+                          onChange={e => update('country', e.target.value)}
+                          placeholder="Peru"
+                          autoComplete="country-name"
+                        />
+                      </div>
+                      <div className="field">
+                        <label className="field__label" htmlFor="committee">
+                          Committee Preference <span className="field__required">*</span>
+                        </label>
+                        <input
+                          id="committee"
+                          className="field__input"
+                          value={form.committee}
+                          onChange={e => update('committee', e.target.value)}
+                          placeholder="UNSC, DISEC, ECOSOC..."
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Motivation */}
+                  <div className="field-group" style={{ marginBottom: 0 }}>
+                    <div className="field-group__label">Statement of Motivation</div>
+                    <div className="field">
+                      <label className="field__label" htmlFor="motivation">
+                        Motivation Letter <span className="field__required">*</span>
+                      </label>
+                      <textarea
+                        id="motivation"
+                        className="field__textarea"
+                        value={form.motivation}
+                        onChange={e => update('motivation', e.target.value)}
+                        placeholder="Describe your motivation for participating in SoPeD MUN and what you aim to contribute to the conference."
+                      />
+                    </div>
+                  </div>
+
+                </div>
+
+                <div className="form-card__footer">
+                  <p className="form-card__footer-note">
+                    By submitting this form you agree to SoPeD's{' '}
+                    <a href="#">terms of participation</a>. Your data will be
+                    processed solely for conference administration purposes.
+                  </p>
+                  <button
+                    onClick={submit}
+                    disabled={!isValid || loading}
+                    className="form-submit-btn"
+                  >
+                    {loading ? 'Submitting...' : 'Submit Application'}
+                    {!loading && <ArrowRight size={15} strokeWidth={2} />}
+                  </button>
+                </div>
+              </div>
+            </section>
 
           </main>
         </div>

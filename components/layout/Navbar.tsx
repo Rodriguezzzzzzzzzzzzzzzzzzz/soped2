@@ -115,8 +115,8 @@ export default function Navbar() {
                   href={link.href}
                   className="btn-text"
                   style={{
-                    color: isActive ? 'var(--primary)' : 'var(--text-secondary)',
-                    borderBottom: isActive ? '1px solid var(--primary-soft)' : '1px solid transparent',
+                    color: isActive ? 'var(--ivory)' : 'var(--text-secondary)',
+                    borderBottom: isActive ? '1px solid var(--ivory)' : '1px solid transparent',
                     paddingBottom: '3px',
                     transition: 'all 0.25s ease',
                   }}
@@ -132,7 +132,7 @@ export default function Navbar() {
             <Link href="/login" className="btn-secondary" style={{ padding: '0.5rem 1.25rem', fontSize: '0.8rem' }}>
               Ingresar
             </Link>
-            <Link href="/inscripcion" className="btn-primary" style={{ padding: '0.5rem 1.25rem', fontSize: '0.8rem' }}>
+            <Link href="/membresia" className="btn-primary" style={{ padding: '0.5rem 1.25rem', fontSize: '0.8rem' }}>
               Ser miembro
             </Link>
           </div>
@@ -140,16 +140,16 @@ export default function Navbar() {
           {/* Mobile hamburger */}
           <button
             onClick={toggleMenu}
-            className="lg:hidden flex flex-col gap-1.5 p-2"
+            className="lg:hidden flex flex-col items-center justify-center gap-1.5"
             aria-label="Abrir menú"
-            style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
+            style={{ background: 'transparent', border: 'none', cursor: 'pointer', width: '44px', height: '44px', minWidth: '44px', minHeight: '44px', flexShrink: 0 }}
           >
             <span
               style={{
                 display: 'block',
                 width: '22px',
                 height: '1px',
-                background: menuOpen ? 'var(--primary)' : 'var(--text-secondary)',
+                background: menuOpen ? 'var(--ivory)' : 'var(--text-secondary)',
                 transition: 'all 0.3s ease',
                 transform: menuOpen ? 'rotate(45deg) translate(2px, 2px)' : 'none',
               }}
@@ -159,7 +159,7 @@ export default function Navbar() {
                 display: 'block',
                 width: '22px',
                 height: '1px',
-                background: menuOpen ? 'var(--primary)' : 'var(--text-secondary)',
+                background: menuOpen ? 'var(--ivory)' : 'var(--text-secondary)',
                 transition: 'all 0.3s ease',
                 opacity: menuOpen ? 0 : 1,
               }}
@@ -169,7 +169,7 @@ export default function Navbar() {
                 display: 'block',
                 width: '22px',
                 height: '1px',
-                background: menuOpen ? 'var(--primary)' : 'var(--text-secondary)',
+                background: menuOpen ? 'var(--ivory)' : 'var(--text-secondary)',
                 transition: 'all 0.3s ease',
                 transform: menuOpen ? 'rotate(-45deg) translate(2px, -2px)' : 'none',
               }}
@@ -188,6 +188,30 @@ export default function Navbar() {
             paddingTop: '80px',
           }}
         >
+          {/* Close button */}
+          <button
+            onClick={closeMenu}
+            aria-label="Cerrar menú"
+            style={{
+              position: 'absolute',
+              top: 'calc(80px + 0.5rem)',
+              right: '1rem',
+              width: '44px',
+              height: '44px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              color: 'var(--ivory)',
+              fontSize: '1.2rem',
+              lineHeight: 1,
+            }}
+          >
+            ✕
+          </button>
           <div className="flex flex-col items-center gap-8 pt-12">
             {navLinks.map((link, i) => {
               const id = link.href.replace('/', '')
@@ -205,10 +229,16 @@ export default function Navbar() {
                     textDecoration: 'none',
                     letterSpacing: '0.05em',
                     animationDelay: `${i * 80}ms`,
-                    color: isActive ? 'var(--primary)' : 'var(--text-secondary)',
-                    borderBottom: isActive ? '1px solid var(--primary-soft)' : '1px solid transparent',
+                    color: isActive ? 'var(--ivory)' : 'var(--text-secondary)',
+                    borderBottom: isActive ? '1px solid var(--ivory)' : '1px solid transparent',
                     paddingBottom: '4px',
+                    paddingTop: '12px',
+                    paddingLeft: '24px',
+                    paddingRight: '24px',
                     transition: 'all 0.25s ease',
+                    minHeight: '44px',
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                   className="animate-fade-up"
                 >
@@ -216,11 +246,11 @@ export default function Navbar() {
                 </Link>
               )
             })}
-            <div className="flex flex-col gap-4 mt-8 w-48">
-              <Link href="/login" className="btn-secondary" onClick={closeMenu} style={{ justifyContent: 'center' }}>
+            <div className="flex flex-col gap-4 mt-8 w-64 px-4">
+              <Link href="/login" className="btn-secondary" onClick={closeMenu} style={{ justifyContent: 'center', minHeight: '44px' }}>
                 Ingresar
               </Link>
-              <Link href="/inscripcion" className="btn-primary" onClick={closeMenu} style={{ justifyContent: 'center' }}>
+              <Link href="/membresia" className="btn-primary" onClick={closeMenu} style={{ justifyContent: 'center', minHeight: '44px' }}>
                 Ser miembro
               </Link>
             </div>

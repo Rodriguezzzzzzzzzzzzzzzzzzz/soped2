@@ -27,7 +27,7 @@ export default function DashboardLayout({
     <div style={{ display: 'flex', minHeight: '100vh', paddingTop: '80px' }}>
       {/* Sidebar */}
       <aside
-        className="glass"
+        className="glass dashboard-sidebar"
         style={{
           width: '260px',
           minHeight: 'calc(100vh - 80px)',
@@ -50,21 +50,21 @@ export default function DashboardLayout({
             style={{
               width: '44px',
               height: '44px',
-              background: 'rgba(184,150,12,0.12)',
-              border: '1px solid rgba(184,150,12,0.3)',
+              background: 'rgba(236,229,214,0.12)',
+              border: '1px solid rgba(236,229,214,0.3)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.3rem', color: '#d4af37', fontWeight: 600 }}>
+            <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.3rem', color: '#ECE5D6', fontWeight: 600 }}>
               {displayName.charAt(0).toUpperCase()}
             </span>
           </div>
           <div>
             <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.9rem', fontWeight: 500, color: '#fff' }}>{displayName}</p>
             <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.72rem', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.05em' }}>{user?.email || ''}</p>
-            <span style={{ display: 'inline-block', marginTop: '0.25rem', fontFamily: 'var(--font-outfit)', fontSize: '0.62rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)', border: '1px solid rgba(184,150,12,0.2)', padding: '0.15rem 0.5rem' }}>
+            <span style={{ display: 'inline-block', marginTop: '0.25rem', fontFamily: 'var(--font-outfit)', fontSize: '0.62rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.7)', border: '1px solid rgba(236,229,214,0.2)', padding: '0.15rem 0.5rem' }}>
               {user?.role || 'user'}
             </span>
           </div>
@@ -83,9 +83,9 @@ export default function DashboardLayout({
                 alignItems: 'center',
                 gap: '0.75rem',
                 padding: '0.7rem 1rem',
-                background: activePanel === item.id ? 'rgba(184,150,12,0.08)' : 'transparent',
-                border: activePanel === item.id ? '1px solid rgba(184,150,12,0.2)' : '1px solid transparent',
-                color: activePanel === item.id ? '#d4af37' : 'rgba(255,255,255,0.45)',
+                background: activePanel === item.id ? 'rgba(236,229,214,0.08)' : 'transparent',
+                border: activePanel === item.id ? '1px solid rgba(236,229,214,0.2)' : '1px solid transparent',
+                color: activePanel === item.id ? '#ECE5D6' : 'rgba(255,255,255,0.45)',
                 cursor: 'pointer',
                 fontFamily: 'var(--font-outfit)',
                 fontSize: '0.85rem',

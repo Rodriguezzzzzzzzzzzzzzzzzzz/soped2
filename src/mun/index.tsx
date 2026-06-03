@@ -7,7 +7,7 @@ import { useMun } from '@/src/mun/core'
 export default function MunDashboard() {
   const { view, setView, delegaciones, comites, sesiones } = useMun()
 
-  const btnStyle = 'px-4 py-2 rounded bg-blue-500 text-white mr-2'
+  const btnStyle = 'px-4 py-2 rounded bg-[#A5001E] text-white mr-2'
 
   return (
     <Layout>

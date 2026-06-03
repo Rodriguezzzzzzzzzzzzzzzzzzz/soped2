@@ -16,7 +16,7 @@ export default function MaterialsPanel() {
         {materials.map((m) => (
           <div key={m.id} className="glass glass-hover" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.62rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)', border: '1px solid rgba(184,150,12,0.2)', padding: '0.15rem 0.5rem' }}>
+              <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.62rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.7)', border: '1px solid rgba(236,229,214,0.2)', padding: '0.15rem 0.5rem' }}>
                 {m.category}
               </span>
               <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.3)' }}>{m.type}</span>

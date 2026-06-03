@@ -21,7 +21,7 @@ export default function DebateForm() {
     return (
       <div className="glass" style={{ padding: '3rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
         <div style={{ fontSize: '2.5rem' }}>✦</div>
-        <h3 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.8rem', color: '#d4af37' }}>
+        <h3 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.8rem', color: '#ECE5D6' }}>
           ¡Inscripción recibida!
         </h3>
         <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.9rem', color: 'rgba(255,255,255,0.5)', maxWidth: '400px', lineHeight: 1.7 }}>
@@ -34,7 +34,7 @@ export default function DebateForm() {
   return (
     <div className="glass" style={{ padding: '2.5rem' }}>
       <div style={{ marginBottom: '2rem' }}>
-        <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)' }}>
+        <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.7)' }}>
           Formulario de inscripción
         </span>
         <h2 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '2rem', fontWeight: 500, color: '#fff', marginTop: '0.5rem' }}>
@@ -52,20 +52,20 @@ export default function DebateForm() {
           <div>
             <label className="label-glass">Grado escolar *</label>
             <select className="input-glass" value={formData.grado} onChange={(e) => handleChange('grado', e.target.value)} style={{ appearance: 'none', cursor: 'pointer' }}>
-              <option value="" style={{ background: '#091c36' }}>Selecciona</option>
+              <option value="" style={{ background: '#7C011A' }}>Selecciona</option>
               {['1ro Secundaria', '2do Secundaria', '3ro Secundaria', '4to Secundaria', '5to Secundaria'].map((g) => (
-                <option key={g} value={g} style={{ background: '#091c36' }}>{g}</option>
+                <option key={g} value={g} style={{ background: '#7C011A' }}>{g}</option>
               ))}
             </select>
           </div>
           <div>
             <label className="label-glass">Nivel de experiencia</label>
             <select className="input-glass" value={formData.nivel} onChange={(e) => handleChange('nivel', e.target.value)} style={{ appearance: 'none', cursor: 'pointer' }}>
-              <option value="" style={{ background: '#091c36' }}>Selecciona</option>
-              <option value="ninguno" style={{ background: '#091c36' }}>Sin experiencia</option>
-              <option value="basico" style={{ background: '#091c36' }}>Básico</option>
-              <option value="intermedio" style={{ background: '#091c36' }}>Intermedio</option>
-              <option value="avanzado" style={{ background: '#091c36' }}>Avanzado</option>
+              <option value="" style={{ background: '#7C011A' }}>Selecciona</option>
+              <option value="ninguno" style={{ background: '#7C011A' }}>Sin experiencia</option>
+              <option value="basico" style={{ background: '#7C011A' }}>Básico</option>
+              <option value="intermedio" style={{ background: '#7C011A' }}>Intermedio</option>
+              <option value="avanzado" style={{ background: '#7C011A' }}>Avanzado</option>
             </select>
           </div>
         </div>
@@ -86,7 +86,7 @@ export default function DebateForm() {
             id="autorizacion"
             checked={formData.autorizacion}
             onChange={(e) => handleChange('autorizacion', e.target.checked)}
-            style={{ marginTop: '2px', accentColor: '#b8960c', width: '16px', height: '16px', cursor: 'pointer' }}
+            style={{ marginTop: '2px', accentColor: '#ECE5D6', width: '16px', height: '16px', cursor: 'pointer' }}
           />
           <label htmlFor="autorizacion" style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.6, cursor: 'pointer' }}>
             Autorización del padre/madre/tutor. Al ser menor de edad, confirmo que cuento con autorización de mis padres o tutor legal para participar en este programa.

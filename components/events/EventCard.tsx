@@ -21,8 +21,8 @@ const statusConfig: Record<EventStatus, { label: string; color: string; bg: stri
   },
   proximo: {
     label: 'Próximamente',
-    color: 'rgba(184,150,12,0.9)',
-    bg: 'rgba(184,150,12,0.08)',
+    color: 'rgba(236,229,214,0.9)',
+    bg: 'rgba(236,229,214,0.08)',
   },
   cerrado: {
     label: 'Inscripciones cerradas',
@@ -57,8 +57,8 @@ export default function EventCard({ event }: { event: Event }) {
             fontWeight: 500,
             letterSpacing: '0.15em',
             textTransform: 'uppercase',
-            color: 'rgba(184,150,12,0.7)',
-            border: '1px solid rgba(184,150,12,0.2)',
+            color: 'rgba(236,229,214,0.7)',
+            border: '1px solid rgba(236,229,214,0.2)',
             padding: '0.2rem 0.6rem',
           }}
         >

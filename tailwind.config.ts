@@ -10,11 +10,15 @@ const config: Config = {
     extend: {
       colors: {
         soped: {
-          navy: '#091c36',
-          dark: '#05070d',
-          darker: '#0a0f1a',
-          gold: '#b8960c',
-          'gold-light': '#d4af37',
+          primary: '#7C011A',
+          burger: '#7C011A',
+          interaction: '#A5001E',
+          ivory: '#ECE5D6',
+          dark: '#0F0A0B',
+          darker: '#1A0A0D',
+          card: '#241014',
+          gold: '#ECE5D6',
+          'gold-light': '#ECE5D6',
           'glass-border': 'rgba(255,255,255,0.08)',
         },
       },
@@ -42,8 +46,8 @@ const config: Config = {
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         glowBreathe: {
-          '0%, 100%': { filter: 'drop-shadow(0 0 12px rgba(184,150,12,0.3))' },
-          '50%': { filter: 'drop-shadow(0 0 28px rgba(184,150,12,0.65))' },
+          '0%, 100%': { filter: 'drop-shadow(0 0 12px rgba(236,229,214,0.3))' },
+          '50%': { filter: 'drop-shadow(0 0 28px rgba(236,229,214,0.65))' },
         },
         logoIntro: {
           '0%': { opacity: '0', transform: 'scale(0.95)' },

@@ -49,14 +49,14 @@ const T = {
   text:    '#e8e8e8',
   muted:   'rgba(255,255,255,0.45)',
   dim:     'rgba(255,255,255,0.22)',
-  gold:    '#b8960c',
-  goldL:   '#d4af37',
+  gold:    '#ECE5D6',
+  goldL:   '#ECE5D6',
   green:   'rgba(34,197,94,0.9)',
   greenBg: 'rgba(34,197,94,0.07)',
   greenB:  'rgba(34,197,94,0.35)',
-  amber:   'rgba(251,191,36,0.9)',
-  amberBg: 'rgba(251,191,36,0.07)',
-  amberB:  'rgba(251,191,36,0.35)',
+  amber:   'rgba(236,229,214,0.9)',
+  amberBg: 'rgba(236,229,214,0.07)',
+  amberB:  'rgba(236,229,214,0.35)',
   red:     'rgba(239,68,68,0.9)',
   redBg:   'rgba(239,68,68,0.07)',
   redB:    'rgba(239,68,68,0.35)',
@@ -71,7 +71,7 @@ const serif = (sz = '1rem', e: React.CSSProperties = {}): React.CSSProperties =>
 const lbl = (e: React.CSSProperties = {}): React.CSSProperties => ({
   fontFamily: 'var(--font-outfit)', fontSize: '0.6rem', fontWeight: 600,
   letterSpacing: '0.15em', textTransform: 'uppercase' as const,
-  color: 'rgba(184,150,12,0.7)', ...e,
+  color: 'rgba(236,229,214,0.7)', ...e,
 })
 
 const inputStyle: React.CSSProperties = {
@@ -110,7 +110,7 @@ function Badge({ status }: { status: BV }) {
 
 type BtnV = 'primary' | 'secondary' | 'success' | 'danger' | 'ghost'
 const BV_STYLE: Record<BtnV, React.CSSProperties> = {
-  primary:   { background: 'rgba(184,150,12,0.12)', border: '1px solid rgba(184,150,12,0.4)', color: T.goldL },
+  primary:   { background: 'rgba(236,229,214,0.12)', border: '1px solid rgba(236,229,214,0.4)', color: T.goldL },
   secondary: { background: T.glass, border: `1px solid ${T.border}`, color: T.muted },
   success:   { background: T.greenBg, border: `1px solid ${T.greenB}`, color: T.green },
   danger:    { background: T.redBg, border: `1px solid ${T.redB}`, color: T.red },
@@ -147,13 +147,13 @@ function RoomSim({ delegates, rollCall, currentSpeaker, activeMotion }: {
       <svg width="280" height="260" style={{ overflow: 'visible' }}>
         <defs>
           <radialGradient id="munBgGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"   stopColor="rgba(9,28,54,0.4)" />
+            <stop offset="0%"   stopColor="rgba(124,1,26,0.4)" />
             <stop offset="100%" stopColor="transparent" />
           </radialGradient>
         </defs>
-        <ellipse cx={cx} cy={cy} rx={r+20} ry={r+20} fill="url(#munBgGrad)" stroke="rgba(184,150,12,0.08)" strokeWidth={1}/>
+        <ellipse cx={cx} cy={cy} rx={r+20} ry={r+20} fill="url(#munBgGrad)" stroke="rgba(236,229,214,0.08)" strokeWidth={1}/>
         <ellipse cx={cx} cy={cy} rx={r-22} ry={r-22} fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth={1} strokeDasharray="4,4"/>
-        <rect x={cx-30} y={18} width={60} height={24} rx={2} fill="rgba(184,150,12,0.12)" stroke="rgba(184,150,12,0.4)" strokeWidth={1}/>
+        <rect x={cx-30} y={18} width={60} height={24} rx={2} fill="rgba(236,229,214,0.12)" stroke="rgba(236,229,214,0.4)" strokeWidth={1}/>
         <text x={cx} y={34} textAnchor="middle" fill={T.goldL} fontSize={9} fontFamily="var(--font-outfit)" fontWeight={600}>CHAIR</text>
         {activeMotion && (
           <text x={cx} y={55} textAnchor="middle" fill={T.amber} fontSize={7} fontFamily="var(--font-outfit)">
@@ -168,7 +168,7 @@ function RoomSim({ delegates, rollCall, currentSpeaker, activeMotion }: {
           if (st === 'present') { fill = T.greenBg; stroke = T.greenB }
           if (st === 'voting')  { fill = T.amberBg; stroke = T.amberB }
           if (st === 'absent')  { fill = T.redBg;   stroke = T.redB   }
-          if (speaking) { fill = 'rgba(212,175,55,0.18)'; stroke = T.goldL }
+          if (speaking) { fill = 'rgba(236,229,214,0.18)'; stroke = T.goldL }
           return (
             <g key={d.name}>
               {speaking && <circle cx={x} cy={y} r={19} fill="none" stroke={T.goldL} strokeWidth={1} strokeDasharray="3,2" opacity={0.7}/>}
@@ -238,7 +238,7 @@ function RoleSelectScreen({ onSelect }: { onSelect: (r: Role, c: Country | null)
     <div style={{ minHeight:'100vh', background:'var(--dark)', display:'flex', alignItems:'center', justifyContent:'center', padding:'2rem', fontFamily:'var(--font-outfit)' }}>
       <div style={{ width:'100%', maxWidth:'440px' }}>
         <div style={{ textAlign:'center', marginBottom:'2.5rem' }}>
-          <div style={{ width:'60px', height:'60px', border:'1px solid rgba(184,150,12,0.45)', background:'rgba(184,150,12,0.08)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 1rem' }}>
+          <div style={{ width:'60px', height:'60px', border:'1px solid rgba(236,229,214,0.45)', background:'rgba(236,229,214,0.08)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 1rem' }}>
             <span style={{ ...serif('2.2rem'), fontWeight:600, color:T.goldL }}>S</span>
           </div>
           <p style={{ ...serif('1.6rem'), fontWeight:600, letterSpacing:'0.06em' }}>SoPeD MUN</p>
@@ -249,8 +249,8 @@ function RoleSelectScreen({ onSelect }: { onSelect: (r: Role, c: Country | null)
           {ROLES.map(r => (
             <button key={r.id} onClick={() => setChosen(r.id)} style={{
               textAlign:'left', padding:'1rem 1.25rem',
-              background:chosen===r.id?'rgba(184,150,12,0.09)':T.glass,
-              border:`1px solid ${chosen===r.id?'rgba(184,150,12,0.35)':T.border}`,
+              background:chosen===r.id?'rgba(236,229,214,0.09)':T.glass,
+              border:`1px solid ${chosen===r.id?'rgba(236,229,214,0.35)':T.border}`,
               cursor:'pointer', display:'flex', gap:'1rem', alignItems:'center', borderRadius:'2px', transition:'all 0.2s',
             }}>
               <span style={{ color:T.goldL, fontSize:'1.1rem', flexShrink:0 }}>{r.icon}</span>
@@ -269,7 +269,7 @@ function RoleSelectScreen({ onSelect }: { onSelect: (r: Role, c: Country | null)
               {filtered.map(c => (
                 <button key={c.name} onClick={()=>setCountry(c)} style={{
                   width:'100%', textAlign:'left', padding:'0.4rem 0.5rem',
-                  background:country?.name===c.name?'rgba(184,150,12,0.08)':'transparent',
+                  background:country?.name===c.name?'rgba(236,229,214,0.08)':'transparent',
                   border:'none', color:country?.name===c.name?T.goldL:T.muted,
                   cursor:'pointer', fontSize:'0.82rem', display:'flex', gap:'0.5rem', borderRadius:'2px',
                 }}>{c.flag} {c.name}</button>
@@ -305,7 +305,7 @@ function SetupScreen({ committee, setConfig, selectedDelegates, setDelegates, on
     <div style={{ minHeight:'100vh', background:'var(--dark)', padding:'2rem', fontFamily:'var(--font-outfit)' }}>
       <div style={{ maxWidth:'960px', margin:'0 auto' }}>
         <div style={{ display:'flex', alignItems:'center', gap:'1rem', marginBottom:'2.5rem', paddingBottom:'1.5rem', borderBottom:`1px solid ${T.border}` }}>
-          <div style={{ width:'36px', height:'36px', border:'1px solid rgba(184,150,12,0.4)', background:'rgba(184,150,12,0.08)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+          <div style={{ width:'36px', height:'36px', border:'1px solid rgba(236,229,214,0.4)', background:'rgba(236,229,214,0.08)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
             <span style={{ ...serif('1.1rem'), fontWeight:600, color:T.goldL }}>S</span>
           </div>
           <div>
@@ -354,7 +354,7 @@ function SetupScreen({ committee, setConfig, selectedDelegates, setDelegates, on
             {selectedDelegates.length > 0 && (
               <div style={{ display:'flex', flexWrap:'wrap', gap:'0.3rem' }}>
                 {selectedDelegates.map(d => (
-                  <span key={d.name} style={{ background:'rgba(184,150,12,0.1)', border:'1px solid rgba(184,150,12,0.3)', color:T.goldL, fontSize:'0.65rem', padding:'0.15rem 0.4rem', display:'inline-flex', alignItems:'center', gap:'0.3rem', borderRadius:'2px' }}>
+                  <span key={d.name} style={{ background:'rgba(236,229,214,0.1)', border:'1px solid rgba(236,229,214,0.3)', color:T.goldL, fontSize:'0.65rem', padding:'0.15rem 0.4rem', display:'inline-flex', alignItems:'center', gap:'0.3rem', borderRadius:'2px' }}>
                     {d.flag} {d.name}
                     <button onClick={()=>toggle(d)} style={{ background:'none', border:'none', color:T.goldL, cursor:'pointer', fontSize:'0.75rem', padding:0 }}>×</button>
                   </span>
@@ -367,8 +367,8 @@ function SetupScreen({ committee, setConfig, selectedDelegates, setDelegates, on
                 return (
                   <button key={c.name} onClick={()=>toggle(c)} style={{
                     textAlign:'left', padding:'0.45rem 0.75rem',
-                    background:sel?'rgba(184,150,12,0.06)':'rgba(255,255,255,0.015)',
-                    border:`1px solid ${sel?'rgba(184,150,12,0.25)':T.border}`,
+                    background:sel?'rgba(236,229,214,0.06)':'rgba(255,255,255,0.015)',
+                    border:`1px solid ${sel?'rgba(236,229,214,0.25)':T.border}`,
                     color:sel?T.goldL:T.muted, cursor:'pointer',
                     display:'flex', alignItems:'center', gap:'0.5rem', fontSize:'0.82rem', borderRadius:'2px',
                   }}>
@@ -513,7 +513,7 @@ function SpeakersPanel({ session, speakerTimer, canControl, role, delegateCountr
                 <span style={{ fontSize:'1rem' }}>{d.flag}</span>
                 <span style={{ fontFamily:'var(--font-outfit)', fontSize:'0.8rem', color:inList?T.dim:T.text, flex:1 }}>{d.name}</span>
                 {inList?<span style={{ fontFamily:'var(--font-outfit)', fontSize:'0.6rem', color:T.dim }}>queued</span>
-                  :canAdd&&<button onClick={()=>addSpeaker(d.name)} style={{ background:'rgba(184,150,12,0.08)', border:'1px solid rgba(184,150,12,0.25)', color:T.goldL, fontSize:'0.62rem', padding:'0.2rem 0.5rem', cursor:'pointer', fontFamily:'var(--font-outfit)', letterSpacing:'0.06em', borderRadius:'2px' }}>+ Add</button>}
+                  :canAdd&&<button onClick={()=>addSpeaker(d.name)} style={{ background:'rgba(236,229,214,0.08)', border:'1px solid rgba(236,229,214,0.25)', color:T.goldL, fontSize:'0.62rem', padding:'0.2rem 0.5rem', cursor:'pointer', fontFamily:'var(--font-outfit)', letterSpacing:'0.06em', borderRadius:'2px' }}>+ Add</button>}
               </div>
             )
           })}
@@ -605,7 +605,7 @@ function MotionsPanel({ session, motionTimer, canControl, delegates }: {
               <p style={{ ...lbl(), marginBottom:'0.4rem' }}>Category</p>
               {(['debate','resolution','procedural'] as MotionCategory[]).map(cat => (
                 <button key={cat} onClick={()=>handleCat(cat)} style={{ display:'block', width:'100%', textAlign:'left', padding:'0.45rem 0.75rem', marginBottom:'0.25rem',
-                  background:category===cat?'rgba(184,150,12,0.1)':T.glass, border:`1px solid ${category===cat?'rgba(184,150,12,0.35)':T.border}`,
+                  background:category===cat?'rgba(236,229,214,0.1)':T.glass, border:`1px solid ${category===cat?'rgba(236,229,214,0.35)':T.border}`,
                   color:category===cat?T.goldL:T.muted, fontFamily:'var(--font-outfit)', fontSize:'0.75rem', cursor:'pointer', borderRadius:'2px', textTransform:'capitalize' }}>{cat}</button>
               ))}
             </div>
@@ -613,7 +613,7 @@ function MotionsPanel({ session, motionTimer, canControl, delegates }: {
               <p style={{ ...lbl(), marginBottom:'0.4rem' }}>Motion Type</p>
               {catDefs.map(def => (
                 <button key={def.id} onClick={()=>{setTypeId(def.id);setTimerInput(String(def.defaultTime))}} style={{ display:'block', width:'100%', textAlign:'left', padding:'0.45rem 0.75rem', marginBottom:'0.25rem',
-                  background:typeId===def.id?'rgba(184,150,12,0.1)':T.glass, border:`1px solid ${typeId===def.id?'rgba(184,150,12,0.35)':T.border}`,
+                  background:typeId===def.id?'rgba(236,229,214,0.1)':T.glass, border:`1px solid ${typeId===def.id?'rgba(236,229,214,0.35)':T.border}`,
                   color:typeId===def.id?T.goldL:T.muted, fontFamily:'var(--font-outfit)', fontSize:'0.72rem', cursor:'pointer', borderRadius:'2px' }}>{def.label}</button>
               ))}
             </div>
@@ -622,8 +622,8 @@ function MotionsPanel({ session, motionTimer, canControl, delegates }: {
             <div>
               <p style={{ ...lbl(), marginBottom:'0.4rem' }}>Proposer</p>
               <select value={proposer} onChange={e=>setProposer(e.target.value)} style={{ ...inputStyle, cursor:'pointer' }}>
-                <option value="" style={{ background:'#091c36' }}>— Floor —</option>
-                {delegates.map(d=><option key={d.name} value={d.name} style={{ background:'#091c36' }}>{d.flag} {d.name}</option>)}
+                <option value="" style={{ background:'#7C011A' }}>— Floor —</option>
+                {delegates.map(d=><option key={d.name} value={d.name} style={{ background:'#7C011A' }}>{d.flag} {d.name}</option>)}
               </select>
             </div>
             {selDef?.hasTimer && (
@@ -819,7 +819,7 @@ export default function ChairPanel({ committeeId, initialCommittee }: ChairPanel
       {/* ── Left Sidebar ── */}
       <aside style={{ width:'232px', background:'var(--darker)', borderRight:`1px solid ${T.border}`, display:'flex', flexDirection:'column', padding:'1rem', gap:'0.875rem', flexShrink:0, overflow:'hidden' }}>
         <div style={{ display:'flex', alignItems:'center', gap:'0.65rem', paddingBottom:'0.875rem', borderBottom:`1px solid ${T.border}` }}>
-          <div style={{ width:'28px', height:'28px', border:'1px solid rgba(184,150,12,0.4)', background:'rgba(184,150,12,0.08)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+          <div style={{ width:'28px', height:'28px', border:'1px solid rgba(236,229,214,0.4)', background:'rgba(236,229,214,0.08)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
             <span style={{ ...serif('0.9rem'), fontWeight:600, color:T.goldL }}>S</span>
           </div>
           <div>

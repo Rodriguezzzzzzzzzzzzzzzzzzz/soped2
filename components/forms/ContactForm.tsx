@@ -14,7 +14,7 @@ export default function ContactForm() {
     return (
       <div className="glass" style={{ padding: '2.5rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
         <div style={{ fontSize: '2rem' }}>✦</div>
-        <h3 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.6rem', color: '#d4af37' }}>Mensaje enviado</h3>
+        <h3 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.6rem', color: '#ECE5D6' }}>Mensaje enviado</h3>
         <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>
           Gracias por contactarnos. Responderemos tu mensaje a la brevedad.
         </p>

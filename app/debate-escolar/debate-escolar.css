@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
 
 :root {
-  --gold:        #c9a84c;
-  --gold-light:  #e8c97a;
-  --gold-dim:    #7a5c1e;
-  --dark-base:   #0a0a0f;
-  --dark-mid:    #111118;
-  --dark-card:   #16161f;
-  --dark-border: rgba(201,168,76,0.18);
+  --gold:        #ECE5D6;
+  --gold-light:  #ECE5D6;
+  --gold-dim:    #ECE5D6;
+  --dark-base:   #0F0A0B;
+  --dark-mid:    #1A0A0D;
+  --dark-card:   #241014;
+  --dark-border: rgba(236,229,214,0.18);
   --text-primary: #f0eee8;
   --text-muted:   #8c8a82;
-  --glass-bg:    rgba(22,22,31,0.72);
-  --glass-border: rgba(201,168,76,0.22);
+  --glass-bg:    rgba(36,16,20,0.72);
+  --glass-border: rgba(236,229,214,0.22);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,7 +35,7 @@ body {
   justify-content: space-between;
   padding: 0 3rem;
   height: 72px;
-  background: rgba(10,10,15,0.65);
+  background: rgba(15,10,11,0.65);
   backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--dark-border);
 }
@@ -101,9 +101,9 @@ body {
   inset: 0;
   background: linear-gradient(
     160deg,
-    rgba(10,10,15,0.45) 0%,
-    rgba(10,10,15,0.30) 40%,
-    rgba(10,10,15,0.55) 100%
+    rgba(15,10,11,0.45) 0%,
+    rgba(15,10,11,0.30) 40%,
+    rgba(15,10,11,0.55) 100%
   );
   z-index: 1;
 }
@@ -196,12 +196,12 @@ body {
   border: none;
   cursor: pointer;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 24px rgba(201,168,76,0.30);
+  box-shadow: 0 4px 24px rgba(236,229,214,0.30);
 }
 .btn-primary:hover {
   background: var(--gold-light);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(201,168,76,0.45);
+  box-shadow: 0 8px 32px rgba(236,229,214,0.45);
 }
 .btn-secondary {
   font-family: 'DM Sans', sans-serif;
@@ -213,14 +213,14 @@ body {
   background: transparent;
   padding: 0.9rem 2.2rem;
   border-radius: 2px;
-  border: 1px solid rgba(201,168,76,0.45);
+  border: 1px solid rgba(236,229,214,0.45);
   text-decoration: none;
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s, transform 0.2s;
 }
 .btn-secondary:hover {
   border-color: var(--gold);
-  background: rgba(201,168,76,0.08);
+  background: rgba(236,229,214,0.08);
   transform: translateY(-2px);
 }
 
@@ -230,7 +230,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 0;
-  background: rgba(22,22,31,0.90);
+  background: rgba(36,16,20,0.90);
   backdrop-filter: blur(20px);
   border-top: 1px solid var(--dark-border);
   border-bottom: 1px solid var(--dark-border);
@@ -337,7 +337,7 @@ section {
   transition: border-color 0.25s, transform 0.25s;
 }
 .pillar:hover {
-  border-color: rgba(201,168,76,0.45);
+  border-color: rgba(236,229,214,0.45);
   transform: translateX(4px);
 }
 .pillar-icon {
@@ -395,8 +395,8 @@ section {
 }
 .category-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(201,168,76,0.4);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(201,168,76,0.08);
+  border-color: rgba(236,229,214,0.4);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(236,229,214,0.08);
 }
 .category-card:hover::before { opacity: 1; }
 .category-badge {
@@ -405,7 +405,7 @@ section {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
-  border: 1px solid rgba(201,168,76,0.35);
+  border: 1px solid rgba(236,229,214,0.35);
   padding: 0.25rem 0.7rem;
   border-radius: 2px;
   display: inline-block;
@@ -585,7 +585,7 @@ section {
   transition: background 0.25s, border-color 0.25s;
 }
 .process-step:hover .step-dot {
-  background: rgba(201,168,76,0.12);
+  background: rgba(236,229,214,0.12);
   border-color: var(--gold);
 }
 .step-title {
@@ -611,8 +611,8 @@ section {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(201,168,76,0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 60% at 20% 0%, rgba(201,168,76,0.04) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(236,229,214,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 0%, rgba(236,229,214,0.04) 0%, transparent 60%);
 }
 .cta-inner {
   position: relative;

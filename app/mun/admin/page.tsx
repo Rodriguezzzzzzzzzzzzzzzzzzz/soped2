@@ -51,13 +51,13 @@ export default function MUNAdmin() {
   const getStatusStyle = (estado: string) => {
     switch (estado) {
       case 'pago_pendiente':
-        return { background: '#facc15', color: '#000' }
+        return { background: '#ECE5D6', color: '#0F0A0B' }
       case 'pagado':
-        return { background: '#2563eb', color: '#fff' }
+        return { background: '#A5001E', color: '#fff' }
       case 'aceptado':
         return { background: '#16a34a', color: '#fff' }
       default:
-        return { background: '#e5e7eb', color: '#000' }
+        return { background: '#E8E0D8', color: '#000' }
     }
   }
 
@@ -145,7 +145,7 @@ export default function MUNAdmin() {
     borderRadius: '8px',
     border: 'none',
     cursor: 'pointer',
-    background: '#1e293b',
+    background: '#2a0010',
     color: 'white',
     textAlign: 'left' as const
   }
@@ -154,7 +154,7 @@ export default function MUNAdmin() {
     background: 'white',
     padding: '1rem',
     borderRadius: '12px',
-    border: '1px solid #e5e7eb'
+    border: '1px solid #E8E0D8'
   }
 
   const greenBtn = {
@@ -168,7 +168,7 @@ export default function MUNAdmin() {
 
   const blueBtn = {
     padding: '6px 10px',
-    background: '#2563eb',
+    background: '#A5001E',
     color: 'white',
     borderRadius: '8px',
     border: 'none',
@@ -176,44 +176,44 @@ export default function MUNAdmin() {
   }
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', fontFamily: 'Arial' }}>
+    <div className="mun-admin-layout" style={{ display: 'flex', minHeight: '100vh', fontFamily: 'Arial' }}>
       {/* SIDEBAR ONU */}
       <div style={{
         width: '260px',
-        background: '#0f172a',
+        background: '#1a0008',
         color: 'white',
         padding: '1.5rem',
         display: 'flex',
         flexDirection: 'column',
         gap: '1rem'
-      }}>
+      }} className="mun-admin-sidebar">
         <h2 style={{ margin: 0 }}>MUN ONU Panel</h2>
         <p style={{ fontSize: '12px', opacity: 0.7 }}>Navigation</p>
 
         <button
           onClick={() => setFilter('todos')}
-          style={{ ...sideBtn, background: filter === 'todos' ? '#334155' : '#1e293b' }}
+          style={{ ...sideBtn, background: filter === 'todos' ? '#4a3030' : '#2a0010' }}
         >
           Dashboard
         </button>
 
         <button
           onClick={() => setFilter('pago_pendiente')}
-          style={{ ...sideBtn, background: filter === 'pago_pendiente' ? '#facc15' : '#1e293b', color: filter === 'pago_pendiente' ? '#000' : 'white' }}
+          style={{ ...sideBtn, background: filter === 'pago_pendiente' ? '#ECE5D6' : '#2a0010', color: filter === 'pago_pendiente' ? '#0F0A0B' : 'white' }}
         >
           Pendientes
         </button>
 
         <button
           onClick={() => setFilter('pagado')}
-          style={{ ...sideBtn, background: filter === 'pagado' ? '#2563eb' : '#1e293b' }}
+          style={{ ...sideBtn, background: filter === 'pagado' ? '#A5001E' : '#2a0010' }}
         >
           Pagados
         </button>
 
         <button
           onClick={() => setFilter('aceptado')}
-          style={{ ...sideBtn, background: filter === 'aceptado' ? '#16a34a' : '#1e293b' }}
+          style={{ ...sideBtn, background: filter === 'aceptado' ? '#16a34a' : '#2a0010' }}
         >
           Aceptados
         </button>
@@ -224,11 +224,11 @@ export default function MUNAdmin() {
       </div>
 
       {/* MAIN CONTENT */}
-      <div style={{ flex: 1, padding: '2rem', background: '#f4f6fb' }}>
+      <div style={{ flex: 1, padding: '2rem', background: '#F5F0EC' }}>
 
         {/* HEADER */}
         <div style={{
-          background: '#0f172a',
+          background: '#1a0008',
           color: 'white',
           padding: '1.5rem',
           borderRadius: '12px',
@@ -241,8 +241,8 @@ export default function MUNAdmin() {
         {/* STATS */}
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
           <div style={cardStyle}>Total: {total}</div>
-          <div style={{ ...cardStyle, background: '#facc15' }}>Pendientes: {pendientes}</div>
-          <div style={{ ...cardStyle, background: '#2563eb', color: 'white' }}>Pagados: {pagados}</div>
+          <div style={{ ...cardStyle, background: '#ECE5D6', color: '#0F0A0B' }}>Pendientes: {pendientes}</div>
+          <div style={{ ...cardStyle, background: '#A5001E', color: 'white' }}>Pagados: {pagados}</div>
           <div style={{ ...cardStyle, background: '#16a34a', color: 'white' }}>Aceptados: {aceptados}</div>
         </div>
 

@@ -19,7 +19,7 @@ export default function MembresiaPage() {
         if (!mounted) {
           return (
             <div style={{
-              background: '#080b12',
+              background: '#0F0A0B',
               height: '100vh',
               width: '100%',
             }} />
@@ -31,13 +31,13 @@ export default function MembresiaPage() {
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-          --surface-0: #080b12;
-          --surface-1: #0e1420;
-          --surface-2: #141b2e;
-          --surface-3: #1a2238;
-          --primary: #c9a96e;
-          --primary-dim: rgba(201, 169, 110, 0.15);
-          --primary-border: rgba(201, 169, 110, 0.25);
+          --surface-0: #0F0A0B;
+          --surface-1: #1A0A0D;
+          --surface-2: #241014;
+          --surface-3: #241014;
+          --primary: #ECE5D6;
+          --primary-dim: rgba(236, 229, 214, 0.15);
+          --primary-border: rgba(236, 229, 214, 0.25);
           --text-primary: #f0ece4;
           --text-secondary: rgba(240, 236, 228, 0.6);
           --text-tertiary: rgba(240, 236, 228, 0.35);
@@ -105,7 +105,7 @@ export default function MembresiaPage() {
           background:
             radial-gradient(ellipse 80% 60% at 50% 100%, rgba(8, 11, 18, 0.85) 0%, transparent 70%),
             radial-gradient(ellipse 60% 80% at 50% 0%, rgba(8, 11, 18, 0.5) 0%, transparent 60%),
-            linear-gradient(180deg, rgba(8,11,18,0.3) 0%, rgba(8,11,18,0.1) 40%, rgba(8,11,18,0.7) 100%);
+            linear-gradient(180deg, rgba(15,10,11,0.3) 0%, rgba(15,10,11,0.1) 40%, rgba(15,10,11,0.7) 100%);
         }
 
         .hero-content {
@@ -185,7 +185,7 @@ export default function MembresiaPage() {
           align-items: center;
           gap: 0.5rem;
           background: var(--primary);
-          color: #0a0c12;
+          color: #0F0A0B;
           font-family: var(--font-body);
           font-size: 0.88rem;
           font-weight: 500;
@@ -210,7 +210,7 @@ export default function MembresiaPage() {
         }
 
         .btn-primary:hover::after { opacity: 1; }
-        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(201, 169, 110, 0.35); }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(236, 229, 214, 0.35); }
 
         .btn-ghost {
           display: inline-flex;
@@ -410,7 +410,7 @@ export default function MembresiaPage() {
           position: absolute;
           inset: 0;
           border-radius: 12px;
-          background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201, 169, 110, 0.06) 0%, transparent 70%);
+          background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(236, 229, 214, 0.06) 0%, transparent 70%);
           opacity: 0;
           transition: opacity 0.4s;
         }
@@ -540,13 +540,13 @@ export default function MembresiaPage() {
 
         .btn-membership-fill {
           background: var(--primary);
-          color: #0a0c12;
+          color: #0F0A0B;
           border: 1px solid var(--primary);
         }
 
         .btn-membership-fill:hover {
-          background: #d9bc85;
-          box-shadow: 0 6px 24px rgba(201, 169, 110, 0.3);
+          background: #ECE5D6;
+          box-shadow: 0 6px 24px rgba(236, 229, 214, 0.3);
           transform: translateY(-1px);
         }
 
@@ -588,7 +588,7 @@ export default function MembresiaPage() {
         /* ── CTA FINAL ── */
         .cta-section {
           background:
-            radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201, 169, 110, 0.06) 0%, transparent 70%),
+            radial-gradient(ellipse 70% 50% at 50% 50%, rgba(236, 229, 214, 0.06) 0%, transparent 70%),
             var(--surface-1);
           border-top: 1px solid var(--glass-border);
         }

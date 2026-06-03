@@ -16,7 +16,7 @@ export default function GlobalError({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#020617',
+          background: '#040202',
           color: 'white',
           fontFamily: 'Arial, sans-serif',
         }}
@@ -32,7 +32,7 @@ export default function GlobalError({
             style={{
               marginTop: '16px',
               padding: '10px 16px',
-              background: '#2563eb',
+              background: '#A5001E',
               border: 'none',
               borderRadius: '8px',
               color: 'white',

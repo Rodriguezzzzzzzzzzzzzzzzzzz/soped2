@@ -80,66 +80,58 @@ export default function NosotrosPage() {
           paddingTop: '140px',
           position: 'relative',
           overflow: 'hidden',
-          background: 'linear-gradient(160deg, #091c36 0%, #05070d 55%, #0a0f1a 100%)',
+          background: 'linear-gradient(160deg, #7C011A 0%, #0F0A0B 55%, #1A0A0D 100%)',
         }}
       >
         {/* Grid background */}
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
         {/* Ambient glow top-right */}
-        <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: '700px', height: '700px', background: 'radial-gradient(circle, rgba(9,28,54,0.9) 0%, transparent 65%)', borderRadius: '50%', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: '700px', height: '700px', background: 'radial-gradient(circle, rgba(124,1,26,0.9) 0%, transparent 65%)', borderRadius: '50%', pointerEvents: 'none' }} />
 
         {/* Gold ambient bottom-left */}
-        <div style={{ position: 'absolute', bottom: '0', left: '-8%', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(184,150,12,0.05) 0%, transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: '0', left: '-8%', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(236,229,214,0.05) 0%, transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />
 
         {/* Huge decorative number */}
-        <div style={{ position: 'absolute', right: '-20px', top: '50%', transform: 'translateY(-50%)', fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(200px, 30vw, 360px)', fontWeight: 700, color: 'rgba(184,150,12,0.04)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none', letterSpacing: '-0.05em' }}>
+        <div style={{ position: 'absolute', right: '-20px', top: '50%', transform: 'translateY(-50%)', fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(200px, 30vw, 360px)', fontWeight: 700, color: 'rgba(236,229,214,0.04)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none', letterSpacing: '-0.05em' }}>
           SoPeD
         </div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full relative z-10">
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem', opacity: 0, animation: 'fadeUp 0.7s ease 200ms forwards' }}>
             <span className="deco-line" />
-            <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)' }}>
+            <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.7)' }}>
               Sociedad Peruana de Debate — Desde 2016
             </span>
           </div>
 
           <h1 style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(3.5rem, 8vw, 8rem)', fontWeight: 300, color: '#fff', lineHeight: 0.95, letterSpacing: '-0.02em', opacity: 0, animation: 'fadeUp 0.8s ease 350ms forwards' }}>
             La institución<br />
-            <em style={{ fontStyle: 'italic', color: 'rgba(212,175,55,0.9)' }}>detrás del</em><br />
+            <em style={{ fontStyle: 'italic', color: 'rgba(236,229,214,0.9)' }}>detrás del</em><br />
             <span style={{ fontWeight: 600 }}>argumento.</span>
           </h1>
 
-          <div style={{ marginTop: '3rem', display: 'flex', alignItems: 'flex-end', gap: '4rem', flexWrap: 'wrap', opacity: 0, animation: 'fadeUp 0.8s ease 550ms forwards' }}>
-            <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '1rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.85, maxWidth: '420px', fontWeight: 300 }}>
-              SoPeD nació de una convicción simple: el debate no es un deporte —
-              es la herramienta más poderosa que puede tener una mente joven para transformar su entorno.
-            </p>
-            <div style={{ display: 'flex', gap: '3rem', flexShrink: 0 }}>
-              {[['8+', 'años'], ['200+', 'egresados'], ['12+', 'eventos']].map(([n, l]) => (
-                <div key={l}>
-                  <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '3rem', fontWeight: 600, color: '#d4af37', lineHeight: 1 }}>{n}</p>
-                  <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.68rem', color: 'rgba(255,255,255,0.3)', letterSpacing: '0.12em', textTransform: 'uppercase', marginTop: '4px' }}>{l}</p>
-                </div>
-              ))}
+            <div style={{ marginTop: '3rem', display: 'flex', alignItems: 'flex-end', gap: '4rem', flexWrap: 'wrap', opacity: 0, animation: 'fadeUp 0.8s ease 550ms forwards' }}>
+              <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '1rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.85, maxWidth: '420px', fontWeight: 300 }}>
+                SoPeD nació de una convicción simple: el debate no es un deporte —
+                es la herramienta más poderosa que puede tener una mente joven para transformar su entorno.
+              </p>
             </div>
-          </div>
         </div>
 
         {/* Bottom border line */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(184,150,12,0.25), transparent)' }} />
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(236,229,214,0.25), transparent)' }} />
       </section>
 
 
       {/* ═══ MANIFESTO STRIP ═══ */}
-      <section style={{ padding: '5rem 0', background: 'rgba(9,28,54,0.35)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+      <section style={{ padding: '5rem 0', background: 'rgba(124,1,26,0.35)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <RevealOnScroll direction="none" threshold={0.3}>
             <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.6rem, 3vw, 2.8rem)', fontWeight: 400, color: 'rgba(255,255,255,0.85)', lineHeight: 1.4, maxWidth: '900px', margin: '0 auto', textAlign: 'center', letterSpacing: '0.01em' }}>
-              "Formamos estudiantes que no solo saben <em style={{ color: '#d4af37', fontStyle: 'italic' }}>hablar</em> — sino que saben
-              {' '}<em style={{ color: '#d4af37', fontStyle: 'italic' }}>pensar</em>, estructurar, investigar y defender ideas con
-              {' '}<span style={{ borderBottom: '1px solid rgba(184,150,12,0.5)' }}>evidencia y respeto.</span>"
+              "Formamos estudiantes que no solo saben <em style={{ color: '#ECE5D6', fontStyle: 'italic' }}>hablar</em> — sino que saben
+              {' '}<em style={{ color: '#ECE5D6', fontStyle: 'italic' }}>pensar</em>, estructurar, investigar y defender ideas con
+              {' '}<span style={{ borderBottom: '1px solid rgba(236,229,214,0.5)' }}>evidencia y respeto.</span>"
             </p>
           </RevealOnScroll>
         </div>
@@ -154,18 +146,18 @@ export default function NosotrosPage() {
           <RevealOnScroll direction="left">
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '4rem' }}>
               <span className="deco-line" />
-              <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)' }}>
+              <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.7)' }}>
                 Propósito institucional
               </span>
             </div>
           </RevealOnScroll>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'start' }}>
+          <div className="nosotros-mision-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6rem', alignItems: 'start' }}>
 
             {/* Left: Large editorial mission text */}
             <RevealOnScroll direction="left" delay={100}>
               <div>
-                <div style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(5rem, 10vw, 9rem)', fontWeight: 700, color: 'rgba(184,150,12,0.07)', lineHeight: 1, marginBottom: '-1.5rem', letterSpacing: '-0.04em' }}>
+                <div style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(5rem, 10vw, 9rem)', fontWeight: 700, color: 'rgba(236,229,214,0.07)', lineHeight: 1, marginBottom: '-1.5rem', letterSpacing: '-0.04em' }}>
                   01
                 </div>
                 <h2 style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(2rem, 3vw, 2.8rem)', fontWeight: 400, color: '#fff', marginBottom: '1.5rem', lineHeight: 1.2 }}>
@@ -187,9 +179,9 @@ export default function NosotrosPage() {
 
                 {/* Vision */}
                 <div style={{ position: 'relative', overflow: 'hidden' }}>
-                  <div style={{ fontFamily: 'var(--font-cormorant)', fontSize: '5.5rem', fontWeight: 700, color: 'rgba(184,150,12,0.06)', lineHeight: 1, position: 'absolute', right: '-8px', top: '-8px', letterSpacing: '-0.04em' }}>02</div>
-                  <div className="glass" style={{ padding: '2rem 2rem 2rem', position: 'relative', borderLeft: '2px solid rgba(184,150,12,0.4)' }}>
-                    <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.65)', marginBottom: '0.75rem' }}>Visión</p>
+                  <div style={{ fontFamily: 'var(--font-cormorant)', fontSize: '5.5rem', fontWeight: 700, color: 'rgba(236,229,214,0.06)', lineHeight: 1, position: 'absolute', right: '-8px', top: '-8px', letterSpacing: '-0.04em' }}>02</div>
+                  <div className="glass" style={{ padding: '2rem 2rem 2rem', position: 'relative', borderLeft: '2px solid rgba(236,229,214,0.4)' }}>
+                    <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.65)', marginBottom: '0.75rem' }}>Visión</p>
                     <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.3rem', fontWeight: 500, color: '#fff', lineHeight: 1.4 }}>
                       Ser la institución de referencia en debate académico del Perú y Latinoamérica.
                     </p>
@@ -198,7 +190,7 @@ export default function NosotrosPage() {
 
                 {/* Values preview */}
                 <div className="glass" style={{ padding: '2rem', borderLeft: '2px solid rgba(255,255,255,0.08)' }}>
-                  <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.65)', marginBottom: '0.75rem' }}>Valores</p>
+                  <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.65)', marginBottom: '0.75rem' }}>Valores</p>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                     {['Excelencia', 'Rigor', 'Respeto', 'Inclusión', 'Liderazgo'].map((v) => (
                       <span key={v} style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.72rem', color: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.08)', padding: '0.25rem 0.75rem', letterSpacing: '0.05em' }}>
@@ -210,7 +202,7 @@ export default function NosotrosPage() {
 
                 {/* Impact number */}
                 <div className="glass" style={{ padding: '2rem', display: 'flex', alignItems: 'center', gap: '2rem' }}>
-                  <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '3.5rem', fontWeight: 600, color: '#d4af37', lineHeight: 1, flexShrink: 0 }}>100%</p>
+                  <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '3.5rem', fontWeight: 600, color: '#ECE5D6', lineHeight: 1, flexShrink: 0 }}>100%</p>
                   <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.6 }}>de nuestros egresados reportan mejoras medibles en comunicación y liderazgo.</p>
                 </div>
 
@@ -236,7 +228,7 @@ export default function NosotrosPage() {
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
                   <span className="deco-line" />
-                  <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)' }}>
+                  <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.7)' }}>
                     Principios que nos definen
                   </span>
                 </div>
@@ -265,8 +257,8 @@ export default function NosotrosPage() {
                   }}
                   onMouseEnter={e => {
                     const el = e.currentTarget
-                    el.style.borderColor = 'rgba(184,150,12,0.35)'
-                    el.style.boxShadow = '0 0 40px rgba(184,150,12,0.1), 0 8px 32px rgba(0,0,0,0.4)'
+                    el.style.borderColor = 'rgba(236,229,214,0.35)'
+                    el.style.boxShadow = '0 0 40px rgba(236,229,214,0.1), 0 8px 32px rgba(0,0,0,0.4)'
                   }}
                   onMouseLeave={e => {
                     const el = e.currentTarget
@@ -275,12 +267,12 @@ export default function NosotrosPage() {
                   }}
                 >
                   {/* Big number watermark */}
-                  <div style={{ position: 'absolute', right: '1.5rem', top: '1.5rem', fontFamily: 'var(--font-cormorant)', fontSize: '5rem', fontWeight: 700, color: 'rgba(184,150,12,0.06)', lineHeight: 1, userSelect: 'none' }}>
+                  <div style={{ position: 'absolute', right: '1.5rem', top: '1.5rem', fontFamily: 'var(--font-cormorant)', fontSize: '5rem', fontWeight: 700, color: 'rgba(236,229,214,0.06)', lineHeight: 1, userSelect: 'none' }}>
                     {v.num}
                   </div>
 
                   {/* Gold accent line on hover (always subtle) */}
-                  <div style={{ width: '28px', height: '2px', background: 'linear-gradient(90deg, #b8960c, #d4af37)', marginBottom: '0.25rem' }} />
+                  <div style={{ width: '28px', height: '2px', background: 'linear-gradient(90deg, #ECE5D6, #ECE5D6)', marginBottom: '0.25rem' }} />
 
                   <h3 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.5rem', fontWeight: 500, color: '#fff', lineHeight: 1.2, position: 'relative' }}>
                     {v.title}
@@ -304,7 +296,7 @@ export default function NosotrosPage() {
             <div style={{ marginBottom: '4rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
                 <span className="deco-line" />
-                <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)' }}>
+                <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.7)' }}>
                   Cómo trabajamos
                 </span>
               </div>
@@ -315,19 +307,19 @@ export default function NosotrosPage() {
           </RevealOnScroll>
 
           {/* Steps: connected timeline layout */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0', position: 'relative' }}>
+          <div className="nosotros-metodologia-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0', position: 'relative' }}>
             {/* Connecting line */}
-            <div style={{ position: 'absolute', top: '40px', left: '12.5%', right: '12.5%', height: '1px', background: 'linear-gradient(90deg, rgba(184,150,12,0.4), rgba(184,150,12,0.1), rgba(184,150,12,0.4))', zIndex: 0 }} />
+            <div style={{ position: 'absolute', top: '40px', left: '12.5%', right: '12.5%', height: '1px', background: 'linear-gradient(90deg, rgba(236,229,214,0.4), rgba(236,229,214,0.1), rgba(236,229,214,0.4))', zIndex: 0 }} />
 
             {methodology.map((m, i) => (
               <RevealOnScroll key={m.step} direction="up" delay={i * 120}>
                 <div style={{ padding: '0 1.5rem', textAlign: 'center', position: 'relative', zIndex: 1 }}>
                   {/* Step indicator */}
-                  <div style={{ width: '80px', height: '80px', margin: '0 auto 1.5rem', border: '1px solid rgba(184,150,12,0.3)', background: 'var(--dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                    <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.4rem', fontWeight: 600, color: '#d4af37', letterSpacing: '0.05em' }}>{m.step}</span>
+                  <div style={{ width: '80px', height: '80px', margin: '0 auto 1.5rem', border: '1px solid rgba(236,229,214,0.3)', background: 'var(--dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                    <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.4rem', fontWeight: 600, color: '#ECE5D6', letterSpacing: '0.05em' }}>{m.step}</span>
                     {/* Corner accent */}
-                    <div style={{ position: 'absolute', top: '-1px', left: '-1px', width: '8px', height: '8px', borderTop: '2px solid #b8960c', borderLeft: '2px solid #b8960c' }} />
-                    <div style={{ position: 'absolute', bottom: '-1px', right: '-1px', width: '8px', height: '8px', borderBottom: '2px solid #b8960c', borderRight: '2px solid #b8960c' }} />
+                    <div style={{ position: 'absolute', top: '-1px', left: '-1px', width: '8px', height: '8px', borderTop: '2px solid #ECE5D6', borderLeft: '2px solid #ECE5D6' }} />
+                    <div style={{ position: 'absolute', bottom: '-1px', right: '-1px', width: '8px', height: '8px', borderBottom: '2px solid #ECE5D6', borderRight: '2px solid #ECE5D6' }} />
                   </div>
 
                   <h3 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.25rem', fontWeight: 500, color: '#fff', marginBottom: '0.75rem' }}>{m.title}</h3>
@@ -350,7 +342,7 @@ export default function NosotrosPage() {
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
                   <span className="deco-line" />
-                  <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)' }}>
+                  <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.7)' }}>
                     Las personas detrás
                   </span>
                 </div>
@@ -378,9 +370,9 @@ export default function NosotrosPage() {
                   }}
                   onMouseEnter={e => {
                     const el = e.currentTarget
-                    el.style.borderColor = 'rgba(184,150,12,0.3)'
+                    el.style.borderColor = 'rgba(236,229,214,0.3)'
                     el.style.transform = 'translateY(-4px)'
-                    el.style.boxShadow = '0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(184,150,12,0.08)'
+                    el.style.boxShadow = '0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(236,229,214,0.08)'
                   }}
                   onMouseLeave={e => {
                     const el = e.currentTarget
@@ -390,13 +382,13 @@ export default function NosotrosPage() {
                   }}
                 >
                   {/* Top color band */}
-                  <div style={{ height: '3px', background: 'linear-gradient(90deg, rgba(184,150,12,0.6), rgba(184,150,12,0.1), transparent)' }} />
+                  <div style={{ height: '3px', background: 'linear-gradient(90deg, rgba(236,229,214,0.6), rgba(236,229,214,0.1), transparent)' }} />
 
                   <div style={{ padding: '2rem' }}>
                     {/* Avatar + area */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
-                      <div style={{ width: '52px', height: '52px', background: 'rgba(184,150,12,0.08)', border: '1px solid rgba(184,150,12,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.6rem', color: '#d4af37', fontWeight: 600 }}>
+                      <div style={{ width: '52px', height: '52px', background: 'rgba(236,229,214,0.08)', border: '1px solid rgba(236,229,214,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.6rem', color: '#ECE5D6', fontWeight: 600 }}>
                           {member.initial}
                         </span>
                       </div>
@@ -411,7 +403,7 @@ export default function NosotrosPage() {
                     </p>
 
                     {/* Role */}
-                    <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.68rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.65)', marginBottom: '1rem' }}>
+                    <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.68rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.65)', marginBottom: '1rem' }}>
                       {member.role}
                     </p>
 
@@ -432,17 +424,17 @@ export default function NosotrosPage() {
 
 
       {/* ═══ CTA FINAL ═══ */}
-      <section style={{ padding: '8rem 0', background: 'linear-gradient(160deg, #091c36 0%, #05070d 100%)', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ padding: '8rem 0', background: 'linear-gradient(160deg, #7C011A 0%, #0F0A0B 100%)', position: 'relative', overflow: 'hidden' }}>
 
         {/* Decorative circle */}
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '800px', height: '800px', border: '1px solid rgba(184,150,12,0.05)', borderRadius: '50%', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '500px', height: '500px', border: '1px solid rgba(184,150,12,0.04)', borderRadius: '50%', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '800px', height: '800px', border: '1px solid rgba(236,229,214,0.05)', borderRadius: '50%', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '500px', height: '500px', border: '1px solid rgba(236,229,214,0.04)', borderRadius: '50%', pointerEvents: 'none' }} />
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center relative z-10">
           <RevealOnScroll direction="up">
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
               <span className="deco-line" style={{ width: '30px' }} />
-              <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)' }}>
+              <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.7)' }}>
                 Forma parte de SoPeD
               </span>
               <span className="deco-line" style={{ width: '30px' }} />
@@ -450,7 +442,7 @@ export default function NosotrosPage() {
 
             <h2 style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(2.8rem, 5vw, 5rem)', fontWeight: 400, color: '#fff', lineHeight: 1.05, marginBottom: '1.5rem', letterSpacing: '-0.01em' }}>
               El próximo paso<br />
-              <em style={{ fontStyle: 'italic', color: '#d4af37' }}>es tuyo.</em>
+              <em style={{ fontStyle: 'italic', color: '#ECE5D6' }}>es tuyo.</em>
             </h2>
 
             <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '1rem', color: 'rgba(255,255,255,0.38)', maxWidth: '440px', margin: '0 auto 3rem', lineHeight: 1.8, fontWeight: 300 }}>

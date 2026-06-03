@@ -116,12 +116,12 @@ export default function ChairPanel() {
   }
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: '#f4f6fb' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', background: '#F5F0EC' }}>
       <div style={{ flex: 1, padding: '2rem' }}>
 
         {/* HEADER */}
         <div style={{
-          background: '#0f172a',
+          background: '#1a0008',
           color: 'white',
           padding: '1.5rem',
           borderRadius: '12px',
@@ -201,7 +201,7 @@ export default function ChairPanel() {
 
             {/* QUORUM HEADER */}
             <div style={{
-              background: '#0f172a',
+              background: '#1a0008',
               color: 'white',
               padding: '1rem',
               borderRadius: '10px',
@@ -278,7 +278,7 @@ export default function ChairPanel() {
           <div>
 
             <div style={{
-              background: '#0f172a',
+              background: '#1a0008',
               color: 'white',
               padding: '1rem',
               borderRadius: '10px',
@@ -331,7 +331,7 @@ export default function ChairPanel() {
 
                 <div style={{
                   minHeight: '200px',
-                  background: '#f8fafc',
+                  background: '#F5F0EC',
                   borderRadius: '10px',
                   padding: '10px',
                   border: '1px dashed #ccc'
@@ -344,7 +344,7 @@ export default function ChairPanel() {
                         background: 'white',
                         marginBottom: '6px',
                         borderRadius: '8px',
-                        border: '1px solid #e5e7eb',
+                        border: '1px solid #E8E0D8',
                         transform: 'translateX(0)',
                         transition: 'all 0.3s ease'
                       }}
@@ -364,7 +364,7 @@ export default function ChairPanel() {
           <div>
 
             <div style={{
-              background: '#0f172a',
+              background: '#1a0008',
               color: 'white',
               padding: '1rem',
               borderRadius: '10px',
@@ -380,7 +380,7 @@ export default function ChairPanel() {
             <div style={{
               padding: '10px',
               borderRadius: '10px',
-              background: motionActive ? '#16a34a' : '#334155',
+              background: motionActive ? '#16a34a' : '#4a3030',
               color: 'white',
               marginBottom: '1rem'
             }}>
@@ -399,7 +399,7 @@ export default function ChairPanel() {
                 }}
                 style={{
                   ...smallBtn,
-                  background: motionType === 'debate' ? '#2563eb' : '#64748b'
+                  background: motionType === 'debate' ? '#A5001E' : '#6b4040'
                 }}
               >
                 Debate
@@ -412,7 +412,7 @@ export default function ChairPanel() {
                 }}
                 style={{
                   ...smallBtn,
-                  background: motionType === 'resolution' ? '#2563eb' : '#64748b'
+                  background: motionType === 'resolution' ? '#A5001E' : '#6b4040'
                 }}
               >
                 Resolución
@@ -425,7 +425,7 @@ export default function ChairPanel() {
                 }}
                 style={{
                   ...smallBtn,
-                  background: motionType === 'procedure' ? '#2563eb' : '#64748b'
+                  background: motionType === 'procedure' ? '#A5001E' : '#6b4040'
                 }}
               >
                 Procedimiento
@@ -442,7 +442,7 @@ export default function ChairPanel() {
                     onClick={() => setMotionSubtype(t)}
                     style={{
                       ...smallBtn,
-                      background: motionSubtype === t ? '#10b981' : '#1e293b'
+                      background: motionSubtype === t ? '#10b981' : '#2a0010'
                     }}
                   >
                     {t}
@@ -459,7 +459,7 @@ export default function ChairPanel() {
                     onClick={() => setMotionSubtype(t)}
                     style={{
                       ...smallBtn,
-                      background: motionSubtype === t ? '#10b981' : '#1e293b'
+                      background: motionSubtype === t ? '#10b981' : '#2a0010'
                     }}
                   >
                     {t}
@@ -476,7 +476,7 @@ export default function ChairPanel() {
                     onClick={() => setMotionSubtype(t)}
                     style={{
                       ...smallBtn,
-                      background: motionSubtype === t ? '#10b981' : '#1e293b'
+                      background: motionSubtype === t ? '#10b981' : '#2a0010'
                     }}
                   >
                     {t}
@@ -528,7 +528,7 @@ export default function ChairPanel() {
       {/* RIGHT ROOM PANEL */}
       <div style={{
         width: '320px',
-        background: '#0f172a',
+        background: '#1a0008',
         color: 'white',
         padding: '1rem',
         position: 'sticky',
@@ -542,7 +542,7 @@ export default function ChairPanel() {
         <div style={{
           padding: '10px',
           borderRadius: '10px',
-          background: motionActive ? '#16a34a' : '#1e293b',
+          background: motionActive ? '#16a34a' : '#2a0010',
           marginBottom: '1rem',
           transition: 'all 0.3s ease'
         }}>
@@ -563,7 +563,7 @@ export default function ChairPanel() {
                 width: '60px',
                 height: '60px',
                 borderRadius: '50%',
-                background: motionActive ? '#22c55e' : '#334155',
+                background: motionActive ? '#22c55e' : '#4a3030',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -590,7 +590,7 @@ export default function ChairPanel() {
 /* STYLES */
 const btn = {
   padding: '10px 15px',
-  background: '#0f172a',
+  background: '#1a0008',
   color: 'white',
   borderRadius: '8px',
   border: 'none',
@@ -599,7 +599,7 @@ const btn = {
 
 const smallBtn = {
   padding: '6px 10px',
-  background: '#2563eb',
+  background: '#A5001E',
   color: 'white',
   borderRadius: '6px',
   border: 'none',

@@ -1,398 +1,368 @@
 'use client'
 
-import React from 'react'
-import { useState } from 'react'
+import React, { useState, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Layout from '@/components/layout/Layout'
-import DebateForm from '@/components/forms/DebateForm'
-import MembershipForm from '@/components/forms/MembershipForm'
-import ContactForm from '@/components/forms/ContactForm'
 
-// ─── TYPES ────────────────────────────────────────────────────────────────────
-type ProgramId =
-  | 'mun'
-  | 'sopedebate'
-  | 'sopedtalks'
-  | 'membresia'
-  | 'equipo'
+// ── Types ─────────────────────────────────────────────────────────────────────
 
-type MunModalidad =
-  | 'individual'
-  | 'delegacion-pequena'
-  | 'delegacion-grande'
-  | 'faculty'
-  | 'staff'
-  | 'institucional'
+type ProgramId = 'mun' | 'sopedebate' | 'sopedtalks' | 'membresia' | 'equipo'
+type MunModalidadId = 'individual' | 'small' | 'large' | 'institutional' | 'faculty' | 'staff'
 
 type ViewState =
   | { screen: 'hub' }
   | { screen: 'mun-modalidades' }
-  | { screen: 'mun-form'; modalidad: MunModalidad }
+  | { screen: 'mun-form'; modalidad: MunModalidadId }
   | { screen: 'other-form'; program: Exclude<ProgramId, 'mun'> }
 
-// ─── DATA ─────────────────────────────────────────────────────────────────────
+// ── Data ──────────────────────────────────────────────────────────────────────
 
-interface Program {
-  id: ProgramId
-  label: string
-  sublabel: string
-  badge: string
-  description: string
-  detail: string
-  status: string
-  statusActive: boolean
-}
-
-const PROGRAMS: Program[] = [
+const PROGRAMS = [
   {
-    id: 'mun',
-    label: 'SoPeD MUN 2026',
-    sublabel: 'Modelo de Naciones Unidas',
-    badge: 'Internacional',
-    description:
-      'El modelo de Naciones Unidas más exigente del Perú. Debate diplomático avanzado, política global y formación de líderes internacionales.',
-    detail: '6 modalidades de inscripción disponibles',
+    id: 'mun' as const,
+    index: '01',
+    title: 'SoPeD MUN 2026',
+    subtitle: 'Modelo de Naciones Unidas',
+    category: 'Internacional',
     status: 'Inscripciones abiertas',
-    statusActive: true,
-  },
-  {
-    id: 'sopedebate',
-    label: 'SoPeDebate',
-    sublabel: 'Debate escolar',
-    badge: 'Secundaria',
-    description:
-      'Programa de debate parlamentario para estudiantes de secundaria. Oratoria, argumentación formal y pensamiento crítico.',
-    detail: 'Ciclo académico 2026',
-    status: 'Ciclo vigente',
-    statusActive: true,
-  },
-  {
-    id: 'sopedtalks',
-    label: 'SoPeD Talks',
-    sublabel: 'Ciclo de conferencias',
-    badge: 'Abierto',
-    description:
-      'Ciclo de conferencias académicas sobre política internacional, diplomacia y debate. Abierto a todos los niveles.',
-    detail: 'Registro de asistencia',
-    status: 'Próxima edición',
-    statusActive: false,
-  },
-  {
-    id: 'membresia',
-    label: 'Membresía SoPeD',
-    sublabel: 'Comunidad institucional',
-    badge: 'Comunidad',
-    description:
-      'Accede a la red de egresados, recursos exclusivos y beneficios de ser parte de la comunidad oficial SoPeD.',
-    detail: 'Membresía anual',
-    status: 'Registro abierto',
-    statusActive: true,
-  },
-  {
-    id: 'equipo',
-    label: 'Equipo SoPeD',
-    sublabel: 'Postulación interna',
-    badge: 'Convocatoria',
-    description:
-      'Postula para formar parte del equipo organizador de SoPeD. Coordinación, dirección, comunicaciones y logística.',
-    detail: 'Convocatoria 2026',
-    status: 'Postulaciones abiertas',
-    statusActive: true,
-  },
-]
-
-interface Modalidad {
-  id: MunModalidad
-  label: string
-  perfil: string
-  descripcion: string
-  capacidad: string
-  paraQuien: string
-  featured: boolean
-  url: string
-}
-
-const MUN_MODALIDADES: Modalidad[] = [
-  {
-    id: 'institucional',
-    label: 'Representación Institucional Oficial',
-    perfil: 'Institución',
-    descripcion:
-      'Modalidad de máximo nivel para colegios, universidades y organizaciones que representan oficialmente a sus delegaciones. Incluye acreditación institucional, atención prioritaria y protocolo completo.',
-    capacidad: 'Registro exclusivo',
-    paraQuien: 'Instituciones educativas acreditadas',
+    active: true,
+    detail: '12 comités · 6 modalidades · Presencial',
     featured: true,
-    url: 'https://forms.google.com',
   },
   {
-    id: 'delegacion-grande',
-    label: 'Delegación Grande',
-    perfil: 'Institución',
-    descripcion:
-      'Inscripción para instituciones que presentan 10 o más delegados. Incluye coordinación dedicada y proceso de onboarding.',
-    capacidad: '10+ delegados',
-    paraQuien: 'Colegios con delegación amplia',
+    id: 'sopedebate' as const,
+    index: '02',
+    title: 'SoPeDebate',
+    subtitle: 'Competencia de Debate Escolar',
+    category: 'Secundaria',
+    status: 'Ciclo 2026 activo',
+    active: true,
+    detail: 'Categorías A, B y C · Nacional',
     featured: false,
-    url: 'https://forms.google.com',
   },
   {
-    id: 'delegacion-pequena',
-    label: 'Delegación Pequeña',
-    perfil: 'Institución',
-    descripcion:
-      'Para instituciones que inscriben entre 2 y 9 delegados en distintos comités del modelo.',
-    capacidad: '2 – 9 delegados',
-    paraQuien: 'Colegios e institutos',
+    id: 'sopedtalks' as const,
+    index: '03',
+    title: 'SoPeD Talks',
+    subtitle: 'Ciclo de Conferencias',
+    category: 'Abierto',
+    status: 'Próxima edición',
+    active: false,
+    detail: 'Oradores internacionales · Registro libre',
     featured: false,
-    url: 'https://forms.google.com',
   },
   {
-    id: 'individual',
-    label: 'Inscripción Individual',
-    perfil: 'Delegado',
-    descripcion:
-      'Participa como delegado independiente representando a un país asignado en un comité específico.',
-    capacidad: 'Cupos disponibles',
-    paraQuien: 'Estudiantes independientes',
+    id: 'membresia' as const,
+    index: '04',
+    title: 'Membresía SoPeD',
+    subtitle: 'Comunidad Institucional',
+    category: 'Comunidad',
+    status: 'Registro abierto',
+    active: true,
+    detail: 'Estudiante · Institución · Staff',
     featured: false,
-    url: 'https://forms.google.com',
   },
   {
-    id: 'faculty',
-    label: 'Faculty Advisor',
-    perfil: 'Docente',
-    descripcion:
-      'Registro para docentes y asesores académicos que acompañan y orientan a sus delegaciones durante el evento.',
-    capacidad: 'Registro abierto',
-    paraQuien: 'Docentes y asesores',
+    id: 'equipo' as const,
+    index: '05',
+    title: 'Equipo SoPeD',
+    subtitle: 'Convocatoria Interna 2026',
+    category: 'Convocatoria',
+    status: 'Postulaciones abiertas',
+    active: true,
+    detail: 'Coordinación · Dirección · Logística',
     featured: false,
-    url: 'https://forms.google.com',
-  },
-  {
-    id: 'staff',
-    label: 'Staff & Voluntariado',
-    perfil: 'Equipo',
-    descripcion:
-      'Forma parte del equipo organizador del MUN. Logística, protocolo, prensa, tecnología y soporte operacional.',
-    capacidad: 'Cupos limitados',
-    paraQuien: 'Universitarios y egresados',
-    featured: false,
-    url: 'https://forms.google.com',
   },
 ]
 
-// ─── SHARED ATOMS ─────────────────────────────────────────────────────────────
+const MUN_MODALIDADES = [
+  {
+    id: 'institutional' as const,
+    cat: 'Oficial',
+    title: 'Delegación Institucional',
+    sub: 'Representación oficial completa',
+    desc: 'Modalidad de máximo rango para instituciones educativas con delegación completa. Incluye acreditación oficial, reconocimiento institucional pleno y protocolo de representación en todos los actos de la conferencia.',
+    cap: 'Registro exclusivo',
+    featured: true,
+  },
+  {
+    id: 'large' as const,
+    cat: 'Delegación',
+    title: 'Delegación Grande',
+    sub: '10 o más delegados',
+    desc: 'Para instituciones que presentan delegaciones amplias. Incluye coordinación dedicada y proceso de incorporación prioritaria.',
+    cap: '10+ delegados',
+    featured: false,
+  },
+  {
+    id: 'small' as const,
+    cat: 'Delegación',
+    title: 'Delegación Pequeña',
+    sub: '2 a 9 delegados',
+    desc: 'Para instituciones que inscriben entre 2 y 9 delegados en distintos comités del modelo.',
+    cap: '2–9 delegados',
+    featured: false,
+  },
+  {
+    id: 'individual' as const,
+    cat: 'Delegado',
+    title: 'Delegado Individual',
+    sub: 'Participación independiente',
+    desc: 'Participación como delegado independiente representando a un país asignado en un comité específico de la conferencia.',
+    cap: 'Cupos disponibles',
+    featured: false,
+  },
+  {
+    id: 'faculty' as const,
+    cat: 'Asesoría',
+    title: 'Faculty Advisor',
+    sub: 'Asesor académico oficial',
+    desc: 'Para docentes y asesores que acompañan y orientan a sus delegaciones durante la conferencia.',
+    cap: 'Registro abierto',
+    featured: false,
+  },
+  {
+    id: 'staff' as const,
+    cat: 'Equipo',
+    title: 'Staff & Voluntariado',
+    sub: 'Equipo organizador',
+    desc: 'Participa activamente en la organización del MUN: logística, protocolo, prensa y soporte operacional.',
+    cap: 'Cupos limitados',
+    featured: false,
+  },
+]
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="ip-eyebrow">
-      <span className="ip-eyebrow__line" />
-      <span>{children}</span>
-    </div>
-  )
-}
+// ── Sub-components ────────────────────────────────────────────────────────────
 
-function BackBtn({ onClick, label = 'Volver' }: { onClick: () => void; label?: string }) {
+function BackBtn({ onClick, label }: { onClick: () => void; label: string }) {
   return (
-    <button className="ip-back" onClick={onClick}>
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-        <path d="M9 2.5L4.5 7 9 11.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    <button onClick={onClick} className="insc-back">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
+        <path d="M8 2L4 6L8 10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
       {label}
     </button>
   )
 }
 
-// ─── SCREEN 1 — HUB ──────────────────────────────────────────────────────────
+// ── Screen: HUB ───────────────────────────────────────────────────────────────
 
-function HubScreen({ onSelect }: { onSelect: (p: ProgramId) => void }) {
-  const main = PROGRAMS.filter(p => p.id !== 'equipo')
-  const team = PROGRAMS.find(p => p.id === 'equipo')!
-
+function HubScreen({ onSelect }: { onSelect: (id: ProgramId) => void }) {
   return (
-    <div className="ip-screen ip-screen--hub">
-      {/* Page header */}
-      <header className="ip-hub-header">
-        <Eyebrow>Centro de Inscripciones</Eyebrow>
-        <h1 className="ip-hub-header__h1">
-          ¿En qué evento<br />deseas participar?
-        </h1>
-        <p className="ip-hub-header__sub">
-          Selecciona el programa para comenzar tu proceso de inscripción.
-          Cada experiencia ha sido diseñada para ser directa y clara.
-        </p>
-      </header>
+    <div className="insc-screen">
 
-      {/* Main grid — 2×2 */}
-      <div className="ip-hub-grid">
-        {main.map((p, i) => (
-          <button
-            key={p.id}
-            className={`ip-prog-card ${p.id === 'mun' ? 'ip-prog-card--mun' : ''}`}
-            onClick={() => onSelect(p.id)}
-            style={{ animationDelay: `${i * 70}ms` }}
-          >
-            <div className="ip-prog-card__head">
-              <span className="ip-badge">{p.badge}</span>
-              <span className={`ip-status ${p.statusActive ? 'ip-status--active' : ''}`}>
-                <span className="ip-status__dot" />
-                {p.status}
-              </span>
+      {/* ── Opening statement ── */}
+      <div className="insc-hero">
+        <div className="insc-hero__eyebrow">
+          <span className="insc-dot" />
+          SoPeD · Centro de Inscripciones · 2026
+        </div>
+
+        <div className="insc-hero__grid">
+          <h1 className="insc-hero__h1">
+            La puerta a una<br />
+            <em>formación académica</em><br />
+            de élite.
+          </h1>
+          <p className="insc-hero__sub">
+            Selecciona el programa al que deseas postular.
+            Cada convocatoria está diseñada para desarrollar líderes
+            con rigor intelectual, visión global y capacidad
+            argumentativa de primer nivel.
+          </p>
+        </div>
+
+        <div className="insc-hero__metrics">
+          {[
+            ['12+', 'Años de trayectoria'],
+            ['200+', 'Egresados formados'],
+            ['40+', 'Instituciones afiliadas'],
+            ['6', 'Programas activos'],
+          ].map(([n, l]) => (
+            <div key={l} className="insc-metric">
+              <span className="insc-metric__n">{n}</span>
+              <span className="insc-metric__l">{l}</span>
             </div>
-            <div className="ip-prog-card__body">
-              <p className="ip-prog-card__sublabel">{p.sublabel}</p>
-              <h2 className="ip-prog-card__title">{p.label}</h2>
-              <p className="ip-prog-card__desc">{p.description}</p>
-            </div>
-            <div className="ip-prog-card__foot">
-              <span className="ip-prog-card__detail">{p.detail}</span>
-              <span className="ip-prog-card__arrow">
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-                  <path d="M3 7.5h9M8.5 3.5l4 4-4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-            </div>
-          </button>
-        ))}
+          ))}
+        </div>
       </div>
 
-      {/* Team card — full width featured bottom */}
-      <button
-        className="ip-team-card"
-        onClick={() => onSelect(team.id)}
-        style={{ animationDelay: '280ms' }}
-      >
-        <div className="ip-team-card__left">
-          <Eyebrow>Convocatoria interna</Eyebrow>
-          <h2 className="ip-team-card__title">{team.label}</h2>
-          <p className="ip-team-card__desc">{team.description}</p>
+      {/* ── Rule ── */}
+      <div className="insc-rule" />
+
+      {/* ── Program directory ── */}
+      <div className="insc-dir">
+        <div className="insc-dir__head">
+          <span className="insc-dir__label">Programas disponibles</span>
+          <span className="insc-dir__count">{PROGRAMS.length} convocatorias</span>
         </div>
-        <div className="ip-team-card__right">
-          <span className={`ip-status ${team.statusActive ? 'ip-status--active' : ''}`}>
-            <span className="ip-status__dot" />{team.status}
-          </span>
-          <span className="ip-team-card__cta">
-            Postular ahora
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M2.5 7h9M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
+
+        <div className="insc-dir__list">
+          {PROGRAMS.map((p) => (
+            <button
+              key={p.id}
+              className={`insc-prog${p.featured ? ' insc-prog--featured' : ''}`}
+              onClick={() => onSelect(p.id)}
+            >
+              <span className="insc-prog__idx">{p.index}</span>
+
+              <span className="insc-prog__main">
+                <span className="insc-prog__title">{p.title}</span>
+                <span className="insc-prog__sub">{p.subtitle}</span>
+              </span>
+
+              <span className="insc-prog__detail">{p.detail}</span>
+
+              <span className="insc-prog__meta">
+                <span className={`insc-status${p.active ? ' insc-status--on' : ''}`}>
+                  <span className="insc-status__dot" />
+                  {p.status}
+                </span>
+                <span className="insc-prog__cat">{p.category}</span>
+              </span>
+
+              <span className="insc-prog__arrow" aria-hidden>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
+            </button>
+          ))}
         </div>
-      </button>
+      </div>
+
     </div>
   )
 }
 
-// ─── SCREEN 2 — MUN MODALIDADES ───────────────────────────────────────────────
+// ── Screen: MUN MODALIDADES ───────────────────────────────────────────────────
 
 function MunModalidadesScreen({
   onSelect,
   onBack,
 }: {
-  onSelect: (m: MunModalidad) => void
+  onSelect: (id: MunModalidadId) => void
   onBack: () => void
 }) {
   const featured = MUN_MODALIDADES.find(m => m.featured)!
-  const rest = MUN_MODALIDADES.filter(m => !m.featured)
+  const others = MUN_MODALIDADES.filter(m => !m.featured)
 
   return (
-    <div className="ip-screen ip-screen--mun">
+    <div className="insc-screen">
       <BackBtn onClick={onBack} label="Volver a programas" />
 
-      <header className="ip-hub-header ip-hub-header--compact">
-        <Eyebrow>SoPeD MUN 2026</Eyebrow>
-        <h1 className="ip-hub-header__h1">Elige tu modalidad</h1>
-        <p className="ip-hub-header__sub">
-          Selecciona el tipo de participación que corresponde a tu perfil o institución.
-        </p>
-      </header>
-
-      {/* Featured — Representación Institucional */}
-      <button className="ip-featured-card" onClick={() => onSelect(featured.id)}>
-        <div className="ip-featured-card__badge-row">
-          <span className="ip-badge ip-badge--gold">Modalidad destacada</span>
-          <span className="ip-featured-card__cap">{featured.capacidad}</span>
+      {/* Header */}
+      <div className="insc-mun-head">
+        <div className="insc-mun-head__eye">
+          <span className="insc-dot" />
+          SoPeD MUN 2026 · Acreditación de Delegados
         </div>
-        <div className="ip-featured-card__body">
-          <div className="ip-featured-card__left">
-            <p className="ip-featured-card__perfil">{featured.perfil}</p>
-            <h2 className="ip-featured-card__title">{featured.label}</h2>
-            <p className="ip-featured-card__desc">{featured.descripcion}</p>
-            <span className="ip-featured-card__para">{featured.paraQuien}</span>
+        <h2 className="insc-mun-head__h2">
+          Selecciona tu<br /><em>modalidad de participación.</em>
+        </h2>
+        <p className="insc-mun-head__sub">
+          Elige la categoría que corresponde a tu perfil. Cada modalidad tiene
+          requisitos, capacidades y beneficios específicos dentro de la conferencia.
+        </p>
+      </div>
+
+      {/* Featured — Institucional */}
+      <button className="insc-inst" onClick={() => onSelect(featured.id)}>
+        <div className="insc-inst__top">
+          <span className="insc-inst__badge">Representación Oficial</span>
+          <span className="insc-inst__priority">Prioridad máxima</span>
+        </div>
+        <div className="insc-inst__body">
+          <div className="insc-inst__left">
+            <div className="insc-inst__cat">{featured.cat}</div>
+            <h3 className="insc-inst__title">{featured.title}</h3>
+            <p className="insc-inst__desc">{featured.desc}</p>
           </div>
-          <div className="ip-featured-card__right">
-            <span className="ip-featured-card__cta">
+          <div className="insc-inst__right">
+            <span className="insc-inst__cta">
               Registrar institución
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path d="M2.5 7h9M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </span>
           </div>
         </div>
       </button>
 
-      {/* Other modalidades — editorial row list */}
-      <div className="ip-modal-list">
-        {rest.map((m, i) => (
+      {/* Other modalidades */}
+      <div className="insc-mods">
+        {others.map((m) => (
           <button
             key={m.id}
-            className="ip-modal-row"
+            className="insc-mod"
             onClick={() => onSelect(m.id)}
-            style={{ animationDelay: `${i * 55}ms` }}
           >
-            <div className="ip-modal-row__left">
-              <span className="ip-modal-row__perfil">{m.perfil}</span>
-              <h3 className="ip-modal-row__title">{m.label}</h3>
+            <div className="insc-mod__left">
+              <div className="insc-mod__cat">{m.cat}</div>
+              <div className="insc-mod__title">{m.title}</div>
             </div>
-            <div className="ip-modal-row__center">
-              <p className="ip-modal-row__desc">{m.descripcion}</p>
-              <span className="ip-modal-row__para">{m.paraQuien}</span>
+            <div className="insc-mod__center">
+              <div className="insc-mod__desc">{m.desc}</div>
+              <div className="insc-mod__sub">{m.sub}</div>
             </div>
-            <div className="ip-modal-row__right">
-              <span className="ip-modal-row__cap">{m.capacidad}</span>
-              <span className="ip-modal-row__arrow" aria-hidden="true">
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                  <path d="M3 7.5h9M8.5 3.5l4 4-4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
+            <div className="insc-mod__right">
+              <span className="insc-mod__cap">{m.cap}</span>
+              <svg className="insc-mod__arrow" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </div>
           </button>
         ))}
       </div>
-    </div>
-  )
-}
 
-// ─── SCREEN 3 — FORM EMBED ────────────────────────────────────────────────────
-
-function MunFormScreen({
-  modalidad,
-  onBack,
-}: {
-  modalidad: MunModalidad
-  onBack: () => void
-}) {
-  const m = MUN_MODALIDADES.find(x => x.id === modalidad)!
-  return (
-    <div className="ip-screen ip-screen--form">
-      <BackBtn onClick={onBack} label="Volver a modalidades" />
-      <header className="ip-hub-header ip-hub-header--compact">
-        <Eyebrow>SoPeD MUN 2026 · {m.perfil}</Eyebrow>
-        <h1 className="ip-hub-header__h1">{m.label}</h1>
-        <p className="ip-hub-header__sub">{m.descripcion}</p>
-      </header>
-      <div className="ip-embed">
-        <iframe
-          src={m.url}
-          title={`Formulario — ${m.label}`}
-          className="ip-embed__frame"
-          frameBorder="0"
-        >
-          Cargando formulario…
-        </iframe>
+      {/* Process timeline */}
+      <div className="insc-process">
+        <div className="insc-process__label">Proceso de inscripción</div>
+        <div className="insc-process__steps">
+          {['Selecciona modalidad', 'Completa formulario', 'Verifica tu correo', 'Aguarda confirmación'].map((s, i) => (
+            <div key={s} className="insc-step">
+              <div className="insc-step__n">{['I', 'II', 'III', 'IV'][i]}</div>
+              <div className="insc-step__l">{s}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
 }
+
+// ── Screen: MUN FORM ──────────────────────────────────────────────────────────
+
+function MunFormScreen({ modalidad, onBack }: { modalidad: MunModalidadId; onBack: () => void }) {
+  const m = MUN_MODALIDADES.find(x => x.id === modalidad)!
+  return (
+    <div className="insc-screen">
+      <BackBtn onClick={onBack} label="Volver a modalidades" />
+      <div className="insc-fhead">
+        <div className="insc-fhead__tag">{m.cat}</div>
+        <h2 className="insc-fhead__title">{m.title}</h2>
+        <p className="insc-fhead__sub">{m.desc}</p>
+      </div>
+      <div className="insc-fbody">
+        <div className="insc-form-embed">
+          <iframe
+            src="https://docs.google.com/forms/d/e/REEMPLAZAR_FORM_ID/viewform?embedded=true"
+            width="100%"
+            height="1200"
+            frameBorder="0"
+            marginHeight={0}
+            marginWidth={0}
+            title="Formulario SoPeD MUN"
+          >
+            Cargando formulario...
+          </iframe>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ── Screen: OTHER FORM ────────────────────────────────────────────────────────
 
 function OtherFormScreen({
   program,
@@ -403,71 +373,748 @@ function OtherFormScreen({
 }) {
   const p = PROGRAMS.find(x => x.id === program)!
 
-  // Insert renderForm inside the component scope
-  const renderForm = () => {
-    switch (program) {
-      case 'sopedebate':
-        return <DebateForm />
-      case 'membresia':
-        return <MembershipForm />
-      case 'sopedtalks':
-      case 'equipo':
-        return <ContactForm />
-      default:
-        return null
-    }
-  }
-
   return (
-    <div className="ip-screen ip-screen--form">
+    <div className="insc-screen">
       <BackBtn onClick={onBack} label="Volver a programas" />
-      <header className="ip-hub-header ip-hub-header--compact">
-        <Eyebrow>{p.sublabel}</Eyebrow>
-        <h1 className="ip-hub-header__h1">{p.label}</h1>
-        <p className="ip-hub-header__sub">{p.description}</p>
-      </header>
-      <div className="ip-form-wrap">
-        {renderForm()}
+      <div className="insc-fhead">
+        <div className="insc-fhead__tag">{p.category}</div>
+        <h2 className="insc-fhead__title">{p.title}</h2>
+        <p className="insc-fhead__sub">{p.subtitle}</p>
+      </div>
+      <div className="insc-fbody">
+        <div className="insc-form-embed">
+          <iframe
+            src="https://docs.google.com/forms/d/e/REEMPLAZAR_FORM_ID/viewform?embedded=true"
+            width="100%"
+            height="1200"
+            frameBorder="0"
+            marginHeight={0}
+            marginWidth={0}
+            title="Formulario SoPeD"
+          >
+            Cargando formulario...
+          </iframe>
+        </div>
       </div>
     </div>
   )
 }
 
-// ─── PAGE ROOT ────────────────────────────────────────────────────────────────
+// ── Page Root ─────────────────────────────────────────────────────────────────
 
 export default function InscripcionPage() {
-  const [view, setView] = useState<ViewState>({ screen: 'hub' })
+  // Wrapped with Suspense per Next.js 14 requirement for useSearchParams
+  return (
+    <Suspense fallback={null}>
+      <InscripcionPageInner />
+    </Suspense>
+  )
+}
 
-  const handleProgram = (p: ProgramId) => {
-    if (p === 'mun') setView({ screen: 'mun-modalidades' })
-    else setView({ screen: 'other-form', program: p as Exclude<ProgramId, 'mun'> })
+function InscripcionPageInner() {
+  const searchParams = useSearchParams()
+  const program = searchParams.get('program')
+  const [view, setView] = useState<ViewState>(() =>
+    program === 'mun'
+      ? { screen: 'mun-modalidades' }
+      : { screen: 'hub' }
+  )
+
+  const handleProgram = (id: ProgramId) => {
+    if (id === 'mun') setView({ screen: 'mun-modalidades' })
+    else setView({ screen: 'other-form', program: id as Exclude<ProgramId, 'mun'> })
   }
 
   return (
     <Layout>
-      <div className="ip-page">
-        <div className="ip-page__inner">
+      <style jsx global>{`
+
+        /* ═══════════════════════════════════════════════════
+           INSCRIPCION 2026 — Editorial Premium Redesign
+           ═══════════════════════════════════════════════════ */
+
+        .insc-page {
+          min-height: 100vh;
+          background: var(--dark);
+          padding: 8rem 0 9rem;
+        }
+
+        .insc-wrap {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 0 2rem;
+        }
+        @media (min-width: 768px)  { .insc-wrap { padding: 0 3rem; } }
+        @media (min-width: 1280px) { .insc-wrap { padding: 0 2.5rem; } }
+
+        /* Screen transition */
+        .insc-screen {
+          animation: inscIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        @keyframes inscIn {
+          from { opacity: 0; transform: translateY(16px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Utilities ── */
+
+        .insc-dot {
+          display: inline-block;
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: rgba(236, 229, 214, 0.65);
+          flex-shrink: 0;
+        }
+
+        .insc-rule {
+          height: 1px;
+          background: rgba(255, 255, 255, 0.07);
+          margin: 3.5rem 0;
+        }
+
+        /* ── Back button ── */
+
+        .insc-back {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-family: var(--font-outfit);
+          font-size: 0.72rem;
+          color: rgba(255, 255, 255, 0.2);
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          margin-bottom: 2.5rem;
+          letter-spacing: 0.02em;
+          transition: color 150ms ease;
+        }
+        .insc-back:hover { color: rgba(236, 229, 214, 0.7); }
+        .insc-back svg { flex-shrink: 0; transition: transform 150ms ease; }
+        .insc-back:hover svg { transform: translateX(-2px); }
+
+        /* ── Status ── */
+
+        .insc-status {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-family: var(--font-outfit);
+          font-size: 0.63rem;
+          color: rgba(255, 255, 255, 0.18);
+          letter-spacing: 0.02em;
+        }
+        .insc-status__dot {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.16);
+          flex-shrink: 0;
+        }
+        .insc-status--on .insc-status__dot {
+          background: #4ade80;
+          box-shadow: 0 0 7px rgba(74, 222, 128, 0.55);
+        }
+        .insc-status--on { color: rgba(255, 255, 255, 0.3); }
+
+        /* ════════════════════════════════════════
+           HUB SCREEN
+           ════════════════════════════════════════ */
+
+        /* Hero statement */
+        .insc-hero {
+          margin-bottom: 0;
+        }
+
+        .insc-hero__eyebrow {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          font-family: var(--font-outfit);
+          font-size: 0.6rem;
+          font-weight: 600;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: rgba(236, 229, 214, 0.6);
+          margin-bottom: 2rem;
+        }
+
+        .insc-hero__grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+          align-items: start;
+          margin-bottom: 3rem;
+        }
+        @media (max-width: 860px) {
+          .insc-hero__grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        .insc-hero__h1 {
+          font-family: var(--font-cormorant);
+          font-size: clamp(2.6rem, 4.5vw, 4.8rem);
+          font-weight: 300;
+          color: #fff;
+          line-height: 1.04;
+          letter-spacing: -0.02em;
+        }
+        .insc-hero__h1 em {
+          font-style: italic;
+          color: rgba(236, 229, 214, 0.88);
+        }
+
+        .insc-hero__sub {
+          font-family: var(--font-outfit);
+          font-size: 0.875rem;
+          color: rgba(255, 255, 255, 0.32);
+          line-height: 1.9;
+          align-self: center;
+        }
+
+        /* Metrics */
+        .insc-hero__metrics {
+          display: flex;
+          gap: 3rem;
+          padding-top: 2.5rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.07);
+          flex-wrap: wrap;
+        }
+
+        .insc-metric {}
+        .insc-metric__n {
+          display: block;
+          font-family: var(--font-cormorant);
+          font-size: 2.6rem;
+          font-weight: 300;
+          color: rgba(236, 229, 214, 0.78);
+          line-height: 1;
+          margin-bottom: 0.3rem;
+        }
+        .insc-metric__l {
+          display: block;
+          font-family: var(--font-outfit);
+          font-size: 0.62rem;
+          color: rgba(255, 255, 255, 0.2);
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+        }
+
+        /* Directory */
+        .insc-dir {}
+
+        .insc-dir__head {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 0.75rem;
+        }
+        .insc-dir__label {
+          font-family: var(--font-outfit);
+          font-size: 0.6rem;
+          font-weight: 700;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: rgba(255, 255, 255, 0.18);
+        }
+        .insc-dir__count {
+          font-family: var(--font-outfit);
+          font-size: 0.6rem;
+          color: rgba(255, 255, 255, 0.12);
+          letter-spacing: 0.04em;
+        }
+
+        .insc-dir__list {
+          display: flex;
+          flex-direction: column;
+          border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* Program row */
+        .insc-prog {
+          display: grid;
+          grid-template-columns: 2.5rem 1fr 1fr 200px 1.5rem;
+          align-items: center;
+          gap: 1.5rem;
+          padding: 1.5rem 0;
+          background: none;
+          border: none;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+          cursor: pointer;
+          text-align: left;
+          position: relative;
+          transition: padding 200ms ease;
+        }
+        .insc-prog::before {
+          content: '';
+          position: absolute;
+          inset: 0 -2rem;
+          background: transparent;
+          border-radius: 6px;
+          transition: background 180ms ease;
+          z-index: 0;
+        }
+        .insc-prog:hover::before { background: rgba(255, 255, 255, 0.02); }
+        .insc-prog > * { position: relative; z-index: 1; }
+        .insc-prog:hover .insc-prog__title { color: #fff; }
+        .insc-prog:hover .insc-prog__arrow { color: rgba(236,229,214,0.7); transform: translateX(3px); }
+
+        .insc-prog--featured .insc-prog__title { color: rgba(236, 229, 214, 0.9); }
+        .insc-prog--featured .insc-prog__idx   { color: rgba(236, 229, 214, 0.3); }
+
+        @media (max-width: 900px) {
+          .insc-prog { grid-template-columns: 2rem 1fr auto 1.5rem; }
+          .insc-prog__detail { display: none; }
+          .insc-prog__cat    { display: none; }
+        }
+        @media (max-width: 560px) {
+          .insc-prog { grid-template-columns: 2rem 1fr auto; gap: 0.75rem; }
+          .insc-prog__arrow { display: none; }
+        }
+
+        .insc-prog__idx {
+          font-family: var(--font-cormorant);
+          font-size: 0.9rem;
+          color: rgba(255, 255, 255, 0.1);
+          letter-spacing: 0.04em;
+          flex-shrink: 0;
+          transition: color 200ms ease;
+        }
+
+        .insc-prog__main { display: flex; flex-direction: column; gap: 0.2rem; }
+        .insc-prog__title {
+          font-family: var(--font-cormorant);
+          font-size: 1.5rem;
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.85);
+          line-height: 1;
+          letter-spacing: -0.01em;
+          transition: color 200ms ease;
+        }
+        .insc-prog__sub {
+          font-family: var(--font-outfit);
+          font-size: 0.7rem;
+          color: rgba(255, 255, 255, 0.18);
+          letter-spacing: 0.02em;
+        }
+
+        .insc-prog__detail {
+          font-family: var(--font-outfit);
+          font-size: 0.7rem;
+          color: rgba(255, 255, 255, 0.16);
+        }
+
+        .insc-prog__meta {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 0.4rem;
+        }
+        .insc-prog__cat {
+          font-family: var(--font-outfit);
+          font-size: 0.58rem;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: rgba(236, 229, 214, 0.42);
+          border: 1px solid rgba(236, 229, 214, 0.14);
+          padding: 0.15rem 0.5rem;
+          border-radius: 2px;
+        }
+
+        .insc-prog__arrow {
+          color: rgba(255, 255, 255, 0.1);
+          display: flex;
+          align-items: center;
+          flex-shrink: 0;
+          transition: color 200ms ease, transform 200ms ease;
+        }
+
+        /* ════════════════════════════════════════
+           MUN SCREEN
+           ════════════════════════════════════════ */
+
+        .insc-mun-head {
+          margin-bottom: 2.5rem;
+        }
+        .insc-mun-head__eye {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          font-family: var(--font-outfit);
+          font-size: 0.6rem;
+          font-weight: 600;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: rgba(236, 229, 214, 0.6);
+          margin-bottom: 1.5rem;
+        }
+        .insc-mun-head__h2 {
+  font-family: var(--font-cormorant);
+  font-size: clamp(3.5rem, 7vw, 6rem);
+          font-weight: 300;
+          color: #fff;
+          line-height: 1.07;
+          letter-spacing: -0.02em;
+          margin-bottom: 1rem;
+        }
+        .insc-mun-head__h2 em {
+          font-style: italic;
+          color: rgba(236, 229, 214, 0.85);
+        }
+        .insc-mun-head__sub {
+  font-family: var(--font-outfit);
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.9;
+  max-width: 820px;
+
+        }
+
+        /* Institucional */
+        .insc-inst {
+          width: 100%;
+          background: rgba(124, 1, 26, 0.3);
+          border: 1px solid rgba(236, 229, 214, 0.22);
+          border-radius: 10px;
+          padding: 2rem 2.25rem;
+          cursor: pointer;
+          text-align: left;
+          margin-bottom: 1.25rem;
+          position: relative;
+          overflow: hidden;
+          transition: border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+        }
+        .insc-inst::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse 55% 70% at 88% 50%, rgba(236,229,214,0.05) 0%, transparent 70%);
+          pointer-events: none;
+        }
+        .insc-inst:hover {
+          border-color: rgba(236, 229, 214, 0.42);
+          background: rgba(124, 1, 26, 0.5);
+          box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(236,229,214,0.07);
+        }
+        .insc-inst:hover .insc-inst__cta { color: rgba(236,229,214,0.9); }
+        .insc-inst:hover .insc-inst__cta svg { transform: translateX(3px); }
+
+        .insc-inst__top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1.5rem;
+        }
+        .insc-inst__badge {
+          font-family: var(--font-outfit);
+          font-size: 0.58rem;
+          font-weight: 700;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: rgba(236, 229, 214, 0.82);
+          background: rgba(236, 229, 214, 0.07);
+          border: 1px solid rgba(236, 229, 214, 0.25);
+          padding: 0.22rem 0.65rem;
+          border-radius: 2px;
+        }
+        .insc-inst__priority {
+          font-family: var(--font-outfit);
+          font-size: 0.58rem;
+          color: rgba(255, 255, 255, 0.15);
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+        .insc-inst__body {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          gap: 2rem;
+        }
+        @media (max-width: 640px) {
+          .insc-inst__body { flex-direction: column; align-items: flex-start; }
+        }
+        .insc-inst__left { display: flex; flex-direction: column; gap: 0.6rem; }
+        .insc-inst__cat {
+          font-family: var(--font-outfit);
+          font-size: 0.58rem;
+          font-weight: 700;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: rgba(236, 229, 214, 0.5);
+        }
+        .insc-inst__title {
+          font-family: var(--font-cormorant);
+          font-size: clamp(1.6rem, 2.5vw, 2.3rem);
+          font-weight: 400;
+          color: rgba(236, 229, 214, 0.9);
+          line-height: 1.05;
+        }
+        .insc-inst__desc {
+          font-family: var(--font-outfit);
+          font-size: 0.8rem;
+          color: rgba(255, 255, 255, 0.3);
+          line-height: 1.72;
+          max-width: 560px;
+        }
+        .insc-inst__right { flex-shrink: 0; }
+        .insc-inst__cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-family: var(--font-outfit);
+          font-size: 0.8rem;
+          font-weight: 500;
+          color: rgba(236, 229, 214, 0.6);
+          transition: color 200ms ease;
+          white-space: nowrap;
+        }
+        .insc-inst__cta svg { transition: transform 200ms ease; }
+
+        /* Modalidades list */
+        .insc-mods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+        .insc-mod {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 2rem;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  min-height: 280px;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+        .insc-mod:last-child { border-bottom: none; }
+.insc-mod:hover {
+  transform: translateY(-6px);
+  border-color: rgba(236,229,214,0.35);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+        .insc-mod:hover .insc-mod__arrow { color: rgba(236,229,214,0.7); transform: translateX(2px); }
+
+        @media (max-width: 768px) {
+          .insc-mod { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.25rem 1.5rem; }
+          .insc-mod__right { display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
+        }
+
+        .insc-mod__left { display: flex; flex-direction: column; gap: 0.28rem; }
+        .insc-mod__cat {
+          font-family: var(--font-outfit);
+          font-size: 0.56rem;
+          font-weight: 700;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: rgba(236, 229, 214, 0.42);
+        }
+        .insc-mod__title {
+          font-family: var(--font-cormorant);
+          font-size: 1.35rem;
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.88);
+          line-height: 1.1;
+        }
+
+        .insc-mod__center { display: flex; flex-direction: column; gap: 0.28rem; }
+        .insc-mod__desc {
+          font-family: var(--font-outfit);
+          font-size: 0.76rem;
+          color: rgba(255, 255, 255, 0.27);
+          line-height: 1.65;
+        }
+        .insc-mod__sub {
+          font-family: var(--font-outfit);
+          font-size: 0.62rem;
+          color: rgba(255, 255, 255, 0.14);
+        }
+
+        .insc-mod__right {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 0.5rem;
+        }
+        .insc-mod__cap {
+          font-family: var(--font-outfit);
+          font-size: 0.58rem;
+          font-weight: 600;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: rgba(236, 229, 214, 0.4);
+          border: 1px solid rgba(236, 229, 214, 0.14);
+          padding: 0.17rem 0.5rem;
+          border-radius: 2px;
+          white-space: nowrap;
+        }
+        .insc-mod__arrow {
+          color: rgba(255, 255, 255, 0.1);
+          display: flex;
+          align-items: center;
+          flex-shrink: 0;
+          transition: color 180ms ease, transform 180ms ease;
+        }
+
+        /* Process */
+        .insc-process {
+          border-top: 1px solid rgba(255, 255, 255, 0.06);
+          padding-top: 2rem;
+        }
+        .insc-process__label {
+          font-family: var(--font-outfit);
+          font-size: 0.6rem;
+          font-weight: 700;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: rgba(255, 255, 255, 0.14);
+          margin-bottom: 1.5rem;
+        }
+        .insc-process__steps {
+          display: flex;
+          position: relative;
+        }
+        .insc-process__steps::before {
+          content: '';
+          position: absolute;
+          top: 1.15rem;
+          left: 1.2rem;
+          right: 1.2rem;
+          height: 1px;
+          background: linear-gradient(90deg, rgba(236,229,214,0.2), rgba(236,229,214,0.06));
+        }
+
+        .insc-step {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.75rem;
+          position: relative;
+          z-index: 1;
+        }
+        .insc-step__n {
+          width: 2.3rem;
+          height: 2.3rem;
+          border: 1px solid rgba(236, 229, 214, 0.2);
+          border-radius: 50%;
+          background: var(--dark);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: var(--font-cormorant);
+          font-size: 0.8rem;
+          color: rgba(236, 229, 214, 0.5);
+        }
+        .insc-step__l {
+          font-family: var(--font-outfit);
+          font-size: 0.62rem;
+          color: rgba(255, 255, 255, 0.18);
+          text-align: center;
+          line-height: 1.45;
+          max-width: 72px;
+        }
+
+        @media (max-width: 560px) {
+          .insc-process__steps { flex-direction: column; gap: 0.75rem; }
+          .insc-process__steps::before { display: none; }
+          .insc-step { flex-direction: row; align-items: center; gap: 0.75rem; }
+          .insc-step__l { text-align: left; max-width: none; }
+        }
+
+        /* ════════════════════════════════════════
+           FORM SCREENS
+           ════════════════════════════════════════ */
+
+        .insc-fhead {
+          margin-bottom: 2.5rem;
+          padding-bottom: 2rem;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        .insc-fhead__tag {
+          font-family: var(--font-outfit);
+          font-size: 0.6rem;
+          font-weight: 700;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: rgba(236, 229, 214, 0.55);
+          margin-bottom: 0.75rem;
+        }
+        .insc-fhead__title {
+          font-family: var(--font-cormorant);
+          font-size: clamp(2rem, 3.5vw, 3.2rem);
+          font-weight: 300;
+          color: #fff;
+          line-height: 1.1;
+          margin-bottom: 0.75rem;
+        }
+        .insc-fhead__sub {
+          font-family: var(--font-outfit);
+          font-size: 0.85rem;
+          color: rgba(255, 255, 255, 0.28);
+          line-height: 1.8;
+          max-width: 580px;
+        }
+
+        .insc-fbody {
+          width: 100%;
+        }
+
+        .insc-form-embed {
+          width: 100%;
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 12px;
+          overflow: hidden;
+          background: rgba(255,255,255,0.02);
+        }
+
+        .insc-form-embed iframe {
+          display: block;
+          width: 100%;
+          min-height: 1200px;
+          background: white;
+        }
+
+      `}</style>
+
+      <div className="insc-page">
+        <div className="insc-wrap">
+
           {view.screen === 'hub' && (
             <HubScreen onSelect={handleProgram} />
           )}
+
           {view.screen === 'mun-modalidades' && (
             <MunModalidadesScreen
               onSelect={(m) => setView({ screen: 'mun-form', modalidad: m })}
               onBack={() => setView({ screen: 'hub' })}
             />
           )}
+
           {view.screen === 'mun-form' && (
             <MunFormScreen
               modalidad={view.modalidad}
               onBack={() => setView({ screen: 'mun-modalidades' })}
             />
           )}
+
           {view.screen === 'other-form' && (
             <OtherFormScreen
               program={view.program}
               onBack={() => setView({ screen: 'hub' })}
             />
           )}
+
         </div>
       </div>
     </Layout>

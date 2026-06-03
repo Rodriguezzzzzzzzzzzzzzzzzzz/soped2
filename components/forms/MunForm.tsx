@@ -62,7 +62,7 @@ export default function MunForm() {
         }}
       >
         <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>✦</div>
-        <h3 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.8rem', color: '#d4af37' }}>
+        <h3 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.8rem', color: '#ECE5D6' }}>
           Solicitud enviada
         </h3>
         <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.9rem', color: 'rgba(255,255,255,0.5)', maxWidth: '400px', lineHeight: 1.7 }}>
@@ -82,7 +82,7 @@ export default function MunForm() {
             fontWeight: 500,
             letterSpacing: '0.15em',
             textTransform: 'uppercase',
-            color: 'rgba(184,150,12,0.7)',
+            color: 'rgba(236,229,214,0.7)',
           }}
         >
           Formulario de inscripción
@@ -142,11 +142,11 @@ export default function MunForm() {
             onChange={(e) => handleChange('experiencia', e.target.value)}
             style={{ appearance: 'none', cursor: 'pointer' }}
           >
-            <option value="" style={{ background: '#091c36' }}>Selecciona tu nivel</option>
-            <option value="ninguna" style={{ background: '#091c36' }}>Sin experiencia previa</option>
-            <option value="basica" style={{ background: '#091c36' }}>Básica (1–2 torneos)</option>
-            <option value="intermedia" style={{ background: '#091c36' }}>Intermedia (3–6 torneos)</option>
-            <option value="avanzada" style={{ background: '#091c36' }}>Avanzada (7+ torneos)</option>
+            <option value="" style={{ background: '#7C011A' }}>Selecciona tu nivel</option>
+            <option value="ninguna" style={{ background: '#7C011A' }}>Sin experiencia previa</option>
+            <option value="basica" style={{ background: '#7C011A' }}>Básica (1–2 torneos)</option>
+            <option value="intermedia" style={{ background: '#7C011A' }}>Intermedia (3–6 torneos)</option>
+            <option value="avanzada" style={{ background: '#7C011A' }}>Avanzada (7+ torneos)</option>
           </select>
         </div>
 
@@ -158,12 +158,12 @@ export default function MunForm() {
             onChange={(e) => handleChange('comite', e.target.value)}
             style={{ appearance: 'none', cursor: 'pointer' }}
           >
-            <option value="" style={{ background: '#091c36' }}>Selecciona un comité</option>
-            <option value="csnu" style={{ background: '#091c36' }}>Consejo de Seguridad de la ONU</option>
-            <option value="agonu" style={{ background: '#091c36' }}>Asamblea General de la ONU</option>
-            <option value="ecosoc" style={{ background: '#091c36' }}>ECOSOC</option>
-            <option value="unhrc" style={{ background: '#091c36' }}>Consejo de DDHH (UNHRC)</option>
-            <option value="crisis" style={{ background: '#091c36' }}>Comité de Crisis</option>
+            <option value="" style={{ background: '#7C011A' }}>Selecciona un comité</option>
+            <option value="csnu" style={{ background: '#7C011A' }}>Consejo de Seguridad de la ONU</option>
+            <option value="agonu" style={{ background: '#7C011A' }}>Asamblea General de la ONU</option>
+            <option value="ecosoc" style={{ background: '#7C011A' }}>ECOSOC</option>
+            <option value="unhrc" style={{ background: '#7C011A' }}>Consejo de DDHH (UNHRC)</option>
+            <option value="crisis" style={{ background: '#7C011A' }}>Comité de Crisis</option>
           </select>
         </div>
 

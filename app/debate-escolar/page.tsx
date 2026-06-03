@@ -325,23 +325,6 @@ export default function DebateEscolarPage() {
         </div>
       </section>
 
-      <footer className="footer">
-        <div className="footer-logo">SoPeD</div>
-
-        <p className="footer-copy">
-          ©{" "}
-          <span suppressHydrationWarning>
-            {new Date().getFullYear()}
-          </span>{" "}
-          Sociedad Peruana de Debate · Todos los derechos reservados
-        </p>
-
-        <ul className="footer-links">
-          <li><a href="/">Inicio</a></li>
-          <li><a href="/mun">SoPeD MUN</a></li>
-          <li><a href="/contacto">Contacto</a></li>
-        </ul>
-      </footer>
     </>
   );
 }

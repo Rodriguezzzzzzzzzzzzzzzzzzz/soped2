@@ -32,7 +32,7 @@ export default function MembershipForm() {
     return (
       <div className="glass" style={{ padding: '3rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
         <div style={{ fontSize: '2.5rem' }}>✦</div>
-        <h3 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.8rem', color: '#d4af37' }}>Solicitud de membresía enviada</h3>
+        <h3 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.8rem', color: '#ECE5D6' }}>Solicitud de membresía enviada</h3>
         <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.9rem', color: 'rgba(255,255,255,0.5)', maxWidth: '400px', lineHeight: 1.7 }}>
           Tu solicitud para unirte a SoPeD ha sido recibida. El equipo revisará tu perfil y te contactará pronto.
         </p>
@@ -43,7 +43,7 @@ export default function MembershipForm() {
   return (
     <div className="glass" style={{ padding: '2.5rem' }}>
       <div style={{ marginBottom: '2rem' }}>
-        <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(184,150,12,0.7)' }}>
+        <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.7)' }}>
           Membresía institucional
         </span>
         <h2 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '2rem', fontWeight: 500, color: '#fff', marginTop: '0.5rem' }}>
@@ -75,9 +75,9 @@ export default function MembershipForm() {
                     fontFamily: 'var(--font-outfit)',
                     fontSize: '0.75rem',
                     padding: '0.4rem 1rem',
-                    border: active ? '1px solid rgba(184,150,12,0.5)' : '1px solid rgba(255,255,255,0.08)',
-                    background: active ? 'rgba(184,150,12,0.12)' : 'rgba(255,255,255,0.03)',
-                    color: active ? '#d4af37' : 'rgba(255,255,255,0.45)',
+                    border: active ? '1px solid rgba(236,229,214,0.5)' : '1px solid rgba(255,255,255,0.08)',
+                    background: active ? 'rgba(236,229,214,0.12)' : 'rgba(255,255,255,0.03)',
+                    color: active ? '#ECE5D6' : 'rgba(255,255,255,0.45)',
                     cursor: 'pointer',
                     transition: 'all 0.25s ease',
                     letterSpacing: '0.05em',
