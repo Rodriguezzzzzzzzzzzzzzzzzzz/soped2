@@ -1,16 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
-
-const stats = [
-  { value: '200+', label: 'Estudiantes formados' },
-  { value: '12+', label: 'Ediciones realizadas' },
-  { value: '8+', label: 'Años de trayectoria' },
-  { value: '100%', label: 'Certificación oficial' },
-]
 
 const programs = [
   {
@@ -69,18 +61,13 @@ function Hero() {
           <source src="/mun-bg.mp4" type="video/mp4" />
         </video>
         <div className="soped-hero__overlay" />
-        <div className="soped-hero__vignette" />
       </div>
 
       {/* Content */}
       <div className="soped-hero__content">
         <div className="soped-hero__institutional-badge">
-          <span>●</span>
-          <span>Institución Académica · Cusco, Perú</span>
         </div>
         <div className="soped-eyebrow">
-          <span className="soped-eyebrow__line" />
-          <span>Sociedad Peruana de Debate</span>
         </div>
 
         <h1 className="soped-hero__h1">
@@ -100,14 +87,6 @@ function Hero() {
           <Link href="/programas" className="soped-btn soped-btn--ghost">
             Ver programas
           </Link>
-        </div>
-        <div className="soped-hero__stats">
-          {stats.map((item) => (
-            <div key={item.label} className="soped-hero__stat">
-              <strong>{item.value}</strong>
-              <span>{item.label}</span>
-            </div>
-          ))}
         </div>
       </div>
 

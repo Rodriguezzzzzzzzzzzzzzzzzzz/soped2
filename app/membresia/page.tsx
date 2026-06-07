@@ -38,12 +38,12 @@ export default function MembresiaPage() {
           --primary: #ECE5D6;
           --primary-dim: rgba(236, 229, 214, 0.15);
           --primary-border: rgba(236, 229, 214, 0.25);
-          --text-primary: #f0ece4;
-          --text-secondary: rgba(240, 236, 228, 0.6);
-          --text-tertiary: rgba(240, 236, 228, 0.35);
-          --glass-bg: rgba(14, 20, 32, 0.55);
+          --text-primary: rgba(255,255,255,0.9);
+          --text-secondary: rgba(255,255,255,0.7);
+          --text-muted: rgba(255,255,255,0.5);
+          --glass-bg: rgba(255, 255, 255, 0.04);
           --glass-border: rgba(255, 255, 255, 0.07);
-          --glass-hover: rgba(20, 27, 46, 0.75);
+          --glass-hover: rgba(255, 255, 255, 0.08);
           --shadow-deep: 0 32px 80px rgba(0, 0, 0, 0.6);
           --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
           --font-display: "Cormorant Garamond", Georgia, serif;
@@ -380,7 +380,7 @@ export default function MembresiaPage() {
 
         /* ── MEMBERSHIP TYPES ── */
         .membership-section {
-          background: var(--surface-1);
+          background: var(--surface-0);
         }
 
         .membership-grid {
@@ -550,47 +550,18 @@ export default function MembresiaPage() {
           transform: translateY(-1px);
         }
 
-        /* ── STATS STRIP ── */
-        .stats-strip {
-          border-top: 1px solid var(--glass-border);
-          border-bottom: 1px solid var(--glass-border);
-          background: var(--surface-1);
-          padding: 3rem 2rem;
-        }
-
-        .stats-inner {
-          max-width: 1000px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-          gap: 2rem;
-          text-align: center;
-        }
-
-        .stat-item {}
-
-        .stat-number {
-          font-family: var(--font-display);
-          font-size: 3rem;
-          font-weight: 300;
-          color: var(--primary);
-          line-height: 1;
-          margin-bottom: 0.4rem;
-        }
-
         .stat-label {
           font-size: 0.78rem;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: var(--text-tertiary);
+          color: var(--text-muted);
         }
 
         /* ── CTA FINAL ── */
         .cta-section {
           background:
             radial-gradient(ellipse 70% 50% at 50% 50%, rgba(236, 229, 214, 0.06) 0%, transparent 70%),
-            var(--surface-1);
-          border-top: 1px solid var(--glass-border);
+            var(--surface-0);
         }
 
         .cta-inner {
@@ -624,7 +595,7 @@ export default function MembresiaPage() {
         .cta-note {
           margin-top: 1.5rem;
           font-size: 0.78rem;
-          color: var(--text-tertiary);
+          color: var(--text-muted);
           letter-spacing: 0.04em;
         }
 
@@ -653,7 +624,7 @@ export default function MembresiaPage() {
 
         .footer-copy {
           font-size: 0.75rem;
-          color: var(--text-tertiary);
+          color: var(--text-muted);
           letter-spacing: 0.04em;
         }
 
@@ -663,7 +634,6 @@ export default function MembresiaPage() {
           .hero-actions a, .hero-actions button { width: 100%; max-width: 320px; justify-content: center; }
           .benefits-grid { grid-template-columns: 1fr; }
           .membership-grid { grid-template-columns: 1fr; }
-          .stats-inner { grid-template-columns: repeat(2, 1fr); }
         }
 
         /* ── SCROLL ANIMATIONS ── */
@@ -721,23 +691,6 @@ export default function MembresiaPage() {
             <span>Scroll</span>
           </div>
         </section>
-
-        {/* ══════════ STATS ══════════ */}
-        <div className="stats-strip">
-          <div className="stats-inner">
-            {[
-              { n: '12+', l: 'Años de trayectoria' },
-              { n: '800+', l: 'Miembros activos' },
-              { n: '40+', l: 'Instituciones afiliadas' },
-              { n: '6', l: 'Programas oficiales' },
-            ].map((s) => (
-              <div className="stat-item" key={s.l}>
-                <div className="stat-number">{s.n}</div>
-                <div className="stat-label">{s.l}</div>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* ══════════ BENEFICIOS ══════════ */}
         <section id="beneficios" className="section">

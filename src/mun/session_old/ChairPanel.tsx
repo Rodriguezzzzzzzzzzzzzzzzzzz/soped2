@@ -46,7 +46,7 @@ interface ChairPanelProps {
 const T = {
   glass:   'rgba(255,255,255,0.04)',
   border:  'rgba(255,255,255,0.08)',
-  text:    '#e8e8e8',
+  text:    'rgba(255,255,255,0.9)',
   muted:   'rgba(255,255,255,0.45)',
   dim:     'rgba(255,255,255,0.22)',
   gold:    '#ECE5D6',

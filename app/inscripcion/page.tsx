@@ -171,20 +171,6 @@ function HubScreen({ onSelect }: { onSelect: (id: ProgramId) => void }) {
             argumentativa de primer nivel.
           </p>
         </div>
-
-        <div className="insc-hero__metrics">
-          {[
-            ['12+', 'Años de trayectoria'],
-            ['200+', 'Egresados formados'],
-            ['40+', 'Instituciones afiliadas'],
-            ['6', 'Programas activos'],
-          ].map(([n, l]) => (
-            <div key={l} className="insc-metric">
-              <span className="insc-metric__n">{n}</span>
-              <span className="insc-metric__l">{l}</span>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* ── Rule ── */}
@@ -433,13 +419,41 @@ function InscripcionPageInner() {
            INSCRIPCION 2026 — Editorial Premium Redesign
            ═══════════════════════════════════════════════════ */
 
+        /* ── Page shell ── */
+
         .insc-page {
+          position: relative;
           min-height: 100vh;
           background: var(--dark);
           padding: 8rem 0 9rem;
+          isolation: isolate;
+        }
+        .insc-page::before {
+          content: '';
+          position: absolute;
+          top: -10%;
+          right: -20%;
+          width: 60vw;
+          height: 60vw;
+          background: radial-gradient(circle, rgba(124,1,26,0.12) 0%, transparent 65%);
+          pointer-events: none;
+          z-index: 0;
+        }
+        .insc-page::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: -15%;
+          width: 50vw;
+          height: 50vw;
+          background: radial-gradient(circle, rgba(236,229,214,0.035) 0%, transparent 60%);
+          pointer-events: none;
+          z-index: 0;
         }
 
         .insc-wrap {
+          position: relative;
+          z-index: 1;
           max-width: 1100px;
           margin: 0 auto;
           padding: 0 2rem;
@@ -447,14 +461,46 @@ function InscripcionPageInner() {
         @media (min-width: 768px)  { .insc-wrap { padding: 0 3rem; } }
         @media (min-width: 1280px) { .insc-wrap { padding: 0 2.5rem; } }
 
-        /* Screen transition */
+        /* ── Screen transition ── */
+
         .insc-screen {
-          animation: inscIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+          animation: inscIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
         @keyframes inscIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Staggered card animations ── */
+
+        .insc-prog,
+        .insc-mod,
+        .insc-step {
+          opacity: 0;
+          animation: inscCardIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes inscCardIn {
           from { opacity: 0; transform: translateY(16px); }
           to   { opacity: 1; transform: translateY(0); }
         }
+
+        .insc-dir__list > .insc-prog:nth-child(1) { animation-delay: 0.05s; }
+        .insc-dir__list > .insc-prog:nth-child(2) { animation-delay: 0.10s; }
+        .insc-dir__list > .insc-prog:nth-child(3) { animation-delay: 0.15s; }
+        .insc-dir__list > .insc-prog:nth-child(4) { animation-delay: 0.20s; }
+        .insc-dir__list > .insc-prog:nth-child(5) { animation-delay: 0.25s; }
+
+        .insc-mods > .insc-mod:nth-child(1) { animation-delay: 0.08s; }
+        .insc-mods > .insc-mod:nth-child(2) { animation-delay: 0.14s; }
+        .insc-mods > .insc-mod:nth-child(3) { animation-delay: 0.20s; }
+        .insc-mods > .insc-mod:nth-child(4) { animation-delay: 0.26s; }
+        .insc-mods > .insc-mod:nth-child(5) { animation-delay: 0.32s; }
+
+        .insc-process__steps > .insc-step:nth-child(1) { animation-delay: 0.10s; }
+        .insc-process__steps > .insc-step:nth-child(2) { animation-delay: 0.18s; }
+        .insc-process__steps > .insc-step:nth-child(3) { animation-delay: 0.26s; }
+        .insc-process__steps > .insc-step:nth-child(4) { animation-delay: 0.34s; }
 
         /* ── Utilities ── */
 
@@ -469,7 +515,7 @@ function InscripcionPageInner() {
 
         .insc-rule {
           height: 1px;
-          background: rgba(255, 255, 255, 0.07);
+          background: linear-gradient(90deg, rgba(236,229,214,0.12), rgba(236,229,214,0.04), transparent);
           margin: 3.5rem 0;
         }
 
@@ -490,11 +536,16 @@ function InscripcionPageInner() {
           letter-spacing: 0.02em;
           transition: color 150ms ease;
         }
+        .insc-back:focus-visible {
+          outline: 2px solid rgba(236,229,214,0.5);
+          outline-offset: 4px;
+          border-radius: 2px;
+        }
         .insc-back:hover { color: rgba(236, 229, 214, 0.7); }
         .insc-back svg { flex-shrink: 0; transition: transform 150ms ease; }
         .insc-back:hover svg { transform: translateX(-2px); }
 
-        /* ── Status ── */
+        /* ── Status badges ── */
 
         .insc-status {
           display: inline-flex;
@@ -519,12 +570,27 @@ function InscripcionPageInner() {
         .insc-status--on { color: rgba(255, 255, 255, 0.3); }
 
         /* ════════════════════════════════════════
-           HUB SCREEN
+           HUB SCREEN  —  Hero
            ════════════════════════════════════════ */
 
-        /* Hero statement */
         .insc-hero {
+          position: relative;
           margin-bottom: 0;
+        }
+        .insc-hero::after {
+          content: 'SoPeD';
+          position: absolute;
+          top: -0.5rem;
+          right: -1rem;
+          font-family: var(--font-cormorant);
+          font-size: clamp(8rem, 18vw, 16rem);
+          font-weight: 300;
+          font-style: italic;
+          color: rgba(236,229,214,0.025);
+          line-height: 1;
+          pointer-events: none;
+          user-select: none;
+          letter-spacing: -0.04em;
         }
 
         .insc-hero__eyebrow {
@@ -553,7 +619,7 @@ function InscripcionPageInner() {
 
         .insc-hero__h1 {
           font-family: var(--font-cormorant);
-          font-size: clamp(2.6rem, 4.5vw, 4.8rem);
+          font-size: clamp(2.8rem, 5vw, 5.2rem);
           font-weight: 300;
           color: #fff;
           line-height: 1.04;
@@ -572,42 +638,49 @@ function InscripcionPageInner() {
           align-self: center;
         }
 
-        /* Metrics */
+        /* ── Metrics ── */
+
         .insc-hero__metrics {
           display: flex;
-          gap: 3rem;
+          gap: 2.5rem;
           padding-top: 2.5rem;
-          border-top: 1px solid rgba(255, 255, 255, 0.07);
+          border-top: 1px solid rgba(255, 255, 255, 0.06);
           flex-wrap: wrap;
         }
-
-        .insc-metric {}
+        .insc-metric {
+          display: flex;
+          flex-direction: column;
+          gap: 0.15rem;
+        }
         .insc-metric__n {
           display: block;
           font-family: var(--font-cormorant);
-          font-size: 2.6rem;
+          font-size: 2.8rem;
           font-weight: 300;
-          color: rgba(236, 229, 214, 0.78);
+          color: rgba(236, 229, 214, 0.82);
           line-height: 1;
-          margin-bottom: 0.3rem;
+          letter-spacing: -0.02em;
         }
         .insc-metric__l {
           display: block;
           font-family: var(--font-outfit);
-          font-size: 0.62rem;
-          color: rgba(255, 255, 255, 0.2);
+          font-size: 0.6rem;
+          color: rgba(255, 255, 255, 0.18);
           letter-spacing: 0.06em;
           text-transform: uppercase;
         }
 
-        /* Directory */
+        /* ════════════════════════════════════════
+           HUB SCREEN  —  Program directory
+           ════════════════════════════════════════ */
+
         .insc-dir {}
 
         .insc-dir__head {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 0.75rem;
+          margin-bottom: 1rem;
         }
         .insc-dir__label {
           font-family: var(--font-outfit);
@@ -630,58 +703,106 @@ function InscripcionPageInner() {
           border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        /* Program row */
+        /* ── Program row (premium card) ── */
+
         .insc-prog {
           display: grid;
           grid-template-columns: 2.5rem 1fr 1fr 200px 1.5rem;
           align-items: center;
           gap: 1.5rem;
-          padding: 1.5rem 0;
-          background: none;
+          padding: 1.4rem 1.5rem;
+          background: transparent;
           border: none;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.04);
           cursor: pointer;
           text-align: left;
           position: relative;
-          transition: padding 200ms ease;
+          transition:
+            background 0.25s ease,
+            border-color 0.25s ease,
+            padding 0.2s ease;
+          border-radius: 6px;
+          margin: 0 -1.5rem;
+          width: calc(100% + 3rem);
         }
         .insc-prog::before {
           content: '';
           position: absolute;
-          inset: 0 -2rem;
-          background: transparent;
+          inset: 0;
+          background: rgba(255,255,255,0);
           border-radius: 6px;
-          transition: background 180ms ease;
+          transition: background 0.25s ease;
           z-index: 0;
         }
-        .insc-prog:hover::before { background: rgba(255, 255, 255, 0.02); }
-        .insc-prog > * { position: relative; z-index: 1; }
+        .insc-prog:hover {
+          background: rgba(255,255,255,0.015);
+          border-bottom-color: rgba(255,255,255,0.08);
+        }
+        .insc-prog:hover::before {
+          background: rgba(255,255,255,0.015);
+        }
+        .insc-prog:focus-visible {
+          outline: 2px solid rgba(236,229,214,0.4);
+          outline-offset: -2px;
+        }
+        .insc-prog > * {
+          position: relative;
+          z-index: 1;
+        }
         .insc-prog:hover .insc-prog__title { color: #fff; }
-        .insc-prog:hover .insc-prog__arrow { color: rgba(236,229,214,0.7); transform: translateX(3px); }
+        .insc-prog:hover .insc-prog__idx { color: rgba(236,229,214,0.25); }
+        .insc-prog:hover .insc-prog__arrow {
+          color: rgba(236,229,214,0.7);
+          transform: translateX(4px);
+        }
 
-        .insc-prog--featured .insc-prog__title { color: rgba(236, 229, 214, 0.9); }
-        .insc-prog--featured .insc-prog__idx   { color: rgba(236, 229, 214, 0.3); }
+        .insc-prog--featured {
+          background: rgba(124,1,26,0.08);
+          border-bottom-color: rgba(236,229,214,0.08);
+        }
+        .insc-prog--featured .insc-prog__title {
+          color: rgba(236, 229, 214, 0.92);
+        }
+        .insc-prog--featured .insc-prog__idx {
+          color: rgba(236, 229, 214, 0.25);
+        }
 
         @media (max-width: 900px) {
-          .insc-prog { grid-template-columns: 2rem 1fr auto 1.5rem; }
+          .insc-prog {
+            grid-template-columns: 2rem 1fr auto 1.5rem;
+            padding: 1.2rem 1rem;
+            margin: 0 -1rem;
+            width: calc(100% + 2rem);
+          }
           .insc-prog__detail { display: none; }
           .insc-prog__cat    { display: none; }
         }
         @media (max-width: 560px) {
-          .insc-prog { grid-template-columns: 2rem 1fr auto; gap: 0.75rem; }
+          .insc-prog {
+            grid-template-columns: 2rem 1fr auto;
+            gap: 0.75rem;
+            padding: 1rem 0.75rem;
+            margin: 0 -0.75rem;
+            width: calc(100% + 1.5rem);
+          }
           .insc-prog__arrow { display: none; }
         }
 
         .insc-prog__idx {
           font-family: var(--font-cormorant);
           font-size: 0.9rem;
-          color: rgba(255, 255, 255, 0.1);
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.07);
           letter-spacing: 0.04em;
           flex-shrink: 0;
-          transition: color 200ms ease;
+          transition: color 0.25s ease;
         }
 
-        .insc-prog__main { display: flex; flex-direction: column; gap: 0.2rem; }
+        .insc-prog__main {
+          display: flex;
+          flex-direction: column;
+          gap: 0.2rem;
+        }
         .insc-prog__title {
           font-family: var(--font-cormorant);
           font-size: 1.5rem;
@@ -689,7 +810,7 @@ function InscripcionPageInner() {
           color: rgba(255, 255, 255, 0.85);
           line-height: 1;
           letter-spacing: -0.01em;
-          transition: color 200ms ease;
+          transition: color 0.25s ease;
         }
         .insc-prog__sub {
           font-family: var(--font-outfit);
@@ -727,14 +848,15 @@ function InscripcionPageInner() {
           display: flex;
           align-items: center;
           flex-shrink: 0;
-          transition: color 200ms ease, transform 200ms ease;
+          transition: color 0.25s ease, transform 0.25s ease;
         }
 
         /* ════════════════════════════════════════
-           MUN SCREEN
+           MUN SCREEN  —  Modalidades
            ════════════════════════════════════════ */
 
         .insc-mun-head {
+          position: relative;
           margin-bottom: 2.5rem;
         }
         .insc-mun-head__eye {
@@ -750,8 +872,8 @@ function InscripcionPageInner() {
           margin-bottom: 1.5rem;
         }
         .insc-mun-head__h2 {
-  font-family: var(--font-cormorant);
-  font-size: clamp(3.5rem, 7vw, 6rem);
+          font-family: var(--font-cormorant);
+          font-size: clamp(3.5rem, 7vw, 6rem);
           font-weight: 300;
           color: #fff;
           line-height: 1.07;
@@ -763,42 +885,78 @@ function InscripcionPageInner() {
           color: rgba(236, 229, 214, 0.85);
         }
         .insc-mun-head__sub {
-  font-family: var(--font-outfit);
-  font-size: 1.15rem;
-  color: rgba(255, 255, 255, 0.45);
-  line-height: 1.9;
-  max-width: 820px;
-
+          font-family: var(--font-outfit);
+          font-size: 1.15rem;
+          color: rgba(255, 255, 255, 0.45);
+          line-height: 1.9;
+          max-width: 820px;
         }
 
-        /* Institucional */
+        /* ── Institutional card ── */
+
         .insc-inst {
           width: 100%;
-          background: rgba(124, 1, 26, 0.3);
-          border: 1px solid rgba(236, 229, 214, 0.22);
-          border-radius: 10px;
+          background: linear-gradient(160deg, rgba(124,1,26,0.35) 0%, rgba(124,1,26,0.15) 100%);
+          border: 1px solid rgba(236, 229, 214, 0.18);
+          border-radius: 12px;
           padding: 2rem 2.25rem;
           cursor: pointer;
           text-align: left;
-          margin-bottom: 1.25rem;
+          margin-bottom: 1.5rem;
           position: relative;
           overflow: hidden;
-          transition: border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+          transition:
+            border-color 0.25s ease,
+            background 0.25s ease,
+            box-shadow 0.3s ease;
+          isolation: isolate;
+        }
+        .insc-inst::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse 70% 80% at 85% 50%, rgba(236,229,214,0.08) 0%, transparent 65%);
+          pointer-events: none;
+          z-index: 0;
         }
         .insc-inst::after {
           content: '';
           position: absolute;
-          inset: 0;
-          background: radial-gradient(ellipse 55% 70% at 88% 50%, rgba(236,229,214,0.05) 0%, transparent 70%);
+          top: -50%;
+          left: -30%;
+          width: 60%;
+          height: 200%;
+          background: linear-gradient(90deg, transparent, rgba(236,229,214,0.03), transparent);
+          transform: rotate(25deg);
           pointer-events: none;
+          transition: transform 0.6s ease;
+          z-index: 0;
         }
         .insc-inst:hover {
-          border-color: rgba(236, 229, 214, 0.42);
-          background: rgba(124, 1, 26, 0.5);
-          box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(236,229,214,0.07);
+          border-color: rgba(236, 229, 214, 0.35);
+          background: linear-gradient(160deg, rgba(124,1,26,0.5) 0%, rgba(124,1,26,0.2) 100%);
+          box-shadow:
+            0 20px 56px rgba(0,0,0,0.45),
+            0 0 0 1px rgba(236,229,214,0.06);
+          transform: translateY(-2px);
         }
-        .insc-inst:hover .insc-inst__cta { color: rgba(236,229,214,0.9); }
-        .insc-inst:hover .insc-inst__cta svg { transform: translateX(3px); }
+        .insc-inst:hover::after {
+          transform: rotate(25deg) translateX(20%);
+        }
+        .insc-inst:hover .insc-inst__cta {
+          color: rgba(236,229,214,0.9);
+        }
+        .insc-inst:hover .insc-inst__cta svg {
+          transform: translateX(4px);
+        }
+        .insc-inst:focus-visible {
+          outline: 2px solid rgba(236,229,214,0.4);
+          outline-offset: 2px;
+        }
+        .insc-inst > * {
+          position: relative;
+          z-index: 1;
+        }
 
         .insc-inst__top {
           display: flex;
@@ -834,7 +992,11 @@ function InscripcionPageInner() {
         @media (max-width: 640px) {
           .insc-inst__body { flex-direction: column; align-items: flex-start; }
         }
-        .insc-inst__left { display: flex; flex-direction: column; gap: 0.6rem; }
+        .insc-inst__left {
+          display: flex;
+          flex-direction: column;
+          gap: 0.6rem;
+        }
         .insc-inst__cat {
           font-family: var(--font-outfit);
           font-size: 0.58rem;
@@ -857,7 +1019,9 @@ function InscripcionPageInner() {
           line-height: 1.72;
           max-width: 560px;
         }
-        .insc-inst__right { flex-shrink: 0; }
+        .insc-inst__right {
+          flex-shrink: 0;
+        }
         .insc-inst__cta {
           display: inline-flex;
           align-items: center;
@@ -866,51 +1030,75 @@ function InscripcionPageInner() {
           font-size: 0.8rem;
           font-weight: 500;
           color: rgba(236, 229, 214, 0.6);
-          transition: color 200ms ease;
+          transition: color 0.25s ease;
           white-space: nowrap;
         }
-        .insc-inst__cta svg { transition: transform 200ms ease; }
-
-        /* Modalidades list */
-        .insc-mods {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 1.25rem;
-  margin-bottom: 4rem;
-}
-
-        .insc-mod {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 2rem;
-  background: rgba(255,255,255,0.025);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  cursor: pointer;
-  text-align: left;
-  width: 100%;
-  min-height: 280px;
-  transition:
-    transform 220ms ease,
-    border-color 220ms ease,
-    box-shadow 220ms ease;
-}
-        .insc-mod:last-child { border-bottom: none; }
-.insc-mod:hover {
-  transform: translateY(-6px);
-  border-color: rgba(236,229,214,0.35);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-}
-        .insc-mod:hover .insc-mod__arrow { color: rgba(236,229,214,0.7); transform: translateX(2px); }
-
-        @media (max-width: 768px) {
-          .insc-mod { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.25rem 1.5rem; }
-          .insc-mod__right { display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
+        .insc-inst__cta svg {
+          transition: transform 0.25s ease;
         }
 
-        .insc-mod__left { display: flex; flex-direction: column; gap: 0.28rem; }
+        /* ── Modalidades grid ── */
+
+        .insc-mods {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 1.25rem;
+          margin-bottom: 4rem;
+        }
+
+        .insc-mod {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+          padding: 2rem;
+          background: rgba(255,255,255,0.02);
+          border: 1px solid rgba(255,255,255,0.06);
+          border-radius: 12px;
+          cursor: pointer;
+          text-align: left;
+          width: 100%;
+          min-height: 260px;
+          transition:
+            transform 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.3s ease,
+            background 0.3s ease;
+        }
+        .insc-mod:hover {
+          transform: translateY(-4px);
+          border-color: rgba(236,229,214,0.25);
+          background: rgba(255,255,255,0.03);
+          box-shadow: 0 18px 44px rgba(0,0,0,0.35);
+        }
+        .insc-mod:focus-visible {
+          outline: 2px solid rgba(236,229,214,0.4);
+          outline-offset: 2px;
+        }
+        .insc-mod:hover .insc-mod__arrow {
+          color: rgba(236,229,214,0.7);
+          transform: translateX(3px);
+        }
+
+        @media (max-width: 768px) {
+          .insc-mod {
+            min-height: auto;
+            padding: 1.5rem;
+          }
+          .insc-mod__right {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+          }
+        }
+
+        .insc-mod__left {
+          display: flex;
+          flex-direction: column;
+          gap: 0.28rem;
+        }
         .insc-mod__cat {
           font-family: var(--font-outfit);
           font-size: 0.56rem;
@@ -927,7 +1115,11 @@ function InscripcionPageInner() {
           line-height: 1.1;
         }
 
-        .insc-mod__center { display: flex; flex-direction: column; gap: 0.28rem; }
+        .insc-mod__center {
+          display: flex;
+          flex-direction: column;
+          gap: 0.28rem;
+        }
         .insc-mod__desc {
           font-family: var(--font-outfit);
           font-size: 0.76rem;
@@ -945,6 +1137,7 @@ function InscripcionPageInner() {
           flex-direction: column;
           align-items: flex-end;
           gap: 0.5rem;
+          margin-top: auto;
         }
         .insc-mod__cap {
           font-family: var(--font-outfit);
@@ -963,13 +1156,14 @@ function InscripcionPageInner() {
           display: flex;
           align-items: center;
           flex-shrink: 0;
-          transition: color 180ms ease, transform 180ms ease;
+          transition: color 0.25s ease, transform 0.25s ease;
         }
 
-        /* Process */
+        /* ── Process timeline ── */
+
         .insc-process {
           border-top: 1px solid rgba(255, 255, 255, 0.06);
-          padding-top: 2rem;
+          padding-top: 2.5rem;
         }
         .insc-process__label {
           font-family: var(--font-outfit);
@@ -987,11 +1181,11 @@ function InscripcionPageInner() {
         .insc-process__steps::before {
           content: '';
           position: absolute;
-          top: 1.15rem;
-          left: 1.2rem;
-          right: 1.2rem;
+          top: 1.25rem;
+          left: 1.5rem;
+          right: 1.5rem;
           height: 1px;
-          background: linear-gradient(90deg, rgba(236,229,214,0.2), rgba(236,229,214,0.06));
+          background: linear-gradient(90deg, rgba(236,229,214,0.25), rgba(236,229,214,0.05), transparent);
         }
 
         .insc-step {
@@ -1004,17 +1198,22 @@ function InscripcionPageInner() {
           z-index: 1;
         }
         .insc-step__n {
-          width: 2.3rem;
-          height: 2.3rem;
-          border: 1px solid rgba(236, 229, 214, 0.2);
+          width: 2.5rem;
+          height: 2.5rem;
+          border: 1px solid rgba(236, 229, 214, 0.18);
           border-radius: 50%;
           background: var(--dark);
           display: flex;
           align-items: center;
           justify-content: center;
           font-family: var(--font-cormorant);
-          font-size: 0.8rem;
-          color: rgba(236, 229, 214, 0.5);
+          font-size: 0.85rem;
+          color: rgba(236, 229, 214, 0.55);
+          transition: border-color 0.25s ease, background 0.25s ease;
+        }
+        .insc-step:hover .insc-step__n {
+          border-color: rgba(236, 229, 214, 0.4);
+          background: rgba(236,229,214,0.04);
         }
         .insc-step__l {
           font-family: var(--font-outfit);
@@ -1022,14 +1221,24 @@ function InscripcionPageInner() {
           color: rgba(255, 255, 255, 0.18);
           text-align: center;
           line-height: 1.45;
-          max-width: 72px;
+          max-width: 80px;
         }
 
         @media (max-width: 560px) {
-          .insc-process__steps { flex-direction: column; gap: 0.75rem; }
+          .insc-process__steps {
+            flex-direction: column;
+            gap: 0.5rem;
+          }
           .insc-process__steps::before { display: none; }
-          .insc-step { flex-direction: row; align-items: center; gap: 0.75rem; }
-          .insc-step__l { text-align: left; max-width: none; }
+          .insc-step {
+            flex-direction: row;
+            align-items: center;
+            gap: 0.75rem;
+          }
+          .insc-step__l {
+            text-align: left;
+            max-width: none;
+          }
         }
 
         /* ════════════════════════════════════════
@@ -1037,9 +1246,10 @@ function InscripcionPageInner() {
            ════════════════════════════════════════ */
 
         .insc-fhead {
+          position: relative;
           margin-bottom: 2.5rem;
           padding-bottom: 2rem;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
         .insc-fhead__tag {
           font-family: var(--font-outfit);
@@ -1071,18 +1281,32 @@ function InscripcionPageInner() {
         }
 
         .insc-form-embed {
+          position: relative;
           width: 100%;
           border: 1px solid rgba(255,255,255,0.08);
           border-radius: 12px;
           overflow: hidden;
           background: rgba(255,255,255,0.02);
         }
+        .insc-form-embed::before {
+          content: '';
+          position: absolute;
+          top: -20%;
+          right: -10%;
+          width: 40%;
+          height: 80%;
+          background: radial-gradient(circle, rgba(124,1,26,0.15) 0%, transparent 60%);
+          pointer-events: none;
+          z-index: 0;
+        }
 
         .insc-form-embed iframe {
           display: block;
+          position: relative;
+          z-index: 1;
           width: 100%;
           min-height: 1200px;
-          background: white;
+          background: #fff;
         }
 
       `}</style>

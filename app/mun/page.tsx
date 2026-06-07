@@ -256,8 +256,6 @@ export default function MunPage() {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           background: rgba(15,10,11,0.6);
-          border-top: 1px solid var(--mun-border);
-          border-bottom: 1px solid var(--mun-border);
           backdrop-filter: blur(12px);
         }
         .mun-stat-item {
@@ -382,9 +380,6 @@ export default function MunPage() {
 
         /* ── COMMITTEES ─────────────────────────────────────── */
         .mun-committees-bg {
-          background: rgba(26,10,13,0.7);
-          border-top: 1px solid var(--mun-border);
-          border-bottom: 1px solid var(--mun-border);
         }
         .mun-committees-list {
           display: flex;
@@ -462,8 +457,6 @@ export default function MunPage() {
 
         /* ── PROCESS STEPS ──────────────────────────────────── */
         .mun-proceso-bg {
-          background: rgba(26,10,13,0.5);
-          border-top: 1px solid var(--mun-border);
         }
         .mun-process-steps {
           display: grid;
@@ -633,20 +626,6 @@ export default function MunPage() {
       </section>
 
       {/* ── STATS STRIP ─────────────────────────────────────── */}
-      <div className="mun-stats-strip">
-        {[
-          { n: '12', l: 'Comités activos' },
-          { n: '120+', l: 'Delegados por edición' },
-          { n: '3', l: 'Días de conferencia' },
-          { n: '100%', l: 'Certificación oficial' },
-        ].map((s) => (
-          <div key={s.l} className="mun-stat-item">
-            <span className="mun-stat-number">{s.n}</span>
-            <span className="mun-stat-label">{s.l}</span>
-          </div>
-        ))}
-      </div>
-
       {/* ── SOBRE EL PROGRAMA ───────────────────────────────── */}
       <section>
         <div className="mun-section-inner">

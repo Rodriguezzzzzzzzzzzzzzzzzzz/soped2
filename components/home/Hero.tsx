@@ -92,26 +92,6 @@ function HeroContent() {
         </Link>
       </div>
 
-      <div style={{
-        marginTop: '4rem',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit,minmax(120px,1fr))',
-        gap: '2rem',
-        color: 'var(--text-secondary)'
-      }}>
-        <div>
-          <h3 style={{ color: 'var(--text-primary)', fontSize: '1.5rem' }}>200+</h3>
-          <p>Estudiantes formados</p>
-        </div>
-        <div>
-          <h3 style={{ color: 'var(--text-primary)', fontSize: '1.5rem' }}>12+</h3>
-          <p>Competencias realizadas</p>
-        </div>
-        <div>
-          <h3 style={{ color: 'var(--text-primary)', fontSize: '1.5rem' }}>8+</h3>
-          <p>Años de trayectoria</p>
-        </div>
-      </div>
     </div>
   )
 }

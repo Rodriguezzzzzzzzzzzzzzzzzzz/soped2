@@ -214,7 +214,7 @@ export default function NosotrosPage() {
 
 
       {/* ═══ VALORES ═══ */}
-      <section style={{ padding: '7rem 0', background: 'var(--darker)', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ padding: '7rem 0', position: 'relative', overflow: 'hidden' }}>
 
         {/* Huge background text */}
         <div style={{ position: 'absolute', left: '-30px', top: '50%', transform: 'translateY(-50%)', fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(180px, 22vw, 300px)', fontWeight: 700, color: 'rgba(255,255,255,0.018)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none', letterSpacing: '-0.05em', whiteSpace: 'nowrap' }}>
@@ -333,7 +333,7 @@ export default function NosotrosPage() {
 
 
       {/* ═══ EQUIPO ═══ */}
-      <section style={{ padding: '7rem 0', background: 'var(--darker)', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ padding: '7rem 0', position: 'relative', overflow: 'hidden' }}>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
 

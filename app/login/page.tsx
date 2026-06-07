@@ -254,10 +254,10 @@ export default function LoginPage() {
                 style={{
                   fontFamily: 'var(--font-outfit)',
                   fontSize: '0.78rem',
-                  color: 'rgba(239,68,68,0.8)',
+                  color: 'rgba(165,0,30,0.85)',
                   padding: '0.6rem 0.875rem',
-                  background: 'rgba(239,68,68,0.06)',
-                  border: '1px solid rgba(239,68,68,0.2)',
+                  background: 'rgba(165,0,30,0.08)',
+                  border: '1px solid rgba(165,0,30,0.3)',
                 }}
               >
                 {error}

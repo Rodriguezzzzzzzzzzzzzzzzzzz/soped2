@@ -941,15 +941,15 @@ export default function InscripcionPage() {
           box-shadow: 0 0 0 3px rgba(165,0,30,0.07);
         }
         .field__input--error {
-          border-color: rgba(255,100,100,0.38) !important;
+          border-color: rgba(165,0,30,0.4) !important;
         }
         .field__input--error:focus {
-          box-shadow: 0 0 0 3px rgba(255,100,100,0.07) !important;
-          background: rgba(255,100,100,0.025) !important;
+          box-shadow: 0 0 0 3px rgba(165,0,30,0.12) !important;
+          background: rgba(165,0,30,0.04) !important;
         }
         .field__error {
           font-size: 11px;
-          color: rgba(255,140,140,0.80);
+          color: rgba(165,0,30,0.8);
           letter-spacing: 0.01em;
         }
         .field__textarea {
