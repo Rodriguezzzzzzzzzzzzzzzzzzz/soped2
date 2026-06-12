@@ -55,7 +55,7 @@ function Hero() {
       {/* Video background */}
       <div className="soped-hero__bg">
         <video
-          autoPlay muted loop playsInline preload="metadata" aria-hidden="true"
+          autoPlay muted loop playsInline preload="auto" aria-hidden="true"
           className="soped-hero__video"
         >
           <source src="/mun-bg.mp4" type="video/mp4" />

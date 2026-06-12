@@ -424,7 +424,6 @@ function InscripcionPageInner() {
         .insc-page {
           position: relative;
           min-height: 100vh;
-          background: var(--dark);
           padding: 8rem 0 9rem;
           isolation: isolate;
         }

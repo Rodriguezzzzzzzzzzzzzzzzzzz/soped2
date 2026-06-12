@@ -6,7 +6,7 @@ export default function PageTransition({
   children: React.ReactNode
 }) {
   return (
-    <div className="soped-content" style={{ minHeight: '100vh', backgroundColor: '#0F0A0B' }}>
+    <div className="soped-content">
       {children}
     </div>
   )

@@ -3,6 +3,7 @@ import './globals.css'
 import Navbar from '../components/layout/Navbar'
 import PageTransition from './providers/PageTransition'
 import Footer from '../components/layout/Footer'
+import SsrCover from '../components/layout/SsrCover'
 
 export const metadata: Metadata = {
   title: 'SoPeD — Sociedad Peruana de Debate',
@@ -13,6 +14,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Preload hero videos so no black frames on navigation */}
+        <link rel="preload" href="/mun-bg.mp4" as="video" />
+        <link rel="preload" href="/heromunpage.mp4" as="video" />
+        <link rel="preload" href="/DEBATEFONDOVIDEO.mp4" as="video" />
         {/* Preconnect for faster font load */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -30,6 +36,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}</style>
       </head>
       <body style={{ margin: 0, minHeight: '100vh', backgroundColor: '#0F0A0B', color: '#f0ece4' }}>
+        <div id="soped-ssr-cover" style={{ position: 'fixed', inset: 0, backgroundColor: '#0F0A0B', zIndex: 99999 }} />
+        <SsrCover />
         <Navbar />
         <PageTransition>
           {children}

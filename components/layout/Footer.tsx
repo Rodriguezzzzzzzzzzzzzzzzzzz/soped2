@@ -37,43 +37,52 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer
-      className="soped-footer"
-      style={{
-        background: 'rgba(124,1,26,0.6)',
-        backdropFilter: 'blur(16px)',
-        position: 'relative',
-      }}
-    >
+    <footer className="soped-footer">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 soped-footer__inner">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 footer-grid">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-x-14 gap-y-10 footer-grid">
           {/* Brand */}
-          <div className="md:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div
+          <div className="md:col-span-2">
+            <div className="flex items-center gap-4 mb-5">
+              <img
+                src="/soped.svg"
+                alt="SoPeD Logo"
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  width: '85px',
+                  height: '85px',
+                  objectFit: 'contain',
+                  flexShrink: 0,
                 }}
-              >
-                <img
-                  src="/soped.svg"
-                  alt="SoPeD Logo"
-                  style={{
-                    width: '60px',
-                    height: '60px',
-                    objectFit: 'contain',
-                  }}
-                />
-              </div>
-              <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.2rem', fontWeight: 600, color: '#fff' }}>SoPeD</span>
+              />
+              <span className="soped-footer__brand-name">SoPeD</span>
             </div>
-            <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.8rem', color: 'rgba(255,255,255,0.35)', lineHeight: 1.7, letterSpacing: '0.02em' }}>
+            <p className="soped-footer__brand-desc">
               Sociedad Peruana de Debate.<br />
               Formando líderes académicos<br />
               desde el pensamiento crítico.
             </p>
+            <div className="soped-footer__brand-social">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon"
+                  aria-label={link.label}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d={link.path} />
+                  </svg>
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Platform */}
@@ -127,79 +136,16 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Social section */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '1.25rem',
-            padding: '3rem 0 2.5rem',
-          }}
-        >
-          <p
-            style={{
-              fontFamily: 'var(--font-outfit)',
-              fontSize: '0.72rem',
-              fontWeight: 600,
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.25)',
-            }}
-          >
-            Síguenos en nuestras redes
-          </p>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.25rem',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-            }}
-          >
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-                aria-label={link.label}
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d={link.path} />
-                </svg>
-              </a>
-            ))}
-          </div>
-        </div>
-
         {/* Bottom bar */}
         <div className="section-divider" />
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '1rem',
-            paddingTop: '1.5rem',
-          }}
-        >
-          <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.72rem', color: 'rgba(255,255,255,0.22)', letterSpacing: '0.08em', textAlign: 'center' }}>
+        <div className="soped-footer__bottom">
+          <p className="soped-footer__copyright">
             © {currentYear} SoPeD — Sociedad Peruana de Debate. Todos los derechos reservados.
           </p>
-          <div className="flex items-center gap-1">
-            <span className="deco-line" style={{ width: '20px' }} />
-            <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '0.9rem', color: 'rgba(236,229,214,0.4)', margin: '0 8px' }}>✦</span>
-            <span className="deco-line" style={{ width: '20px' }} />
+          <div className="soped-footer__sig">
+            <span className="soped-footer__sig-line" />
+            <span className="soped-footer__sig-star">✦</span>
+            <span className="soped-footer__sig-line" />
           </div>
         </div>
       </div>

@@ -68,6 +68,7 @@ const methodology = [
 export default function NosotrosPage() {
   return (
     <Layout>
+      <div className="nosotros-page">
 
       {/* ═══ HERO ═══ */}
       <section
@@ -80,12 +81,8 @@ export default function NosotrosPage() {
           paddingTop: '140px',
           position: 'relative',
           overflow: 'hidden',
-          background: 'linear-gradient(160deg, #7C011A 0%, #0F0A0B 55%, #1A0A0D 100%)',
         }}
       >
-        {/* Grid background */}
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-
         {/* Ambient glow top-right */}
         <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: '700px', height: '700px', background: 'radial-gradient(circle, rgba(124,1,26,0.9) 0%, transparent 65%)', borderRadius: '50%', pointerEvents: 'none' }} />
 
@@ -125,7 +122,7 @@ export default function NosotrosPage() {
 
 
       {/* ═══ MANIFESTO STRIP ═══ */}
-      <section style={{ padding: '5rem 0', background: 'rgba(124,1,26,0.35)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+      <section style={{ padding: '5rem 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <RevealOnScroll direction="none" threshold={0.3}>
             <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.6rem, 3vw, 2.8rem)', fontWeight: 400, color: 'rgba(255,255,255,0.85)', lineHeight: 1.4, maxWidth: '900px', margin: '0 auto', textAlign: 'center', letterSpacing: '0.01em' }}>
@@ -203,7 +200,7 @@ export default function NosotrosPage() {
                 {/* Impact number */}
                 <div className="glass" style={{ padding: '2rem', display: 'flex', alignItems: 'center', gap: '2rem' }}>
                   <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '3.5rem', fontWeight: 600, color: '#ECE5D6', lineHeight: 1, flexShrink: 0 }}>100%</p>
-                  <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.6 }}>de nuestros egresados reportan mejoras medibles en comunicación y liderazgo.</p>
+                  <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.6 }}>de nuestros participantes reportan mejoras medibles en comunicación y liderazgo.</p>
                 </div>
 
               </div>
@@ -424,7 +421,7 @@ export default function NosotrosPage() {
 
 
       {/* ═══ CTA FINAL ═══ */}
-      <section style={{ padding: '8rem 0', background: 'linear-gradient(160deg, #7C011A 0%, #0F0A0B 100%)', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ padding: '8rem 0', position: 'relative', overflow: 'hidden' }}>
 
         {/* Decorative circle */}
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '800px', height: '800px', border: '1px solid rgba(236,229,214,0.05)', borderRadius: '50%', pointerEvents: 'none' }} />
@@ -461,6 +458,7 @@ export default function NosotrosPage() {
         </div>
       </section>
 
+      </div>
     </Layout>
   )
 }

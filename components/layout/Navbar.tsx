@@ -179,40 +179,24 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu Overlay */}
-      {menuOpen && (
-        <div
-          className="fixed inset-0 z-[10000] lg:hidden"
-          style={{
-            background: 'var(--surface-2)',
-            backdropFilter: 'blur(20px)',
-            paddingTop: '80px',
-          }}
-        >
+      <div
+        className="soped-mobile-menu"
+        data-open={menuOpen}
+        onClick={(e) => { if (e.target === e.currentTarget) closeMenu() }}
+      >
+        <div className="soped-mobile-menu__panel">
           {/* Close button */}
           <button
             onClick={closeMenu}
+            className="soped-mobile-menu__close"
             aria-label="Cerrar menú"
-            style={{
-              position: 'absolute',
-              top: 'calc(80px + 0.5rem)',
-              right: '1rem',
-              width: '44px',
-              height: '44px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              color: 'var(--ivory)',
-              fontSize: '1.2rem',
-              lineHeight: 1,
-            }}
           >
-            ✕
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
           </button>
-          <div className="flex flex-col items-center gap-8 pt-12">
+
+          <nav className="soped-mobile-menu__nav">
             {navLinks.map((link, i) => {
               const id = link.href.replace('/', '')
               const isActive = pathname === link.href || activeSection === id
@@ -222,41 +206,28 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={closeMenu}
-                  style={{
-                    fontFamily: 'var(--font-cormorant)',
-                    fontSize: '2rem',
-                    fontWeight: 400,
-                    textDecoration: 'none',
-                    letterSpacing: '0.05em',
-                    animationDelay: `${i * 80}ms`,
-                    color: isActive ? 'var(--ivory)' : 'var(--text-secondary)',
-                    borderBottom: isActive ? '1px solid var(--ivory)' : '1px solid transparent',
-                    paddingBottom: '4px',
-                    paddingTop: '12px',
-                    paddingLeft: '24px',
-                    paddingRight: '24px',
-                    transition: 'all 0.25s ease',
-                    minHeight: '44px',
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                  className="animate-fade-up"
+                  className={`soped-mobile-menu__link ${isActive ? 'soped-mobile-menu__link--active' : ''}`}
+                  style={{ animationDelay: `${i * 60}ms` }}
                 >
-                  {link.label}
+                  <span className="soped-mobile-menu__link-text">{link.label}</span>
+                  <span className="soped-mobile-menu__link-indicator" />
                 </Link>
               )
             })}
-            <div className="flex flex-col gap-4 mt-8 w-64 px-4">
-              <Link href="/login" className="btn-secondary" onClick={closeMenu} style={{ justifyContent: 'center', minHeight: '44px' }}>
-                Ingresar
-              </Link>
-              <Link href="/membresia" className="btn-primary" onClick={closeMenu} style={{ justifyContent: 'center', minHeight: '44px' }}>
-                Ser miembro
-              </Link>
-            </div>
+          </nav>
+
+          <div className="soped-mobile-menu__divider" />
+
+          <div className="soped-mobile-menu__cta">
+            <Link href="/login" className="soped-btn soped-btn--ghost soped-mobile-menu__btn" onClick={closeMenu}>
+              Ingresar
+            </Link>
+            <Link href="/membresia" className="soped-btn soped-btn--primary soped-mobile-menu__btn" onClick={closeMenu}>
+              Ser miembro
+            </Link>
           </div>
         </div>
-      )}
+      </div>
     </>
   )
 }

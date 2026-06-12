@@ -28,7 +28,7 @@ const programs = [
 export default function ProgramasPage() {
   return (
     <Layout>
-      <section style={{ paddingTop: '140px', paddingBottom: '5rem', background: 'linear-gradient(180deg, #7C011A 0%, var(--dark) 100%)' }}>
+      <section style={{ paddingTop: '140px', paddingBottom: '5rem' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
             <span className="deco-line" />

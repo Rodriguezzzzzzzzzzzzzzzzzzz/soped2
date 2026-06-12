@@ -1,33 +1,26 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 interface Props {
-  onExit: () => void
   onComplete: () => void
 }
 
-export default function IntroLoader({ onExit, onComplete }: Props) {
-  const [phase, setPhase] = useState<'idle' | 'enter' | 'pulse' | 'exit' | 'skip'>('idle')
+export default function IntroLoader({ onComplete }: Props) {
+  const [phase, setPhase] = useState<'idle' | 'enter' | 'pulse' | 'exit'>('idle')
+  const calledRef = useRef(false)
 
   useEffect(() => {
-    const already = sessionStorage.getItem('soped_intro_shown')
-    if (already) {
-      setPhase('skip')
-      onExit()
-      onComplete()
-      return
-    }
-
-    sessionStorage.setItem('soped_intro_shown', '1')
-
     const t0 = setTimeout(() => setPhase('enter'), 50)
-    const t1 = setTimeout(() => setPhase('pulse'), 700)   // logo visible, inicia pulso
-    const t2 = setTimeout(() => {
-      setPhase('exit')
-      onExit()
-    }, 2500)
-    const t3 = setTimeout(() => onComplete(), 3200)
+    const t1 = setTimeout(() => setPhase('pulse'), 700)
+    const t2 = setTimeout(() => setPhase('exit'), 2600)
+    const t3 = setTimeout(() => {
+      if (!calledRef.current) {
+        calledRef.current = true
+        window.dispatchEvent(new CustomEvent('soped-intro-done'))
+        onComplete()
+      }
+    }, 3400)
 
     return () => {
       clearTimeout(t0)
@@ -35,9 +28,7 @@ export default function IntroLoader({ onExit, onComplete }: Props) {
       clearTimeout(t2)
       clearTimeout(t3)
     }
-  }, [onExit, onComplete])
-
-  if (phase === 'skip') return null
+  }, [onComplete])
 
   return (
     <>
@@ -56,14 +47,16 @@ export default function IntroLoader({ onExit, onComplete }: Props) {
         style={{
           position: 'fixed',
           inset: 0,
-          zIndex: 9999,
+          zIndex: 99999,
           background: '#0F0A0B',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           opacity: phase === 'exit' ? 0 : 1,
-          transition: phase === 'exit' ? 'opacity 0.65s cubic-bezier(0.4,0,0.2,1)' : 'none',
-          pointerEvents: phase === 'exit' ? 'none' : 'all',
+          transition: phase === 'exit'
+            ? 'opacity 0.7s cubic-bezier(0.4,0,0.2,1)'
+            : 'none',
+          pointerEvents: 'none',
         }}
       >
         <div
@@ -80,8 +73,8 @@ export default function IntroLoader({ onExit, onComplete }: Props) {
             src="/soped.svg"
             alt="SoPeD"
             style={{
-              width: 160,
-              height: 160,
+              width: 220,
+              height: 220,
               objectFit: 'contain',
               display: 'block',
               margin: '0 auto',
@@ -89,6 +82,9 @@ export default function IntroLoader({ onExit, onComplete }: Props) {
           />
         </div>
       </div>
+
+      <link rel="prefetch" href="/mun-bg.mp4" as="video" />
+      <link rel="preload" href="/mun-bg.mp4" as="video" />
     </>
   )
 }

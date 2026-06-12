@@ -516,8 +516,6 @@ export default function MunPage() {
         .mun-cta-section {
           position: relative;
           overflow: hidden;
-          background: var(--mun-darker);
-          border-top: 1px solid var(--mun-border);
         }
         .mun-cta-bg-pattern {
           position: absolute;
