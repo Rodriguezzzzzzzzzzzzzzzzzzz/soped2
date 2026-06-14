@@ -1,8 +1,45 @@
 // services/munService.ts
-// Adapter layer — swap fetch() for Supabase when ready.
+// Adapter layer — swap Firestore for Supabase when ready.
 // All score endpoints are server-only (validated by role on API side).
 
 import type { CommitteeState, Motion, ScoreEntry } from '@/mun-v2/types/mun.types'
+
+// ── Firestore persistence (client-side, direct) ─────────────────────────────
+import { db } from '@/lib/firebase'
+import { doc, getDoc, setDoc, onSnapshot, Unsubscribe } from 'firebase/firestore'
+
+const SESSIONS_COLLECTION = 'committee_sessions'
+
+export async function saveSessionState(committeeId: string, state: CommitteeState): Promise<void> {
+  const ref = doc(db, SESSIONS_COLLECTION, committeeId)
+  await setDoc(ref, state as Record<string, unknown>)
+}
+
+export async function loadSessionState(committeeId: string): Promise<CommitteeState | null> {
+  const ref = doc(db, SESSIONS_COLLECTION, committeeId)
+  const snap = await getDoc(ref)
+  if (!snap.exists()) return null
+  return snap.data() as CommitteeState
+}
+
+export function subscribeSessionState(
+  committeeId: string,
+  onData: (state: CommitteeState) => void,
+  onError?: (err: Error) => void,
+): Unsubscribe {
+  const ref = doc(db, SESSIONS_COLLECTION, committeeId)
+  return onSnapshot(
+    ref,
+    (snap) => {
+      if (snap.exists()) {
+        onData(snap.data() as CommitteeState)
+      }
+    },
+    (err) => {
+      if (onError) onError(err)
+    },
+  )
+}
 
 // ── REST stubs (replace with Supabase client when backend is ready) ──────────
 

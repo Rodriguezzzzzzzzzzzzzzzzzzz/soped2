@@ -96,6 +96,7 @@ export default function Footer() {
                 { label: 'Eventos', href: '/eventos' },
                 { label: 'SoPeD MUN', href: '/mun' },
                 { label: 'Debate Escolar', href: '/debate-escolar' },
+                { label: 'Verificar certificado', href: '/verificar-certificado' },
               ].map((l) => (
                 <Link key={l.href} href={l.href} className="btn-text" style={{ fontSize: '0.82rem' }}>
                   {l.label}

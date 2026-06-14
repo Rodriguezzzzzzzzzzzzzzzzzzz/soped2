@@ -3,7 +3,7 @@
 import { create } from 'zustand'
 
 import type {
-  Delegate,
+  Country,
   CommitteeState,
   DelegateStatus,
 } from '@/src/mun-v2/types/mun.types'
@@ -13,7 +13,7 @@ interface CommitteeStore {
 
   // CONFIG
   setConfig: (key: keyof CommitteeState['config'], value: string) => void
-  setDelegates: (delegates: Delegate[]) => void
+  setDelegates: (delegates: Country[]) => void
 
   // PHASES
   setPhase: (phase: CommitteeState['phase']) => void
@@ -39,7 +39,7 @@ export const useCommitteeStore = create<CommitteeStore>((set, get) => ({
       type: 'General Assembly',
     },
 
-    delegates: [] as Delegate[],
+    delegates: [] as Country[],
 
     rollCall: {},
     speakerTimeSecs: 0,
@@ -55,7 +55,16 @@ export const useCommitteeStore = create<CommitteeStore>((set, get) => ({
 
     suspendCode: null,
 
+    agenda: [],
+
     rankingPublished: false,
+    rollCallLocked: false,
+    speechHistory: [],
+    caucus: null,
+    speakerTimerStartedAt: null,
+    speakerTimerRemaining: 0,
+    updatedAt: '',
+    updatedBy: '',
   },
 
   // ─────────────────────────────────────

@@ -4,19 +4,25 @@ import type {
   CommitteeState,
   Motion,
   LogEntry,
-  Delegate,
-  RollCallStatus,
+  Country,
+  DelegateStatus,
   ScoreSummary,
+  AgendaItem,
+  SpeechRecord,
+  CaucusState,
 } from '@/src/mun-v2/types/mun.types'
 
 export type MunAction =
   | { type: 'SET_PHASE';            phase: CommitteeState['phase'] }
   | { type: 'SET_CONFIG';           key: string; value: string }
-  | { type: 'SET_DELEGATES';        delegates: Delegate[] }
-  | { type: 'SET_ROLLCALL_STATUS';  country: string; status: RollCallStatus }
+  | { type: 'SET_DELEGATES';        delegates: Country[] }
+  | { type: 'SET_ROLLCALL_STATUS';  country: string; status: DelegateStatus }
+  | { type: 'SET_ALL_DELEGATES_STATUS'; status: DelegateStatus }
   | { type: 'COMPLETE_ROLLCALL' }
   | { type: 'ADD_SPEAKER';          country: string }
   | { type: 'REMOVE_SPEAKER';       country: string }
+  | { type: 'MOVE_SPEAKER_UP';      index: number }
+  | { type: 'MOVE_SPEAKER_DOWN';    index: number }
   | { type: 'ADVANCE_SPEAKER' }
   | { type: 'SET_SPEAKER_TIME';     seconds: number }
   | { type: 'PROPOSE_MOTION';       motion: Motion }
@@ -34,6 +40,16 @@ export type MunAction =
   | { type: 'REVOKE_RANKING' }
   | { type: 'ADD_LOG';              entry: LogEntry }
   | { type: 'CLEAR_LOGS' }
+  | { type: 'ADD_AGENDA_ITEM';      item: AgendaItem }
+  | { type: 'REMOVE_AGENDA_ITEM';   id: string }
+  | { type: 'UPDATE_AGENDA_ITEM';   id: string; title: string }
+  | { type: 'SET_ACTIVE_AGENDA';    id: string | null }
+  | { type: 'HYDRATE';             state: CommitteeState }
+  | { type: 'RESET_SESSION' }
+  | { type: 'SET_ROLLCALL_LOCKED';  locked: boolean }
+  | { type: 'ADD_SPEECH_RECORD';   record: SpeechRecord }
+  | { type: 'SET_CAUCUS';          caucus: CaucusState | null }
+  | { type: 'SET_SPEAKER_TIMER';  startedAt: number | null; remaining: number }
 
 export function createInitialState(id = 'committee-1'): CommitteeState {
   return {
@@ -51,6 +67,14 @@ export function createInitialState(id = 'committee-1'): CommitteeState {
     rankingPublished: false,
     suspendCode: null,
     logs: [],
+    agenda: [],
+    rollCallLocked: false,
+    speechHistory: [],
+    caucus: null,
+    speakerTimerStartedAt: null,
+    speakerTimerRemaining: 0,
+    updatedAt: '',
+    updatedBy: '',
   }
 }
 
@@ -69,10 +93,16 @@ export function munReducer(state: CommitteeState, action: MunAction): CommitteeS
     case 'SET_ROLLCALL_STATUS':
       return { ...state, rollCall: { ...state.rollCall, [action.country]: action.status } }
 
+    case 'SET_ALL_DELEGATES_STATUS': {
+      const all: Record<string, DelegateStatus> = {}
+      state.delegates.forEach(d => { all[d.name] = action.status })
+      return { ...state, rollCall: all }
+    }
+
     case 'COMPLETE_ROLLCALL': {
       const completed = { ...state.rollCall }
       state.delegates.forEach(d => {
-        const key = d.country.name
+        const key = d.name
         if (!completed[key]) {
           completed[key] = 'absent'
         }
@@ -103,6 +133,28 @@ export function munReducer(state: CommitteeState, action: MunAction): CommitteeS
       return { ...state, currentSpeakerIndex: next < state.speakersList.length ? next : -1 }
     }
 
+    case 'MOVE_SPEAKER_UP': {
+      const { index } = action
+      if (index <= 0) return state
+      const list = [...state.speakersList];
+      [list[index - 1], list[index]] = [list[index], list[index - 1]]
+      let newIdx = state.currentSpeakerIndex
+      if (state.currentSpeakerIndex === index) newIdx = index - 1
+      else if (state.currentSpeakerIndex === index - 1) newIdx = index
+      return { ...state, speakersList: list, currentSpeakerIndex: newIdx }
+    }
+
+    case 'MOVE_SPEAKER_DOWN': {
+      const { index } = action
+      if (index >= state.speakersList.length - 1) return state
+      const list = [...state.speakersList];
+      [list[index], list[index + 1]] = [list[index + 1], list[index]]
+      let newIdx = state.currentSpeakerIndex
+      if (state.currentSpeakerIndex === index) newIdx = index + 1
+      else if (state.currentSpeakerIndex === index + 1) newIdx = index
+      return { ...state, speakersList: list, currentSpeakerIndex: newIdx }
+    }
+
     case 'SET_SPEAKER_TIME':
       return { ...state, speakerTimeSecs: Math.max(15, action.seconds) }
 
@@ -111,7 +163,11 @@ export function munReducer(state: CommitteeState, action: MunAction): CommitteeS
 
     case 'RESOLVE_MOTION': {
       if (!state.activeMotion) return state
-      const resolved: Motion = { ...state.activeMotion, status: action.approved ? 'approved' : 'rejected' }
+      const resolved: Motion = {
+        ...state.activeMotion,
+        status: action.approved ? 'approved' : 'rejected',
+        resolvedAt: new Date().toISOString(),
+      }
       let nextPhase = state.phase
       if (action.approved) {
         if (state.activeMotion?.typeId === 'close') nextPhase = 'closed'
@@ -161,6 +217,59 @@ export function munReducer(state: CommitteeState, action: MunAction): CommitteeS
 
     case 'CLEAR_LOGS':
       return { ...state, logs: [] }
+
+    case 'ADD_AGENDA_ITEM':
+      return { ...state, agenda: [...state.agenda, action.item] }
+
+    case 'REMOVE_AGENDA_ITEM': {
+      const remaining = state.agenda.filter(a => a.id !== action.id)
+      const activeStillExists = remaining.some(a => a.isActive)
+      return {
+        ...state,
+        agenda: activeStillExists ? remaining : remaining.map((a, i) => i === 0 ? { ...a, isActive: true } : a),
+      }
+    }
+
+    case 'UPDATE_AGENDA_ITEM':
+      return {
+        ...state,
+        agenda: state.agenda.map(a => a.id === action.id ? { ...a, title: action.title } : a),
+      }
+
+    case 'SET_ACTIVE_AGENDA':
+      return {
+        ...state,
+        agenda: state.agenda.map(a => ({ ...a, isActive: a.id === action.id })),
+      }
+
+    case 'HYDRATE':
+      return { ...action.state }
+
+    case 'RESET_SESSION': {
+      const { delegates, rollCall } = state
+      return {
+        ...createInitialState(state.id),
+        delegates,
+        rollCall,
+        phase: 'rollcall',
+      }
+    }
+
+    case 'SET_ROLLCALL_LOCKED':
+      return { ...state, rollCallLocked: action.locked }
+
+    case 'ADD_SPEECH_RECORD':
+      return { ...state, speechHistory: [action.record, ...state.speechHistory].slice(0, 200) }
+
+    case 'SET_CAUCUS':
+      return { ...state, caucus: action.caucus }
+
+    case 'SET_SPEAKER_TIMER':
+      return {
+        ...state,
+        speakerTimerStartedAt: action.startedAt,
+        speakerTimerRemaining: action.remaining,
+      }
 
     default:
       return state

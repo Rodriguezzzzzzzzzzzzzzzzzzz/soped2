@@ -19,6 +19,12 @@ export type Delegate = {
   userId?: string
 }
 
+export type AgendaItem = {
+  id: string
+  title: string
+  isActive: boolean
+}
+
 export type SpeakerEntry = {
   countryName: string
   addedAt: string
@@ -46,6 +52,27 @@ export type Motion = {
   label: string
   typeId?: string
   proposer?: string
+  category?: MotionCategory
+  timerSeconds?: number
+  resolvedAt?: string
+}
+
+export type SpeechRecord = {
+  id: string
+  countryName: string
+  startTime: string
+  endTime: string
+  timeUsed: number
+  yield?: 'chair' | 'questions' | 'delegate' | null
+}
+
+export type CaucusState = {
+  type: 'moderated' | 'unmoderated'
+  totalDuration: number
+  timeLeft: number
+  active: boolean
+  timePerSpeaker: number
+  startedAt: number | null
 }
 
 export type ScoreSummary = {
@@ -68,7 +95,11 @@ export type QuorumStats = {
   total: number
   simpleQuorum: boolean
   compoundQuorum: boolean
+  quorumRequired: number
+  quorumMet: boolean
 }
+
+export type MotionCategory = 'debate' | 'resolution' | 'procedural'
 
 export type SessionPhase =
   | 'role_select'
@@ -95,8 +126,8 @@ export type CommitteeState = {
   id: string
   config: CommitteeConfig
   phase: SessionPhase
-  delegates: Delegate[]
-  rollCall: Record<string, RollCallStatus>
+  delegates: Country[]
+  rollCall: Record<string, DelegateStatus>
   speakersList: SpeakerEntry[]
   currentSpeakerIndex: number
   speakerTimeSecs: number
@@ -106,6 +137,14 @@ export type CommitteeState = {
   rankingPublished: boolean
   suspendCode: string | null
   logs: LogEntry[]
+  agenda: AgendaItem[]
+  rollCallLocked: boolean
+  speechHistory: SpeechRecord[]
+  caucus: CaucusState | null
+  speakerTimerStartedAt: number | null
+  speakerTimerRemaining: number
+  updatedAt: string
+  updatedBy: string
 }
 
 export const createInitialState = (): CommitteeState => ({
@@ -122,5 +161,13 @@ export const createInitialState = (): CommitteeState => ({
   scores: {},
   rankingPublished: false,
   suspendCode: null,
-  logs: []
+  logs: [],
+  agenda: [],
+  rollCallLocked: false,
+  speechHistory: [],
+  caucus: null,
+  speakerTimerStartedAt: null,
+  speakerTimerRemaining: 0,
+  updatedAt: '',
+  updatedBy: '',
 })

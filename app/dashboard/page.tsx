@@ -130,33 +130,57 @@ export default function DashboardPage() {
   const router = useRouter()
 
   useEffect(() => {
+    let cancelled = false
+
+    // Fallback timeout: if Firebase auth doesn't fire within 6s, give up
+    const fallback = setTimeout(() => {
+      if (!cancelled) {
+        setLoading(false)
+        setUser(null)
+        router.push('/login')
+      }
+    }, 6000)
+
     const unsubscribe = onAuthStateChanged(auth, async (u) => {
+      clearTimeout(fallback)
+      if (cancelled) return
+
       try {
         if (u) {
           await ensureUserProfile(u)
 
           const profile = await getUserProfile(u.uid)
 
-          setUser({
-            uid: u.uid,
-            email: u.email || '',
-            displayName: profile?.name || 'Usuario',
-            role: profile?.role || 'user',
-          })
+          if (!cancelled) {
+            setUser({
+              uid: u.uid,
+              email: u.email || '',
+              displayName: profile?.name || 'Usuario',
+              role: profile?.role || 'user',
+            })
+          }
         } else {
-          setUser(null)
-          router.push('/login')
+          if (!cancelled) {
+            setUser(null)
+            router.push('/login')
+          }
         }
       } catch (err) {
         console.error(err)
-        setUser(null)
-        router.push('/login')
+        if (!cancelled) {
+          setUser(null)
+          router.push('/login')
+        }
       } finally {
-        setLoading(false)
+        if (!cancelled) setLoading(false)
       }
     })
 
-    return () => unsubscribe()
+    return () => {
+      cancelled = true
+      clearTimeout(fallback)
+      unsubscribe()
+    }
   }, [router])
 
   if (loading) {

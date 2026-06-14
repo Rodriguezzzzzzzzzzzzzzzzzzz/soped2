@@ -6,10 +6,6 @@ export function generateStaticParams() {
   ]
 }
 
-export default function Page({
-  params,
-}: {
-  params: { committeeId: string }
-}) {
-  return <ChairPanel committeeId={params.committeeId} />
+export default function Page() {
+  return <ChairPanel />
 }
