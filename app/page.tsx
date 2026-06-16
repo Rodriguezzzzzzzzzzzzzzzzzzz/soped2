@@ -13,7 +13,7 @@ export default function HomePage() {
   }, [])
 
   if (!ready) {
-    return <div style={{ position: 'fixed', inset: 0, background: '#0F0A0B', zIndex: 99999 }} />
+    return <div style={{ position: 'fixed', inset: 0, background: '#1C0408', zIndex: 99999 }} />
   }
 
   return (

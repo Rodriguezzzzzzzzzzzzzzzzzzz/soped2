@@ -84,7 +84,7 @@ export default function NosotrosPage() {
         }}
       >
         {/* Ambient glow top-right */}
-        <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: '700px', height: '700px', background: 'radial-gradient(circle, rgba(124,1,26,0.9) 0%, transparent 65%)', borderRadius: '50%', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: '700px', height: '700px', background: 'radial-gradient(circle, rgba(160,16,40,0.9) 0%, transparent 65%)', borderRadius: '50%', pointerEvents: 'none' }} />
 
         {/* Gold ambient bottom-left */}
         <div style={{ position: 'absolute', bottom: '0', left: '-8%', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(236,229,214,0.05) 0%, transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />

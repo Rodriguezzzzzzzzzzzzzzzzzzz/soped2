@@ -19,7 +19,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--dark-base);
+  background: transparent;
   color: var(--text-primary);
   font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;

@@ -10,9 +10,9 @@ const config: Config = {
     extend: {
       colors: {
         soped: {
-          primary: '#7C011A',
-          burger: '#7C011A',
-          interaction: '#A5001E',
+          primary: '#A01028',
+          burger: '#A01028',
+          interaction: '#C80030',
           ivory: '#ECE5D6',
           dark: '#0F0A0B',
           darker: '#1A0A0D',

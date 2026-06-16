@@ -142,11 +142,11 @@ export default function MunForm() {
             onChange={(e) => handleChange('experiencia', e.target.value)}
             style={{ appearance: 'none', cursor: 'pointer' }}
           >
-            <option value="" style={{ background: '#7C011A' }}>Selecciona tu nivel</option>
-            <option value="ninguna" style={{ background: '#7C011A' }}>Sin experiencia previa</option>
-            <option value="basica" style={{ background: '#7C011A' }}>Básica (1–2 torneos)</option>
-            <option value="intermedia" style={{ background: '#7C011A' }}>Intermedia (3–6 torneos)</option>
-            <option value="avanzada" style={{ background: '#7C011A' }}>Avanzada (7+ torneos)</option>
+            <option value="" style={{ background: '#A01028' }}>Selecciona tu nivel</option>
+            <option value="ninguna" style={{ background: '#A01028' }}>Sin experiencia previa</option>
+            <option value="basica" style={{ background: '#A01028' }}>Básica (1–2 torneos)</option>
+            <option value="intermedia" style={{ background: '#A01028' }}>Intermedia (3–6 torneos)</option>
+            <option value="avanzada" style={{ background: '#A01028' }}>Avanzada (7+ torneos)</option>
           </select>
         </div>
 
@@ -158,12 +158,12 @@ export default function MunForm() {
             onChange={(e) => handleChange('comite', e.target.value)}
             style={{ appearance: 'none', cursor: 'pointer' }}
           >
-            <option value="" style={{ background: '#7C011A' }}>Selecciona un comité</option>
-            <option value="csnu" style={{ background: '#7C011A' }}>Consejo de Seguridad de la ONU</option>
-            <option value="agonu" style={{ background: '#7C011A' }}>Asamblea General de la ONU</option>
-            <option value="ecosoc" style={{ background: '#7C011A' }}>ECOSOC</option>
-            <option value="unhrc" style={{ background: '#7C011A' }}>Consejo de DDHH (UNHRC)</option>
-            <option value="crisis" style={{ background: '#7C011A' }}>Comité de Crisis</option>
+            <option value="" style={{ background: '#A01028' }}>Selecciona un comité</option>
+            <option value="csnu" style={{ background: '#A01028' }}>Consejo de Seguridad de la ONU</option>
+            <option value="agonu" style={{ background: '#A01028' }}>Asamblea General de la ONU</option>
+            <option value="ecosoc" style={{ background: '#A01028' }}>ECOSOC</option>
+            <option value="unhrc" style={{ background: '#A01028' }}>Consejo de DDHH (UNHRC)</option>
+            <option value="crisis" style={{ background: '#A01028' }}>Comité de Crisis</option>
           </select>
         </div>
 

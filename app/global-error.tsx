@@ -32,7 +32,7 @@ export default function GlobalError({
             style={{
               marginTop: '16px',
               padding: '10px 16px',
-              background: '#A5001E',
+              background: '#C80030',
               border: 'none',
               borderRadius: '8px',
               color: 'white',

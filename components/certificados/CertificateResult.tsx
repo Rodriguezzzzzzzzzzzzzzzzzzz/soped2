@@ -35,7 +35,7 @@ export default function CertificateResult({ certificate }: Props) {
           right: 0,
           width: 120,
           height: 120,
-          background: 'linear-gradient(135deg, transparent 50%, rgba(124,1,26,0.12) 50%)',
+          background: 'linear-gradient(135deg, transparent 50%, rgba(160,16,40,0.12) 50%)',
           pointerEvents: 'none',
         }}
       />

@@ -6,22 +6,22 @@ const programs = [
     title: 'MUN Workshop',
     tag: 'Diplomacia & Negociación',
     description: 'Programa intensivo enfocado en negociación internacional, simulaciones diplomáticas y formación integral para Modelos de Naciones Unidas.',
-    features: ['Duración: 10 semanas', 'Simulaciones diplomáticas', 'Training de delegados', 'Certificación académica'],
-    href: '/mun',
+    features: ['Duración: 4 semanas', 'Simulaciones diplomáticas', 'Training de delegados', 'Certificación académica'],
+    href: '/programas/mun-workshop',
   },
   {
     title: 'Argumentación & Persuasión',
     tag: 'Oratoria Estratégica',
     description: 'Programa orientado al desarrollo de pensamiento crítico, construcción argumentativa, persuasión y comunicación de alto impacto.',
     features: ['Argumentación estratégica', 'Persuasión avanzada', 'Oratoria aplicada', 'Certificación SoPeD'],
-    href: '/debate-escolar',
+    href: '/programas/argumentacion-y-persuasion',
   },
   {
     title: 'Oratoria Workshop',
     tag: 'Elite Speaking Program',
     description: 'Un programa diseñado para formar speakers de alto impacto. Aprende a dominar el escenario, persuadir con autoridad y comunicar ideas con seguridad, presencia y estrategia en cualquier entorno académico, profesional o competitivo.',
     features: ['Public speaking intensivo', 'Dominio escénico & presencia', 'Persuasión de alto nivel', 'Certificación oficial SoPeD'],
-    href: '/oratoria',
+    href: '/programas/oratoria-workshop',
   },
 ]
 

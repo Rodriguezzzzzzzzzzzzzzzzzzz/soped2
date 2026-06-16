@@ -226,7 +226,7 @@ const TAB_PANELS: Phase[] = ['gsl', 'motions', 'mod', 'unmod', 'singleSpeaker', 
 
 const theme = {
   cream: '#F0E7D5', white: '#FFFFFF', dark: '#1A1A2E', dark2: '#0F0F23',
-  primary: '#7C011A', secondary: '#259DBE',
+  primary: '#A01028', secondary: '#259DBE',
   tertiary: '#FAA419', tertiaryHover: '#FFF9F0',
   text: '#1A1A2E', muted: '#7F8C8D', dim: '#B0ABA4', border: '#E0D8C8',
   green: '#27AE60', greenBg: '#E8F5E9', amber: '#B76A00', amberBg: '#FFF3E0',

@@ -22,7 +22,7 @@ export default function SplashIntro() {
         position: 'fixed',
         inset: 0,
         zIndex: 99999,
-        background: '#0F0A0B',
+        background: '#1C0408',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

@@ -1,19 +1,14 @@
 'use client'
 
-import Link from 'next/link'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
-export default function Navbar() {
-  return (
-    <nav className="flex items-center justify-between p-4 bg-white shadow-md">
-      <Link href="/">
-        <img
-          src="/soped.svg"
-          alt="SOPED"
-          className="h-10 w-auto"
-        />
-      </Link>
+export default function RegisterRedirectPage() {
+  const router = useRouter()
 
-      {/* Other navbar items remain unchanged */}
-    </nav>
-  )
+  useEffect(() => {
+    router.replace('/login')
+  }, [router])
+
+  return null
 }

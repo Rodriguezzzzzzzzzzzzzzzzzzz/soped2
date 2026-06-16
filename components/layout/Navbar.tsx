@@ -44,9 +44,6 @@ export default function Navbar() {
       observers.push(observer)
     })
 
-    // Add smooth scroll behavior globally
-    document.documentElement.style.scrollBehavior = 'smooth'
-
     return () => observers.forEach((o) => o.disconnect())
   }, [])
 
@@ -58,32 +55,33 @@ export default function Navbar() {
       <nav
         className="fixed top-0 left-0 right-0 z-[9999] transition-all duration-500"
         style={{
-          background: 'var(--surface-2)',
+          background: 'var(--bg-overlay)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
-          borderBottom: '1px solid var(--border-soft)',
+          borderBottom: '1px solid rgba(200,30,50,0.12)',
           boxShadow: 'var(--shadow-md)',
           transition: 'background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease',
         }}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group" onClick={closeMenu}>
+          <Link href="/" className="flex items-center gap-3.5 group" onClick={closeMenu}>
             <Image
               src="/soped.svg"
               alt="SoPeD Logo"
-              width={45}
-              height={45}
+              width={52}
+              height={52}
               style={{ objectFit: 'contain' }}
             />
-            <div className="flex flex-col leading-none">
+            <div className="flex flex-col leading-tight">
               <span
                 style={{
                   fontFamily: 'var(--font-cormorant)',
-                  fontSize: '1.1rem',
+                  fontSize: '1.35rem',
                   fontWeight: 600,
-                  color: 'var(--text-primary)',
-                  letterSpacing: '0.05em',
+                  color: 'var(--ivory)',
+                  letterSpacing: '0.04em',
+                  lineHeight: 1.2,
                 }}
               >
                 SoPeD
@@ -91,11 +89,12 @@ export default function Navbar() {
               <span
                 style={{
                   fontFamily: 'var(--font-outfit)',
-                  fontSize: '0.6rem',
-                  fontWeight: 300,
+                  fontSize: '0.65rem',
+                  fontWeight: 400,
                   color: 'var(--text-muted)',
-                  letterSpacing: '0.15em',
+                  letterSpacing: '0.18em',
                   textTransform: 'uppercase',
+                  lineHeight: 1.3,
                 }}
               >
                 Sociedad Peruana de Debate

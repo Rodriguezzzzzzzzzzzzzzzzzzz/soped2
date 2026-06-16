@@ -15,7 +15,7 @@ export default function CertificateNotFound() {
           fontFamily: 'var(--font-cormorant)',
           fontSize: '5rem',
           fontWeight: 700,
-          color: 'rgba(124,1,26,0.15)',
+          color: 'rgba(160,16,40,0.15)',
           lineHeight: 1,
           marginBottom: '0.5rem',
           userSelect: 'none',

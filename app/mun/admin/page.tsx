@@ -53,7 +53,7 @@ export default function MUNAdmin() {
       case 'pago_pendiente':
         return { background: '#ECE5D6', color: '#0F0A0B' }
       case 'pagado':
-        return { background: '#A5001E', color: '#fff' }
+        return { background: '#C80030', color: '#fff' }
       case 'aceptado':
         return { background: '#16a34a', color: '#fff' }
       default:
@@ -168,7 +168,7 @@ export default function MUNAdmin() {
 
   const blueBtn = {
     padding: '6px 10px',
-    background: '#A5001E',
+    background: '#C80030',
     color: 'white',
     borderRadius: '8px',
     border: 'none',
@@ -206,7 +206,7 @@ export default function MUNAdmin() {
 
         <button
           onClick={() => setFilter('pagado')}
-          style={{ ...sideBtn, background: filter === 'pagado' ? '#A5001E' : '#2a0010' }}
+          style={{ ...sideBtn, background: filter === 'pagado' ? '#C80030' : '#2a0010' }}
         >
           Pagados
         </button>
@@ -242,7 +242,7 @@ export default function MUNAdmin() {
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
           <div style={cardStyle}>Total: {total}</div>
           <div style={{ ...cardStyle, background: '#ECE5D6', color: '#0F0A0B' }}>Pendientes: {pendientes}</div>
-          <div style={{ ...cardStyle, background: '#A5001E', color: 'white' }}>Pagados: {pagados}</div>
+          <div style={{ ...cardStyle, background: '#C80030', color: 'white' }}>Pagados: {pagados}</div>
           <div style={{ ...cardStyle, background: '#16a34a', color: 'white' }}>Aceptados: {aceptados}</div>
         </div>
 

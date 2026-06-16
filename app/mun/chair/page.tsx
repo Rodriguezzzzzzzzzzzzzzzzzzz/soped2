@@ -399,7 +399,7 @@ export default function ChairPanel() {
                 }}
                 style={{
                   ...smallBtn,
-                  background: motionType === 'debate' ? '#A5001E' : '#6b4040'
+                  background: motionType === 'debate' ? '#C80030' : '#6b4040'
                 }}
               >
                 Debate
@@ -412,7 +412,7 @@ export default function ChairPanel() {
                 }}
                 style={{
                   ...smallBtn,
-                  background: motionType === 'resolution' ? '#A5001E' : '#6b4040'
+                  background: motionType === 'resolution' ? '#C80030' : '#6b4040'
                 }}
               >
                 Resolución
@@ -425,7 +425,7 @@ export default function ChairPanel() {
                 }}
                 style={{
                   ...smallBtn,
-                  background: motionType === 'procedure' ? '#A5001E' : '#6b4040'
+                  background: motionType === 'procedure' ? '#C80030' : '#6b4040'
                 }}
               >
                 Procedimiento
@@ -599,7 +599,7 @@ const btn = {
 
 const smallBtn = {
   padding: '6px 10px',
-  background: '#A5001E',
+  background: '#C80030',
   color: 'white',
   borderRadius: '6px',
   border: 'none',

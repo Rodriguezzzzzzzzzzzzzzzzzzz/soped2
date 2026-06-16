@@ -182,9 +182,9 @@ export default function InscripcionPage() {
           pointer-events: none;
           z-index: 0;
           background:
-            radial-gradient(ellipse 70% 45% at 15% 10%, rgba(165,0,30,0.07) 0%, transparent 65%),
+            radial-gradient(ellipse 70% 45% at 15% 10%, rgba(200,0,48,0.07) 0%, transparent 65%),
             radial-gradient(ellipse 60% 50% at 85% 85%, rgba(236,229,214,0.05) 0%, transparent 65%),
-            radial-gradient(ellipse 50% 40% at 50% 50%, rgba(165,0,30,0.03) 0%, transparent 70%);
+            radial-gradient(ellipse 50% 40% at 50% 50%, rgba(200,0,48,0.03) 0%, transparent 70%);
         }
 
         /* ── Nav bar ── */
@@ -320,7 +320,7 @@ export default function InscripcionPage() {
           font-weight: 600;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: rgba(165,0,30,0.68);
+          color: rgba(200,0,48,0.68);
           margin-bottom: 28px;
           animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.24s both;
         }
@@ -344,7 +344,7 @@ export default function InscripcionPage() {
           gap: 8px;
           padding: 14px 24px;
           border-radius: 12px;
-          background: linear-gradient(135deg, #7C011A 0%, #A5001E 100%);
+          background: linear-gradient(135deg, #A01028 0%, #C80030 100%);
           color: #ffffff;
           font-size: 13.5px;
           font-weight: 650;
@@ -352,12 +352,12 @@ export default function InscripcionPage() {
           border: none;
           cursor: pointer;
           text-decoration: none;
-          box-shadow: 0 8px 28px rgba(165,0,30,0.28);
+          box-shadow: 0 8px 28px rgba(200,0,48,0.28);
           transition: transform 0.26s cubic-bezier(0.22,1,0.36,1), box-shadow 0.26s ease;
         }
         .hero__btn-primary:hover {
           transform: translateY(-2px);
-          box-shadow: 0 14px 40px rgba(165,0,30,0.38);
+          box-shadow: 0 14px 40px rgba(200,0,48,0.38);
         }
         .hero__btn-secondary {
           display: inline-flex;
@@ -384,7 +384,7 @@ export default function InscripcionPage() {
 
         /* Hero right — credential card */
         .hero__credential {
-          background: rgba(124,1,26,0.72);
+          background: rgba(160,16,40,0.72);
           border: 1px solid rgba(255,255,255,0.07);
           border-radius: 20px;
           padding: 32px;
@@ -488,12 +488,12 @@ export default function InscripcionPage() {
           font-weight: 700;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: rgba(165,0,30,0.62);
+          color: rgba(200,0,48,0.62);
           margin-bottom: 18px;
         }
         .context__eyebrow-line {
           width: 28px; height: 1px;
-          background: rgba(165,0,30,0.40);
+          background: rgba(200,0,48,0.40);
         }
         .context__title {
           font-size: clamp(1.8rem, 3vw, 2.6rem);
@@ -517,7 +517,7 @@ export default function InscripcionPage() {
           gap: 20px;
         }
         .context__card {
-          background: rgba(124,1,26,0.55);
+          background: rgba(160,16,40,0.55);
           border: 1px solid rgba(255,255,255,0.06);
           border-radius: 16px;
           padding: 28px 24px;
@@ -531,16 +531,16 @@ export default function InscripcionPage() {
         .context__card:nth-child(3) { animation-delay: 0.15s; }
         .context__card:nth-child(4) { animation-delay: 0.20s; }
         .context__card:hover {
-          border-color: rgba(165,0,30,0.18);
+          border-color: rgba(200,0,48,0.18);
           transform: translateY(-3px);
           box-shadow: 0 12px 36px rgba(0,0,0,0.22);
         }
         .context__card-icon {
           width: 38px; height: 38px;
           border-radius: 10px;
-          background: rgba(165,0,30,0.07);
-          border: 1px solid rgba(165,0,30,0.13);
-          color: rgba(165,0,30,0.72);
+          background: rgba(200,0,48,0.07);
+          border: 1px solid rgba(200,0,48,0.13);
+          color: rgba(200,0,48,0.72);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -650,11 +650,11 @@ export default function InscripcionPage() {
         .mod-card:nth-child(4) { animation-delay: 0.20s; }
         .mod-card:hover {
           transform: translateY(-4px) scale(1.01);
-          border-color: rgba(165,0,30,0.22);
+          border-color: rgba(200,0,48,0.22);
           box-shadow: 0 16px 44px rgba(0,0,0,0.28);
         }
         .mod-card--featured {
-          background: rgba(124,1,26,0.82);
+          background: rgba(160,16,40,0.82);
           border-color: rgba(236,229,214,0.18);
           box-shadow:
             0 0 0 1px rgba(236,229,214,0.10),
@@ -714,16 +714,16 @@ export default function InscripcionPage() {
         .mod-card__icon {
           width: 42px; height: 42px;
           border-radius: 11px;
-          background: rgba(165,0,30,0.07);
-          border: 1px solid rgba(165,0,30,0.13);
-          color: rgba(165,0,30,0.72);
+          background: rgba(200,0,48,0.07);
+          border: 1px solid rgba(200,0,48,0.13);
+          color: rgba(200,0,48,0.72);
           display: flex;
           align-items: center;
           justify-content: center;
           margin-bottom: 16px;
           transition: background 0.22s ease;
         }
-        .mod-card:hover .mod-card__icon { background: rgba(165,0,30,0.12); }
+        .mod-card:hover .mod-card__icon { background: rgba(200,0,48,0.12); }
         .mod-card__icon--gold {
           background: rgba(236,229,214,0.07);
           border-color: rgba(236,229,214,0.16);
@@ -761,18 +761,18 @@ export default function InscripcionPage() {
           gap: 5px;
           font-size: 12px;
           font-weight: 600;
-          color: rgba(165,0,30,0.70);
+          color: rgba(200,0,48,0.70);
           letter-spacing: 0.01em;
           transition: gap 0.22s ease, color 0.22s ease;
         }
         .mod-card--featured .mod-card__cta { color: rgba(236,229,214,0.70); }
-        .mod-card:hover .mod-card__cta { gap: 8px; color: rgba(165,0,30,0.90); }
+        .mod-card:hover .mod-card__cta { gap: 8px; color: rgba(200,0,48,0.90); }
         .mod-card--featured:hover .mod-card__cta { color: rgba(236,229,214,0.90); }
 
         /* selected state */
         .mod-card--selected {
-          border-color: rgba(165,0,30,0.40) !important;
-          box-shadow: 0 0 0 3px rgba(165,0,30,0.08), 0 16px 44px rgba(0,0,0,0.28) !important;
+          border-color: rgba(200,0,48,0.40) !important;
+          box-shadow: 0 0 0 3px rgba(200,0,48,0.08), 0 16px 44px rgba(0,0,0,0.28) !important;
         }
         .mod-card--featured.mod-card--selected {
           border-color: rgba(236,229,214,0.44) !important;
@@ -800,12 +800,12 @@ export default function InscripcionPage() {
           font-weight: 700;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: rgba(165,0,30,0.60);
+          color: rgba(200,0,48,0.60);
           margin-bottom: 16px;
         }
         .form-section__eyebrow-line {
           width: 28px; height: 1px;
-          background: rgba(165,0,30,0.38);
+          background: rgba(200,0,48,0.38);
         }
         .form-section__title {
           font-size: clamp(1.8rem, 3vw, 2.5rem);
@@ -856,9 +856,9 @@ export default function InscripcionPage() {
         .form-card__top-bar-icon {
           width: 30px; height: 30px;
           border-radius: 8px;
-          background: rgba(165,0,30,0.09);
-          border: 1px solid rgba(165,0,30,0.16);
-          color: rgba(165,0,30,0.72);
+          background: rgba(200,0,48,0.09);
+          border: 1px solid rgba(200,0,48,0.16);
+          color: rgba(200,0,48,0.72);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -936,20 +936,20 @@ export default function InscripcionPage() {
         }
         .field__input::placeholder { color: rgba(255,255,255,0.18); }
         .field__input:focus {
-          border-color: rgba(165,0,30,0.42);
-          background: rgba(165,0,30,0.036);
-          box-shadow: 0 0 0 3px rgba(165,0,30,0.07);
+          border-color: rgba(200,0,48,0.42);
+          background: rgba(200,0,48,0.036);
+          box-shadow: 0 0 0 3px rgba(200,0,48,0.07);
         }
         .field__input--error {
-          border-color: rgba(165,0,30,0.4) !important;
+          border-color: rgba(200,0,48,0.4) !important;
         }
         .field__input--error:focus {
-          box-shadow: 0 0 0 3px rgba(165,0,30,0.12) !important;
-          background: rgba(165,0,30,0.04) !important;
+          box-shadow: 0 0 0 3px rgba(200,0,48,0.12) !important;
+          background: rgba(200,0,48,0.04) !important;
         }
         .field__error {
           font-size: 11px;
-          color: rgba(165,0,30,0.8);
+          color: rgba(200,0,48,0.8);
           letter-spacing: 0.01em;
         }
         .field__textarea {
@@ -969,9 +969,9 @@ export default function InscripcionPage() {
         }
         .field__textarea::placeholder { color: rgba(255,255,255,0.18); }
         .field__textarea:focus {
-          border-color: rgba(165,0,30,0.42);
-          background: rgba(165,0,30,0.036);
-          box-shadow: 0 0 0 3px rgba(165,0,30,0.07);
+          border-color: rgba(200,0,48,0.42);
+          background: rgba(200,0,48,0.036);
+          box-shadow: 0 0 0 3px rgba(200,0,48,0.07);
         }
 
         /* Form footer */
@@ -991,7 +991,7 @@ export default function InscripcionPage() {
           max-width: 380px;
         }
         .form-card__footer-note a {
-          color: rgba(165,0,30,0.55);
+          color: rgba(200,0,48,0.55);
           text-decoration: none;
         }
         .form-submit-btn {
@@ -1000,21 +1000,21 @@ export default function InscripcionPage() {
           gap: 9px;
           padding: 15px 30px;
           border-radius: 12px;
-          background: linear-gradient(135deg, #7C011A 0%, #A5001E 100%);
+          background: linear-gradient(135deg, #A01028 0%, #C80030 100%);
           color: #ffffff;
           font-size: 14px;
           font-weight: 650;
           letter-spacing: 0.02em;
           border: none;
           cursor: pointer;
-          box-shadow: 0 8px 28px rgba(165,0,30,0.26);
+          box-shadow: 0 8px 28px rgba(200,0,48,0.26);
           transition: opacity 0.22s ease, transform 0.24s cubic-bezier(0.22,1,0.36,1), box-shadow 0.24s ease;
           font-family: inherit;
           white-space: nowrap;
         }
         .form-submit-btn:hover:not(:disabled) {
           transform: translateY(-2px);
-          box-shadow: 0 14px 40px rgba(165,0,30,0.36);
+          box-shadow: 0 14px 40px rgba(200,0,48,0.36);
         }
         .form-submit-btn:active:not(:disabled) { transform: translateY(0); }
         .form-submit-btn:disabled {

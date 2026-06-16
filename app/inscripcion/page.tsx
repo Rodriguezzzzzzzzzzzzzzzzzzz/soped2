@@ -3,6 +3,7 @@
 import React, { useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Layout from '@/components/layout/Layout'
+import { BackButton } from '@/components/ui/back-button'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -59,7 +60,7 @@ const PROGRAMS = [
     category: 'Comunidad',
     status: 'Registro abierto',
     active: true,
-    detail: 'Estudiante · Institución · Staff',
+    detail: 'Individual · Institución · Staff',
     featured: false,
   },
   {
@@ -135,14 +136,7 @@ const MUN_MODALIDADES = [
 // ── Sub-components ────────────────────────────────────────────────────────────
 
 function BackBtn({ onClick, label }: { onClick: () => void; label: string }) {
-  return (
-    <button onClick={onClick} className="insc-back">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-        <path d="M8 2L4 6L8 10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-      {label}
-    </button>
-  )
+  return <BackButton onClick={onClick} label={label} />
 }
 
 // ── Screen: HUB ───────────────────────────────────────────────────────────────
@@ -434,7 +428,7 @@ function InscripcionPageInner() {
           right: -20%;
           width: 60vw;
           height: 60vw;
-          background: radial-gradient(circle, rgba(124,1,26,0.12) 0%, transparent 65%);
+          background: radial-gradient(circle, rgba(160,16,40,0.12) 0%, transparent 65%);
           pointer-events: none;
           z-index: 0;
         }
@@ -517,32 +511,6 @@ function InscripcionPageInner() {
           background: linear-gradient(90deg, rgba(236,229,214,0.12), rgba(236,229,214,0.04), transparent);
           margin: 3.5rem 0;
         }
-
-        /* ── Back button ── */
-
-        .insc-back {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          font-family: var(--font-outfit);
-          font-size: 0.72rem;
-          color: rgba(255, 255, 255, 0.2);
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 0;
-          margin-bottom: 2.5rem;
-          letter-spacing: 0.02em;
-          transition: color 150ms ease;
-        }
-        .insc-back:focus-visible {
-          outline: 2px solid rgba(236,229,214,0.5);
-          outline-offset: 4px;
-          border-radius: 2px;
-        }
-        .insc-back:hover { color: rgba(236, 229, 214, 0.7); }
-        .insc-back svg { flex-shrink: 0; transition: transform 150ms ease; }
-        .insc-back:hover svg { transform: translateX(-2px); }
 
         /* ── Status badges ── */
 
@@ -756,7 +724,7 @@ function InscripcionPageInner() {
         }
 
         .insc-prog--featured {
-          background: rgba(124,1,26,0.08);
+          background: rgba(160,16,40,0.08);
           border-bottom-color: rgba(236,229,214,0.08);
         }
         .insc-prog--featured .insc-prog__title {
@@ -895,7 +863,7 @@ function InscripcionPageInner() {
 
         .insc-inst {
           width: 100%;
-          background: linear-gradient(160deg, rgba(124,1,26,0.35) 0%, rgba(124,1,26,0.15) 100%);
+          background: linear-gradient(160deg, rgba(160,16,40,0.35) 0%, rgba(160,16,40,0.15) 100%);
           border: 1px solid rgba(236, 229, 214, 0.18);
           border-radius: 12px;
           padding: 2rem 2.25rem;
@@ -933,7 +901,7 @@ function InscripcionPageInner() {
         }
         .insc-inst:hover {
           border-color: rgba(236, 229, 214, 0.35);
-          background: linear-gradient(160deg, rgba(124,1,26,0.5) 0%, rgba(124,1,26,0.2) 100%);
+          background: linear-gradient(160deg, rgba(160,16,40,0.5) 0%, rgba(160,16,40,0.2) 100%);
           box-shadow:
             0 20px 56px rgba(0,0,0,0.45),
             0 0 0 1px rgba(236,229,214,0.06);
@@ -1294,7 +1262,7 @@ function InscripcionPageInner() {
           right: -10%;
           width: 40%;
           height: 80%;
-          background: radial-gradient(circle, rgba(124,1,26,0.15) 0%, transparent 60%);
+          background: radial-gradient(circle, rgba(160,16,40,0.15) 0%, transparent 60%);
           pointer-events: none;
           z-index: 0;
         }

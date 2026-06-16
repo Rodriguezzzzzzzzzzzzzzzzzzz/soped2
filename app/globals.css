@@ -6,13 +6,24 @@
 
 :root {
   /* ─── INSTITUTIONAL PALETTE ─── */
-  --institutional: #7C011A;
-  --interaction: #A5001E;
+  --institutional: #A01028;
+  --interaction: #C80030;
   --ivory: #ECE5D6;
-  --dark: #0F0A0B;
+  --dark: #1C0408;
   --darker: #1A0A0D;
   --surface-card: #241014;
 
+  /* ─── PREMIUM SURFACE SYSTEM ─── */
+  --bg-base: #1C0408;
+  --bg-elevated: #280A10;
+  --bg-card: #320E16;
+  --bg-overlay: rgba(28, 4, 8, 0.85);
+
+  /* ─── FIXED NAVBAR OFFSET ─── */
+  --navbar-height: 64px;
+
+  /* ─── FIXED NAVBAR OFFSET (DESKTOP) ─── */
+  /* Applied via media query below */
   /* legacy aliases (still used in components) */
   --gold: var(--ivory);
   --gold-light: var(--ivory);
@@ -31,7 +42,7 @@
   --font-outfit: 'Outfit', Helvetica, sans-serif;
 
   /* surfaces */
-  --surface-0: var(--dark);
+  --surface-0: var(--bg-elevated);
   --surface-1: var(--darker);
   --surface-2: var(--institutional);
 
@@ -45,8 +56,8 @@
   --brand-hover: rgba(236,229,214,0.35);
 
   /* interaction */
-  --interaction-bg: rgba(165,0,30,0.15);
-  --interaction-border: rgba(165,0,30,0.4);
+  --interaction-bg: rgba(200,0,48,0.15);
+  --interaction-border: rgba(200,0,48,0.4);
 
   /* borders */
   --border-soft: rgba(255,255,255,0.08);
@@ -56,6 +67,12 @@
   --shadow-sm: 0 4px 12px rgba(0,0,0,0.25);
   --shadow-md: 0 8px 24px rgba(0,0,0,0.3);
   --shadow-lg: 0 16px 40px rgba(0,0,0,0.4);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --navbar-height: 80px;
+  }
 }
 
 * {
@@ -338,7 +355,7 @@ input, textarea, select, button, .btn-primary, .btn-secondary, .btn-membership, 
 #splash-lock {
   position: fixed;
   inset: 0;
-  background: #0F0A0B;
+  background: #1C0408;
   z-index: 999999;
   display: flex;
   align-items: center;
@@ -374,20 +391,19 @@ body,
 
 /* ─── Global background system ─── */
 .soped-bg {
-  background:
-    /* Institutional red — overhead dominance */
-    radial-gradient(ellipse 800px 500px at 50% -200px, rgba(124,1,26,0.25) 0%, transparent 100%),
-    /* Institutional red — right flank */
-    radial-gradient(ellipse 500px 700px at 100% 40%, rgba(124,1,26,0.20) 0%, transparent 100%),
-    /* Institutional red — bottom grounding */
-    radial-gradient(ellipse 700px 300px at 50% 100%, rgba(124,1,26,0.15) 0%, transparent 100%),
-    /* Cream editorial light — subtle, keeps text warm */
-    radial-gradient(ellipse 400px 200px at 30% 0%, rgba(240,231,213,0.04) 0%, transparent 100%),
-    /* Dark institutional red base — cool red, no yellow/orange = no brown */
-    linear-gradient(180deg, #2A0C16 0%, #1C0810 25%, #1C0810 75%, #2A0C16 100%);
+  background-color: var(--bg-base);
+  background-image:
+    /* 1. Upper-left: bright cherry highlight (primary light source → volume) */
+    radial-gradient(ellipse 800px 550px at 0% 0%, rgba(200,30,50,0.07) 0%, transparent 100%),
+    /* 2. Upper-right: institutional red ambient */
+    radial-gradient(ellipse 600px 700px at 100% 0%, rgba(160,16,40,0.045) 0%, transparent 100%),
+    /* 3. Center: warm volume core — prevents flatness */
+    radial-gradient(ellipse 700px 450px at 50% 40%, rgba(220,50,70,0.025) 0%, transparent 100%),
+    /* 4. Bottom: deep grounding shadow */
+    radial-gradient(ellipse 800px 350px at 50% 100%, rgba(120,10,25,0.06) 0%, transparent 100%);
 }
 
-/* ─── Content→Footer seamless transition ─── */
+/* ─── Content→Footer subtle depth feather ─── */
 .soped-content {
   position: relative;
 }
@@ -397,55 +413,72 @@ body,
   bottom: 0;
   left: 0;
   right: 0;
-  height: 200px;
+  height: 40px;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(15,10,11,0.30) 40%,
-    rgba(15,10,11,0.70) 75%,
-    #0F0A0B 100%
+    rgba(28,4,8,0.05) 50%,
+    rgba(28,4,8,0.12) 100%
   );
   pointer-events: none;
   z-index: 1;
 }
 
-/* ─── Footer — seamlessly integrated ─── */
+/* ─── Footer — natural depth continuation ─── */
 .soped-footer {
   position: relative;
   overflow: hidden;
-  background:
+  background-color: #170307;
+  background-image:
+    /* Warm cherry volume from below */
     radial-gradient(
-      ellipse 80% 50% at 50% 100%,
-      rgba(236,229,214,0.04) 0%,
+      ellipse 60% 35% at 50% 100%,
+      rgba(200,30,50,0.04) 0%,
       transparent 70%
     ),
-    linear-gradient(
-      180deg,
-      #0F0A0B 0%,
-      rgba(124,1,26,0.06) 15%,
-      rgba(124,1,26,0.18) 35%,
-      rgba(124,1,26,0.40) 60%,
-      rgba(124,1,26,0.65) 85%,
-      rgba(124,1,26,0.80) 100%
+    /* Deep red anchor from bottom-center */
+    radial-gradient(
+      ellipse 70% 40% at 50% 100%,
+      rgba(160,16,40,0.08) 0%,
+      transparent 80%
     );
 }
 .soped-footer::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 8%;
-  right: 8%;
+  left: 0;
+  right: 0;
   height: 1px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(236,229,214,0.05) 20%,
-    rgba(236,229,214,0.12) 50%,
-    rgba(236,229,214,0.05) 80%,
+    rgba(236,229,214,0.18) 15%,
+    rgba(236,229,214,0.35) 50%,
+    rgba(236,229,214,0.18) 85%,
     transparent 100%
   );
   pointer-events: none;
   z-index: 1;
+}
+.soped-footer::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 10%;
+  right: 10%;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(200,30,50,0.05) 20%,
+    rgba(200,30,50,0.10) 50%,
+    rgba(200,30,50,0.05) 80%,
+    transparent 100%
+  );
+  filter: blur(4px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .soped-footer__inner {
@@ -464,7 +497,7 @@ body,
 .soped-footer__brand-desc {
   font-family: var(--font-outfit);
   font-size: 0.82rem;
-  color: rgba(255,255,255,0.32);
+  color: rgba(255,255,255,0.4);
   line-height: 1.75;
   letter-spacing: 0.02em;
   max-width: 280px;
@@ -521,7 +554,7 @@ body,
 .soped-footer__sig-star {
   font-family: var(--font-cormorant);
   font-size: 0.85rem;
-  color: rgba(236,229,214,0.35);
+  color: rgba(236,229,214,0.4);
 }
 
 /* ─── Footer responsive ─── */
@@ -764,8 +797,8 @@ body,
     linear-gradient(
       to bottom,
       rgba(0,0,0,0)    0%,
-      rgba(124,1,26,0.08) 50%,
-      rgba(124,1,26,0.40) 80%,
+      rgba(160,16,40,0.08) 50%,
+      rgba(160,16,40,0.40) 80%,
       rgba(15,10,11,1)   100%
     );
 }
@@ -857,8 +890,8 @@ body,
   gap: var(--space-8);
   align-items: center;
   padding: var(--space-8);
-  background: rgba(255,255,255,0.015);
-  border: 1px solid rgba(255,255,255,0.05);
+  background: var(--surface-0);
+  border: 1px solid rgba(255,255,255,0.06);
   border-radius: var(--radius-lg);
   text-decoration: none;
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
@@ -875,7 +908,7 @@ body,
   pointer-events: none;
 }
 .soped-program-card:hover {
-  background: rgba(255,255,255,0.03);
+  background: var(--bg-card);
   border-color: rgba(236,229,214,0.15);
   transform: translateY(-2px);
   box-shadow: 0 16px 40px -12px rgba(0,0,0,0.5);
@@ -1249,13 +1282,13 @@ body,
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.ip-prog-card:hover { background: rgba(255,255,255,0.025); }
+.ip-prog-card:hover { background: var(--bg-card); }
 .ip-prog-card--mun {
   background: var(--surface-0);
 }
 
 .ip-prog-card--mun:hover {
-  background: rgba(255,255,255,0.03);
+  background: var(--bg-card);
 }
 
 .ip-prog-card--mun .ip-prog-card__title {
@@ -1341,7 +1374,7 @@ body,
   transition: background 200ms ease;
   animation: ipCardIn 0.45s ease both;
 }
-.ip-team-card:hover { background: rgba(255,255,255,0.02); }
+.ip-team-card:hover { background: var(--bg-card); }
 .ip-team-card:hover .ip-team-card__cta { color: rgba(236,229,214,0.85); }
 .ip-team-card:hover .ip-team-card__cta svg { transform: translateX(3px); }
 
@@ -1405,7 +1438,7 @@ body,
   cursor: pointer;
   text-align: left;
   margin-bottom: 1px;
-  transition: border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+  transition: border-color 220ms ease, box-shadow 220ms ease;
   animation: ipScreenIn 0.4s ease both;
   position: relative;
   overflow: hidden;
@@ -1727,7 +1760,7 @@ body,
   z-index: 10000;
   display: flex;
   justify-content: flex-end;
-  background: rgba(15,10,11,0.6);
+  background: rgba(28,4,8,0.7);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease;
@@ -1747,8 +1780,9 @@ body,
   height: 100%;
   background: linear-gradient(
     180deg,
-    #1A080A 0%,
-    #0F0A0B 100%
+    rgba(160,16,40,0.12) 0%,
+    var(--bg-base) 25%,
+    var(--bg-base) 100%
   );
   border-left: 1px solid rgba(236,229,214,0.06);
   padding: 5rem 2rem 2.5rem;

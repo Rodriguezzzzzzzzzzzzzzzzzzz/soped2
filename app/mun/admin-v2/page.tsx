@@ -20,7 +20,7 @@ const statusColor = (status: string) => {
     case 'rejected':
       return '#dc2626'
     case 'waitlist':
-      return '#A5001E'
+      return '#C80030'
     default:
       return '#ca8a04'
   }
@@ -190,7 +190,7 @@ export default function AdminV2() {
       
       {/* HEADER */}
       <div style={{ marginBottom: 25 }}>
-        <h1 style={{ fontSize: 28, fontWeight: 700, color: '#7C011A' }}>
+        <h1 style={{ fontSize: 28, fontWeight: 700, color: '#A01028' }}>
           SoPeD MUN Admin Panel
         </h1>
         <p style={{ color: '#8B7B70' }}>
@@ -349,7 +349,7 @@ export default function AdminV2() {
                     padding: 6,
                     borderRadius: 6,
                     border: 'none',
-                    background: '#A5001E',
+                    background: '#C80030',
                     color: '#fff',
                     cursor: 'pointer',
                   }}
@@ -409,7 +409,7 @@ export default function AdminV2() {
           width: '100%',
           marginBottom: 12,
           padding: 10,
-          background: '#7C011A',
+          background: '#A01028',
           color: 'white',
           borderRadius: 8,
           border: 'none',

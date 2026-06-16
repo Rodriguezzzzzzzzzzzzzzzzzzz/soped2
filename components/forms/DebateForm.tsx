@@ -52,20 +52,20 @@ export default function DebateForm() {
           <div>
             <label className="label-glass">Grado escolar *</label>
             <select className="input-glass" value={formData.grado} onChange={(e) => handleChange('grado', e.target.value)} style={{ appearance: 'none', cursor: 'pointer' }}>
-              <option value="" style={{ background: '#7C011A' }}>Selecciona</option>
+              <option value="" style={{ background: '#A01028' }}>Selecciona</option>
               {['1ro Secundaria', '2do Secundaria', '3ro Secundaria', '4to Secundaria', '5to Secundaria'].map((g) => (
-                <option key={g} value={g} style={{ background: '#7C011A' }}>{g}</option>
+                <option key={g} value={g} style={{ background: '#A01028' }}>{g}</option>
               ))}
             </select>
           </div>
           <div>
             <label className="label-glass">Nivel de experiencia</label>
             <select className="input-glass" value={formData.nivel} onChange={(e) => handleChange('nivel', e.target.value)} style={{ appearance: 'none', cursor: 'pointer' }}>
-              <option value="" style={{ background: '#7C011A' }}>Selecciona</option>
-              <option value="ninguno" style={{ background: '#7C011A' }}>Sin experiencia</option>
-              <option value="basico" style={{ background: '#7C011A' }}>Básico</option>
-              <option value="intermedio" style={{ background: '#7C011A' }}>Intermedio</option>
-              <option value="avanzado" style={{ background: '#7C011A' }}>Avanzado</option>
+              <option value="" style={{ background: '#A01028' }}>Selecciona</option>
+              <option value="ninguno" style={{ background: '#A01028' }}>Sin experiencia</option>
+              <option value="basico" style={{ background: '#A01028' }}>Básico</option>
+              <option value="intermedio" style={{ background: '#A01028' }}>Intermedio</option>
+              <option value="avanzado" style={{ background: '#A01028' }}>Avanzado</option>
             </select>
           </div>
         </div>

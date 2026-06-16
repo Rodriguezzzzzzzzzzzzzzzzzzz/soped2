@@ -30,18 +30,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <style>{`
           html, body {
-            background-color: #0F0A0B;
+            background-color: #1C0408;
             color: #f0ece4;
           }
         `}</style>
       </head>
-      <body style={{ margin: 0, minHeight: '100vh', backgroundColor: '#0F0A0B', color: '#f0ece4' }}>
-        <div id="soped-ssr-cover" style={{ position: 'fixed', inset: 0, backgroundColor: '#0F0A0B', zIndex: 99999 }} />
+      <body style={{ margin: 0, minHeight: '100vh', backgroundColor: '#1C0408', color: '#f0ece4' }}>
+        <div id="soped-ssr-cover" style={{ position: 'fixed', inset: 0, backgroundColor: '#1C0408', zIndex: 99999 }} />
         <SsrCover />
         <Navbar />
-        <PageTransition>
-          {children}
-        </PageTransition>
+        <main className="soped-bg" style={{ paddingTop: 'var(--navbar-height)' }}>
+          <PageTransition>
+            {children}
+          </PageTransition>
+        </main>
         <Footer />
       </body>
     </html>

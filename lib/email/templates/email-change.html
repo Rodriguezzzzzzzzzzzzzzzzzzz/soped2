@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cambio de correo electrónico – SoPeD</title>
+</head>
+<body style="margin:0;padding:0;background:#FEFCEF;font-family:'Outfit',Helvetica,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#FEFCEF;padding:40px 16px;">
+    <tr>
+      <td align="center">
+        <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+          <!-- Top accent -->
+          <tr>
+            <td style="height:4px;background:#7C011A;font-size:0;line-height:0;">&nbsp;</td>
+          </tr>
+          <!-- Logo -->
+          <tr>
+            <td align="center" style="padding:40px 32px 0;">
+              <img src="https://soped.pe/soped-email-logo.png" alt="SoPeD" width="72" height="72" style="width:72px;height:72px;display:block;margin:0 auto 20px;border-radius:50%;" />
+              <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:600;color:#2C1810;margin:0 0 4px;letter-spacing:0.02em;">
+                Sociedad Peruana de Debate
+              </h1>
+              <div style="width:40px;height:2px;background:#7C011A;margin:16px auto 24px;"></div>
+            </td>
+          </tr>
+          <!-- Body -->
+          <tr>
+            <td style="padding:0 32px 32px;">
+              <p style="font-family:'Outfit',Helvetica,Arial,sans-serif;font-size:15px;color:#2C1810;line-height:1.7;margin:0 0 20px;">
+                Hola{{#if display_name}}, {{display_name}}{{/if}}:
+              </p>
+              <p style="font-family:'Outfit',Helvetica,Arial,sans-serif;font-size:15px;color:#2C1810;line-height:1.7;margin:0 0 20px;">
+                Recibimos una solicitud para cambiar la dirección de correo electrónico asociada a tu cuenta en la <strong>Sociedad Peruana de Debate (SoPeD)</strong>.
+              </p>
+              <p style="font-family:'Outfit',Helvetica,Arial,sans-serif;font-size:15px;color:#2C1810;line-height:1.7;margin:0 0 24px;">
+                Para confirmar este cambio, haz clic en el siguiente botón:
+              </p>
+              <!-- Button -->
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center" style="padding:0 0 24px;">
+                    <table cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center" style="background:#7C011A;border-radius:4px;">
+                          <a href="{{action_url}}" target="_blank" style="display:inline-block;padding:14px 36px;font-family:'Outfit',Helvetica,Arial,sans-serif;font-size:14px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#ffffff;background:#7C011A;text-decoration:none;border-radius:4px;white-space:nowrap;">
+                            Confirmar cambio de correo
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              <p style="font-family:'Outfit',Helvetica,Arial,sans-serif;font-size:14px;color:rgba(44,24,16,0.5);line-height:1.6;margin:0 0 20px;">
+                Si el botón no funciona, copia y pega el siguiente enlace en tu navegador:
+              </p>
+              <p style="font-family:monospace;font-size:12px;color:rgba(124,1,26,0.5);line-height:1.5;word-break:break-all;background:#FEFCEF;padding:12px;border-radius:4px;margin:0 0 20px;">
+                {{action_url}}
+              </p>
+              <div style="height:1px;background:rgba(124,1,26,0.08);margin:0 0 20px;"></div>
+              <p style="font-family:'Outfit',Helvetica,Arial,sans-serif;font-size:13px;color:rgba(44,24,16,0.35);line-height:1.6;margin:0 0 4px;">
+                <strong>Importante:</strong> Si no solicitaste este cambio, contacta a nuestro equipo de soporte de inmediato.
+              </p>
+              <p style="font-family:'Outfit',Helvetica,Arial,sans-serif;font-size:13px;color:rgba(44,24,16,0.35);line-height:1.6;margin:0 0 20px;">
+                Si no solicitaste este cambio, puedes ignorar este mensaje.
+              </p>
+              <div style="height:1px;background:rgba(124,1,26,0.08);margin:0 0 20px;"></div>
+              <p style="font-family:'Outfit',Helvetica,Arial,sans-serif;font-size:14px;color:#2C1810;line-height:1.7;margin:0 0 4px;">
+                Recibe un cordial saludo,
+              </p>
+              <p style="font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;font-weight:600;color:#7C011A;line-height:1.4;margin:8px 0 0;">
+                Equipo SoPeD
+              </p>
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td style="padding:0 32px 32px;">
+              <div style="height:1px;background:rgba(124,1,26,0.06);margin:0 0 16px;"></div>
+              <p style="font-family:'Outfit',Helvetica,Arial,sans-serif;font-size:11px;color:rgba(44,24,16,0.25);line-height:1.5;margin:0;text-align:center;">
+                Sociedad Peruana de Debate (SoPeD) &bull; Lima, Perú<br />
+                Si tienes dudas, escríbenos a <a href="mailto:presidencia@soped.pe" style="color:rgba(124,1,26,0.4);text-decoration:underline;">presidencia@soped.pe</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

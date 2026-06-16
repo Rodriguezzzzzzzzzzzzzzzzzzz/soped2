@@ -129,7 +129,7 @@ export default function Footer() {
               Contacto
             </p>
             <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.7 }}>
-              contacto@soped.pe
+              presidencia@soped.pe
             </p>
             <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.7 }}>
               Cusco, Perú
