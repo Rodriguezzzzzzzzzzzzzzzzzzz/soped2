@@ -1,5 +1,6 @@
 'use client'
 
+import { useRef, useEffect, useState } from 'react'
 import Link from 'next/link'
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
@@ -100,10 +101,24 @@ function Hero() {
 }
 
 function ProgramsSection() {
+  const ref = useRef<HTMLElement>(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect() } },
+      { threshold: 0.15 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section className="soped-section soped-section--dark">
+    <section ref={ref} className={`soped-section soped-section--dark ${visible ? 'soped-programs--visible' : ''}`}>
       <div className="soped-container">
-        <header className="soped-section__header">
+        <header className="soped-section__header soped-programs__header">
           <div className="soped-eyebrow">
             <span className="soped-eyebrow__line" />
             <span>Nuestros Programas</span>

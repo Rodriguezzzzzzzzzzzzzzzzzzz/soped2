@@ -56,9 +56,9 @@ export default function MembresiaPage() {
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-          --surface-0: #080405;
-          --surface-1: #100608;
-          --surface-2: #1A090D;
+          --surface-0: var(--bg-base);
+          --surface-1: var(--bg-elevated);
+          --surface-2: var(--bg-card);
           --surface-3: #240D12;
           --primary: #F0E7D5;
           --primary-bright: #F8F4EA;
@@ -430,10 +430,6 @@ export default function MembresiaPage() {
         .membership-section {
           position: relative;
           overflow: hidden;
-          background:
-            radial-gradient(ellipse 70% 25% at 50% 0%, rgba(124, 1, 26, 0.08) 0%, transparent 100%),
-            radial-gradient(ellipse 50% 40% at 80% 80%, rgba(124, 1, 26, 0.04) 0%, transparent 100%),
-            linear-gradient(180deg, var(--surface-0) 0%, var(--surface-1) 50%, var(--surface-0) 100%);
         }
         .membership-section::before {
           content: '';
@@ -661,10 +657,6 @@ export default function MembresiaPage() {
         .cta-section {
           position: relative;
           overflow: hidden;
-          background:
-            radial-gradient(ellipse 60% 40% at 50% 30%, rgba(124, 1, 26, 0.20) 0%, transparent 70%),
-            radial-gradient(ellipse 70% 50% at 50% 80%, rgba(240, 231, 213, 0.04) 0%, transparent 60%),
-            linear-gradient(180deg, var(--surface-1) 0%, var(--surface-0) 100%);
         }
         .cta-section::before {
           content: '';

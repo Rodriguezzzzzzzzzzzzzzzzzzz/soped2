@@ -421,28 +421,6 @@ function InscripcionPageInner() {
           padding: 8rem 0 9rem;
           isolation: isolate;
         }
-        .insc-page::before {
-          content: '';
-          position: absolute;
-          top: -10%;
-          right: -20%;
-          width: 60vw;
-          height: 60vw;
-          background: radial-gradient(circle, rgba(160,16,40,0.12) 0%, transparent 65%);
-          pointer-events: none;
-          z-index: 0;
-        }
-        .insc-page::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: -15%;
-          width: 50vw;
-          height: 50vw;
-          background: radial-gradient(circle, rgba(236,229,214,0.035) 0%, transparent 60%);
-          pointer-events: none;
-          z-index: 0;
-        }
 
         .insc-wrap {
           position: relative;
@@ -588,7 +566,7 @@ function InscripcionPageInner() {
           font-family: var(--font-cormorant);
           font-size: clamp(2.8rem, 5vw, 5.2rem);
           font-weight: 300;
-          color: #fff;
+          color: var(--text-primary);
           line-height: 1.04;
           letter-spacing: -0.02em;
         }
@@ -678,68 +656,71 @@ function InscripcionPageInner() {
           align-items: center;
           gap: 1.5rem;
           padding: 1.4rem 1.5rem;
-          background: transparent;
-          border: none;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+          background: var(--surface-0);
+          border: 1px solid rgba(255,255,255,0.05);
+          border-radius: 8px;
           cursor: pointer;
           text-align: left;
           position: relative;
           transition:
             background 0.25s ease,
             border-color 0.25s ease,
-            padding 0.2s ease;
-          border-radius: 6px;
-          margin: 0 -1.5rem;
-          width: calc(100% + 3rem);
+            box-shadow 0.3s ease,
+            transform 0.3s ease;
+          margin-bottom: 0.5rem;
         }
         .insc-prog::before {
           content: '';
           position: absolute;
           inset: 0;
-          background: rgba(255,255,255,0);
-          border-radius: 6px;
-          transition: background 0.25s ease;
-          z-index: 0;
+          border-radius: 8px;
+          background: linear-gradient(135deg, rgba(236,229,214,0.03), transparent 50%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
         }
         .insc-prog:hover {
-          background: rgba(255,255,255,0.015);
-          border-bottom-color: rgba(255,255,255,0.08);
+          background: var(--bg-card);
+          border-color: rgba(236,229,214,0.15);
+          box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+          transform: translateY(-2px);
         }
         .insc-prog:hover::before {
-          background: rgba(255,255,255,0.015);
+          opacity: 1;
         }
         .insc-prog:focus-visible {
           outline: 2px solid rgba(236,229,214,0.4);
-          outline-offset: -2px;
+          outline-offset: 2px;
         }
         .insc-prog > * {
           position: relative;
           z-index: 1;
         }
-        .insc-prog:hover .insc-prog__title { color: #fff; }
-        .insc-prog:hover .insc-prog__idx { color: rgba(236,229,214,0.25); }
+        .insc-prog:hover .insc-prog__title { color: var(--text-primary); }
+        .insc-prog:hover .insc-prog__idx { color: rgba(236,229,214,0.35); }
         .insc-prog:hover .insc-prog__arrow {
           color: rgba(236,229,214,0.7);
           transform: translateX(4px);
         }
 
         .insc-prog--featured {
-          background: rgba(160,16,40,0.08);
-          border-bottom-color: rgba(236,229,214,0.08);
+          background: linear-gradient(135deg, rgba(160,16,40,0.2), rgba(160,16,40,0.08));
+          border-color: rgba(160,16,40,0.25);
         }
         .insc-prog--featured .insc-prog__title {
           color: rgba(236, 229, 214, 0.92);
         }
         .insc-prog--featured .insc-prog__idx {
-          color: rgba(236, 229, 214, 0.25);
+          color: rgba(236, 229, 214, 0.35);
+        }
+        .insc-prog--featured:hover {
+          background: linear-gradient(135deg, rgba(160,16,40,0.3), rgba(160,16,40,0.12));
         }
 
         @media (max-width: 900px) {
           .insc-prog {
             grid-template-columns: 2rem 1fr auto 1.5rem;
             padding: 1.2rem 1rem;
-            margin: 0 -1rem;
-            width: calc(100% + 2rem);
           }
           .insc-prog__detail { display: none; }
           .insc-prog__cat    { display: none; }
@@ -749,8 +730,6 @@ function InscripcionPageInner() {
             grid-template-columns: 2rem 1fr auto;
             gap: 0.75rem;
             padding: 1rem 0.75rem;
-            margin: 0 -0.75rem;
-            width: calc(100% + 1.5rem);
           }
           .insc-prog__arrow { display: none; }
         }
@@ -842,7 +821,7 @@ function InscripcionPageInner() {
           font-family: var(--font-cormorant);
           font-size: clamp(3.5rem, 7vw, 6rem);
           font-weight: 300;
-          color: #fff;
+          color: var(--text-primary);
           line-height: 1.07;
           letter-spacing: -0.02em;
           margin-bottom: 1rem;
@@ -1019,7 +998,7 @@ function InscripcionPageInner() {
           align-items: flex-start;
           gap: 1rem;
           padding: 2rem;
-          background: rgba(255,255,255,0.02);
+          background: var(--surface-0);
           border: 1px solid rgba(255,255,255,0.06);
           border-radius: 12px;
           cursor: pointer;
@@ -1035,8 +1014,8 @@ function InscripcionPageInner() {
         .insc-mod:hover {
           transform: translateY(-4px);
           border-color: rgba(236,229,214,0.25);
-          background: rgba(255,255,255,0.03);
-          box-shadow: 0 18px 44px rgba(0,0,0,0.35);
+          background: var(--bg-card);
+          box-shadow: 0 18px 44px rgba(0,0,0,0.4);
         }
         .insc-mod:focus-visible {
           outline: 2px solid rgba(236,229,214,0.4);
@@ -1169,7 +1148,7 @@ function InscripcionPageInner() {
           height: 2.5rem;
           border: 1px solid rgba(236, 229, 214, 0.18);
           border-radius: 50%;
-          background: var(--dark);
+          background: var(--bg-elevated);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -1231,7 +1210,7 @@ function InscripcionPageInner() {
           font-family: var(--font-cormorant);
           font-size: clamp(2rem, 3.5vw, 3.2rem);
           font-weight: 300;
-          color: #fff;
+          color: var(--text-primary);
           line-height: 1.1;
           margin-bottom: 0.75rem;
         }
@@ -1250,21 +1229,11 @@ function InscripcionPageInner() {
         .insc-form-embed {
           position: relative;
           width: 100%;
-          border: 1px solid rgba(255,255,255,0.08);
+          border: 1px solid rgba(160,16,40,0.12);
           border-radius: 12px;
           overflow: hidden;
-          background: rgba(255,255,255,0.02);
-        }
-        .insc-form-embed::before {
-          content: '';
-          position: absolute;
-          top: -20%;
-          right: -10%;
-          width: 40%;
-          height: 80%;
-          background: radial-gradient(circle, rgba(160,16,40,0.15) 0%, transparent 60%);
-          pointer-events: none;
-          z-index: 0;
+          background: var(--bg-elevated);
+          box-shadow: 0 8px 32px rgba(0,0,0,0.35);
         }
 
         .insc-form-embed iframe {

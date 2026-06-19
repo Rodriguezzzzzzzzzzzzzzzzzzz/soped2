@@ -635,6 +635,7 @@ body,
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
+  --space-5: 1.25rem;
   --space-6: 1.5rem;
   --space-8: 2rem;
   --space-12: 3rem;
@@ -881,8 +882,35 @@ body,
 .soped-programs {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-8);
 }
+
+/* ─── Entrance animations ─── */
+@keyframes sopedFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes sopedHeaderIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.soped-programs__header {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.soped-programs--visible .soped-programs__header {
+  opacity: 1;
+  transform: translateY(0);
+}
+.soped-programs--visible .soped-program-card {
+  animation: sopedFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+.soped-programs--visible .soped-program-card:nth-child(1) { animation-delay: 0.05s; }
+.soped-programs--visible .soped-program-card:nth-child(2) { animation-delay: 0.15s; }
+.soped-programs--visible .soped-program-card:nth-child(3) { animation-delay: 0.25s; }
 
 .soped-program-card {
   display: grid;
@@ -894,8 +922,9 @@ body,
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: var(--radius-lg);
   text-decoration: none;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
+  will-change: transform, box-shadow;
 }
 .soped-program-card::after {
   content: '';
@@ -903,15 +932,17 @@ body,
   inset: -1px;
   border-radius: inherit;
   opacity: 0;
-  background: linear-gradient(135deg, rgba(236,229,214,0.06), transparent 60%);
+  background: linear-gradient(135deg, rgba(236,229,214,0.08), transparent 60%);
   transition: opacity 0.4s ease;
   pointer-events: none;
 }
 .soped-program-card:hover {
   background: var(--bg-card);
-  border-color: rgba(236,229,214,0.15);
-  transform: translateY(-2px);
-  box-shadow: 0 16px 40px -12px rgba(0,0,0,0.5);
+  border-color: rgba(236,229,214,0.18);
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 48px -16px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(236,229,214,0.06);
 }
 .soped-program-card:hover::after {
   opacity: 1;
@@ -973,7 +1004,7 @@ body,
     padding: var(--space-6);
   }
   .soped-program-card__arrow { display: none; }
-  .soped-programs { gap: var(--space-4); }
+  .soped-programs { gap: var(--space-6); }
 }
 
 /* ─── WHY SOPED ─── */
