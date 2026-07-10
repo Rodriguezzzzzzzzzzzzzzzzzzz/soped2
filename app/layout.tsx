@@ -6,8 +6,49 @@ import Footer from '../components/layout/Footer'
 import SsrCover from '../components/layout/SsrCover'
 
 export const metadata: Metadata = {
-  title: 'SoPeD — Sociedad Peruana de Debate',
-  description: 'Plataforma institucional de la Sociedad Peruana de Debate.',
+  title: {
+    default: 'SoPeD — Sociedad Peruana de Debate',
+    template: '%s | SoPeD',
+  },
+  description:
+    'SoPeD — Sociedad Peruana de Debate. Plataforma académica líder en debate competitivo del Perú. Formamos líderes, diplomáticos y oradores mediante estándares internacionales de excelencia.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
+      { url: '/soped.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [
+      { url: '/icon-192.png', sizes: '192x192' },
+      { url: '/soped.svg' },
+    ],
+    other: { rel: 'apple-touch-icon-precomposed', url: '/icon-192.png' },
+  },
+  manifest: '/site.webmanifest',
+  openGraph: {
+    title: 'SoPeD — Sociedad Peruana de Debate',
+    description:
+      'Plataforma académica líder en debate competitivo del Perú. Formamos líderes, diplomáticos y oradores.',
+    url: 'https://soped.pe',
+    siteName: 'SoPeD',
+    images: [{ url: '/icon-512.png', width: 512, height: 512 }],
+    locale: 'es_PE',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SoPeD — Sociedad Peruana de Debate',
+    description:
+      'Plataforma académica líder en debate competitivo del Perú. Formamos líderes, diplomáticos y oradores.',
+    images: ['/icon-512.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large', 'max-snippet': -1 },
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

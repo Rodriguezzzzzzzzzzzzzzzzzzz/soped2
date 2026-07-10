@@ -29,7 +29,7 @@ export default function SplashIntro() {
       }}
     >
       <img
-        src="/logo-soped.svg"
+        src="/soped.svg"
         style={{
           width: 140,
         }}
