@@ -9,7 +9,7 @@ const team = [
     name: 'Rodrigo Manuel Rodriguez',
     role: 'Presidente Nacional',
     initial: 'R',
-    bio: 'Especialista en debate parlamentario con más de 8 años formando líderes académicos a nivel nacional.',
+    bio: 'Especialista y mentor en debate, negociación y liderazgo, con más de cuatro años de experiencia. Especialista en Modelos de Naciones Unidas (MUN) y fundador de diversas organizaciones y clubes de debate en colegios y universidades.',
     area: 'Liderazgo institucional',
   },
   {
@@ -32,6 +32,13 @@ const team = [
     initial: 'M',
     bio: 'Educador con enfoque en el desarrollo del pensamiento crítico en adolescentes.',
     area: 'Pedagogía crítica',
+  },
+  {
+    name: 'Andre Mateo Nicolas Flores Alvarado',
+    role: 'Director de Operaciones',
+    initial: 'A',
+    bio: 'Estudiante de Medicina especialista en Modelos de Naciones Unidas y participación en conferencias internacionales de liderazgo.',
+    area: 'Operaciones & liderazgo',
   },
 ]
 
