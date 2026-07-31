@@ -3,44 +3,7 @@
 import Layout from '@/components/layout/Layout'
 import Link from 'next/link'
 import RevealOnScroll from '@/components/nosotros/RevealOnScroll'
-
-const team = [
-  {
-    name: 'Rodrigo Manuel Rodriguez',
-    role: 'Presidente Nacional',
-    initial: 'R',
-    bio: 'Especialista y mentor en debate, negociación y liderazgo, con más de cuatro años de experiencia. Especialista en Modelos de Naciones Unidas (MUN) y fundador de diversas organizaciones y clubes de debate en colegios y universidades.',
-    area: 'Liderazgo institucional',
-  },
-  {
-    name: 'Lucero Beys Romero',
-    role: 'Directora Académica',
-    initial: 'L',
-    bio: 'Especialista en Derecho Internacional y ODS, representante en foros de Latinoamérica y el Caribe.',
-    area: 'Política internacional',
-  },
-  {
-    name: 'Pedro Adrian Villalba',
-    role: 'Coordinador MUN',
-    initial: 'P',
-    bio: 'Estudiante de derecho con participación destacada en 10 conferencias jurídicas internacionales.',
-    area: 'Derecho & diplomacia',
-  },
-  {
-    name: 'Mateo Landaveri',
-    role: 'Coordinador Escolar',
-    initial: 'M',
-    bio: 'Educador con enfoque en el desarrollo del pensamiento crítico en adolescentes.',
-    area: 'Pedagogía crítica',
-  },
-  {
-    name: 'Andre Mateo Nicolas Flores Alvarado',
-    role: 'Director de Operaciones',
-    initial: 'A',
-    bio: 'Estudiante de Medicina especialista en Modelos de Naciones Unidas y participación en conferencias internacionales de liderazgo.',
-    area: 'Operaciones & liderazgo',
-  },
-]
+import TeamDirectivo from '@/components/equipo/TeamDirectivo'
 
 const values = [
   {
@@ -338,92 +301,7 @@ export default function NosotrosPage() {
 
       {/* ═══ EQUIPO ═══ */}
       <section style={{ padding: '7rem 0', position: 'relative', overflow: 'hidden' }}>
-
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-
-          <RevealOnScroll direction="up">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '4rem', flexWrap: 'wrap', gap: '1.5rem' }}>
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-                  <span className="deco-line" />
-                  <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.7)' }}>
-                    Las personas detrás
-                  </span>
-                </div>
-                <h2 style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(2.2rem, 4vw, 3.5rem)', fontWeight: 400, color: '#fff', lineHeight: 1.1 }}>
-                  Equipo directivo
-                </h2>
-              </div>
-              <Link href="/inscripcion" className="btn-secondary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.78rem' }}>
-                Únete al equipo →
-              </Link>
-            </div>
-          </RevealOnScroll>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-            {team.map((member, i) => (
-              <RevealOnScroll key={member.name} direction="up" delay={i * 80}>
-                <div
-                  className="glass"
-                  style={{
-                    padding: '0',
-                    overflow: 'hidden',
-                    height: '100%',
-                    transition: 'border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease',
-                    cursor: 'default',
-                  }}
-                  onMouseEnter={e => {
-                    const el = e.currentTarget
-                    el.style.borderColor = 'rgba(236,229,214,0.3)'
-                    el.style.transform = 'translateY(-4px)'
-                    el.style.boxShadow = '0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(236,229,214,0.08)'
-                  }}
-                  onMouseLeave={e => {
-                    const el = e.currentTarget
-                    el.style.borderColor = 'rgba(255,255,255,0.08)'
-                    el.style.transform = 'none'
-                    el.style.boxShadow = 'none'
-                  }}
-                >
-                  {/* Top color band */}
-                  <div style={{ height: '3px', background: 'linear-gradient(90deg, rgba(236,229,214,0.6), rgba(236,229,214,0.1), transparent)' }} />
-
-                  <div style={{ padding: '2rem' }}>
-                    {/* Avatar + area */}
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
-                      <div style={{ width: '52px', height: '52px', background: 'rgba(236,229,214,0.08)', border: '1px solid rgba(236,229,214,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.6rem', color: '#ECE5D6', fontWeight: 600 }}>
-                          {member.initial}
-                        </span>
-                      </div>
-                      <span style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.6rem', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.2)', border: '1px solid rgba(255,255,255,0.07)', padding: '0.2rem 0.6rem', alignSelf: 'center' }}>
-                        {member.area}
-                      </span>
-                    </div>
-
-                    {/* Name */}
-                    <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.35rem', fontWeight: 500, color: '#fff', marginBottom: '0.2rem', lineHeight: 1.2 }}>
-                      {member.name}
-                    </p>
-
-                    {/* Role */}
-                    <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.68rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(236,229,214,0.65)', marginBottom: '1rem' }}>
-                      {member.role}
-                    </p>
-
-                    {/* Divider */}
-                    <div style={{ height: '1px', background: 'rgba(255,255,255,0.06)', marginBottom: '1rem' }} />
-
-                    {/* Bio */}
-                    <p style={{ fontFamily: 'var(--font-outfit)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.38)', lineHeight: 1.7 }}>
-                      {member.bio}
-                    </p>
-                  </div>
-                </div>
-              </RevealOnScroll>
-            ))}
-          </div>
-        </div>
+        <TeamDirectivo />
       </section>
 
 
