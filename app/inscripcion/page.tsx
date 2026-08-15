@@ -16,6 +16,11 @@ type ViewState =
   | { screen: 'mun-form'; modalidad: MunModalidadId }
   | { screen: 'other-form'; program: Exclude<ProgramId, 'mun'> }
 
+// ── Google Form URL ──────────────────────────────────────────────────────────
+
+const FORM_URL =
+  'https://docs.google.com/forms/d/e/REEMPLAZAR_FORM_ID/viewform?embedded=true'
+
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 const PROGRAMS = [
@@ -137,6 +142,41 @@ const MUN_MODALIDADES = [
 
 function BackBtn({ onClick, label }: { onClick: () => void; label: string }) {
   return <BackButton onClick={onClick} label={label} />
+}
+
+// ── Form fallback: abrir el formulario en una nueva pestaña ──────────────────
+
+function FormHelpFallback() {
+  return (
+    <div className="insc-form-help">
+      <div className="insc-form-help__icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M6 3h8l4 4v14H6z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
+          <path d="M14 3v4h4" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
+          <path d="M9 11h6M9 15h6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+        </svg>
+      </div>
+      <h3 className="insc-form-help__title">¿No puedes ver el formulario?</h3>
+      <p className="insc-form-help__text">
+        Si el formulario no carga correctamente, puedes abrirlo directamente
+        en una nueva pestaña e iniciar sesión con tu cuenta de Google.
+      </p>
+      <a
+        className="insc-form-help__btn"
+        href={FORM_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Abrir formulario
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3.5 12.5 12.5 3.5M12.5 3.5H6M12.5 3.5v6.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </a>
+      <p className="insc-form-help__note">
+        No necesitas volver a la página anterior ni recargar el formulario.
+      </p>
+    </div>
+  )
 }
 
 // ── Screen: HUB ───────────────────────────────────────────────────────────────
@@ -326,7 +366,7 @@ function MunFormScreen({ modalidad, onBack }: { modalidad: MunModalidadId; onBac
       <div className="insc-fbody">
         <div className="insc-form-embed">
           <iframe
-            src="https://docs.google.com/forms/d/e/REEMPLAZAR_FORM_ID/viewform?embedded=true"
+            src={FORM_URL}
             width="100%"
             height="1200"
             frameBorder="0"
@@ -337,6 +377,9 @@ function MunFormScreen({ modalidad, onBack }: { modalidad: MunModalidadId; onBac
             Cargando formulario...
           </iframe>
         </div>
+
+        {/* ── Fallback: abrir el formulario en una nueva pestaña ── */}
+        <FormHelpFallback />
       </div>
     </div>
   )
@@ -364,7 +407,7 @@ function OtherFormScreen({
       <div className="insc-fbody">
         <div className="insc-form-embed">
           <iframe
-            src="https://docs.google.com/forms/d/e/REEMPLAZAR_FORM_ID/viewform?embedded=true"
+            src={FORM_URL}
             width="100%"
             height="1200"
             frameBorder="0"
@@ -375,6 +418,9 @@ function OtherFormScreen({
             Cargando formulario...
           </iframe>
         </div>
+
+        {/* ── Fallback: abrir el formulario en una nueva pestaña ── */}
+        <FormHelpFallback />
       </div>
     </div>
   )
@@ -440,6 +486,12 @@ function InscripcionPageInner() {
         @keyframes inscIn {
           from { opacity: 0; transform: translateY(20px); }
           to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Back navigation spacing ── */
+
+        .insc-screen > .bb {
+          margin-bottom: 2.25rem;
         }
 
         /* ── Staggered card animations ── */
@@ -1243,6 +1295,110 @@ function InscripcionPageInner() {
           width: 100%;
           min-height: 1200px;
           background: #fff;
+        }
+
+        /* ── Form fallback block ── */
+
+        .insc-form-help {
+          margin: 2rem auto 0;
+          max-width: 560px;
+          text-align: center;
+          padding: 2.5rem 2rem;
+          background:
+            linear-gradient(160deg, rgba(160,16,40,0.12) 0%, transparent 55%),
+            var(--surface-0);
+          border: 1px solid rgba(236, 229, 214, 0.1);
+          border-radius: 12px;
+          opacity: 0;
+          animation: inscCardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+        }
+        .insc-form-help__icon {
+          width: 44px;
+          height: 44px;
+          margin: 0 auto 1.25rem;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: rgba(236, 229, 214, 0.78);
+          background: linear-gradient(135deg, rgba(200,0,48,0.16), rgba(160,16,40,0.08));
+          border: 1px solid rgba(200, 0, 48, 0.3);
+        }
+        .insc-form-help__title {
+          font-family: var(--font-cormorant);
+          font-size: 1.4rem;
+          font-weight: 400;
+          color: rgba(236, 229, 214, 0.92);
+          letter-spacing: -0.01em;
+          line-height: 1.2;
+          margin-bottom: 0.6rem;
+        }
+        .insc-form-help__text {
+          font-family: var(--font-outfit);
+          font-size: 0.82rem;
+          color: rgba(255, 255, 255, 0.42);
+          line-height: 1.8;
+          max-width: 420px;
+          margin: 0 auto 1.75rem;
+        }
+        .insc-form-help__btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.6rem;
+          min-height: 48px;
+          padding: 0 1.9rem;
+          font-family: var(--font-outfit);
+          font-size: 0.72rem;
+          font-weight: 600;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: #fff;
+          text-decoration: none;
+          background: linear-gradient(135deg, #A01028 0%, #C80030 100%);
+          border: 1px solid rgba(236, 229, 214, 0.14);
+          border-radius: 6px;
+          cursor: pointer;
+          box-shadow: 0 8px 24px rgba(200, 0, 48, 0.28);
+          transition:
+            transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 0.25s ease;
+        }
+        .insc-form-help__btn svg {
+          transition: transform 0.25s ease;
+        }
+        .insc-form-help__btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 14px 38px rgba(200, 0, 48, 0.38);
+        }
+        .insc-form-help__btn:hover svg {
+          transform: translate(2px, -2px);
+        }
+        .insc-form-help__btn:active {
+          transform: translateY(0) scale(0.98);
+          transition-duration: 0.06s;
+        }
+        .insc-form-help__btn:focus-visible {
+          outline: 2px solid rgba(236, 229, 214, 0.6);
+          outline-offset: 3px;
+        }
+        .insc-form-help__note {
+          font-family: var(--font-outfit);
+          font-size: 0.62rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: rgba(255, 255, 255, 0.2);
+          margin-top: 1.25rem;
+        }
+
+        @media (max-width: 480px) {
+          .insc-form-help {
+            padding: 2rem 1.25rem;
+          }
+          .insc-form-help__btn {
+            width: 100%;
+            max-width: 340px;
+          }
         }
 
       `}</style>

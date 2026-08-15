@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Layout from '@/components/layout/Layout'
 
 const committees: Record<string, any> = {
@@ -136,6 +137,55 @@ export default async function CommitteePage({ params }: any) {
 
   return (
     <Layout>
+      <style suppressHydrationWarning>{`
+        .mun-comite-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.6rem;
+          min-height: 48px;
+          margin-top: 1.6rem;
+          padding: 0.85rem 2.2rem;
+          background: #ECE5D6;
+          color: #0F0A0B;
+          font-family: var(--font-outfit, sans-serif);
+          font-size: 0.82rem;
+          font-weight: 600;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          text-decoration: none;
+          border: none;
+          cursor: pointer;
+          position: relative;
+          z-index: 2;
+          transition: background 0.22s ease, transform 0.18s ease, box-shadow 0.22s ease;
+        }
+        .mun-comite-cta:hover {
+          background: #ECE5D6;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 28px rgba(236, 229, 214, 0.35);
+        }
+        .mun-comite-cta:active {
+          transform: translateY(0) scale(0.98);
+          transition-duration: 0.06s;
+        }
+        .mun-comite-cta:focus-visible {
+          outline: 2px solid rgba(236, 229, 214, 0.6);
+          outline-offset: 3px;
+        }
+        .mun-comite-cta svg {
+          transition: transform 0.22s ease;
+        }
+        .mun-comite-cta:hover svg {
+          transform: translateX(4px);
+        }
+        @media (max-width: 640px) {
+          .mun-comite-cta {
+            width: 100%;
+            justify-content: center;
+          }
+        }
+      `}</style>
+
       <section
         style={{
           padding: '9rem 0 6rem',
@@ -260,6 +310,16 @@ export default async function CommitteePage({ params }: any) {
                 >
                   {committee.description}
                 </p>
+
+                <Link
+                  href="/inscripcion?program=mun"
+                  className="mun-comite-cta"
+                >
+                  Inscribirme
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </Link>
               </div>
 
               <div

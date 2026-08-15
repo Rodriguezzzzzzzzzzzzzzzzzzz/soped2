@@ -570,6 +570,42 @@ export default function MunPage() {
           margin: 0 auto 2.5rem;
           line-height: 1.85;
         }
+        .mun-instagram-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.7rem;
+          padding: 0.85rem 2.2rem;
+          min-height: 48px;
+          background: var(--mun-gold);
+          color: #0F0A0B;
+          font-family: var(--font-outfit, sans-serif);
+          font-size: 0.82rem;
+          font-weight: 600;
+          letter-spacing: 0.12em;
+          text-decoration: none;
+          text-transform: none;
+          transition: background 0.22s ease, transform 0.18s ease, box-shadow 0.22s ease;
+          cursor: pointer;
+        }
+        .mun-instagram-btn:hover {
+          background: #ECE5D6;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 28px rgba(236,229,214,0.35);
+        }
+        .mun-instagram-btn:focus-visible {
+          outline: 2px solid var(--mun-gold);
+          outline-offset: 3px;
+        }
+        .mun-instagram-btn:active {
+          transform: translateY(0) scale(0.98);
+        }
+        .mun-instagram-btn svg {
+          flex-shrink: 0;
+          transition: transform 0.22s ease;
+        }
+        .mun-instagram-btn:hover svg {
+          transform: scale(1.08);
+        }
 
         /* ── RESPONSIVE ─────────────────────────────────────── */
         @media (max-width: 900px) {
@@ -585,6 +621,14 @@ export default function MunPage() {
           .mun-process-steps { grid-template-columns: 1fr; }
           .mun-hero-content { padding: 0 1.2rem; }
           .mun-section-inner { padding: 3.5rem 1.2rem; }
+          .mun-cta-inner { padding: 3.5rem 1.2rem; }
+          .mun-instagram-btn {
+            display: flex;
+            width: 100%;
+            max-width: 340px;
+            margin: 0 auto;
+            justify-content: center;
+          }
         }
       `}</style>
 
@@ -762,6 +806,44 @@ export default function MunPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── INSTAGRAM OFICIAL ───────────────────────────────── */}
+      <section className="mun-cta-section">
+        <div className="mun-cta-bg-pattern" />
+        <div className="mun-cta-inner">
+          <span className="mun-hero-eyebrow">Redes Oficiales</span>
+          <h2 className="mun-cta-title">
+            Síguenos en <em>Instagram</em>
+          </h2>
+          <div className="mun-cta-rule" />
+          <p className="mun-cta-desc">
+            Novedades, anuncios y cobertura de la conferencia desde la cuenta oficial
+            de SoPeD MUN.
+          </p>
+          <a
+            href="https://www.instagram.com/sopedmun/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mun-instagram-btn"
+            aria-label="Instagram de SoPeD MUN — @sopedmun"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              width="18"
+              height="18"
+              aria-hidden="true"
+            >
+              <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 0 2.5 1.25 1.25 0 0 1 0-2.5M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
+            </svg>
+            Instagram · @sopedmun
+          </a>
         </div>
       </section>
 
