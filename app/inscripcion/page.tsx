@@ -8,7 +8,8 @@ import { BackButton } from '@/components/ui/back-button'
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 type ProgramId = 'mun' | 'sopedebate' | 'sopedtalks' | 'membresia' | 'equipo'
-type MunModalidadId = 'individual' | 'small' | 'large' | 'institutional' | 'faculty' | 'staff'
+type MunModalidadId = 'individual' | 'small' | 'large' | 'institutional' | 'faculty' | 'staff' | 'embajadores'
+type ModalidadStatus = 'abierto' | 'proximamente' | 'cerrado'
 
 type ViewState =
   | { screen: 'hub' }
@@ -24,6 +25,21 @@ const REGISTRATIONS_OPEN = false
 
 const FORM_URL =
   'https://docs.google.com/forms/d/e/REEMPLAZAR_FORM_ID/viewform?embedded=true'
+
+// ── Per-modality form URLs (override the placeholder when available) ──────────
+
+const MUN_FORM_URLS: Partial<Record<MunModalidadId, { iframe: string; external: string; height?: number }>> = {
+  staff: {
+    iframe: 'https://docs.google.com/forms/d/e/1FAIpQLSdaMSoTYN2V8VjnEXTSg0MNu_chnzZ8p-oZnG8SYUa4ZGUPhw/viewform?embedded=true',
+    external: 'https://docs.google.com/forms/d/e/1FAIpQLSdaMSoTYN2V8VjnEXTSg0MNu_chnzZ8p-oZnG8SYUa4ZGUPhw/viewform?usp=dialog',
+    height: 1947,
+  },
+  embajadores: {
+    iframe: 'https://docs.google.com/forms/d/e/1FAIpQLSf2QvBqDN2luRPGgiWOrC4GHKjZMibHMoxhPQbbFG6HQNQKVw/viewform?embedded=true',
+    external: 'https://docs.google.com/forms/d/e/1FAIpQLSf2QvBqDN2luRPGgiWOrC4GHKjZMibHMoxhPQbbFG6HQNQKVw/viewform?usp=dialog',
+    height: 2225,
+  },
+}
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -139,6 +155,17 @@ const MUN_MODALIDADES = [
     desc: 'Participa activamente en la organización del MUN: logística, protocolo, prensa y soporte operacional.',
     cap: 'Cupos limitados',
     featured: false,
+    status: 'abierto' as ModalidadStatus,
+  },
+  {
+    id: 'embajadores' as const,
+    cat: 'Programa',
+    title: 'Embajadores SOPEDMUN',
+    sub: 'Representa SOPEDMUN en tu comunidad',
+    desc: 'Representa SOPEDMUN en tu comunidad y forma parte de nuestro Programa de Embajadores.',
+    cap: 'Postulación abierta',
+    featured: false,
+    status: 'abierto' as ModalidadStatus,
   },
 ]
 
@@ -150,7 +177,8 @@ function BackBtn({ onClick, label }: { onClick: () => void; label: string }) {
 
 // ── Form fallback: abrir el formulario en una nueva pestaña ──────────────────
 
-function FormHelpFallback() {
+function FormHelpFallback({ externalUrl }: { externalUrl?: string } = {}) {
+  const href = externalUrl || FORM_URL
   return (
     <div className="insc-form-help">
       <div className="insc-form-help__icon" aria-hidden="true">
@@ -167,7 +195,7 @@ function FormHelpFallback() {
       </p>
       <a
         className="insc-form-help__btn"
-        href={FORM_URL}
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -356,6 +384,12 @@ function MunModalidadesScreen({
             onClick={() => onSelect(m.id)}
           >
             <div className="insc-mod__left">
+              {m.status && (
+                <span className={`insc-mod__status insc-mod__status--${m.status}`}>
+                  <span className="insc-mod__status-dot" aria-hidden="true" />
+                  {m.status === 'abierto' ? 'Abierto' : m.status === 'proximamente' ? 'Próximamente' : 'Cerrado'}
+                </span>
+              )}
               <div className="insc-mod__cat">{m.cat}</div>
               <div className="insc-mod__title">{m.title}</div>
             </div>
@@ -393,6 +427,7 @@ function MunModalidadesScreen({
 
 function MunFormScreen({ modalidad, onBack }: { modalidad: MunModalidadId; onBack: () => void }) {
   const m = MUN_MODALIDADES.find(x => x.id === modalidad)!
+  const urls = MUN_FORM_URLS[modalidad]
   return (
     <div className="insc-screen">
       <BackBtn onClick={onBack} label="Volver a modalidades" />
@@ -404,9 +439,9 @@ function MunFormScreen({ modalidad, onBack }: { modalidad: MunModalidadId; onBac
       <div className="insc-fbody">
         <div className="insc-form-embed">
           <iframe
-            src={FORM_URL}
+            src={urls?.iframe || FORM_URL}
             width="100%"
-            height="1200"
+            height={urls?.height || 1200}
             frameBorder="0"
             marginHeight={0}
             marginWidth={0}
@@ -417,7 +452,7 @@ function MunFormScreen({ modalidad, onBack }: { modalidad: MunModalidadId; onBac
         </div>
 
         {/* ── Fallback: abrir el formulario en una nueva pestaña ── */}
-        <FormHelpFallback />
+        <FormHelpFallback externalUrl={urls?.external} />
       </div>
     </div>
   )
@@ -1186,6 +1221,44 @@ function InscripcionPageInner() {
           padding: 0.17rem 0.5rem;
           border-radius: 2px;
           white-space: nowrap;
+        }
+
+        /* ── Status indicator ── */
+        .insc-mod__status {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-family: var(--font-outfit);
+          font-size: 0.54rem;
+          font-weight: 600;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          margin-bottom: 0.15rem;
+        }
+        .insc-mod__status-dot {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          flex-shrink: 0;
+        }
+        .insc-mod__status--abierto {
+          color: rgba(236, 229, 214, 0.7);
+        }
+        .insc-mod__status--abierto .insc-mod__status-dot {
+          background: #C80030;
+          box-shadow: 0 0 6px rgba(200, 0, 48, 0.4);
+        }
+        .insc-mod__status--proximamente {
+          color: rgba(236, 229, 214, 0.45);
+        }
+        .insc-mod__status--proximamente .insc-mod__status-dot {
+          background: rgba(160, 16, 40, 0.5);
+        }
+        .insc-mod__status--cerrado {
+          color: rgba(255, 255, 255, 0.3);
+        }
+        .insc-mod__status--cerrado .insc-mod__status-dot {
+          background: rgba(255, 255, 255, 0.2);
         }
         .insc-mod__arrow {
           color: rgba(255, 255, 255, 0.1);
