@@ -1,0 +1,221 @@
+/* ── LINKS FORM PAGES — /links/* ──────────────────────────── */
+/* Mirrors the inscripcion page pattern (.insc-*) with lf- prefix */
+
+/* ── Page shell ──────────────────────────────────────────── */
+
+.lf-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 8rem 0 9rem;
+  isolation: isolate;
+}
+
+.lf-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ── Screen transition ───────────────────────────────────── */
+
+.lf-screen {
+  animation: lfIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes lfIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Back navigation spacing ─────────────────────────────── */
+
+.lf-screen > .bb {
+  margin-bottom: 2.25rem;
+}
+
+/* ── Form header ─────────────────────────────────────────── */
+
+.lf-fhead {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.lf-fhead__tag {
+  font-family: var(--font-outfit);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(236, 229, 214, 0.55);
+  margin-bottom: 0.75rem;
+}
+
+.lf-fhead__title {
+  font-family: var(--font-cormorant);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 300;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.lf-fhead__sub {
+  font-family: var(--font-outfit);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.28);
+  line-height: 1.8;
+  max-width: 580px;
+}
+
+/* ── Form body ───────────────────────────────────────────── */
+
+.lf-fbody {
+  width: 100%;
+}
+
+.lf-form-embed {
+  position: relative;
+  width: 100%;
+  border: 1px solid rgba(160, 16, 40, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-elevated);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.lf-form-embed iframe {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 1200px;
+  background: #fff;
+}
+
+/* ── Form fallback block ─────────────────────────────────── */
+
+.lf-form-help {
+  margin: 2rem auto 0;
+  max-width: 560px;
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background:
+    linear-gradient(160deg, rgba(160, 16, 40, 0.12) 0%, transparent 55%),
+    var(--surface-0);
+  border: 1px solid rgba(236, 229, 214, 0.1);
+  border-radius: 12px;
+  opacity: 0;
+  animation: lfCardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+.lf-form-help__icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 1.25rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(236, 229, 214, 0.78);
+  background: linear-gradient(135deg, rgba(200, 0, 48, 0.16), rgba(160, 16, 40, 0.08));
+  border: 1px solid rgba(200, 0, 48, 0.3);
+}
+
+.lf-form-help__title {
+  font-family: var(--font-cormorant);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: rgba(236, 229, 214, 0.92);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+
+.lf-form-help__text {
+  font-family: var(--font-outfit);
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.42);
+  line-height: 1.8;
+  max-width: 420px;
+  margin: 0 auto 1.75rem;
+}
+
+.lf-form-help__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0 1.9rem;
+  font-family: var(--font-outfit);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(135deg, #A01028 0%, #C80030 100%);
+  border: 1px solid rgba(236, 229, 214, 0.14);
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(200, 0, 48, 0.28);
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease;
+}
+
+.lf-form-help__btn svg {
+  transition: transform 0.25s ease;
+}
+
+.lf-form-help__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 38px rgba(200, 0, 48, 0.38);
+}
+
+.lf-form-help__btn:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.lf-form-help__btn:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: 0.06s;
+}
+
+.lf-form-help__btn:focus-visible {
+  outline: 2px solid rgba(236, 229, 214, 0.6);
+  outline-offset: 3px;
+}
+
+.lf-form-help__note {
+  font-family: var(--font-outfit);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.2);
+  margin-top: 1.25rem;
+}
+
+/* ── Card animation ──────────────────────────────────────── */
+
+@keyframes lfCardIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (min-width: 768px) {
+  .lf-wrap { padding: 0 3rem; }
+}
+
+@media (max-width: 480px) {
+  .lf-page { padding: 6rem 0 5rem; }
+  .lf-wrap { padding: 0 1.25rem; }
+  .lf-form-help { padding: 2rem 1.25rem; }
+  .lf-form-help__btn { width: 100%; max-width: 340px; }
+}

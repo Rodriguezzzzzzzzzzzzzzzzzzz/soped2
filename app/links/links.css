@@ -1,0 +1,322 @@
+/* ── LINKTREE PAGE — /links ─────────────────────────────── */
+
+.links-page {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 3rem;
+}
+
+/* ── HEADER ──────────────────────────────────────────────── */
+.links-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.links-logo {
+  display: block;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  margin: 0 auto 1.2rem;
+}
+
+.links-org {
+  display: block;
+  font-family: var(--font-outfit, sans-serif);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 1.5rem;
+}
+
+.links-divider {
+  width: 36px;
+  height: 1px;
+  background: var(--ivory, #ECE5D6);
+  margin: 0 auto 1.5rem;
+  opacity: 0.3;
+}
+
+.links-title {
+  font-family: var(--font-cormorant, Georgia, serif);
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  font-weight: 400;
+  color: var(--ivory, #ECE5D6);
+  line-height: 1.1;
+  margin: 0 0 0.75rem;
+}
+
+.links-desc {
+  font-family: var(--font-outfit, sans-serif);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── LINK CARDS ──────────────────────────────────────────── */
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-bottom: 2.5rem;
+}
+
+.links-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.18s ease,
+    box-shadow 0.22s ease;
+  animation: linksFadeIn 0.5s ease both;
+}
+
+.links-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(236,229,214,0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.links-card:focus-visible {
+  outline: 2px solid var(--ivory, #ECE5D6);
+  outline-offset: 2px;
+}
+
+.links-card:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.links-card-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(236,229,214,0.08);
+  border-radius: 10px;
+  flex-shrink: 0;
+  color: var(--ivory, #ECE5D6);
+  transition: background 0.2s ease;
+}
+
+.links-card:hover .links-card-icon {
+  background: rgba(236,229,214,0.14);
+}
+
+.links-card-icon svg {
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.links-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.links-card-title {
+  display: block;
+  font-family: var(--font-outfit, sans-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 0.15rem;
+  letter-spacing: 0.01em;
+}
+
+.links-card-desc {
+  display: block;
+  font-family: var(--font-outfit, sans-serif);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.4;
+}
+
+.links-card-arrow {
+  color: rgba(255,255,255,0.2);
+  flex-shrink: 0;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.links-card-arrow svg {
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+.links-card:hover .links-card-arrow {
+  color: var(--ivory, #ECE5D6);
+  transform: translateX(3px);
+}
+
+/* ── BADGE RIBBON ──────────────────────────────────────── */
+.links-card--badge {
+  position: relative;
+}
+.links-card-ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 0.65rem;
+  font-family: var(--font-outfit, sans-serif);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ECE5D6;
+  background: linear-gradient(135deg, #A01028, #C80030);
+  border-radius: 0 0 0 6px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── FEATURED CARD (AMBASSADOR) ──────────────────────────── */
+.links-card--featured {
+  background: rgba(160,16,40,0.12);
+  border-color: rgba(160,16,40,0.3);
+}
+
+.links-card--featured .links-card-icon {
+  background: rgba(160,16,40,0.2);
+}
+
+.links-card--featured:hover {
+  background: rgba(160,16,40,0.2);
+  border-color: rgba(160,16,40,0.5);
+  box-shadow: 0 8px 24px rgba(160,16,40,0.12);
+}
+
+.links-card--featured:hover .links-card-icon {
+  background: rgba(160,16,40,0.3);
+}
+
+.links-card--featured .links-card-title {
+  color: #ECE5D6;
+}
+
+/* ── SOCIAL ICONS ────────────────────────────────────────── */
+.links-social {
+  display: flex;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-bottom: 2.5rem;
+}
+
+.links-social-link {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 50%;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.18s ease;
+}
+
+.links-social-link svg {
+  width: 17px;
+  height: 17px;
+  pointer-events: none;
+}
+
+.links-social-link:hover {
+  background: rgba(236,229,214,0.1);
+  border-color: rgba(236,229,214,0.25);
+  color: var(--ivory, #ECE5D6);
+  transform: translateY(-2px);
+}
+
+.links-social-link:focus-visible {
+  outline: 2px solid var(--ivory, #ECE5D6);
+  outline-offset: 2px;
+}
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.links-footer {
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+.links-footer-name {
+  font-family: var(--font-outfit, sans-serif);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.04em;
+}
+
+.links-footer-sub {
+  font-family: var(--font-outfit, sans-serif);
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.3);
+  margin-top: 0.3rem;
+  letter-spacing: 0.03em;
+}
+
+/* ── ANIMATION ───────────────────────────────────────────── */
+@keyframes linksFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (min-width: 640px) {
+  .links-page {
+    padding: 6rem 2rem 3.5rem;
+  }
+  .links-logo {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+@media (max-width: 380px) {
+  .links-page {
+    padding: 4.5rem 1rem 2.5rem;
+  }
+  .links-card {
+    padding: 0.85rem 1rem;
+    gap: 0.85rem;
+  }
+  .links-card-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .links-card-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+  .links-social-link {
+    width: 38px;
+    height: 38px;
+  }
+}

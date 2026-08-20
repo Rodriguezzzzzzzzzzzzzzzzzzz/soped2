@@ -16,6 +16,10 @@ type ViewState =
   | { screen: 'mun-form'; modalidad: MunModalidadId }
   | { screen: 'other-form'; program: Exclude<ProgramId, 'mun'> }
 
+// ── Configuration ────────────────────────────────────────────────────────────
+
+const REGISTRATIONS_OPEN = false
+
 // ── Google Form URL ──────────────────────────────────────────────────────────
 
 const FORM_URL =
@@ -30,8 +34,8 @@ const PROGRAMS = [
     title: 'SoPeD MUN 2026',
     subtitle: 'Modelo de Naciones Unidas',
     category: 'Internacional',
-    status: 'Inscripciones abiertas',
-    active: true,
+    status: REGISTRATIONS_OPEN ? 'Inscripciones abiertas' : 'Próximamente',
+    active: REGISTRATIONS_OPEN,
     detail: '12 comités · 6 modalidades · Presencial',
     featured: true,
   },
@@ -207,6 +211,23 @@ function HubScreen({ onSelect }: { onSelect: (id: ProgramId) => void }) {
         </div>
       </div>
 
+      {/* ── Registration notice ── */}
+      {!REGISTRATIONS_OPEN && (
+        <div className="insc-notice" role="status">
+          <div className="insc-notice__inner">
+            <div className="insc-notice__accent" aria-hidden="true" />
+            <div className="insc-notice__content">
+              <span className="insc-notice__eyebrow">Estado de inscripciones</span>
+              <h3 className="insc-notice__title">Próximamente</h3>
+              <p className="insc-notice__text">
+                Se aperturarán las inscripciones para los programas de SoPeD.
+                Mantente atento a los canales oficiales para conocer las fechas.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ── Rule ── */}
       <div className="insc-rule" />
 
@@ -285,6 +306,23 @@ function MunModalidadesScreen({
           requisitos, capacidades y beneficios específicos dentro de la conferencia.
         </p>
       </div>
+
+      {/* ── Registration notice ── */}
+      {!REGISTRATIONS_OPEN && (
+        <div className="insc-notice" role="status">
+          <div className="insc-notice__inner">
+            <div className="insc-notice__accent" aria-hidden="true" />
+            <div className="insc-notice__content">
+              <span className="insc-notice__eyebrow">Estado de inscripciones</span>
+              <h3 className="insc-notice__title">Próximamente</h3>
+              <p className="insc-notice__text">
+                Se aperturarán las inscripciones para el SoPeD MUN 2026.
+                Las modalidades y formularios estarán disponibles pronto.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Featured — Institucional */}
       <button className="insc-inst" onClick={() => onSelect(featured.id)}>
@@ -1295,6 +1333,61 @@ function InscripcionPageInner() {
           width: 100%;
           min-height: 1200px;
           background: #fff;
+        }
+
+        /* ── Registration notice ── */
+
+        .insc-notice {
+          margin-bottom: 2.5rem;
+          opacity: 0;
+          animation: inscCardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+        }
+        .insc-notice__inner {
+          position: relative;
+          display: flex;
+          overflow: hidden;
+          border-radius: 12px;
+          background:
+            linear-gradient(160deg, rgba(160,16,40,0.15) 0%, rgba(160,16,40,0.06) 50%, transparent 100%),
+            var(--surface-0);
+          border: 1px solid rgba(160,16,40,0.25);
+        }
+        .insc-notice__accent {
+          width: 4px;
+          flex-shrink: 0;
+          background: linear-gradient(180deg, #A01028, #C80030);
+        }
+        .insc-notice__content {
+          padding: 1.75rem 2rem;
+        }
+        .insc-notice__eyebrow {
+          display: block;
+          font-family: var(--font-outfit);
+          font-size: 0.58rem;
+          font-weight: 700;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: rgba(200,0,48,0.7);
+          margin-bottom: 0.5rem;
+        }
+        .insc-notice__title {
+          font-family: var(--font-cormorant);
+          font-size: clamp(1.6rem, 3vw, 2.2rem);
+          font-weight: 400;
+          color: var(--text-primary);
+          line-height: 1.15;
+          margin-bottom: 0.6rem;
+        }
+        .insc-notice__text {
+          font-family: var(--font-outfit);
+          font-size: 0.82rem;
+          color: rgba(255,255,255,0.42);
+          line-height: 1.8;
+          max-width: 480px;
+        }
+
+        @media (max-width: 480px) {
+          .insc-notice__content { padding: 1.25rem 1.25rem; }
         }
 
         /* ── Form fallback block ── */
