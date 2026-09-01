@@ -117,6 +117,7 @@ export default function InstitucionalPage() {
             <h2 className="inst-section__title">Registro e identificación</h2>
           </div>
           <p className="inst-text">
+            ID registrado de la organización: 11368933<br />
             Partida Electrónica SUNARP N.° 11368933
           </p>
         </div>
