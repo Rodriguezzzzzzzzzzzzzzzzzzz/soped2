@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.105.3",
+    "docx": "^9.7.1",
     "firebase": "^12.13.0",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.16.0",
@@ -27,5 +28,23 @@
     "tailwindcss": "^3.4.6",
     "typescript": "^5.5.3",
     "wrangler": "^4.92.0"
-  }
+  },
+  "description": "Plataforma académica institucional completa construida con Next.js 14, TypeScript y Tailwind CSS.",
+  "main": "next.config.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rodriguezzzzzzzzzzzzzzzzzzz/soped2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Rodriguezzzzzzzzzzzzzzzzzzz/soped2/issues"
+  },
+  "homepage": "https://github.com/Rodriguezzzzzzzzzzzzzzzzzzz/soped2#readme"
 }

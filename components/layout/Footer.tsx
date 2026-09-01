@@ -114,6 +114,7 @@ export default function Footer() {
               {[
                 { label: 'Nosotros', href: '/nosotros' },
                 { label: 'Inscripción', href: '/inscripcion' },
+                { label: 'Transparencia y contenido', href: '/institucional' },
                 { label: 'Ingresar', href: '/login' },
               ].map((l) => (
                 <Link key={l.href} href={l.href} className="btn-text" style={{ fontSize: '0.82rem' }}>
