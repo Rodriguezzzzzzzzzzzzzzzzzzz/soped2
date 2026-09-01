@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import './institucional.css'
+import './transparencia.css'
 
 export const metadata: Metadata = {
   title: 'Información Institucional | Sociedad Peruana de Debate – SoPeD',
