@@ -2,23 +2,23 @@ import type { Metadata } from 'next'
 import './transparencia.css'
 
 export const metadata: Metadata = {
-  title: 'Información Institucional | Sociedad Peruana de Debate – SoPeD',
+  title: 'Transparencia y Contenido | Sociedad Peruana de Debate – SoPeD',
   description:
-    'Información institucional de la Sociedad Peruana de Debate – SoPeD, asociación civil sin fines de lucro dedicada al debate, la argumentación, el pensamiento crítico y la formación de liderazgo.',
+    'Información institucional y de verificación de la Sociedad Peruana de Debate – SoPeD: asociación civil sin fines de lucro registrada en SUNARP (Partida Electrónica N.° 11368933), con domicilio en Wánchaq, Cusco. Misión, programas y servicios de debate, argumentación y pensamiento crítico.',
 }
 
 const SECTIONS = [
   {
     id: 'programas',
-    title: 'Programas y líneas de acción',
+    title: 'Programas y servicios',
     items: [
       {
-        label: 'Debate y argumentación',
-        text: 'Programas y espacios orientados al desarrollo de competencias de argumentación, análisis, expresión oral, refutación y pensamiento crítico.',
+        label: 'Debate académico y debate escolar',
+        text: 'Competencias y espacios de debate académico, incluido el programa de debate escolar, orientados al desarrollo de la argumentación, el análisis, la refutación y la expresión oral.',
       },
       {
-        label: 'Formación académica',
-        text: 'Talleres, actividades y experiencias de aprendizaje vinculadas con la comunicación, la deliberación, la oratoria y el liderazgo.',
+        label: 'Formación en debate y pensamiento crítico',
+        text: 'Talleres y experiencias de aprendizaje sobre argumentación, pensamiento crítico, deliberación, oratoria y comunicación.',
       },
       {
         label: 'Modelo de Naciones Unidas',
@@ -29,7 +29,7 @@ const SECTIONS = [
         text: 'Iniciativas orientadas a fortalecer el liderazgo juvenil, la participación, el diálogo y la formación cívica.',
       },
       {
-        label: 'Espacios de diálogo',
+        label: 'Espacios de diálogo y deliberación',
         text: 'Actividades y plataformas para la deliberación, el intercambio de ideas y el análisis de asuntos de interés académico y social.',
       },
     ],
@@ -70,12 +70,12 @@ export default function InstitucionalPage() {
         <div className="inst-hero__border" aria-hidden="true" />
       </section>
 
-      {/* ═══ IDENTIDAD ═══ */}
+      {/* ═══ INFORMACIÓN INSTITUCIONAL ═══ */}
       <section className="inst-section">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="inst-section__header">
             <span className="inst-section__num">01</span>
-            <h2 className="inst-section__title">Identidad institucional</h2>
+            <h2 className="inst-section__title">Información institucional</h2>
           </div>
 
           <div className="inst-identity">
@@ -88,8 +88,24 @@ export default function InstitucionalPage() {
               <span className="inst-identity__value">SoPeD</span>
             </div>
             <div className="inst-identity__row">
-              <span className="inst-identity__label">Naturaleza</span>
+              <span className="inst-identity__label">Naturaleza jurídica</span>
               <span className="inst-identity__value">Asociación civil sin fines de lucro</span>
+            </div>
+            <div className="inst-identity__row">
+              <span className="inst-identity__label">Registro oficial</span>
+              <span className="inst-identity__value">Partida Electrónica SUNARP N.° 11368933</span>
+            </div>
+            <div className="inst-identity__row">
+              <span className="inst-identity__label">Identificador de organización</span>
+              <span className="inst-identity__value">11368933</span>
+            </div>
+            <div className="inst-identity__row">
+              <span className="inst-identity__label">Domicilio institucional registrado</span>
+              <span className="inst-identity__value">Urb. Entel Perú C-5, distrito de Wánchaq, provincia de Cusco, departamento de Cusco, Perú.</span>
+            </div>
+            <div className="inst-identity__row">
+              <span className="inst-identity__label">Titularidad y operación del dominio</span>
+              <span className="inst-identity__value">Sociedad Peruana de Debate – SoPeD</span>
             </div>
             <div className="inst-identity__row">
               <span className="inst-identity__label">Sitio web oficial</span>
@@ -104,7 +120,7 @@ export default function InstitucionalPage() {
           </div>
 
           <p className="inst-statement">
-            La Sociedad Peruana de Debate – SoPeD posee y opera el dominio <strong>soped.pe</strong>, el cual constituye su sitio web institucional oficial.
+            La Sociedad Peruana de Debate – SoPeD posee, administra y opera el dominio <strong>soped.pe</strong>. Este dominio constituye el sitio web institucional oficial de la organización y es utilizado para comunicar sus actividades, programas, servicios e información institucional.
           </p>
         </div>
       </section>
@@ -116,49 +132,38 @@ export default function InstitucionalPage() {
             <span className="inst-section__num">02</span>
             <h2 className="inst-section__title">Registro e identificación</h2>
           </div>
-          <p className="inst-text">
-            ID registrado de la organización: 11368933<br />
-            Partida Electrónica SUNARP N.° 11368933
-          </p>
+          <div className="inst-statement" style={{ marginTop: 0 }}>
+            <p>
+              ID registrado de la organización: <strong>11368933</strong><br />
+              Partida Electrónica SUNARP N.° <strong>11368933</strong>
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* ═══ DOMICILIO ═══ */}
+      {/* ═══ MISIÓN Y FINALIDAD ═══ */}
       <section className="inst-section">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="inst-section__header">
             <span className="inst-section__num">03</span>
-            <h2 className="inst-section__title">Domicilio institucional</h2>
+            <h2 className="inst-section__title">Misión y finalidad</h2>
           </div>
-          <p className="inst-text">
-            Urb. Entel Perú C-5, Wanchaq, Cusco, Perú.
-          </p>
+          <div className="inst-prose">
+            <p>
+              Nuestra misión es promover el debate académico, la argumentación rigurosa, el pensamiento crítico, la formación educativa y el liderazgo cívico, generando espacios y oportunidades para que estudiantes y jóvenes desarrollen competencias de análisis, comunicación, deliberación, negociación y participación.
+            </p>
+            <p>
+              La finalidad de la asociación es contribuir a la deliberación informada y a la participación ciudadana, fortaleciendo las capacidades que permitan analizar asuntos de interés público y expresar ideas con responsabilidad y rigor.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* ═══ PROPÓSITO ═══ */}
+      {/* ═══ PROGRAMAS Y SERVICIOS ═══ */}
       <section className="inst-section inst-section--alt">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="inst-section__header">
             <span className="inst-section__num">04</span>
-            <h2 className="inst-section__title">Nuestro propósito</h2>
-          </div>
-          <div className="inst-prose">
-            <p>
-              La Sociedad Peruana de Debate promueve el debate académico, la argumentación rigurosa, el pensamiento crítico, la formación académica y el liderazgo cívico.
-            </p>
-            <p>
-              Su propósito es generar espacios y oportunidades para que estudiantes y jóvenes desarrollen competencias de análisis, comunicación, deliberación, negociación y participación.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ PROGRAMAS ═══ */}
-      <section className="inst-section">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="inst-section__header">
-            <span className="inst-section__num">05</span>
             <h2 className="inst-section__title">{SECTIONS[0].title}</h2>
           </div>
           <div className="inst-programs">
@@ -175,10 +180,10 @@ export default function InstitucionalPage() {
       </section>
 
       {/* ═══ ACTIVIDADES ═══ */}
-      <section className="inst-section inst-section--alt">
+      <section className="inst-section">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="inst-section__header">
-            <span className="inst-section__num">06</span>
+            <span className="inst-section__num">05</span>
             <h2 className="inst-section__title">{SECTIONS[1].title}</h2>
           </div>
           <ul className="inst-activities">
@@ -191,11 +196,11 @@ export default function InstitucionalPage() {
         </div>
       </section>
 
-      {/* ═══ PRESENCIA DIGITAL ═══ */}
-      <section className="inst-section">
+      {/* ═══ PRESENCIA INSTITUCIONAL ═══ */}
+      <section className="inst-section inst-section--alt">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="inst-section__header">
-            <span className="inst-section__num">07</span>
+            <span className="inst-section__num">06</span>
             <h2 className="inst-section__title">Presencia institucional</h2>
           </div>
           <div className="inst-prose">
@@ -210,7 +215,7 @@ export default function InstitucionalPage() {
       </section>
 
       {/* ═══ CONTACTO ═══ */}
-      <section className="inst-section inst-section--alt inst-section--last">
+      <section className="inst-section inst-section--last">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <p className="inst-contact">
             Para información institucional o procesos de vinculación, puede contactarse con la Sociedad Peruana de Debate a través de nuestros{' '}

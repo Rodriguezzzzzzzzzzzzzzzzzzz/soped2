@@ -11,6 +11,7 @@ const navLinks = [
   { label: 'Eventos', href: '/eventos' },
   { label: 'MUN', href: '/mun' },
   { label: 'Debate', href: '/debate-escolar' },
+  { label: 'Transparencia', href: '/transparencia-y-contenido' },
 ]
 
 export default function Navbar() {
@@ -103,7 +104,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => {
               const id = link.href.replace('/', '')
               const isActive = pathname === link.href || activeSection === id
